@@ -1,0 +1,276 @@
+{
+  "app_name" : "Certenz",
+  "author": "Kirara Bernstein",
+  "locale": "en",
+  "button" : {
+    "stared" : "Get Started",
+    "sign_in" : "Sign In",
+    "sign_up" : "Sign Up",
+    "login" : "Log In",
+    "register" : "Register",
+    "continue" : "Continue",
+    "next" : "Next",
+    "finish" : "Finish",
+    "enter" : "Enter",
+    "send" : "Send",
+    "proses" : "Proceed",
+    "pay" : "Pay Now!",
+    "save" : "Save",
+    "choose_bank" : "Choose Bank",
+    "start" : "Start Project",
+    "check_status" : "Check Status",
+    "create_bill" : "Create Bill",
+    "split_bill" : "Split Bill Now",
+    "agree" : "I Agree",
+    "cancel" : "Cancel",
+    "add_detail" : "Add Detail",
+    "add_image" : "Add Image",
+    "choose_image" : "Choose Image",
+    "verify" : "Let’s Verify",
+    "lets_continue" : "Let’s Continue"
+  },
+  "text_button": {
+    "skip": "SKIP",
+    "view_all" : "View All"
+  },
+  "text" : {
+    "privacy_terms" : "Privacy and Terms",
+    "help" : "Help",
+    "login_with" : "or log in with",
+    "register_with" : "or register with",
+    "ready_account" : "Already have one?",
+    "no_have_account": "Don’t have one?",
+    "image_galery" : "Pick image from gallery",
+    "image_camera" : "Pick image from camera",
+    "saved_account" : "Saved Bank Accounts",
+    "genders" : {
+      "m" : "Male",
+      "f" : "Female"
+    }
+  },
+  "form_hint_text" : {
+    "username" : "Username",
+    "name" : "Name",
+    "f_name" : "First Name",
+    "l_name" : "Last Name",
+    "enter_password" : "Enter your password",
+    "create_password" : "Password",
+    "confirm_password" : "Confirm Password",
+    "create_pin" : "Create a PIN",
+    "enter_pin" : "Enter your PIN",
+    "confirm_pin" : "Confirm a PIN",
+    "birthday" : "Birthday",
+    "gender" : "Gender",
+    "phone_number" : "Phone Number",
+    "enter_email" : "Enter your email",
+    "email" : "Your Current Email Address",
+    "email2" : "email@gmail.com",
+    "location" : "Your Location",
+    "date": "2020-03-10",
+    "to_email" : "toemail@gmail.com",
+    "title" : "Ex: your title",
+    "detail_title" : "Ex: title details of your activity",
+    "amount" : "Rp 500.000",
+    "note" : "Ex: your note",
+    "nik" : "NIK",
+    "address" : "Address",
+    "rt" : "RT",
+    "rw" : "RW",
+    "village" : "Village",
+    "sub_district" : "Sub District",
+    "religion" : "Religion",
+    "marital_status" : "Marital Status",
+    "occupation" : "Occupation",
+    "nationality" : "Nationality",
+    "select_bank" : "Select Bank",
+    "select_account": "Select Account",
+    "card_name" : "Card Name",
+    "card_number" : "Card Number",
+    "exp" : "Expiration Date (BB/TT)",
+    "cvv" : "CVV"
+  },
+  "form_title" : {
+    "title" : "Title",
+    "title_project" : "Title Project",
+    "title_activity" : "Judul Activity",
+    "detail_activity" : "Detail Activity",
+    "documentation" : "Ducumentation",
+    "amount" : "Amount",
+    "total_amount" : "Total amount bill",
+    "set_amount" : "Set Bill Amount",
+    "to" : "To",
+    "start_date" : "Start Date",
+    "select_dest" : "Select Account Destination",
+    "note" : "Note",
+    "note_optional" : "Note (Optional)",
+    "email" : "Email",
+    "email_friend" : "Input Email Your Friend",
+    "split_amount" : "Split Amount",
+    "phone_email_friend" : "Phone/Whatsapp Your Friend",
+    "tenant_period" : "Tenant Period",
+    "paid_date" : "Paid on date",
+    "select_payment" : "Select Payment Method"
+  },
+  "dropdown_text_static" : {
+    "marital_status" : {
+      "marry" : "Marry",
+      "single" : "Single"
+    },
+    "nationality" : {
+      "wni" : "Indonesian citizens",
+      "wna" : "foreign nationals"
+    },
+    "select_language" : "Select Language"
+  },
+  "privacy_terms" : {
+    "title" : "Privacy and Terms",
+    "subtitle" : "Lorem ipsum dolor sit amet consectetur. Amet ut dignissim tristique at viverra posuere risus ante egestas. Placerat erat pellentesque nunc et nisl sit tortor at nibh. Orci ac sed morbi interdum aliquam a pellentesque egestas pharetra.",
+    "description" : "Data  we proceed when you use Certenz"
+  },
+  "splash_page" : {
+    "title" : "Do transactions, do easier with Certenz",
+    "description" : "Certenz Mobile Application with high functionality that integrated all bank account into one electronic wallet and centralize all transactions with different payment methods and business model to create an easy way to do transactions."
+  },
+  "welcome_page": {
+    "welcome" : "Welcome!"
+
+  },
+  "login_page" : {
+    "title" : "Login to your account",
+    "forgot_pin" : "Forgot your PIN?"
+  },
+  "register_page" : {
+    "title" : "Register Account",
+    "input_id_title" : "Input ID Card",
+    "input_id_subtitle" : "Enter your complete personal data"
+  },
+  "register_success_page" : {
+    "title" : "Congratulation,",
+    "subtitle": "Your Account succesfully created!",
+    "text1" : "Hi!, Joe",
+    "text2" : "Greetings from Certenz. We confirmed you that now, you’re able to do transaction.\n\n Placerat erat pellentesque nunc et nisl sit tortor at nibh. Orci ac sed morbi interdum aliquam a pellentesque egestas pharetra.\n"
+  },
+  "pin_page" : {
+    "title" : "Enter PIN",
+    "subtitle" : "Enter your Certenz PIN here",
+    "forgot_pin" : "Forgot your PIN?"
+  },
+  "home_page" : {
+    "linked_card" : "Your Linked Card",
+    "see_all" : "See All",
+    "history" : "History Transactions"
+  },
+  "atm_page" : {
+    "title" : "Add Your Card Number",
+    "card_detail" : "Card Details"
+  },
+  "verify_page" : {
+    "title" : "Verify your identity",
+    "desc" : "We require verification of your face for the purposes of the requirements to proceed with payment activities",
+    "validation" : "Validation Process",
+    "success" : "Your identify has been verified! Now you can continue your payment activities"
+  },
+  "create_bill": {
+    "title" : "Create Bill"
+  },
+  "create_split_bill": {
+    "title" : "Create Split Bill"
+  },
+  "split_bill": {
+    "title" : "Split Bill",
+    "split_with" :  "Split Bill Dengan"
+  },
+  "detail_split_bill" : {
+    "title" : "Split Bill",
+    "t_amount" : "Total Amount",
+    "split_with" : "Split Bill With",
+    "share_split" : "Share split bill to your freind, so they can start paying you"
+  },
+  "granted_money" : {
+    "title" : "Granted Money"
+  },
+  "account_billing" : {
+    "title" : "Account Billing"
+  },
+  "reimbursement" : {
+    "title" : "Reimbursement",
+    "detail_activity" : "Detail Activity"
+  },
+  "reimbursement_success" : {
+    "report_success" : "Report sent successfully!",
+    "desc" : "Next there will be a reply to the report you sent to your email"
+  },
+  "payment_status_page" : {
+    "pending_title" : "Pending",
+    "success_title" : "VA",
+    "t_detail" : "Transaction Details",
+    "t_id" : "Transaction ID",
+    "date" : "Date",
+    "payment_to" : "Payment To",
+    "payment_method" : "Payment Method",
+    "from" : "From",
+    "amount" : "Amount",
+    "admin_fee" : "Admin Fee",
+    "total" : "Total",
+    "account_number" : "Account Number"
+  },
+  "history" : {
+    "history" : "History",
+    "active_purchase" : "Active Purchase",
+    "bill" : "Bill"
+  },
+  "profile" : {
+    "title" : "My Profile",
+    "tab" : {
+      "profile" : "Profile",
+      "settings" : "Settings",
+      "account" : "Your Accounts"
+    },
+    "profile": {
+      "phone": "Phone",
+      "email" : "E-Mail",
+      "address" : "Address"
+    },
+    "settings" : {
+      "title" : "General Settings",
+      "change_language" : "Change Language",
+      "faq" : "FAQ"
+    },
+    "accounts" : {
+      "title" : "My Saved Account",
+      "add_account" : "Add Another Bank Account"
+    }
+  },
+  "faq": {
+    "title" : "FAQ",
+    "Subtitle" : "How  can we help you?",
+    "hint_search" : "Enter your keyword",
+    "v_all" : "View All",
+    "problem_bill" : "Problem with bill ?",
+    "about_p" : "About Problem",
+    "terms" : "Terms and Condition",
+    "top_questions" : "Top Questions",
+    "cos_care" : "Costumer Care",
+    "about_problem" : {
+      "account" : "Account & Security",
+      "billing" : "Billing",
+      "payment" : "Payment",
+      "refund" : "Refund",
+      "promotion" : "Promotion",
+      "others" : "Others"
+    },
+    "how_create_account" : {
+      "title" : "How to create an account?",
+      "description" : "Open the cartenz app to get started and follow the steps. Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts,"
+    },
+    "how_add_payment": {
+      "title" : "How to add a payment method by this app?",
+      "description" : "descriptions"
+    },
+    "how_to_split" : {
+      "title": "How to do split bill with friends",
+      "description" : "descriptions"
+    }
+  }
+
+}

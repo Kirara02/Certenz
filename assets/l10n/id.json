@@ -1,0 +1,276 @@
+{
+  "app_name" : "Certenz",
+  "author": "Kirara Bernstein",
+  "locale": "id",
+  "button" : {
+    "stared" : "Mulai",
+    "sign_in" : "Masuk",
+    "sign_up" : "Daftar",
+    "login" : "Login",
+    "register" : "Register",
+    "continue" : "Lanjutkan",
+    "next" : "Selanjutnya",
+    "finish" : "Selesai",
+    "enter" : "Enter",
+    "send" : "Kirim",
+    "proses" : "Proses",
+    "choose_bank" : "Pilih Bank",
+    "pay" : "Bayar Sekarang!",
+    "save" : "Simpan",
+    "start" : "Mulai Project",
+    "check_status" : "Cek Status",
+    "create_bill" : "Buat Bill",
+    "split_bill" : "Split Bill Sekarang",
+    "agree" : "Saya Setuju",
+    "cancel" : "Batal",
+    "add_detail" : "Tambah Detail",
+    "add_image" : "Tambah Gambar",
+    "choose_image" : "Pilih Gambar",
+    "verify" : "Verifikasi",
+    "lets_continue" : "Lanjutkan"
+  },
+
+  "text_button": {
+    "skip": "SKIP",
+    "view_all" : "View All"
+  },
+  "text" : {
+    "privacy_terms" : "Privasi dan Ketentuan",
+    "help" : "Bantuan",
+    "login_with" : "atau masuk dengan",
+    "register_with" : "atau mendaftar dengan",
+    "ready_account" : "Sudah punya akun?",
+    "no_have_account": "Belum punya akun?",
+    "image_galery" : "Pilih Gambar dari galeri",
+    "image_camera" : "pilih gambar dari kamera ",
+    "saved_account" : "Rekening Bank Tersimpan",
+    "genders" : {
+      "m" : "Laki-laki",
+      "f" : "Perempuan"
+    }
+  },
+  "form_hint_text" : {
+    "username" : "Username",
+    "name" : "Nama",
+    "f_name" : "Nama Depan",
+    "l_name" : "Nama Belakang",
+    "enter_password" : "Masukan password",
+    "create_password" : "Password",
+    "confirm_password" : "Konfirmasi Password",
+    "create_pin" : "Buat PIN",
+    "enter_pin" : "Masukan PIN",
+    "confirm_pin" : "Konfirmasi PIN",
+    "birthday" : "Tanggal Lahir",
+    "gender" : "Jenis Kelamin",
+    "phone_number" : "Nomor Telepon",
+    "enter_email" : "Masukan email",
+    "email" : "Email saat ini",
+    "email2" : "email@gmail.com",
+    "location" : "Lokasi",
+    "date": "2020-03-10",
+    "to_email" : "toemail@gmail.com",
+    "title" : "Ex: judul anda",
+    "detail_title" : "Ex: judul detail aktivitas anda",
+    "amount" : "Rp 500.000",
+    "note" : "Ex: catatan anda",
+    "nik" : "NIK",
+    "address" : "Alamat",
+    "rt" : "RT",
+    "rw" : "RW",
+    "village" : "Desa",
+    "sub_district" : "Kecamatan",
+    "religion" : "Agama",
+    "marital_status" : "Status Perkawinan",
+    "occupation" : "Pekerjaan",
+    "nationality" : "Kewarganegaraan",
+    "select_bank" : "Pilih Bank",
+    "select_account": "Pilih Akun",
+    "card_name" : "Nama Kartu",
+    "card_number" : "Nomor Kartu",
+    "exp" : "Tanggal Kedaluwarsa (BB/TT)",
+    "cvv" : "CVV"
+  },
+  "form_title" : {
+    "title" : "Judul",
+    "title_project" : "Judul Projek",
+    "title_activity" : "Judul Aktivitas",
+    "detail_activity" : "Detail Aktivitas",
+    "documentation" : "Dukumentasi",
+    "amount" : "Jumlah",
+    "total_amount" : "Jumlah Total",
+    "set_amount" : "Atur Jumlah Bill",
+    "to" : "Kepada",
+    "start_date" : "Tanggal Mulai",
+    "select_dest" : "Pilih Akun Tujuan",
+    "note" : "Catatan",
+    "note_optional" : "Catatan (Opsional)",
+    "email" : "Email",
+    "email_friend" : "Masukkan Email Teman anda",
+    "split_amount" : "Jumlah Split",
+    "phone_email_friend" : "Telepon/Whatsapp Teman Anda",
+    "tenant_period" : "Periode Penyewa",
+    "paid_date" : "Dibayar pada tanggal",
+    "select_payment" : "Pilih metode pembayaran"
+
+  },
+  "dropdown_text_static" : {
+    "marital_status" : {
+      "marry" : "Kawin",
+      "single" : "Belum Kawin"
+    },
+    "nationality" : {
+      "wni" : "Warga Negara Indonesia (WNI)",
+      "wna" : "Warga Negara Asing (WNA)"
+    },
+    "select_language" : "Pilih Bahasa"
+  },
+  "privacy_terms" : {
+    "title" : "Privasi dan Ketentuan",
+    "subtitle" : "Lorem ipsum dolor sit amet consectetur. Amet ut dignissim tristique at viverra posuere risus ante egestas. Placerat erat pellentesque nunc et nisl sit tortor at nibh. Orci ac sed morbi interdum aliquam a pellentesque egestas pharetra.",
+    "description" : "Data kami proses saat Anda menggunakan Certenz"
+  },
+  "splash_page" : {
+    "title" : "Bertransaksi lebih mudah dengan Certenz",
+    "description" : "Aplikasi Seluler Certenz dengan fungsionalitas tinggi yang mengintegrasikan semua rekening bank ke dalam satu dompet elektronik dan memusatkan semua transaksi dengan metode pembayaran dan model bisnis berbeda untuk menciptakan cara mudah dalam melakukan transaksi."
+  },
+  "welcome_page": {
+    "welcome" : "Selamat Datang!"
+  },
+  "login_page" : {
+    "title" : "Masuk ke akun anda",
+    "forgot_pin" : "Lupa PIN Anda?"
+  },
+  "register_page" : {
+    "title" : "Daftarkan Akun",
+    "input_id_title" : "Masukkan KTP Anda",
+    "input_id_subtitle" : "Masukkan data pribadi Anda secara lengkap"
+  },
+  "register_success_page" : {
+    "title" : "Selamat,",
+    "subtitle": "Akun Anda berhasil dibuat!",
+    "text1" : "Hai!, Joe",
+    "text2" : "Salam dari Certenz. Kami telah mengkonfirmasi kepada Anda bahwa sekarang Anda sudah dapat melakukan transaksi.\n\n Tempatkan erat pellentesque nunc et nisl sit tortor di nibh. Orci bertindak morbi interdum alikuam dan pellentesque egestas pharetra.\n"
+  },
+  "pin_page" : {
+    "title" : "Masukan PIN",
+    "subtitle" : "Masukkan PIN Certenz Anda di sini",
+    "forgot_pin" : "Lupa PIN Anda?"
+  },
+  "home_page" : {
+    "linked_card" : "Kartu Tertaut Anda",
+    "see_all" : "Lihat Semua",
+    "history" : "Riwayat Transaksi"
+  },
+  "atm_page" : {
+    "title" : "Tambahkan Nomor Kartu Anda",
+    "card_detail" : "Detail Kartu"
+  },
+  "verify_page" : {
+    "title" : "Verifikasi identitas Anda",
+    "desc" : "Kami memerlukan verifikasi wajah Anda untuk keperluan persyaratan untuk melanjutkan aktivitas pembayaran",
+    "validation" : "Proses Validasi",
+    "success" : "Identitas Anda telah diverifikasi! Sekarang Anda dapat melanjutkan aktivitas pembayaran Anda"
+  },
+  "create_bill": {
+    "title" : "Buat Bill"
+  },
+  "create_split_bill": {
+    "title" : "Buat Split Bill"
+  },
+  "split_bill" : {
+    "title" : "Split Bill",
+    "split_with" :  "Split Bill With"
+  },
+  "detail_split_bill" : {
+    "title" : "Split Bill",
+    "t_amount" : "Jumlah Total",
+    "split_with" : "Split Bill Dengan",
+    "share_split" : "Bagikan tagihan terpisah kepada teman Anda, sehingga mereka dapat mulai membayar Anda"
+  },
+  "granted_money" : {
+    "title" : "Granted Money"
+  },
+  "account_billing" : {
+    "title" : "Account Billing"
+  },
+  "reimbursement" : {
+    "title" : "Reimbursement",
+    "detail_activity" : "Detail Aktivitas"
+  },
+  "reimbursement_success" : {
+    "report_success" : "Laporan berhasil dikirim!",
+    "desc" : "Selanjutnya akan ada balasan atas laporan yang Anda kirimkan ke email Anda"
+  },
+  "payment_status_page" : {
+    "pending_title" : "Pending",
+    "success_title" : "VA",
+    "t_detail" : "Detail Transaksi",
+    "t_id" : "ID Transaksi",
+    "date" : "Tanggal",
+    "payment_to" : "Pembayaran Untuk",
+    "payment_method" : "Metode Pembayaran",
+    "from" : "Dari",
+    "amount" : "Jumlah",
+    "admin_fee" : "Biaya Admin",
+    "total" : "Total",
+    "account_number" : "Nomor Akun"
+  },
+  "history" : {
+    "history" : "History",
+    "active_purchase" : "Active Purchase",
+    "bill" : "Bill"
+  },
+  "profile" : {
+    "title" : "Profil",
+    "tab" : {
+      "profile" : "Profil",
+      "settings" : "Pengaturan",
+      "account" : "Akun Anda"
+    },
+    "profile": {
+      "phone": "Nomor Telepon",
+      "email" : "Email",
+      "address" : "Alamat"
+    },
+    "settings" : {
+      "title" : "Pengaturan Umum",
+      "change_language" : "Ubah Bahasa",
+      "faq" : "FAQ"
+    },
+    "accounts" : {
+      "title" : "Akun Tersimpan Saya",
+      "add_account" : "Tambahkan Rekening Bank Lain"
+    }
+  },
+  "faq": {
+    "title" : "FAQ",
+    "Subtitle" : "Apa yang bisa kami bantu?",
+    "hint_search" : "Masukkan kata kunci Anda",
+    "v_all" : "Lihat Semua",
+    "problem_bill" : "Masalah dengan bill ?",
+    "about_p" : "Tentang Masalah",
+    "terms" : "Syarat dan Ketentuan",
+    "top_questions" : "Pertanyaan Teratas",
+    "cos_care" : "Layanan Pelanggan",
+    "about_problem" : {
+      "account" : "Akun & Keamanan",
+      "billing" : "Billing",
+      "payment" : "Payment",
+      "refund" : "Refund",
+      "promotion" : "Promosi",
+      "others" : "Lainnya"
+    },
+    "how_create_account" : {
+      "title" : "Bagaimana cara membuat akun?",
+      "description" : "Buka aplikasi cartenz untuk memulai dan ikuti langkah-langkahnya. Lorem ipsum adalah teks placeholder yang biasa digunakan dalam industri grafik, percetakan, dan penerbitan untuk melihat pratinjau tata letak,"
+    },
+    "how_add_payment": {
+      "title" : "Bagaimana cara menambahkan metode pembayaran dengan aplikasi ini?",
+      "description" : "descriptions"
+    },
+    "how_to_split" : {
+      "title": "Bagaimana cara membagi tagihan dengan teman",
+      "description" : "descriptions"
+    }
+  }
+}
