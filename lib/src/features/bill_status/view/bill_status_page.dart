@@ -1,31 +1,23 @@
 import 'package:certenz/gen/assets.gen.dart';
 import 'package:certenz/l10n/locale_keys.g.dart';
-import 'package:certenz/src/app/app_root.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/data/models/split_bill/split_bill_item_model.dart';
-import 'package:certenz/src/data/models/split_bill/split_bill_model.dart';
+import 'package:certenz/src/data/models/bill/bill_model.dart';
+import 'package:certenz/src/features/qr_bill/view/qr_bill_page.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
-import 'package:certenz/src/widgets/common/custom_appbar.dart';
-import 'package:certenz/src/widgets/common/custom_clip_path.dart';
 import 'package:certenz/src/widgets/common/powered_widget.dart';
 import 'package:certenz/src/widgets/common/share_bill_to.dart';
-import 'package:certenz/src/widgets/common/text_column.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class PaymentPendingPage extends StatelessWidget {
-  final SplitBillModel splitData;
-  final SplitBillItemModel splitItemData;
-  const PaymentPendingPage({
-    super.key,
-    required this.splitData,
-    required this.splitItemData,
-  });
+import '../../../widgets/common/text_column.dart';
+
+class BillStatusPage extends StatelessWidget {
+  final BillModel data;
+  const BillStatusPage({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -33,26 +25,13 @@ class PaymentPendingPage extends StatelessWidget {
       backgroundColor: AppColors.neutralN130,
       body: WillPopScope(
         onWillPop: () async {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AppRoot(),
-              ),
-              (route) => false);
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil("/home", (route) => false);
           return false;
         },
         child: SingleChildScrollView(
           child: Stack(
             children: [
-              // ClipPath(
-              //   clipper: WaveClipperTwo(),
-              //   child: Container(
-              //     height: 302,
-              //     decoration: const BoxDecoration(
-              //       color: AppColors.orange,
-              //     ),
-              //   ),
-              // ),
               Assets.images.paymentBg
                   .image(width: AppScreens.width, fit: BoxFit.fill),
               Column(
@@ -67,11 +46,8 @@ class PaymentPendingPage extends StatelessWidget {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                      builder: (context) => const AppRoot(),
-                                    ),
-                                    (route) => false);
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    "/home", (route) => false);
                               },
                               child: const Icon(
                                 Icons.chevron_left_rounded,
@@ -83,7 +59,7 @@ class PaymentPendingPage extends StatelessWidget {
                         const SizedBox(height: 8),
                         Center(
                           child: Text(
-                            splitItemData.createBillStatus,
+                            data.createBillStatus,
                             style: const TextStyle(
                               fontSize: AppConstants.kFontSizeXXL,
                               fontWeight: FontWeight.bold,
@@ -94,14 +70,16 @@ class PaymentPendingPage extends StatelessWidget {
                         const SizedBox(height: 8),
                         Center(
                           child: SvgPicture.asset(
-                            Assets.icons.pending.path,
+                            data.createBillStatus == 'Pending'
+                                ? Assets.icons.pending.path
+                                : Assets.icons.success.path,
                             width: 84,
                           ),
                         ),
                         const SizedBox(height: 8),
                         Center(
                           child: Text(
-                            formatCurrencyNonDecimal(splitData.amountTotal),
+                            formatCurrencyNonDecimal(data.totalAmountBill),
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontSize: AppConstants.kFontSizeX,
@@ -123,7 +101,7 @@ class PaymentPendingPage extends StatelessWidget {
                         const SizedBox(height: 38),
                         Center(
                           child: Text(
-                            splitData.title,
+                            data.title,
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: AppColors.neutralN30,
@@ -133,24 +111,24 @@ class PaymentPendingPage extends StatelessWidget {
                         const SizedBox(height: 25),
                         TextColum(
                           title: LocaleKeys.payment_status_page_date.tr(),
-                          subTitle: splitItemData.transactionDatetime,
+                          subTitle: data.transactionDatetime,
                         ),
                         TextColum(
                           title: LocaleKeys.payment_status_page_payment_to.tr(),
-                          subTitle: splitItemData.toName,
+                          subTitle: data.toName,
                         ),
                         TextColum(
                           title: LocaleKeys.payment_status_page_payment_method
                               .tr(),
-                          subTitle: splitItemData.paymentMethod,
+                          subTitle: data.paymentMethod,
                         ),
                         TextColum(
                           title: LocaleKeys.payment_status_page_from.tr(),
-                          subTitle: splitItemData.fromName,
+                          subTitle: data.fromName,
                         ),
                         TextColum(
                           title: LocaleKeys.payment_status_page_amount.tr(),
-                          subTitle: formatCurrency(splitData.amountTotal),
+                          subTitle: formatCurrency(data.totalAmountBill),
                         ),
                         TextColum(
                           title: LocaleKeys.payment_status_page_admin_fee.tr(),
@@ -159,7 +137,7 @@ class PaymentPendingPage extends StatelessWidget {
                         ),
                         TextColum(
                           title: LocaleKeys.form_title_total_amount.tr(),
-                          subTitle: formatCurrency(splitData.amountTotal),
+                          subTitle: formatCurrency(data.totalAmountBill),
                         ),
                         const SizedBox(height: 8),
                         Row(
@@ -172,7 +150,12 @@ class PaymentPendingPage extends StatelessWidget {
                                 width: 150,
                                 child: BtnPrimary(
                                   title: "QR Code",
-                                  onTap: () {},
+                                  onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            QRBillPage(data: data),
+                                      )),
                                 ),
                               ),
                             ),

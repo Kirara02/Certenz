@@ -1,5 +1,6 @@
 import 'package:certenz/src/core/api_result.dart';
 import 'package:certenz/src/data/data_source/common/http.dart';
+import 'package:certenz/src/data/models/bill/bill_model.dart';
 import 'package:certenz/src/data/models/split_bill/split_bill_item_model.dart';
 import 'package:certenz/src/data/models/split_bill/split_bill_model.dart';
 import 'package:certenz/src/data/repository/split_bill/split_bill_repository.dart';
@@ -32,17 +33,16 @@ class SplitBillService implements SplitBillRepository {
   }
 
   @override
-  Future<ApiResult<List<SplitBillItemModel>>> createSplitBillItem({
+  Future<ApiResult<List<BillModel>>> createSplitBillItem({
     required int splitId,
     required FormData formData,
   }) async {
     return await http.post(
       "split-bill/$splitId",
-      // authorization: true,
+      authorization: true,
       data: formData,
-      onSuccess: (res) => (res.data['data'] as List)
-          .map((e) => SplitBillItemModel.fromJson(e))
-          .toList(),
+      onSuccess: (res) =>
+          (res.data['data'] as List).map((e) => BillModel.fromJson(e)).toList(),
     );
   }
 }

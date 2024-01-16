@@ -104,7 +104,7 @@ class _SplitBillPageState extends State<SplitBillPage> {
   @override
   void initState() {
     super.initState();
-    amount = double.parse(widget.data.amountTotal);
+    amount = widget.data.amountTotal;
     noteController.text = widget.data.title;
   }
 
@@ -276,7 +276,7 @@ class _SplitBillPageState extends State<SplitBillPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => DetailSplitBillPage(
-                            splitBillData: widget.data, splitBillItems: data),
+                            splitBillData: widget.data, billItems: data),
                       ),
                       (route) => false);
                 },

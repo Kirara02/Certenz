@@ -3,9 +3,8 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/data/models/split_bill/split_bill_item_model.dart';
+import 'package:certenz/src/data/models/bill/bill_model.dart';
 import 'package:certenz/src/data/models/split_bill/split_bill_model.dart';
-import 'package:certenz/src/data/services/dummy_service.dart';
 import 'package:certenz/src/features/create_split_bill/view/create_split_bill_page.dart';
 import 'package:certenz/src/features/split_bill/widget/people_split_card.dart';
 import 'package:certenz/src/utils/formatters.dart';
@@ -18,11 +17,11 @@ import '../../../widgets/common/custom_appbar.dart';
 
 class DetailSplitBillPage extends StatelessWidget {
   final SplitBillModel splitBillData;
-  final List<SplitBillItemModel> splitBillItems;
+  final List<BillModel> billItems;
   const DetailSplitBillPage({
     super.key,
     required this.splitBillData,
-    required this.splitBillItems,
+    required this.billItems,
   });
 
   @override
@@ -118,8 +117,7 @@ class DetailSplitBillPage extends StatelessWidget {
                       const SizedBox(height: 4),
                       Center(
                         child: Text(
-                          formatCurrencyNonDecimal(
-                              double.parse(splitBillData.amountTotal)),
+                          formatCurrencyNonDecimal(splitBillData.amountTotal),
                           style: const TextStyle(
                             fontSize: AppConstants.kFontSizeXXL,
                             fontWeight: FontWeight.bold,
@@ -148,13 +146,10 @@ class DetailSplitBillPage extends StatelessWidget {
                             ListView.builder(
                               shrinkWrap: true,
                               physics: const NeverScrollableScrollPhysics(),
-                              itemCount: splitBillItems.length,
+                              itemCount: billItems.length,
                               itemBuilder: (context, index) {
-                                var item = splitBillItems[index];
-                                return PeopleSplitCard(
-                                  splitData: splitBillData,
-                                  splitItemData: item,
-                                );
+                                var item = billItems[index];
+                                return PeopleSplitCard(billData: item);
                               },
                             )
                           ],

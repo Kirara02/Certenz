@@ -11,7 +11,7 @@ _$SplitBillModelImpl _$$SplitBillModelImplFromJson(Map<String, dynamic> json) =>
       id: json['split_id'] as int,
       userId: json['user_id'] as int,
       title: json['title'] as String,
-      amountTotal: json['amount_total'] as String,
+      amountTotal: (json['amount_total'] as num).toDouble(),
       setFairy: json['set_fairy'] as bool,
     );
 

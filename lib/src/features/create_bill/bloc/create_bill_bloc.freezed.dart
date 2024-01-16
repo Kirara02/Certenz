@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'split_bill_bloc.dart';
+part of 'create_bill_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,60 +15,59 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$SplitBillEvent {
-  int get splitId => throw _privateConstructorUsedError;
+mixin _$CreateBillEvent {
   FormData get formData => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int splitId, FormData formData) started,
+    required TResult Function(FormData formData) createBill,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int splitId, FormData formData)? started,
+    TResult? Function(FormData formData)? createBill,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int splitId, FormData formData)? started,
+    TResult Function(FormData formData)? createBill,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_CreateBill value) createBill,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_CreateBill value)? createBill,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_CreateBill value)? createBill,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SplitBillEventCopyWith<SplitBillEvent> get copyWith =>
+  $CreateBillEventCopyWith<CreateBillEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $SplitBillEventCopyWith<$Res> {
-  factory $SplitBillEventCopyWith(
-          SplitBillEvent value, $Res Function(SplitBillEvent) then) =
-      _$SplitBillEventCopyWithImpl<$Res, SplitBillEvent>;
+abstract class $CreateBillEventCopyWith<$Res> {
+  factory $CreateBillEventCopyWith(
+          CreateBillEvent value, $Res Function(CreateBillEvent) then) =
+      _$CreateBillEventCopyWithImpl<$Res, CreateBillEvent>;
   @useResult
-  $Res call({int splitId, FormData formData});
+  $Res call({FormData formData});
 }
 
 /// @nodoc
-class _$SplitBillEventCopyWithImpl<$Res, $Val extends SplitBillEvent>
-    implements $SplitBillEventCopyWith<$Res> {
-  _$SplitBillEventCopyWithImpl(this._value, this._then);
+class _$CreateBillEventCopyWithImpl<$Res, $Val extends CreateBillEvent>
+    implements $CreateBillEventCopyWith<$Res> {
+  _$CreateBillEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -78,14 +77,9 @@ class _$SplitBillEventCopyWithImpl<$Res, $Val extends SplitBillEvent>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? splitId = null,
     Object? formData = null,
   }) {
     return _then(_value.copyWith(
-      splitId: null == splitId
-          ? _value.splitId
-          : splitId // ignore: cast_nullable_to_non_nullable
-              as int,
       formData: null == formData
           ? _value.formData
           : formData // ignore: cast_nullable_to_non_nullable
@@ -95,35 +89,30 @@ class _$SplitBillEventCopyWithImpl<$Res, $Val extends SplitBillEvent>
 }
 
 /// @nodoc
-abstract class _$$StartedImplCopyWith<$Res>
-    implements $SplitBillEventCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
-      __$$StartedImplCopyWithImpl<$Res>;
+abstract class _$$CreateBillImplCopyWith<$Res>
+    implements $CreateBillEventCopyWith<$Res> {
+  factory _$$CreateBillImplCopyWith(
+          _$CreateBillImpl value, $Res Function(_$CreateBillImpl) then) =
+      __$$CreateBillImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int splitId, FormData formData});
+  $Res call({FormData formData});
 }
 
 /// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$SplitBillEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+class __$$CreateBillImplCopyWithImpl<$Res>
+    extends _$CreateBillEventCopyWithImpl<$Res, _$CreateBillImpl>
+    implements _$$CreateBillImplCopyWith<$Res> {
+  __$$CreateBillImplCopyWithImpl(
+      _$CreateBillImpl _value, $Res Function(_$CreateBillImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? splitId = null,
     Object? formData = null,
   }) {
-    return _then(_$StartedImpl(
-      splitId: null == splitId
-          ? _value.splitId
-          : splitId // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$CreateBillImpl(
       formData: null == formData
           ? _value.formData
           : formData // ignore: cast_nullable_to_non_nullable
@@ -134,62 +123,59 @@ class __$$StartedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StartedImpl implements _Started {
-  const _$StartedImpl({required this.splitId, required this.formData});
+class _$CreateBillImpl implements _CreateBill {
+  const _$CreateBillImpl({required this.formData});
 
-  @override
-  final int splitId;
   @override
   final FormData formData;
 
   @override
   String toString() {
-    return 'SplitBillEvent.started(splitId: $splitId, formData: $formData)';
+    return 'CreateBillEvent.createBill(formData: $formData)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StartedImpl &&
-            (identical(other.splitId, splitId) || other.splitId == splitId) &&
+            other is _$CreateBillImpl &&
             (identical(other.formData, formData) ||
                 other.formData == formData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, splitId, formData);
+  int get hashCode => Object.hash(runtimeType, formData);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
-      __$$StartedImplCopyWithImpl<_$StartedImpl>(this, _$identity);
+  _$$CreateBillImplCopyWith<_$CreateBillImpl> get copyWith =>
+      __$$CreateBillImplCopyWithImpl<_$CreateBillImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int splitId, FormData formData) started,
+    required TResult Function(FormData formData) createBill,
   }) {
-    return started(splitId, formData);
+    return createBill(formData);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int splitId, FormData formData)? started,
+    TResult? Function(FormData formData)? createBill,
   }) {
-    return started?.call(splitId, formData);
+    return createBill?.call(formData);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int splitId, FormData formData)? started,
+    TResult Function(FormData formData)? createBill,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(splitId, formData);
+    if (createBill != null) {
+      return createBill(formData);
     }
     return orElse();
   }
@@ -197,54 +183,51 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_CreateBill value) createBill,
   }) {
-    return started(this);
+    return createBill(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_CreateBill value)? createBill,
   }) {
-    return started?.call(this);
+    return createBill?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_CreateBill value)? createBill,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (createBill != null) {
+      return createBill(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements SplitBillEvent {
-  const factory _Started(
-      {required final int splitId,
-      required final FormData formData}) = _$StartedImpl;
+abstract class _CreateBill implements CreateBillEvent {
+  const factory _CreateBill({required final FormData formData}) =
+      _$CreateBillImpl;
 
-  @override
-  int get splitId;
   @override
   FormData get formData;
   @override
   @JsonKey(ignore: true)
-  _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
+  _$$CreateBillImplCopyWith<_$CreateBillImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$SplitBillState {
+mixin _$CreateBillState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<BillModel> data) success,
+    required TResult Function(BillModel data) success,
     required TResult Function(NetworkExceptions error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -252,7 +235,7 @@ mixin _$SplitBillState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<BillModel> data)? success,
+    TResult? Function(BillModel data)? success,
     TResult? Function(NetworkExceptions error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -260,7 +243,7 @@ mixin _$SplitBillState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<BillModel> data)? success,
+    TResult Function(BillModel data)? success,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) =>
@@ -293,16 +276,16 @@ mixin _$SplitBillState {
 }
 
 /// @nodoc
-abstract class $SplitBillStateCopyWith<$Res> {
-  factory $SplitBillStateCopyWith(
-          SplitBillState value, $Res Function(SplitBillState) then) =
-      _$SplitBillStateCopyWithImpl<$Res, SplitBillState>;
+abstract class $CreateBillStateCopyWith<$Res> {
+  factory $CreateBillStateCopyWith(
+          CreateBillState value, $Res Function(CreateBillState) then) =
+      _$CreateBillStateCopyWithImpl<$Res, CreateBillState>;
 }
 
 /// @nodoc
-class _$SplitBillStateCopyWithImpl<$Res, $Val extends SplitBillState>
-    implements $SplitBillStateCopyWith<$Res> {
-  _$SplitBillStateCopyWithImpl(this._value, this._then);
+class _$CreateBillStateCopyWithImpl<$Res, $Val extends CreateBillState>
+    implements $CreateBillStateCopyWith<$Res> {
+  _$CreateBillStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -319,7 +302,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SplitBillStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$CreateBillStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -333,7 +316,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'SplitBillState.initial()';
+    return 'CreateBillState.initial()';
   }
 
   @override
@@ -350,7 +333,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<BillModel> data) success,
+    required TResult Function(BillModel data) success,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return initial();
@@ -361,7 +344,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<BillModel> data)? success,
+    TResult? Function(BillModel data)? success,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return initial?.call();
@@ -372,7 +355,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<BillModel> data)? success,
+    TResult Function(BillModel data)? success,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -420,7 +403,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements SplitBillState {
+abstract class _Initial implements CreateBillState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -433,7 +416,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$SplitBillStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$CreateBillStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -447,7 +430,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'SplitBillState.loading()';
+    return 'CreateBillState.loading()';
   }
 
   @override
@@ -464,7 +447,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<BillModel> data) success,
+    required TResult Function(BillModel data) success,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return loading();
@@ -475,7 +458,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<BillModel> data)? success,
+    TResult? Function(BillModel data)? success,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return loading?.call();
@@ -486,7 +469,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<BillModel> data)? success,
+    TResult Function(BillModel data)? success,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -534,7 +517,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements SplitBillState {
+abstract class _Loading implements CreateBillState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -544,12 +527,14 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<BillModel> data});
+  $Res call({BillModel data});
+
+  $BillModelCopyWith<$Res> get data;
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$SplitBillStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$CreateBillStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
@@ -562,29 +547,32 @@ class __$$SuccessImplCopyWithImpl<$Res>
   }) {
     return _then(_$SuccessImpl(
       null == data
-          ? _value._data
+          ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<BillModel>,
+              as BillModel,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BillModelCopyWith<$Res> get data {
+    return $BillModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<BillModel> data) : _data = data;
+  const _$SuccessImpl(this.data);
 
-  final List<BillModel> _data;
   @override
-  List<BillModel> get data {
-    if (_data is EqualUnmodifiableListView) return _data;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_data);
-  }
+  final BillModel data;
 
   @override
   String toString() {
-    return 'SplitBillState.success(data: $data)';
+    return 'CreateBillState.success(data: $data)';
   }
 
   @override
@@ -592,12 +580,11 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._data, _data));
+            (identical(other.data, data) || other.data == data));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+  int get hashCode => Object.hash(runtimeType, data);
 
   @JsonKey(ignore: true)
   @override
@@ -610,7 +597,7 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<BillModel> data) success,
+    required TResult Function(BillModel data) success,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return success(data);
@@ -621,7 +608,7 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<BillModel> data)? success,
+    TResult? Function(BillModel data)? success,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return success?.call(data);
@@ -632,7 +619,7 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<BillModel> data)? success,
+    TResult Function(BillModel data)? success,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -680,10 +667,10 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements SplitBillState {
-  const factory _Success(final List<BillModel> data) = _$SuccessImpl;
+abstract class _Success implements CreateBillState {
+  const factory _Success(final BillModel data) = _$SuccessImpl;
 
-  List<BillModel> get data;
+  BillModel get data;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -702,7 +689,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$SplitBillStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$CreateBillStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -740,7 +727,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'SplitBillState.error(error: $error)';
+    return 'CreateBillState.error(error: $error)';
   }
 
   @override
@@ -765,7 +752,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<BillModel> data) success,
+    required TResult Function(BillModel data) success,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return error(this.error);
@@ -776,7 +763,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<BillModel> data)? success,
+    TResult? Function(BillModel data)? success,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return error?.call(this.error);
@@ -787,7 +774,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<BillModel> data)? success,
+    TResult Function(BillModel data)? success,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -835,7 +822,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements SplitBillState {
+abstract class _Error implements CreateBillState {
   const factory _Error(final NetworkExceptions error) = _$ErrorImpl;
 
   NetworkExceptions get error;

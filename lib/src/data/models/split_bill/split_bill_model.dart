@@ -9,7 +9,7 @@ class SplitBillModel with _$SplitBillModel {
     @JsonKey(name: "split_id") required int id,
     @JsonKey(name: "user_id") required int userId,
     required String title,
-    @JsonKey(name: 'amount_total') required String amountTotal,
+    @JsonKey(name: 'amount_total') required double amountTotal,
     @JsonKey(name: 'set_fairy') required bool setFairy,
   }) = _SplitBillModel;
 
