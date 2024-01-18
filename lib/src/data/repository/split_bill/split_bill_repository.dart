@@ -1,6 +1,5 @@
 import 'package:certenz/src/core/api_result.dart';
 import 'package:certenz/src/data/models/bill/bill_model.dart';
-import 'package:certenz/src/data/models/split_bill/split_bill_item_model.dart';
 import 'package:certenz/src/data/models/split_bill/split_bill_model.dart';
 import 'package:dio/dio.dart';
 

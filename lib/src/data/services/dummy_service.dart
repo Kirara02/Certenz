@@ -71,18 +71,18 @@ class DummyService {
     "Urna mauris elit phasellus vel phasellus libero faucibus.",
   ];
 
-  static List<BankModel> listBank = [
-    BankModel(
-      id: 1,
-      name: "Bank BCA",
-      image: Assets.images.bca.path,
-    ),
-    BankModel(
-      id: 2,
-      name: "Bank BNI",
-      image: Assets.images.bni.path,
-    ),
-  ];
+  // static List<BankModel> listBank = [
+  //   BankModel(
+  //     id: 1,
+  //     name: "Bank BCA",
+  //     image: Assets.images.bca.path,
+  //   ),
+  //   BankModel(
+  //     id: 2,
+  //     name: "Bank BNI",
+  //     image: Assets.images.bni.path,
+  //   ),
+  // ];
 
   static List<AccountBankModel> listAccount = [
     AccountBankModel(

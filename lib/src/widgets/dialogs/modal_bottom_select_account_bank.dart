@@ -3,6 +3,7 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/account_bank/account_bank_model.dart';
+import 'package:certenz/src/data/models/bank/bank_account_model.dart';
 import 'package:certenz/src/data/services/dummy_service.dart';
 import 'package:certenz/src/features/atm/view/atm_card_page.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
@@ -21,7 +22,7 @@ class ModalBottomSelectAccountBank extends StatefulWidget {
 class _ModalBottomSelectAccountBankState
     extends State<ModalBottomSelectAccountBank> {
   final ScrollController scrollController = ScrollController();
-  AccountBankModel? selectedAccount;
+  BankAccountModel? selectedAccount;
 
   @override
   Widget build(BuildContext context) {
@@ -85,28 +86,28 @@ class _ModalBottomSelectAccountBankState
             const SizedBox(
               height: 20,
             ),
-            Column(
-              children: DummyService.listAccount.map((item) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedAccount = item;
-                    });
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    margin: const EdgeInsets.only(bottom: 15),
-                    decoration: BoxDecoration(
-                      color: item == selectedAccount
-                          ? AppColors.red.withOpacity(0.37)
-                          : AppColors.neutralN130,
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: AccountBank(accountBankModel: item, isForm: false),
-                  ),
-                );
-              }).toList(),
-            ),
+            // Column(
+            //   children: DummyService.listAccount.map((item) {
+            //     return GestureDetector(
+            //       onTap: () {
+            //         setState(() {
+            //           selectedAccount = item;
+            //         });
+            //       },
+            //       child: Container(
+            //         padding: const EdgeInsets.all(12),
+            //         margin: const EdgeInsets.only(bottom: 15),
+            //         decoration: BoxDecoration(
+            //           color: item == selectedAccount
+            //               ? AppColors.red.withOpacity(0.37)
+            //               : AppColors.neutralN130,
+            //           borderRadius: BorderRadius.circular(6),
+            //         ),
+            //         child: AccountBank(bankAccountModel: item, isForm: false),
+            //       ),
+            //     );
+            //   }).toList(),
+            // ),
             // ListView.builder(
             //   controller: scrollController,
             //   shrinkWrap: true,

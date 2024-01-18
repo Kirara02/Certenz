@@ -57,19 +57,19 @@ class CardHome extends StatelessWidget {
               title: "Split Bill",
             ),
           ),
-          Expanded(
-            child: IconWidget(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const GrantedMoneyPage(),
-                    ));
-              },
-              icon: Assets.icons.security.path,
-              title: "Granted\nMoney",
-            ),
-          ),
+          // Expanded(
+          //   child: IconWidget(
+          //     onTap: () {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //             builder: (context) => const GrantedMoneyPage(),
+          //           ));
+          //     },
+          //     icon: Assets.icons.security.path,
+          //     title: "Granted\nMoney",
+          //   ),
+          // ),
           Expanded(
             child: IconWidget(
               onTap: () {

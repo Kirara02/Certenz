@@ -87,6 +87,7 @@
     "select_account": "Pilih Akun",
     "card_name" : "Nama Kartu",
     "card_number" : "Nomor Kartu",
+    "account_number" : "Nomor Rekening",
     "exp" : "Tanggal Kedaluwarsa (BB/TT)",
     "cvv" : "CVV"
   },

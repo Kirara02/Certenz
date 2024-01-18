@@ -2,12 +2,16 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 
 class QuestionExpansion extends StatefulWidget {
   final String title;
   final String description;
-  const QuestionExpansion(
-      {super.key, required this.title, required this.description});
+  const QuestionExpansion({
+    super.key,
+    required this.title,
+    required this.description,
+  });
 
   @override
   State<QuestionExpansion> createState() => _QuestionExpansionState();
@@ -54,13 +58,7 @@ class _QuestionExpansionState extends State<QuestionExpansion> {
                   color: AppColors.orange,
                 ),
           children: [
-            Text(
-              widget.description,
-              textAlign: TextAlign.start,
-              style: const TextStyle(
-                color: AppColors.grey4,
-              ),
-            ),
+            HtmlWidget(widget.description),
           ],
         ),
       ),

@@ -1,6 +1,8 @@
+import 'package:certenz/src/blocs/auth/auth_bloc.dart';
 import 'package:certenz/src/utils/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -9,7 +11,6 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/user/user_model.dart';
-import 'package:certenz/src/features/auth/login/bloc/login_bloc.dart';
 import 'package:certenz/src/features/profile/widget/profile_list_tile.dart';
 
 class ProfileSection extends StatefulWidget {
@@ -22,10 +23,10 @@ class ProfileSection extends StatefulWidget {
 class _ProfileSectionState extends State<ProfileSection> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<LoginBloc>(
-      create: (context) => LoginBloc(),
-      child: BlocListener<LoginBloc, LoginState>(
-        bloc: context.read<LoginBloc>(),
+    return BlocProvider<AuthBloc>(
+      create: (context) => AuthBloc(),
+      child: BlocListener<AuthBloc, AuthState>(
+        bloc: context.read<AuthBloc>(),
         listener: (context, state) {
           state.maybeWhen(
             orElse: () {},
@@ -39,11 +40,13 @@ class _ProfileSectionState extends State<ProfileSection> {
             // Other state handlers if needed
           );
         },
-        child: BlocBuilder<LoginBloc, LoginState>(
-          bloc: context.read<LoginBloc>()..add(const LoginEvent.getUser()),
+        child: BlocBuilder<AuthBloc, AuthState>(
+          bloc: context.read<AuthBloc>()..add(const AuthEvent.getUser()),
           builder: (context, state) {
             return state.maybeWhen(
-              orElse: () => const Center(child: Text('Something went wrong')),
+              orElse: () => const SpinKitCircle(
+                color: AppColors.neutralN140,
+              ),
               fetchUser: (user) => _buildProfileContent(user),
               loading: () => const Center(child: CircularProgressIndicator()),
             );
@@ -151,7 +154,7 @@ class _ProfileSectionState extends State<ProfileSection> {
               child: const Text('Sign Out'),
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
-                context.read<LoginBloc>().add(const LoginEvent.userLogout());
+                context.read<AuthBloc>().add(const AuthEvent.userLogout());
               },
             ),
           ],

@@ -67,3 +67,7 @@ String formatCurrencyNonDecimal(double amount) {
   final formattedAmount = NumberFormat('#,###', 'id_ID').format(amount);
   return 'Rp $formattedAmount';
 }
+
+String removeSpaces(String input) {
+  return input.replaceAll(' ', '');
+}

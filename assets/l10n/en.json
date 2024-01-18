@@ -86,6 +86,7 @@
     "select_account": "Select Account",
     "card_name" : "Card Name",
     "card_number" : "Card Number",
+    "account_number" : "Account Number",
     "exp" : "Expiration Date (BB/TT)",
     "cvv" : "CVV"
   },

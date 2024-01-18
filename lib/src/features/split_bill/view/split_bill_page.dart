@@ -1,13 +1,13 @@
 import 'package:certenz/l10n/locale_keys.g.dart';
+import 'package:certenz/src/blocs/split_bill/split_bill_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
+import 'package:certenz/src/cubits/split_bill/splitbill_cubit.dart';
 import 'package:certenz/src/data/models/split_bill/split_bill_model.dart';
 import 'package:certenz/src/features/create_split_bill/view/create_split_bill_page.dart';
 import 'package:certenz/src/features/detail_bill/view/detail_bill_page.dart';
 import 'package:certenz/src/features/detail_split_bill/view/detail_split_bill_page.dart';
-import 'package:certenz/src/features/split_bill/bloc/split_bill_bloc.dart';
-import 'package:certenz/src/features/split_bill/cubits/splitbill_cubit.dart';
 import 'package:certenz/src/features/split_bill/widget/split_bill_with.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/utils/logger.dart';
@@ -125,25 +125,13 @@ class _SplitBillPageState extends State<SplitBillPage> {
             title: LocaleKeys.split_bill_title.tr(),
             onPressed: () {
               context.read<SplitbillCubit>().clearFriendEntries();
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const CreateSplitBillPage(),
-                ),
-              );
+              Navigator.pop(context);
             },
           ),
           body: WillPopScope(
             onWillPop: () async {
               context.read<SplitbillCubit>().clearFriendEntries();
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const CreateSplitBillPage(),
-                ),
-              );
+              Navigator.pop(context);
               return true;
             },
             child: SingleChildScrollView(
@@ -308,8 +296,9 @@ class _SplitBillPageState extends State<SplitBillPage> {
                 onTap: () => sendRequest(context).then((value) {
                   if (value != null) {
                     FormData data = value;
-                    context.read<SplitBillBloc>().add(SplitBillEvent.started(
-                        splitId: widget.data.id, formData: value));
+                    context.read<SplitBillBloc>().add(
+                        SplitBillEvent.addSplitBill(
+                            splitId: widget.data.id, formData: value));
                   }
                 }),
               ),

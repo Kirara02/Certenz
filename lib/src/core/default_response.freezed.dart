@@ -21,8 +21,7 @@ DefaultResponse _$DefaultResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$DefaultResponse {
   String? get message => throw _privateConstructorUsedError;
-  bool? get status => throw _privateConstructorUsedError;
-  bool? get success => throw _privateConstructorUsedError;
+  String? get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +35,7 @@ abstract class $DefaultResponseCopyWith<$Res> {
           DefaultResponse value, $Res Function(DefaultResponse) then) =
       _$DefaultResponseCopyWithImpl<$Res, DefaultResponse>;
   @useResult
-  $Res call({String? message, bool? status, bool? success});
+  $Res call({String? message, String? status});
 }
 
 /// @nodoc
@@ -54,7 +53,6 @@ class _$DefaultResponseCopyWithImpl<$Res, $Val extends DefaultResponse>
   $Res call({
     Object? message = freezed,
     Object? status = freezed,
-    Object? success = freezed,
   }) {
     return _then(_value.copyWith(
       message: freezed == message
@@ -64,11 +62,7 @@ class _$DefaultResponseCopyWithImpl<$Res, $Val extends DefaultResponse>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      success: freezed == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +75,7 @@ abstract class _$$DefaultResponseImplCopyWith<$Res>
       __$$DefaultResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? message, bool? status, bool? success});
+  $Res call({String? message, String? status});
 }
 
 /// @nodoc
@@ -97,7 +91,6 @@ class __$$DefaultResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? message = freezed,
     Object? status = freezed,
-    Object? success = freezed,
   }) {
     return _then(_$DefaultResponseImpl(
       message: freezed == message
@@ -107,11 +100,7 @@ class __$$DefaultResponseImplCopyWithImpl<$Res>
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool?,
-      success: freezed == success
-          ? _value.success
-          : success // ignore: cast_nullable_to_non_nullable
-              as bool?,
+              as String?,
     ));
   }
 }
@@ -119,7 +108,7 @@ class __$$DefaultResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DefaultResponseImpl implements _DefaultResponse {
-  _$DefaultResponseImpl({this.message, this.status, this.success});
+  _$DefaultResponseImpl({this.message, this.status});
 
   factory _$DefaultResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$DefaultResponseImplFromJson(json);
@@ -127,13 +116,11 @@ class _$DefaultResponseImpl implements _DefaultResponse {
   @override
   final String? message;
   @override
-  final bool? status;
-  @override
-  final bool? success;
+  final String? status;
 
   @override
   String toString() {
-    return 'DefaultResponse(message: $message, status: $status, success: $success)';
+    return 'DefaultResponse(message: $message, status: $status)';
   }
 
   @override
@@ -142,13 +129,12 @@ class _$DefaultResponseImpl implements _DefaultResponse {
         (other.runtimeType == runtimeType &&
             other is _$DefaultResponseImpl &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.status, status) || other.status == status) &&
-            (identical(other.success, success) || other.success == success));
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, message, status, success);
+  int get hashCode => Object.hash(runtimeType, message, status);
 
   @JsonKey(ignore: true)
   @override
@@ -166,10 +152,8 @@ class _$DefaultResponseImpl implements _DefaultResponse {
 }
 
 abstract class _DefaultResponse implements DefaultResponse {
-  factory _DefaultResponse(
-      {final String? message,
-      final bool? status,
-      final bool? success}) = _$DefaultResponseImpl;
+  factory _DefaultResponse({final String? message, final String? status}) =
+      _$DefaultResponseImpl;
 
   factory _DefaultResponse.fromJson(Map<String, dynamic> json) =
       _$DefaultResponseImpl.fromJson;
@@ -177,9 +161,7 @@ abstract class _DefaultResponse implements DefaultResponse {
   @override
   String? get message;
   @override
-  bool? get status;
-  @override
-  bool? get success;
+  String? get status;
   @override
   @JsonKey(ignore: true)
   _$$DefaultResponseImplCopyWith<_$DefaultResponseImpl> get copyWith =>

@@ -10,8 +10,7 @@ _$DefaultResponseImpl _$$DefaultResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$DefaultResponseImpl(
       message: json['message'] as String?,
-      status: json['status'] as bool?,
-      success: json['success'] as bool?,
+      status: json['status'] as String?,
     );
 
 Map<String, dynamic> _$$DefaultResponseImplToJson(
@@ -19,5 +18,4 @@ Map<String, dynamic> _$$DefaultResponseImplToJson(
     <String, dynamic>{
       'message': instance.message,
       'status': instance.status,
-      'success': instance.success,
     };

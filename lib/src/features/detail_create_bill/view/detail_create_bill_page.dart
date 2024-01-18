@@ -3,7 +3,6 @@ import 'package:certenz/src/app/app_root.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/data/models/create_bill/create_bill_model.dart';
 import 'package:certenz/src/features/payment_status/view/payment_success_page.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/common/powered_widget.dart';
@@ -14,8 +13,7 @@ import 'package:flutter/material.dart';
 import '../../../widgets/common/custom_appbar.dart';
 
 class DetailCreateBillPage extends StatelessWidget {
-  final CreateBillModel data;
-  const DetailCreateBillPage({super.key, required this.data});
+  const DetailCreateBillPage({super.key});
 
   @override
   Widget build(BuildContext context) {

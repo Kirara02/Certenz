@@ -83,6 +83,7 @@ abstract class  LocaleKeys {
   static const form_hint_text_select_account = 'form_hint_text.select_account';
   static const form_hint_text_card_name = 'form_hint_text.card_name';
   static const form_hint_text_card_number = 'form_hint_text.card_number';
+  static const form_hint_text_account_number = 'form_hint_text.account_number';
   static const form_hint_text_exp = 'form_hint_text.exp';
   static const form_hint_text_cvv = 'form_hint_text.cvv';
   static const form_hint_text = 'form_hint_text';

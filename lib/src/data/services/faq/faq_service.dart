@@ -1,0 +1,32 @@
+import 'package:certenz/src/core/api_result.dart';
+import 'package:certenz/src/data/data_source/common/http.dart';
+import 'package:certenz/src/data/models/faq/faq_cs_model.dart';
+import 'package:certenz/src/data/models/faq/faq_question_model.dart';
+import 'package:certenz/src/data/repository/faq/faq_repository.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+class FaqService implements FaqRepository {
+  late UXHttp http;
+
+  FaqService() {
+    http = UXHttp(xBaseUrl: dotenv.env['BASEURL']);
+  }
+
+  @override
+  Future<ApiResult<List<FaqQuestionModel>>> getQuestions() async {
+    return await http.get("faq",
+        onSuccess: (res) => (res.data['data'] as List)
+            .map((e) => FaqQuestionModel.fromJson(e))
+            .toList());
+  }
+
+  @override
+  Future<ApiResult<List<FaqCsModel>>> getQuestionsByType({
+    required String value,
+  }) async {
+    return await http.get("customer-service?type=$value",
+        onSuccess: (res) => (res.data['data'] as List)
+            .map((e) => FaqCsModel.fromJson(e))
+            .toList());
+  }
+}

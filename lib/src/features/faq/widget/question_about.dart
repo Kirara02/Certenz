@@ -1,52 +1,52 @@
-import 'package:certenz/l10n/locale_keys.g.dart';
-import 'package:certenz/src/config/constant.dart';
-import 'package:certenz/src/config/theme/colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:certenz/src/config/theme/colors.dart';
 
 class QuestionAbout extends StatelessWidget {
-  final SvgPicture icon;
+  final Widget icon;
   final String title;
-  final VoidCallback onTap;
-  const QuestionAbout(
-      {super.key,
-      required this.icon,
-      required this.title,
-      required this.onTap});
+  final String value;
+  final Function(String) onTap;
+  final bool isSelected;
+
+  const QuestionAbout({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.value,
+    required this.onTap,
+    required this.isSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(
-        minHeight: 23,
-        minWidth: 100,
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 4),
-      decoration: const BoxDecoration(
-        color: AppColors.grey6,
-        border: Border(
-          right: BorderSide(color: AppColors.orange, width: 1),
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          icon,
-          const SizedBox(
-            width: 8,
+    return InkWell(
+      onTap: () => onTap(value),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+        decoration: BoxDecoration(
+          color: isSelected ? AppColors.orange : AppColors.grey6,
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(
+            color: isSelected ? AppColors.orange : AppColors.neutralN20,
           ),
-          Flexible(
-            child: Text(
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            icon,
+            const SizedBox(width: 8),
+            Text(
               title,
-              style: const TextStyle(
+              style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: AppConstants.kFontSizeXXS,
-                color: AppColors.neutralN40,
+                fontSize: 12, // Replace with your font size constant
+                color: isSelected
+                    ? Colors.white
+                    : AppColors.neutralN40, // Change text color when selected
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-void showLoadingDialog(BuildContext context) {
+import '../../config/theme/colors.dart';
+
+void showLoadingDialog(BuildContext context,
+    [String text = "Loading, please wait..."]) {
   showDialog(
     context: context,
     barrierDismissible:
         false, // Prevents the dialog from closing until you manually do so
     builder: (BuildContext context) {
-      return const Dialog(
+      return Dialog(
         child: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(20.0),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CircularProgressIndicator(),
-              SizedBox(width: 20),
-              Text("Loading, please wait..."),
+              CircularProgressIndicator(
+                color: AppColors.primaryColors,
+              ),
+              const SizedBox(width: 20),
+              Text(text),
             ],
           ),
         ),

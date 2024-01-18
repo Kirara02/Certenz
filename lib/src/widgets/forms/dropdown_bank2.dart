@@ -2,6 +2,7 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/bank/bank_model.dart';
+import 'package:certenz/src/widgets/images/cached_network.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,41 +31,40 @@ class _DropdownBank2State extends State<DropdownBank2> {
   BankModel? selectedBank;
 
   @override
-  void initState() {
-    super.initState();
-    selectedBank = widget.listBank.firstWhere(
-      (bank) => bank.name == widget.selectedItem,
-      orElse: () => widget.listBank[0],
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    List<String?> listBanks = widget.listBank.map((e) => e.name).toList();
-    List<String?> listBanksLogo = widget.listBank.map((e) => e.image).toList();
-
-    return DropdownSearch<String?>(
-      popupProps: const PopupProps.menu(
-        constraints: BoxConstraints(
-          maxHeight: 130,
-        ),
+    return DropdownSearch<BankModel>(
+      popupProps: PopupProps.menu(
         showSearchBox: false,
+        menuProps: const MenuProps(
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(16),
+                bottomLeft: Radius.circular(16))),
+        itemBuilder: (context, item, isSelected) {
+          return ListTile(
+            title: Text(item.bankName),
+            leading: UICacheNetworkImage(
+              imageUrl: item.bankImage,
+              size: const Size(60, 30),
+              fit: BoxFit.fitWidth,
+            ),
+          );
+        },
+        constraints:
+            BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.3),
       ),
-      items: listBanks,
-      selectedItem: widget.selectedItem,
+      items: widget.listBank,
+      selectedItem: selectedBank,
+      itemAsString: (BankModel? bank) => bank?.bankName ?? '',
       dropdownDecoratorProps: DropDownDecoratorProps(
-        baseStyle: const TextStyle(
-          fontSize: AppConstants.kFontSizeS,
-          color: AppColors.neutralN50,
-        ),
         dropdownSearchDecoration: InputDecoration(
           filled: true,
           prefixIcon: widget.selectedItem != null
               ? Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10),
-                  child: Image.asset(
-                    selectedBank!.image!,
-                    width: AppScreens.width * 0.1,
+                  child: UICacheNetworkImage(
+                    imageUrl: selectedBank!.bankImage,
+                    size: const Size(60, 30),
+                    fit: BoxFit.fitWidth,
                   ),
                 )
               : null,
@@ -100,17 +100,11 @@ class _DropdownBank2State extends State<DropdownBank2> {
           ),
         ),
       ),
-      onChanged: (value) {
-        int index = listBanks.indexOf(value);
+      onChanged: (BankModel? bank) {
         setState(() {
-          selectedBank = BankModel(
-            id: index,
-            name: value!,
-            image: listBanksLogo[index],
-          );
+          selectedBank = bank;
         });
-        // Call the callback function to notify the parent widget
-        widget.onBankSelected(selectedBank!);
+        if (bank != null) widget.onBankSelected(bank);
       },
     );
   }

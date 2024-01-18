@@ -1,13 +1,14 @@
 import 'package:certenz/src/config/constant.dart';
-import 'package:certenz/src/data/models/account_bank/account_bank_model.dart';
+import 'package:certenz/src/data/models/bank/bank_account_model.dart';
+import 'package:certenz/src/widgets/images/cached_network.dart';
 import 'package:flutter/material.dart';
 
 class AccountBank extends StatelessWidget {
-  final AccountBankModel accountBankModel;
+  final BankAccountModel bankAccountModel;
   final bool isForm;
   const AccountBank({
     super.key,
-    required this.accountBankModel,
+    required this.bankAccountModel,
     this.isForm = true,
   });
 
@@ -16,10 +17,10 @@ class AccountBank extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
-        Image.asset(
-          accountBankModel.bankImage,
-          width: 60,
-          height: 32,
+        UICacheNetworkImage(
+          imageUrl: bankAccountModel.bankImage!,
+          size: const Size(60, 40),
+          fit: BoxFit.fitWidth,
         ),
         const SizedBox(width: 10),
         Expanded(
@@ -29,7 +30,7 @@ class AccountBank extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                accountBankModel.bank,
+                bankAccountModel.bankId!.toString(),
                 style: const TextStyle(
                   fontSize: AppConstants.kFontSizeM,
                   fontWeight: FontWeight.w600,
@@ -40,7 +41,7 @@ class AccountBank extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  "${accountBankModel.norek} a.n ${accountBankModel.name}",
+                  "${bankAccountModel.accountNumber} a.n ${bankAccountModel.accountName}",
                   maxLines: 2,
                   style: const TextStyle(
                     fontSize: AppConstants.kFontSizeXS,

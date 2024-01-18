@@ -171,17 +171,17 @@ class _GrantedMoneyPageState extends State<GrantedMoneyPage> {
                 ),
               ),
               const SizedBox(height: 8),
-              SelectBankButton(
-                hintText: LocaleKeys.form_hint_text_select_account.tr(),
-                selectedAccount: selectedAccDestination,
-                onTap: () => _selectAccount(context).then((value) {
-                  if (value != null) {
-                    setState(() {
-                      selectedAccDestination = value;
-                    });
-                  }
-                }),
-              ),
+              // SelectBankButton(
+              //   hintText: LocaleKeys.form_hint_text_select_account.tr(),
+              //   selectedAccount: selectedAccDestination,
+              //   onTap: () => _selectAccount(context).then((value) {
+              //     if (value != null) {
+              //       setState(() {
+              //         selectedAccDestination = value;
+              //       });
+              //     }
+              //   }),
+              // ),
               const SizedBox(height: 18),
               Text(
                 LocaleKeys.form_title_note.tr(),

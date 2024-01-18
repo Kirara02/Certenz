@@ -12,6 +12,7 @@ class AppbarCustom extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle,
     this.widgetTitle,
     this.backgroundColor,
+    this.color = AppColors.black,
   });
   final String? title;
   final VoidCallback onPressed;
@@ -20,6 +21,7 @@ class AppbarCustom extends StatelessWidget implements PreferredSizeWidget {
   final bool? centerTitle;
   final Widget? widgetTitle;
   final Color? backgroundColor;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +50,17 @@ class AppbarCustom extends StatelessWidget implements PreferredSizeWidget {
                     : AppColors.neutralN20,
               )
             : type == "<"
-                ? const Icon(
+                ? Icon(
                     Icons.chevron_left_rounded,
-                    color: AppColors.orange,
+                    color: backgroundColor != null
+                        ? AppColors.neutralN140
+                        : AppColors.orange,
                   )
-                : const Icon(
+                : Icon(
                     Icons.arrow_back,
-                    color: AppColors.neutralN20,
+                    color: backgroundColor != null
+                        ? AppColors.neutralN140
+                        : AppColors.neutralN20,
                   ),
         onPressed: onPressed,
       ),

@@ -1,11 +1,10 @@
-import 'package:certenz/src/data/models/user/user_model.dart';
-import 'package:certenz/src/features/auth/login/bloc/login_bloc.dart';
+import 'package:certenz/src/blocs/auth/auth_bloc.dart';
+import 'package:certenz/src/blocs/faq/faq_bloc.dart';
 import 'package:certenz/src/features/auth/login/view/login_page.dart';
 import 'package:certenz/src/features/auth/register/view/register_page.dart';
 import 'package:certenz/src/features/initial/view/initial_page.dart';
 import 'package:certenz/src/features/splash/view/splash_page.dart';
 import 'package:certenz/src/features/welcome/view/welcome_page.dart';
-import 'package:certenz/src/utils/flutter_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,8 +34,11 @@ class _AppState extends State<App> {
           create: (context) => NavigationCubit(),
         ),
         BlocProvider(
-          create: (context) => LoginBloc(),
-        )
+          create: (context) => AuthBloc(),
+        ),
+        // BlocProvider(
+        //   create: (context) => FaqBloc(),
+        // )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

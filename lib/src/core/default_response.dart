@@ -7,8 +7,7 @@ part 'default_response.g.dart';
 class DefaultResponse with _$DefaultResponse {
   factory DefaultResponse({
     String? message,
-    bool? status,
-    bool? success,
+    String? status,
   }) = _DefaultResponse;
 
   factory DefaultResponse.fromJson(Map<String, dynamic> json) =>

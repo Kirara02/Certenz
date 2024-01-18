@@ -42,6 +42,7 @@ class _DatePickerState extends State<DatePicker> {
             onSubmit: (p0) {
               Navigator.pop(context, tanggal_awal);
             },
+            view: DateRangePickerView.month,
             onCancel: () => Navigator.pop(context),
             onSelectionChanged: onSelectionChanged,
             selectionMode: DateRangePickerSelectionMode.single,

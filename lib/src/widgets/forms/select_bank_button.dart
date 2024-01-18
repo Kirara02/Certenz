@@ -1,20 +1,20 @@
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/data/models/account_bank/account_bank_model.dart';
+import 'package:certenz/src/data/models/bank/bank_account_model.dart';
 import 'package:certenz/src/widgets/common/account_bank.dart';
 import 'package:flutter/material.dart';
 
 class SelectBankButton extends StatelessWidget {
   final String hintText;
-  final AccountBankModel? selectedAccount;
+  final BankAccountModel? bankAccountModel;
   final void Function()? onTap;
 
   const SelectBankButton(
       {super.key,
       required this.hintText,
       this.onTap,
-      required this.selectedAccount});
+      required this.bankAccountModel});
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,8 @@ class SelectBankButton extends StatelessWidget {
           color: AppColors.neutralN130,
           borderRadius: BorderRadius.circular(4),
         ),
-        child: selectedAccount != null
-            ? AccountBank(accountBankModel: selectedAccount!)
+        child: bankAccountModel != null
+            ? AccountBank(bankAccountModel: bankAccountModel!)
             : Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Row(

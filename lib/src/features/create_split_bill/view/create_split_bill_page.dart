@@ -1,9 +1,9 @@
 import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/app/app_root.dart';
+import 'package:certenz/src/blocs/split_bill/split_bill_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/features/create_split_bill/bloc/create_split_bill_bloc.dart';
 import 'package:certenz/src/features/split_bill/view/split_bill_page.dart';
 import 'package:certenz/src/utils/dismiss_keyboard.dart';
 import 'package:certenz/src/utils/formatters.dart';
@@ -46,8 +46,8 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
     } else if (amountController.text.isEmpty) {
       _toast("Total Amount is required");
     } else {
-      context.read<CreateSplitBillBloc>().add(
-            CreateSplitBillEvent.createSplitBill(
+      context.read<SplitBillBloc>().add(
+            SplitBillEvent.createSplitBill(
               title: titleController.text,
               amount: removeCurrencyFormat(amountController.text),
             ),
@@ -59,14 +59,14 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CreateSplitBillBloc(),
+      create: (context) => SplitBillBloc(),
       child: Builder(builder: (context) {
-        return BlocListener<CreateSplitBillBloc, CreateSplitBillState>(
+        return BlocListener<SplitBillBloc, SplitBillState>(
           listener: (context, state) {
             state.maybeWhen(
               orElse: () {},
               loading: () => showLoadingDialog(context),
-              success: (data) {
+              successCreateSplit: (data) {
                 hideDialog(context);
                 Navigator.pushAndRemoveUntil(
                     context,

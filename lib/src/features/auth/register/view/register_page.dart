@@ -1,10 +1,10 @@
 import 'package:certenz/gen/assets.gen.dart';
 import 'package:certenz/l10n/locale_keys.g.dart';
+import 'package:certenz/src/blocs/auth/auth_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/services/dummy_service.dart';
 import 'package:certenz/src/features/auth/login/view/login_page.dart';
-import 'package:certenz/src/features/auth/register/bloc/register_bloc.dart';
 import 'package:certenz/src/features/auth/register/view/register_success_page.dart';
 import 'package:certenz/src/utils/date_picker.dart';
 import 'package:certenz/src/utils/logger.dart';
@@ -133,13 +133,13 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RegisterBloc(),
+      create: (context) => AuthBloc(),
       child: Builder(builder: (context) {
-        return BlocListener<RegisterBloc, RegisterState>(
+        return BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             state.maybeWhen(
               orElse: () {},
-              success: (data) {
+              fetchUser: (data) {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -308,8 +308,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             onTap: () => _sendData().then((value) {
                               if (value != null) {
                                 context
-                                    .read<RegisterBloc>()
-                                    .add(RegisterEvent.register(data: value));
+                                    .read<AuthBloc>()
+                                    .add(AuthEvent.register(data: value));
                               }
                             }),
                             title: LocaleKeys.button_next.tr(),

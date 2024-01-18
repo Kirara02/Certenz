@@ -165,18 +165,18 @@ class _AccountBillingPageState extends State<AccountBillingPage> {
                 ),
               ),
               const SizedBox(height: 18),
-              DropdownBank2(
-                selectedItem: selectedPaymentMethod?.name,
-                hintText: "Pilih Bank",
-                prefixIcon: null,
-                listBank: DummyService.listBank, // Pass the list of banks
-                onBankSelected: (bank) {
-                  setState(() {
-                    selectedPaymentMethod = bank;
-                  });
-                  vLog(selectedPaymentMethod);
-                },
-              ),
+              // DropdownBank2(
+              //   selectedItem: selectedPaymentMethod?.name,
+              //   hintText: "Pilih Bank",
+              //   prefixIcon: null,
+              //   listBank: DummyService.listBank, // Pass the list of banks
+              //   onBankSelected: (bank) {
+              //     setState(() {
+              //       selectedPaymentMethod = bank;
+              //     });
+              //     vLog(selectedPaymentMethod);
+              //   },
+              // ),
               const SizedBox(height: 18),
               Text(
                 LocaleKeys.form_title_select_dest.tr(),
@@ -186,17 +186,17 @@ class _AccountBillingPageState extends State<AccountBillingPage> {
                 ),
               ),
               const SizedBox(height: 18),
-              SelectBankButton(
-                hintText: LocaleKeys.form_hint_text_select_account.tr(),
-                selectedAccount: selectedAccDestination,
-                onTap: () => _selectAccount(context).then((value) {
-                  if (value != null) {
-                    setState(() {
-                      selectedAccDestination = value;
-                    });
-                  }
-                }),
-              ),
+              // SelectBankButton(
+              //   hintText: LocaleKeys.form_hint_text_select_account.tr(),
+              //   selectedAccount: selectedAccDestination,
+              //   onTap: () => _selectAccount(context).then((value) {
+              //     if (value != null) {
+              //       setState(() {
+              //         selectedAccDestination = value;
+              //       });
+              //     }
+              //   }),
+              // ),
               const SizedBox(height: 18),
               const Text(
                 "Note :",

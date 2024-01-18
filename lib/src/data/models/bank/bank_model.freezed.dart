@@ -21,10 +21,18 @@ BankModel _$BankModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BankModel {
   int get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'image')
-  String? get image => throw _privateConstructorUsedError;
+  @JsonKey(name: "bank_image")
+  String get bankImage => throw _privateConstructorUsedError;
+  @JsonKey(name: "bank_name")
+  String get bankName => throw _privateConstructorUsedError;
+  @JsonKey(name: "bank_code")
+  String get bankCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  @DateTimeConverter()
+  DateTime? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
+  @DateTimeConverter()
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,8 +47,11 @@ abstract class $BankModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'image') String? image});
+      @JsonKey(name: "bank_image") String bankImage,
+      @JsonKey(name: "bank_name") String bankName,
+      @JsonKey(name: "bank_code") String bankCode,
+      @JsonKey(name: 'created_at') @DateTimeConverter() DateTime? createdAt,
+      @JsonKey(name: 'updated_at') @DateTimeConverter() DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -57,22 +68,37 @@ class _$BankModelCopyWithImpl<$Res, $Val extends BankModel>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? image = freezed,
+    Object? bankImage = null,
+    Object? bankName = null,
+    Object? bankCode = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      bankImage: null == bankImage
+          ? _value.bankImage
+          : bankImage // ignore: cast_nullable_to_non_nullable
               as String,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
+      bankName: null == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankCode: null == bankCode
+          ? _value.bankCode
+          : bankCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -87,8 +113,11 @@ abstract class _$$BankModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      @JsonKey(name: 'name') String name,
-      @JsonKey(name: 'image') String? image});
+      @JsonKey(name: "bank_image") String bankImage,
+      @JsonKey(name: "bank_name") String bankName,
+      @JsonKey(name: "bank_code") String bankCode,
+      @JsonKey(name: 'created_at') @DateTimeConverter() DateTime? createdAt,
+      @JsonKey(name: 'updated_at') @DateTimeConverter() DateTime? updatedAt});
 }
 
 /// @nodoc
@@ -103,22 +132,37 @@ class __$$BankModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
-    Object? image = freezed,
+    Object? bankImage = null,
+    Object? bankName = null,
+    Object? bankCode = null,
+    Object? createdAt = freezed,
+    Object? updatedAt = freezed,
   }) {
     return _then(_$BankModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      bankImage: null == bankImage
+          ? _value.bankImage
+          : bankImage // ignore: cast_nullable_to_non_nullable
               as String,
-      image: freezed == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
+      bankName: null == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String,
+      bankCode: null == bankCode
+          ? _value.bankCode
+          : bankCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -126,10 +170,13 @@ class __$$BankModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$BankModelImpl implements _BankModel {
-  _$BankModelImpl(
+  const _$BankModelImpl(
       {required this.id,
-      @JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'image') this.image});
+      @JsonKey(name: "bank_image") required this.bankImage,
+      @JsonKey(name: "bank_name") required this.bankName,
+      @JsonKey(name: "bank_code") required this.bankCode,
+      @JsonKey(name: 'created_at') @DateTimeConverter() this.createdAt,
+      @JsonKey(name: 'updated_at') @DateTimeConverter() this.updatedAt});
 
   factory _$BankModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BankModelImplFromJson(json);
@@ -137,15 +184,26 @@ class _$BankModelImpl implements _BankModel {
   @override
   final int id;
   @override
-  @JsonKey(name: 'name')
-  final String name;
+  @JsonKey(name: "bank_image")
+  final String bankImage;
   @override
-  @JsonKey(name: 'image')
-  final String? image;
+  @JsonKey(name: "bank_name")
+  final String bankName;
+  @override
+  @JsonKey(name: "bank_code")
+  final String bankCode;
+  @override
+  @JsonKey(name: 'created_at')
+  @DateTimeConverter()
+  final DateTime? createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  @DateTimeConverter()
+  final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'BankModel(id: $id, name: $name, image: $image)';
+    return 'BankModel(id: $id, bankImage: $bankImage, bankName: $bankName, bankCode: $bankCode, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -154,13 +212,22 @@ class _$BankModelImpl implements _BankModel {
         (other.runtimeType == runtimeType &&
             other is _$BankModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.bankImage, bankImage) ||
+                other.bankImage == bankImage) &&
+            (identical(other.bankName, bankName) ||
+                other.bankName == bankName) &&
+            (identical(other.bankCode, bankCode) ||
+                other.bankCode == bankCode) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, image);
+  int get hashCode => Object.hash(
+      runtimeType, id, bankImage, bankName, bankCode, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -177,10 +244,17 @@ class _$BankModelImpl implements _BankModel {
 }
 
 abstract class _BankModel implements BankModel {
-  factory _BankModel(
+  const factory _BankModel(
       {required final int id,
-      @JsonKey(name: 'name') required final String name,
-      @JsonKey(name: 'image') final String? image}) = _$BankModelImpl;
+      @JsonKey(name: "bank_image") required final String bankImage,
+      @JsonKey(name: "bank_name") required final String bankName,
+      @JsonKey(name: "bank_code") required final String bankCode,
+      @JsonKey(name: 'created_at')
+      @DateTimeConverter()
+      final DateTime? createdAt,
+      @JsonKey(name: 'updated_at')
+      @DateTimeConverter()
+      final DateTime? updatedAt}) = _$BankModelImpl;
 
   factory _BankModel.fromJson(Map<String, dynamic> json) =
       _$BankModelImpl.fromJson;
@@ -188,11 +262,22 @@ abstract class _BankModel implements BankModel {
   @override
   int get id;
   @override
-  @JsonKey(name: 'name')
-  String get name;
+  @JsonKey(name: "bank_image")
+  String get bankImage;
   @override
-  @JsonKey(name: 'image')
-  String? get image;
+  @JsonKey(name: "bank_name")
+  String get bankName;
+  @override
+  @JsonKey(name: "bank_code")
+  String get bankCode;
+  @override
+  @JsonKey(name: 'created_at')
+  @DateTimeConverter()
+  DateTime? get createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  @DateTimeConverter()
+  DateTime? get updatedAt;
   @override
   @JsonKey(ignore: true)
   _$$BankModelImplCopyWith<_$BankModelImpl> get copyWith =>

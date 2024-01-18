@@ -28,11 +28,11 @@ class _RadioExpansionTileState extends State<RadioExpansionTile> {
         tilePadding: EdgeInsets.zero,
         childrenPadding: EdgeInsets.zero,
         leading: Image.asset(
-          widget.selectedOption.image!,
+          widget.selectedOption.bankImage,
           width: 60,
           height: 32,
         ),
-        title: Text(widget.selectedOption.name),
+        title: Text(widget.selectedOption.bankName),
         children: widget.options.map((option) {
           return ListTile(
             contentPadding: EdgeInsets.zero,
@@ -42,11 +42,11 @@ class _RadioExpansionTileState extends State<RadioExpansionTile> {
                 Row(
                   children: [
                     Image.asset(
-                      option.image!,
+                      option.bankImage,
                       width: 60,
                       height: 32,
                     ),
-                    Text(option.name),
+                    Text(option.bankName),
                   ],
                 ),
                 Radio<BankModel>(

@@ -1,13 +1,14 @@
 import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/app/app_root.dart';
+import 'package:certenz/src/blocs/auth/auth_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/features/auth/login/bloc/login_bloc.dart';
 import 'package:certenz/src/features/auth/register/view/register_page.dart';
 import 'package:certenz/src/utils/dismiss_keyboard.dart';
 import 'package:certenz/src/utils/logger.dart';
 import 'package:certenz/src/widgets/auth/section_auth.dart';
 import 'package:certenz/src/widgets/common/powered_widget.dart';
+import 'package:certenz/src/widgets/dialogs/loading_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/ux_toast_wrapper.dart';
 import 'package:certenz/src/widgets/forms/textfield_custom.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -28,41 +29,15 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginBloc(),
+      create: (context) => AuthBloc(),
       child: SafeArea(
         child: Builder(builder: (context) {
-          return BlocConsumer<LoginBloc, LoginState>(
+          return BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               state.maybeWhen(
                 orElse: () {},
-                loading: () {
-                  showDialog(
-                    context: context,
-                    barrierDismissible:
-                        false, // Set to false if you don't want to dismiss the dialog by tapping outside of it
-                    builder: (BuildContext context) {
-                      return Dialog(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0)),
-                        child: const Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: Column(
-                            mainAxisSize:
-                                MainAxisSize.min, // Use min size for the dialog
-                            children: [
-                              CircularProgressIndicator(),
-                              SizedBox(height: 15),
-                              Text("Logging in, please wait...",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600))
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
+                loading: () =>
+                    showLoadingDialog(context, "Logging in, please wait..."),
                 isAuthenticated: (data) {
                   Navigator.pushAndRemoveUntil(
                     context,
@@ -147,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                             textColor: AppColors.neutralN140,
                           );
                         } else {
-                          context.read<LoginBloc>().add(LoginEvent.login(
+                          context.read<AuthBloc>().add(AuthEvent.login(
                               username: emailController.text,
                               password: passwordController.text));
                           hideKeyboard(context);
