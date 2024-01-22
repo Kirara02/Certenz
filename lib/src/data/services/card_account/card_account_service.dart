@@ -1,19 +1,16 @@
+import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/core/api_result.dart';
 import 'package:certenz/src/core/default_response.dart';
 import 'package:certenz/src/data/data_source/common/http.dart';
-
 import 'package:certenz/src/data/models/bank/bank_account_model.dart';
-
+import 'package:certenz/src/data/repository/card_account/card_account_repository.dart';
 import 'package:dio/src/form_data.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-
-import '../../repository/card_account/card_account_repository.dart';
 
 class CardAccountService implements CardAccountRepository {
   late UXHttp http;
 
   CardAccountService() {
-    http = UXHttp(xBaseUrl: dotenv.env['BASEURL']);
+    http = UXHttp(xBaseUrl: AppConstants.BASEURL);
   }
 
   @override

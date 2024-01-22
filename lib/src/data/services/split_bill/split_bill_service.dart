@@ -1,18 +1,16 @@
+import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/core/api_result.dart';
 import 'package:certenz/src/data/data_source/common/http.dart';
 import 'package:certenz/src/data/models/bill/bill_model.dart';
 import 'package:certenz/src/data/models/split_bill/split_bill_model.dart';
 import 'package:certenz/src/data/repository/split_bill/split_bill_repository.dart';
 import 'package:dio/src/form_data.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class SplitBillService implements SplitBillRepository {
   late UXHttp http;
 
   SplitBillService() {
-    http = UXHttp(
-      xBaseUrl: dotenv.env['BASEURL'],
-    );
+    http = UXHttp(xBaseUrl: AppConstants.BASEURL);
   }
 
   @override

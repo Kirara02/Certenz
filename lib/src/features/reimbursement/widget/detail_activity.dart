@@ -155,9 +155,8 @@ class _DetailActivityState extends State<DetailActivity> {
           ],
         ),
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-        height: AppScreens.height * 0.1,
         child: BtnPrimary(
           title: LocaleKeys.button_send.tr(),
           onTap: () {

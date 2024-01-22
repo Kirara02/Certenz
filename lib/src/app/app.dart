@@ -1,8 +1,14 @@
 import 'package:certenz/src/blocs/auth/auth_bloc.dart';
-import 'package:certenz/src/blocs/faq/faq_bloc.dart';
+import 'package:certenz/src/features/account_billing/view/account_billing_page.dart';
+import 'package:certenz/src/features/atm/view/atm_card_page.dart';
 import 'package:certenz/src/features/auth/login/view/login_page.dart';
 import 'package:certenz/src/features/auth/register/view/register_page.dart';
+import 'package:certenz/src/features/create_bill/view/create_bill_page.dart';
+import 'package:certenz/src/features/create_split_bill/view/create_split_bill_page.dart';
+import 'package:certenz/src/features/faq/view/faq_page.dart';
 import 'package:certenz/src/features/initial/view/initial_page.dart';
+import 'package:certenz/src/features/reimbursement/view/reimbursement_page.dart';
+import 'package:certenz/src/features/reimbursement_success/view/reimbursement_success_page.dart';
 import 'package:certenz/src/features/splash/view/splash_page.dart';
 import 'package:certenz/src/features/welcome/view/welcome_page.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -56,6 +62,14 @@ class _AppState extends State<App> {
           "/welcome": (context) => const WelcomePage(),
           "/login": (context) => const LoginPage(),
           "/register": (context) => const RegisterPage(),
+          "/create-bill": (context) => const CreateBillPage(),
+          "/split-bill": (context) => const CreateSplitBillPage(),
+          "/account-billing": (context) => const AccountBillingPage(),
+          "/reimbursement": (context) => const ReimbursementPage(),
+          "/reimbursement-success": (context) =>
+              const ReimbursementSuccessPage(),
+          "/atm": (context) => const AtmCardPage(),
+          "/faq": (context) => const FAQPage(),
         },
         onUnknownRoute: (settings) {
           return MaterialPageRoute(builder: (context) {

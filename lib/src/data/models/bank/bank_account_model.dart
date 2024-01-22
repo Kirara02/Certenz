@@ -9,6 +9,7 @@ class BankAccountModel with _$BankAccountModel {
     @JsonKey(name: "bank_account_id") int? bankAccountId,
     @JsonKey(name: "bank_id") int? bankId,
     @JsonKey(name: "user_id") int? userId,
+    @JsonKey(name: "bank_name") String? bankName,
     @JsonKey(name: "bank_image") String? bankImage,
     @JsonKey(name: "card_number") String? cardNumber,
     @JsonKey(name: "account_number") String? accountNumber,

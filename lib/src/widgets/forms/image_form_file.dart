@@ -11,14 +11,14 @@ class ImageSelectionWidget extends StatefulWidget {
   final List<String> imagesDocs;
   final Function(List<String> images)? onImagesSelected;
 
-  ImageSelectionWidget({
+  const ImageSelectionWidget({
     Key? key,
     required this.imagesDocs,
     this.onImagesSelected,
   }) : super(key: key);
 
   @override
-  _ImageSelectionWidgetState createState() => _ImageSelectionWidgetState();
+  State<ImageSelectionWidget> createState() => _ImageSelectionWidgetState();
 }
 
 class _ImageSelectionWidgetState extends State<ImageSelectionWidget> {
@@ -60,7 +60,7 @@ class _ImageSelectionWidgetState extends State<ImageSelectionWidget> {
               final fileName = e.split('/').last;
               return IntrinsicWidth(
                 child: DottedBorder(
-                  dashPattern: [12, 3],
+                  dashPattern: const [12, 3],
                   strokeWidth: 2,
                   color: AppColors.blue2,
                   radius: const Radius.circular(10),

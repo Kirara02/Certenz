@@ -1,15 +1,15 @@
+import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/core/api_result.dart';
 import 'package:certenz/src/data/data_source/common/http.dart';
 import 'package:certenz/src/data/models/faq/faq_cs_model.dart';
 import 'package:certenz/src/data/models/faq/faq_question_model.dart';
 import 'package:certenz/src/data/repository/faq/faq_repository.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class FaqService implements FaqRepository {
   late UXHttp http;
 
   FaqService() {
-    http = UXHttp(xBaseUrl: dotenv.env['BASEURL']);
+    http = UXHttp(xBaseUrl: AppConstants.BASEURL);
   }
 
   @override

@@ -116,6 +116,8 @@ abstract class  LocaleKeys {
   static const dropdown_text_static_nationality = 'dropdown_text_static.nationality';
   static const dropdown_text_static_select_language = 'dropdown_text_static.select_language';
   static const dropdown_text_static = 'dropdown_text_static';
+  static const toast_text_required = 'toast_text.required';
+  static const toast_text = 'toast_text';
   static const privacy_terms_title = 'privacy_terms.title';
   static const privacy_terms_subtitle = 'privacy_terms.subtitle';
   static const privacy_terms_description = 'privacy_terms.description';

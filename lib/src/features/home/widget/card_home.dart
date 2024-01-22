@@ -1,10 +1,5 @@
 import 'package:certenz/gen/assets.gen.dart';
-import 'package:certenz/src/features/account_billing/view/account_billing_page.dart';
-import 'package:certenz/src/features/create_bill/view/create_bill_page.dart';
-import 'package:certenz/src/features/create_split_bill/view/create_split_bill_page.dart';
-import 'package:certenz/src/features/granted_money/view/granted_money_page.dart';
 import 'package:certenz/src/features/home/widget/icon_widget.dart';
-import 'package:certenz/src/features/reimbursement/view/reimbursement_page.dart';
 import 'package:flutter/material.dart';
 
 class CardHome extends StatelessWidget {
@@ -33,26 +28,14 @@ class CardHome extends StatelessWidget {
         children: [
           Expanded(
             child: IconWidget(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CreateBillPage(),
-                    ));
-              },
+              onTap: () => Navigator.pushNamed(context, "/create-bill"),
               icon: Assets.icons.cbill.path,
               title: "Create Bill",
             ),
           ),
           Expanded(
             child: IconWidget(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CreateSplitBillPage(),
-                    ));
-              },
+              onTap: () => Navigator.pushNamed(context, "/split-bill"),
               icon: Assets.icons.splitBill.path,
               title: "Split Bill",
             ),
@@ -72,26 +55,14 @@ class CardHome extends StatelessWidget {
           // ),
           Expanded(
             child: IconWidget(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AccountBillingPage(),
-                    ));
-              },
+              onTap: () => Navigator.pushNamed(context, "/account-billing"),
               icon: Assets.icons.accountBill.path,
               title: "Account\nBilling",
             ),
           ),
           Expanded(
             child: IconWidget(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ReimbursementPage(),
-                    ));
-              },
+              onTap: () => Navigator.pushNamed(context, "/reimbursement"),
               icon: Assets.icons.reimbursement.path,
               title: "Reimbursement",
               height: 16,

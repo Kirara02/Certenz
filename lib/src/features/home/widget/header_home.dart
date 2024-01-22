@@ -3,7 +3,6 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/features/atm/view/atm_card_page.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +122,7 @@ class _HeaderHomeState extends State<HeaderHome> {
                           hasCard = !hasCard;
                         });
                       },
-                      child: Icon(Icons.replay_circle_filled),
+                      child: const Icon(Icons.replay_circle_filled),
                     )
                   ],
                 ),
@@ -245,11 +244,7 @@ class _HeaderHomeState extends State<HeaderHome> {
                           ],
                         )
                       : InkWell(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const AtmCardPage(),
-                              )),
+                          onTap: () => Navigator.pushNamed(context, "/atm"),
                           child: DottedBorder(
                             borderType: BorderType.RRect,
                             color: AppColors.neutralN140,
@@ -258,7 +253,7 @@ class _HeaderHomeState extends State<HeaderHome> {
                               vertical: 48,
                               horizontal: 12,
                             ),
-                            dashPattern: [8, 4],
+                            dashPattern: const [8, 4],
                             strokeWidth: 2,
                             child: const Row(
                               mainAxisAlignment: MainAxisAlignment.center,

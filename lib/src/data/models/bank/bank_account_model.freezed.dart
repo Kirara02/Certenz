@@ -26,6 +26,8 @@ mixin _$BankAccountModel {
   int? get bankId => throw _privateConstructorUsedError;
   @JsonKey(name: "user_id")
   int? get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: "bank_name")
+  String? get bankName => throw _privateConstructorUsedError;
   @JsonKey(name: "bank_image")
   String? get bankImage => throw _privateConstructorUsedError;
   @JsonKey(name: "card_number")
@@ -56,6 +58,7 @@ abstract class $BankAccountModelCopyWith<$Res> {
       {@JsonKey(name: "bank_account_id") int? bankAccountId,
       @JsonKey(name: "bank_id") int? bankId,
       @JsonKey(name: "user_id") int? userId,
+      @JsonKey(name: "bank_name") String? bankName,
       @JsonKey(name: "bank_image") String? bankImage,
       @JsonKey(name: "card_number") String? cardNumber,
       @JsonKey(name: "account_number") String? accountNumber,
@@ -81,6 +84,7 @@ class _$BankAccountModelCopyWithImpl<$Res, $Val extends BankAccountModel>
     Object? bankAccountId = freezed,
     Object? bankId = freezed,
     Object? userId = freezed,
+    Object? bankName = freezed,
     Object? bankImage = freezed,
     Object? cardNumber = freezed,
     Object? accountNumber = freezed,
@@ -102,6 +106,10 @@ class _$BankAccountModelCopyWithImpl<$Res, $Val extends BankAccountModel>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int?,
+      bankName: freezed == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
       bankImage: freezed == bankImage
           ? _value.bankImage
           : bankImage // ignore: cast_nullable_to_non_nullable
@@ -146,6 +154,7 @@ abstract class _$$BankAccountModelImplCopyWith<$Res>
       {@JsonKey(name: "bank_account_id") int? bankAccountId,
       @JsonKey(name: "bank_id") int? bankId,
       @JsonKey(name: "user_id") int? userId,
+      @JsonKey(name: "bank_name") String? bankName,
       @JsonKey(name: "bank_image") String? bankImage,
       @JsonKey(name: "card_number") String? cardNumber,
       @JsonKey(name: "account_number") String? accountNumber,
@@ -169,6 +178,7 @@ class __$$BankAccountModelImplCopyWithImpl<$Res>
     Object? bankAccountId = freezed,
     Object? bankId = freezed,
     Object? userId = freezed,
+    Object? bankName = freezed,
     Object? bankImage = freezed,
     Object? cardNumber = freezed,
     Object? accountNumber = freezed,
@@ -190,6 +200,10 @@ class __$$BankAccountModelImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int?,
+      bankName: freezed == bankName
+          ? _value.bankName
+          : bankName // ignore: cast_nullable_to_non_nullable
+              as String?,
       bankImage: freezed == bankImage
           ? _value.bankImage
           : bankImage // ignore: cast_nullable_to_non_nullable
@@ -229,6 +243,7 @@ class _$BankAccountModelImpl implements _BankAccountModel {
       {@JsonKey(name: "bank_account_id") this.bankAccountId,
       @JsonKey(name: "bank_id") this.bankId,
       @JsonKey(name: "user_id") this.userId,
+      @JsonKey(name: "bank_name") this.bankName,
       @JsonKey(name: "bank_image") this.bankImage,
       @JsonKey(name: "card_number") this.cardNumber,
       @JsonKey(name: "account_number") this.accountNumber,
@@ -249,6 +264,9 @@ class _$BankAccountModelImpl implements _BankAccountModel {
   @override
   @JsonKey(name: "user_id")
   final int? userId;
+  @override
+  @JsonKey(name: "bank_name")
+  final String? bankName;
   @override
   @JsonKey(name: "bank_image")
   final String? bankImage;
@@ -272,7 +290,7 @@ class _$BankAccountModelImpl implements _BankAccountModel {
 
   @override
   String toString() {
-    return 'BankAccountModel(bankAccountId: $bankAccountId, bankId: $bankId, userId: $userId, bankImage: $bankImage, cardNumber: $cardNumber, accountNumber: $accountNumber, accountName: $accountName, expired: $expired, cvv: $cvv, expiredBbtt: $expiredBbtt)';
+    return 'BankAccountModel(bankAccountId: $bankAccountId, bankId: $bankId, userId: $userId, bankName: $bankName, bankImage: $bankImage, cardNumber: $cardNumber, accountNumber: $accountNumber, accountName: $accountName, expired: $expired, cvv: $cvv, expiredBbtt: $expiredBbtt)';
   }
 
   @override
@@ -284,6 +302,8 @@ class _$BankAccountModelImpl implements _BankAccountModel {
                 other.bankAccountId == bankAccountId) &&
             (identical(other.bankId, bankId) || other.bankId == bankId) &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.bankName, bankName) ||
+                other.bankName == bankName) &&
             (identical(other.bankImage, bankImage) ||
                 other.bankImage == bankImage) &&
             (identical(other.cardNumber, cardNumber) ||
@@ -305,6 +325,7 @@ class _$BankAccountModelImpl implements _BankAccountModel {
       bankAccountId,
       bankId,
       userId,
+      bankName,
       bankImage,
       cardNumber,
       accountNumber,
@@ -333,6 +354,7 @@ abstract class _BankAccountModel implements BankAccountModel {
           {@JsonKey(name: "bank_account_id") final int? bankAccountId,
           @JsonKey(name: "bank_id") final int? bankId,
           @JsonKey(name: "user_id") final int? userId,
+          @JsonKey(name: "bank_name") final String? bankName,
           @JsonKey(name: "bank_image") final String? bankImage,
           @JsonKey(name: "card_number") final String? cardNumber,
           @JsonKey(name: "account_number") final String? accountNumber,
@@ -354,6 +376,9 @@ abstract class _BankAccountModel implements BankAccountModel {
   @override
   @JsonKey(name: "user_id")
   int? get userId;
+  @override
+  @JsonKey(name: "bank_name")
+  String? get bankName;
   @override
   @JsonKey(name: "bank_image")
   String? get bankImage;

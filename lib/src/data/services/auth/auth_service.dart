@@ -1,16 +1,16 @@
+import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/core/api_result.dart';
 import 'package:certenz/src/data/data_source/common/http.dart';
 import 'package:certenz/src/data/models/auth/auth_model.dart';
 import 'package:certenz/src/data/models/user/user_model.dart';
 import 'package:certenz/src/data/repository/auth/auth_repository.dart';
 import 'package:dio/src/form_data.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AuthService implements AuthRepository {
   late UXHttp http;
 
   AuthService() {
-    http = UXHttp(xBaseUrl: dotenv.env['BASEURL']);
+    http = UXHttp(xBaseUrl: AppConstants.BASEURL);
   }
 
   @override

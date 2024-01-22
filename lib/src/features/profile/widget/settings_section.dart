@@ -1,12 +1,9 @@
 import 'package:certenz/gen/assets.gen.dart';
 import 'package:certenz/l10n/locale_keys.g.dart';
-import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/features/faq/view/faq_page.dart';
 import 'package:certenz/src/features/profile/widget/setting_list_tile.dart';
 import 'package:certenz/src/widgets/dialogs/modal_bottom_change_language.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class SettingsSection extends StatefulWidget {
   const SettingsSection({super.key});
@@ -51,9 +48,7 @@ class _SettingsSectionState extends State<SettingsSection> {
           SettingListTile(
             icon: Assets.icons.faq.svg(),
             title: LocaleKeys.profile_settings_faq.tr(),
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const FAQPage(),
-            )),
+            onTap: () => Navigator.of(context).pushNamed("/faq"),
           ),
           const SizedBox(
             height: 20,

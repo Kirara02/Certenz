@@ -30,7 +30,7 @@ class AccountBank extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                bankAccountModel.bankId!.toString(),
+                bankAccountModel.bankName!,
                 style: const TextStyle(
                   fontSize: AppConstants.kFontSizeM,
                   fontWeight: FontWeight.w600,
@@ -42,9 +42,9 @@ class AccountBank extends StatelessWidget {
               Flexible(
                 child: Text(
                   "${bankAccountModel.accountNumber} a.n ${bankAccountModel.accountName}",
-                  maxLines: 2,
+                  maxLines: 1,
                   style: const TextStyle(
-                    fontSize: AppConstants.kFontSizeXS,
+                    fontSize: AppConstants.kFontSizeS,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),

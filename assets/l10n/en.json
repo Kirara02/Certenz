@@ -123,6 +123,9 @@
     },
     "select_language" : "Select Language"
   },
+  "toast_text" : {
+    "required" : "{text} is required"
+  },
   "privacy_terms" : {
     "title" : "Privacy and Terms",
     "subtitle" : "Lorem ipsum dolor sit amet consectetur. Amet ut dignissim tristique at viverra posuere risus ante egestas. Placerat erat pellentesque nunc et nisl sit tortor at nibh. Orci ac sed morbi interdum aliquam a pellentesque egestas pharetra.",

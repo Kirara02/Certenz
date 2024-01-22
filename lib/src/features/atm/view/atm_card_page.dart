@@ -66,22 +66,34 @@ class _AtmCardPageState extends State<AtmCardPage> {
 
   Future<FormData?> _handleSubmit() async {
     if (selectedBank == null) {
-      _toast("Bank is required");
+      _toast(LocaleKeys.toast_text_required.tr(
+        namedArgs: {"text": "Bank"},
+      ));
       return null;
     } else if (nameController.text.isEmpty) {
-      _toast("Card Name is required");
+      _toast(LocaleKeys.toast_text_required.tr(
+        namedArgs: {"text": LocaleKeys.form_hint_text_card_name.tr()},
+      ));
       return null;
     } else if (nomorController.text.isEmpty) {
-      _toast("Card Number is required");
+      _toast(LocaleKeys.toast_text_required.tr(
+        namedArgs: {"text": LocaleKeys.form_hint_text_card_number.tr()},
+      ));
       return null;
     } else if (norekController.text.isEmpty) {
-      _toast("Card Account is required");
+      _toast(LocaleKeys.toast_text_required.tr(
+        namedArgs: {"text": LocaleKeys.form_hint_text_account_number.tr()},
+      ));
       return null;
     } else if (expDateController.text.isEmpty) {
-      _toast("Expiration Date is required");
+      _toast(LocaleKeys.toast_text_required.tr(
+        namedArgs: {"text": LocaleKeys.form_hint_text_exp.tr()},
+      ));
       return null;
     } else if (cvvController.text.isEmpty) {
-      _toast("CVV is required");
+      _toast(LocaleKeys.toast_text_required.tr(
+        namedArgs: {"text": LocaleKeys.form_hint_text_cvv.tr()},
+      ));
       return null;
     }
 
@@ -136,6 +148,11 @@ class _AtmCardPageState extends State<AtmCardPage> {
               success: (data) {
                 hideDialog(context);
                 _refresh();
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //       builder: (context) => const StartVerifyPage(),
+                //     ));
               },
             );
           },
@@ -286,11 +303,6 @@ class _AtmCardPageState extends State<AtmCardPage> {
                     BtnPrimary(
                       title: LocaleKeys.button_save.tr(),
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //       builder: (context) => const StartVerifyPage(),
-                        //     ));
                         _handleSubmit().then((value) {
                           if (value != null) {
                             context

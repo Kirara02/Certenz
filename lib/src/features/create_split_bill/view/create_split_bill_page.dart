@@ -1,8 +1,6 @@
 import 'package:certenz/l10n/locale_keys.g.dart';
-import 'package:certenz/src/app/app_root.dart';
 import 'package:certenz/src/blocs/split_bill/split_bill_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
-import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/features/split_bill/view/split_bill_page.dart';
 import 'package:certenz/src/utils/dismiss_keyboard.dart';

@@ -125,6 +125,9 @@
     },
     "select_language" : "Pilih Bahasa"
   },
+  "toast_text" : {
+    "required" : "{text} diperlukan"
+  },
   "privacy_terms" : {
     "title" : "Privasi dan Ketentuan",
     "subtitle" : "Lorem ipsum dolor sit amet consectetur. Amet ut dignissim tristique at viverra posuere risus ante egestas. Placerat erat pellentesque nunc et nisl sit tortor at nibh. Orci ac sed morbi interdum aliquam a pellentesque egestas pharetra.",
