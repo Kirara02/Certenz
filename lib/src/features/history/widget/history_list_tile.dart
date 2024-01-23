@@ -1,10 +1,14 @@
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
+import 'package:certenz/src/data/models/history/history_model.dart';
 import 'package:certenz/src/features/payment_status/view/payment_pending_job_page.dart';
+import 'package:certenz/src/utils/formatters.dart';
+import 'package:certenz/src/widgets/images/cached_network.dart';
 import 'package:flutter/material.dart';
 
 class HistoryListTile extends StatelessWidget {
-  const HistoryListTile({super.key});
+  final HistoryModel data;
+  const HistoryListTile({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -22,38 +26,39 @@ class HistoryListTile extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               width: 32,
               height: 32,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.orange,
+              child: ClipOval(
+                clipBehavior: Clip.antiAlias,
+                child: UICacheNetworkImage(
+                    fit: BoxFit.cover,
+                    shimmerShape: BoxShape.circle,
+                    imageUrl: generateAvatarUrl(data.to?.name ?? "Default")),
               ),
             ),
             const SizedBox(
               width: 12,
             ),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "History Status job",
-                  style: TextStyle(
-                    fontSize: AppConstants.kFontSizeS,
+                  data.transactionCategory ?? "-",
+                  style: const TextStyle(
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 Text(
-                  "Membuat Bangunan Gedung",
-                  style: TextStyle(
+                  data.transactionTitle ?? "-",
+                  style: const TextStyle(
                     fontSize: AppConstants.kFontSizeS,
                     color: AppColors.neutralN50,
                   ),
                 ),
                 Text(
-                  "Pending",
-                  style: TextStyle(
-                    fontSize: AppConstants.kFontSizeS,
+                  data.transactionStatus!,
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     color: AppColors.orange,
                   ),

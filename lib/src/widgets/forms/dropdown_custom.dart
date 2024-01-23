@@ -12,7 +12,9 @@ class DropdownTextfield extends StatelessWidget {
     this.prefixIcon,
     super.key,
     this.onChanged,
+    this.label,
     this.isRegister = false,
+    this.validator,
   });
 
   final List<dynamic>? items;
@@ -21,10 +23,13 @@ class DropdownTextfield extends StatelessWidget {
   final Widget? prefixIcon;
   final Function(dynamic)? onChanged;
   final bool isRegister;
+  final String? label;
+  final String? Function(dynamic?)? validator;
 
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<dynamic>(
+      validator: validator,
       popupProps: const PopupProps.menu(
         constraints: BoxConstraints(
           maxHeight: 130,
@@ -83,6 +88,10 @@ class DropdownTextfield extends StatelessWidget {
           counterStyle: const TextStyle(
             fontSize: AppConstants.kFontSizeS,
             color: AppColors.neutralN80,
+          ),
+          labelText: label,
+          labelStyle: const TextStyle(
+            fontWeight: FontWeight.w500,
           ),
           fillColor: isRegister ? Colors.white : AppColors.neutralN130,
           hintText: hintText ?? "",

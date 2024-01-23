@@ -169,7 +169,10 @@ class _AccountBillCreatePageState extends State<AccountBillCreatePage> {
                 ),
               ),
               const SizedBox(height: 30),
-              const ShareBillTo(),
+              SizedBox(
+                width: AppScreens.width * 0.5,
+                child: const ShareBillTo(),
+              ),
               const SizedBox(height: 30),
             ],
           ),

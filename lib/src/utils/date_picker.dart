@@ -1,13 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 class DatePicker extends StatefulWidget {
-  DatePicker({this.tanggal_awal, this.passDate = true, super.key});
+  const DatePicker({this.tanggal_awal, this.passDate = true, super.key});
   final String? tanggal_awal;
   final bool passDate;
 

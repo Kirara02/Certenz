@@ -201,6 +201,7 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                 Navigator.pushNamed(context, "/reimbursement-success");
               },
               error: (error) {
+                hideDialog(context);
                 error.maybeWhen(
                   orElse: () {},
                   unprocessableEntity: (reasons) {

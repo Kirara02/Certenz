@@ -9,6 +9,8 @@ import 'package:certenz/src/features/auth/register/view/register_success_page.da
 import 'package:certenz/src/utils/date_picker.dart';
 import 'package:certenz/src/utils/logger.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
+import 'package:certenz/src/widgets/dialogs/hide_dialog.dart';
+import 'package:certenz/src/widgets/dialogs/loading_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/ux_toast_wrapper.dart';
 import 'package:certenz/src/widgets/forms/dropdown_custom.dart';
 import 'package:certenz/src/widgets/forms/textfield_custom.dart';
@@ -139,6 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
           listener: (context, state) {
             state.maybeWhen(
               orElse: () {},
+              loading: () => showLoadingDialog(context),
               fetchUser: (data) {
                 Navigator.push(
                     context,
@@ -147,6 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ));
               },
               error: (error) {
+                hideDialog(context);
                 error.maybeWhen(
                   orElse: () {},
                   notFound: (reason) => _toast(reason),
@@ -264,26 +268,11 @@ class _RegisterPageState extends State<RegisterPage> {
                             hintText: LocaleKeys.form_hint_text_gender.tr(),
                           ),
                           const SizedBox(height: 14),
-                          Row(
-                            children: [
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: DropdownTextfield(
-                                  items: DummyService.codePhone,
-                                  selectedItem: "+62",
-                                ),
-                              ),
-                              const SizedBox(width: 6),
-                              Expanded(
-                                child: TextfieldCustom(
-                                  controller: phoneController,
-                                  hintText: LocaleKeys
-                                      .form_hint_text_phone_number
-                                      .tr(),
-                                  keyboardType: TextInputType.phone,
-                                ),
-                              ),
-                            ],
+                          TextfieldCustom(
+                            controller: phoneController,
+                            hintText:
+                                LocaleKeys.form_hint_text_phone_number.tr(),
+                            keyboardType: TextInputType.phone,
                           ),
                           const SizedBox(height: 14),
                           TextfieldCustom(

@@ -55,6 +55,8 @@
     "f_name" : "Nama Depan",
     "l_name" : "Nama Belakang",
     "enter_password" : "Masukan password",
+    "new_password" : "Password Baru",
+    "last_password" : "Password Terakhir",
     "create_password" : "Password",
     "confirm_password" : "Konfirmasi Password",
     "create_pin" : "Buat PIN",
@@ -92,6 +94,12 @@
     "cvv" : "CVV"
   },
   "form_title" : {
+    "name" : "Nama",
+    "birthday" : "Tanggal Lahir",
+    "username" : "Username",
+    "gender" : "Jenis Kelamin",
+    "phone_number" : "Nomor Telepon",
+    "location" : "Lokasi",
     "title" : "Judul",
     "title_project" : "Judul Projek",
     "title_activity" : "Judul Aktivitas",
@@ -112,7 +120,12 @@
     "tenant_period" : "Periode Penyewa",
     "paid_date" : "Dibayar pada tanggal",
     "select_payment" : "Pilih metode pembayaran"
-
+  },
+  "validation": {
+    "invalid_email_address": "Alamat email tidak valid",
+    "input_is_not_empty": "{} belum diisi",
+    "invalid_password" : "Password harus berisi 8 karakter atau lebih",
+    "passwords_do_not_match": "Kata sandi yang dimasukkan tidak cocok."
   },
   "dropdown_text_static" : {
     "marital_status" : {
@@ -237,7 +250,10 @@
       "address" : "Alamat"
     },
     "settings" : {
-      "title" : "Pengaturan Umum",
+      "gen_title" : "Pengaturan Umum",
+      "acc_title" : "Pengaturan akun",
+      "change_password" : "Ubah Password",
+      "edit_profile" : "Edit Profil",
       "change_language" : "Ubah Bahasa",
       "faq" : "FAQ"
     },
@@ -245,6 +261,12 @@
       "title" : "Akun Tersimpan Saya",
       "add_account" : "Tambahkan Rekening Bank Lain"
     }
+  },
+  "edit_profile" : {
+    "title" : "Edit Profil"
+  },
+  "change_password" : {
+    "title" : "Ubah Password"
   },
   "faq": {
     "title" : "FAQ",

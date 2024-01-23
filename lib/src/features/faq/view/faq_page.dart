@@ -72,32 +72,36 @@ class _FAQPageState extends State<FAQPage> {
           return Stack(
             children: [
               Scaffold(
-                appBar: AppbarCustom(
-                  onPressed: () => Navigator.pop(context),
-                  widgetTitle: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Assets.images.logo.image(width: 80),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                          color: AppColors.yellow,
-                          borderRadius: BorderRadius.circular(4),
+                appBar: PreferredSize(
+                  preferredSize: const Size.fromHeight(80.0),
+                  child: AppbarCustom(
+                    onPressed: () => Navigator.pop(context),
+                    widgetTitle: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Assets.images.logo.image(width: 100),
+                        const SizedBox(
+                          width: 6,
                         ),
-                        child: const Text(
-                          "Care",
-                          style: TextStyle(
-                            fontSize: AppConstants.kFontSizeXS,
-                            color: UIColors.white,
+                        Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: AppColors.yellow,
+                            borderRadius: BorderRadius.circular(4),
                           ),
-                        ),
-                      )
-                    ],
+                          child: const Text(
+                            "Care",
+                            style: TextStyle(
+                              fontSize: AppConstants.kFontSizeXS,
+                              color: UIColors.white,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    toolbarHeight: 80,
+                    centerTitle: true,
                   ),
-                  centerTitle: true,
                 ),
                 floatingActionButton: Column(
                   mainAxisSize: MainAxisSize.min,

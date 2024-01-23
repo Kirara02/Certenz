@@ -5,11 +5,9 @@ import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/features/auth/login/view/login_page.dart';
 import 'package:certenz/src/features/auth/register/view/register_page.dart';
-import 'package:certenz/src/features/pin/view/pin_page.dart';
 import 'package:certenz/src/widgets/auth/section_auth.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -46,20 +44,10 @@ class WelcomePage extends StatelessWidget {
             const SizedBox(height: 22),
             SectionAuth(
               btnTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const RegisterPage(),
-                  ),
-                );
+                Navigator.pushNamed(context, "/register");
               },
               txtTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginPage(),
-                  ),
-                );
+                Navigator.pushNamed(context, "/login");
               },
               btnText: LocaleKeys.button_sign_up.tr(),
               txtText: LocaleKeys.text_ready_account.tr(),

@@ -71,3 +71,10 @@ String formatCurrencyNonDecimal(double amount) {
 String removeSpaces(String input) {
   return input.replaceAll(' ', '');
 }
+
+String generateAvatarUrl(String name) {
+  // Ganti semua spasi dengan tanda plus (+)
+  String formattedName = name.replaceAll(' ', '+');
+  String imageSize = "150";
+  return "https://ui-avatars.com/api/?name=$formattedName&color=7F9CF5&background=EBF4FF&size=$imageSize";
+}

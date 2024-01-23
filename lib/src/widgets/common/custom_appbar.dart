@@ -3,17 +3,17 @@ import 'package:certenz/src/config/theme/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppbarCustom extends StatelessWidget implements PreferredSizeWidget {
-  const AppbarCustom({
-    super.key,
-    this.title,
-    required this.onPressed,
-    this.type,
-    this.actions,
-    this.centerTitle,
-    this.widgetTitle,
-    this.backgroundColor,
-    this.color = AppColors.black,
-  });
+  const AppbarCustom(
+      {super.key,
+      this.title,
+      required this.onPressed,
+      this.type,
+      this.actions,
+      this.centerTitle,
+      this.widgetTitle,
+      this.backgroundColor,
+      this.color = AppColors.black,
+      this.toolbarHeight = kToolbarHeight});
   final String? title;
   final VoidCallback onPressed;
   final String? type;
@@ -22,6 +22,7 @@ class AppbarCustom extends StatelessWidget implements PreferredSizeWidget {
   final Widget? widgetTitle;
   final Color? backgroundColor;
   final Color color;
+  final double toolbarHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,7 @@ class AppbarCustom extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: backgroundColor ?? Colors.white,
       actions: actions,
       elevation: 0,
+      toolbarHeight: toolbarHeight,
       title: widgetTitle ??
           Text(
             title ?? '',

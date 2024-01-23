@@ -31,7 +31,28 @@ class _SettingsSectionState extends State<SettingsSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            LocaleKeys.profile_settings_title.tr(),
+            LocaleKeys.profile_settings_acc_title.tr(),
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          SettingListTile(
+            icon: const Icon(Icons.person_outline_rounded),
+            title: LocaleKeys.profile_settings_edit_profile.tr(),
+            onTap: () => Navigator.of(context).pushNamed("/edit-profile"),
+          ),
+          const SizedBox(height: 16),
+          SettingListTile(
+            icon: const Icon(Icons.lock_outline_rounded),
+            title: LocaleKeys.profile_settings_change_password.tr(),
+            onTap: () => Navigator.of(context).pushNamed("/change-password"),
+          ),
+          const SizedBox(height: 28),
+          Text(
+            LocaleKeys.profile_settings_gen_title.tr(),
             style: const TextStyle(
               fontWeight: FontWeight.w500,
             ),

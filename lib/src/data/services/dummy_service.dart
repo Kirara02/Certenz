@@ -1,7 +1,6 @@
 import 'package:certenz/gen/assets.gen.dart';
 import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/data/models/account_bank/account_bank_model.dart';
-import 'package:certenz/src/data/models/bank/bank_model.dart';
 import 'package:certenz/src/data/models/people_split_card/people_split_card_model.dart';
 import 'package:certenz/src/data/models/recent_transaction/recent_transaction_model.dart';
 import 'package:easy_localization/easy_localization.dart';

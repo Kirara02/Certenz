@@ -17,6 +17,8 @@ class TextfieldCustom extends StatefulWidget {
     this.suffixIcon,
     this.onTap,
     this.readOnly = false,
+    this.validator,
+    this.label,
   });
 
   final TextEditingController controller;
@@ -30,6 +32,8 @@ class TextfieldCustom extends StatefulWidget {
   final bool? filled;
   final Function()? onTap;
   final bool readOnly;
+  final String? Function(String?)? validator;
+  final String? label;
 
   @override
   State<TextfieldCustom> createState() => _TextfieldCustomState();
@@ -46,13 +50,14 @@ class _TextfieldCustomState extends State<TextfieldCustom> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: widget.controller,
       maxLength: widget.maxLength,
       textAlign: widget.textAlign ?? TextAlign.start,
       keyboardType: widget.keyboardType,
       obscureText: _isObscured,
       readOnly: widget.readOnly,
+      validator: widget.validator,
       style: const TextStyle(
         fontSize: AppConstants.kFontSizeS,
         color: AppColors.neutralN50,
@@ -66,7 +71,7 @@ class _TextfieldCustomState extends State<TextfieldCustom> {
         suffixIcon: widget.obscureText
             ? IconButton(
                 icon: Icon(
-                  _isObscured ? Icons.visibility : Icons.visibility_off,
+                  _isObscured ? Icons.visibility_off : Icons.visibility,
                   color: AppColors.neutralN80,
                 ),
                 onPressed: () {
@@ -81,18 +86,31 @@ class _TextfieldCustomState extends State<TextfieldCustom> {
           borderSide: const BorderSide(color: AppColors.neutralN120),
           borderRadius: BorderRadius.circular(4),
         ),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.red),
+          borderRadius: BorderRadius.circular(4),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.red, width: 1.5),
+          borderRadius: BorderRadius.circular(4),
+        ),
         focusedBorder: widget.filled == true
             ? UnderlineInputBorder(
                 borderSide: const BorderSide(color: AppColors.neutralN120),
                 borderRadius: BorderRadius.circular(4),
               )
             : OutlineInputBorder(
-                borderSide: const BorderSide(color: AppColors.neutralN80),
+                borderSide:
+                    const BorderSide(color: AppColors.neutralN80, width: 1.5),
                 borderRadius: BorderRadius.circular(4),
               ),
         counterStyle: const TextStyle(
           fontSize: AppConstants.kFontSizeS,
           color: AppColors.neutralN80,
+        ),
+        labelText: widget.label,
+        labelStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
         ),
         fillColor: AppColors.neutralN120,
         hintText: widget.hintText ?? '',

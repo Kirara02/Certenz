@@ -1,12 +1,14 @@
 import 'package:certenz/gen/assets.gen.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
+import 'package:certenz/src/data/models/history/history_model.dart';
 import 'package:certenz/src/data/models/recent_transaction/recent_transaction_model.dart';
 import 'package:certenz/src/utils/formatters.dart';
+import 'package:certenz/src/widgets/images/cached_network.dart';
 import 'package:flutter/material.dart';
 
 class CardTransaction extends StatelessWidget {
-  final RecentTransactionModel data;
+  final HistoryModel data;
   const CardTransaction({
     super.key,
     required this.data,
@@ -21,16 +23,17 @@ class CardTransaction extends StatelessWidget {
         children: [
           Row(
             children: [
-              ClipOval(
-                child: Image.asset(
-                  data.imgProfile,
-                  width: 32,
-                  height: 32,
+              SizedBox(
+                width: 32,
+                height: 32,
+                child: ClipOval(
+                  child: UICacheNetworkImage(
+                      imageUrl: generateAvatarUrl(data.to?.name ?? "Default")),
                 ),
               ),
               const SizedBox(width: 10),
               Text(
-                data.name,
+                data.to!.name ?? "-",
                 style: const TextStyle(
                   fontSize: AppConstants.kFontSizeS,
                   fontWeight: FontWeight.bold,
@@ -40,7 +43,7 @@ class CardTransaction extends StatelessWidget {
             ],
           ),
           Text(
-            formatCurrency(data.amount),
+            formatCurrency(data.amountTotal!.toDouble() ?? 0),
             style: const TextStyle(
               fontSize: AppConstants.kFontSizeS,
               color: AppColors.neutralN40,

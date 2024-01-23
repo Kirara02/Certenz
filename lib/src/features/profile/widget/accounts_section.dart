@@ -2,7 +2,6 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/blocs/card_account/card_account_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/data/services/dummy_service.dart';
 import 'package:certenz/src/features/atm/view/atm_card_page.dart';
 import 'package:certenz/src/widgets/common/account_bank.dart';
 import 'package:easy_localization/easy_localization.dart';

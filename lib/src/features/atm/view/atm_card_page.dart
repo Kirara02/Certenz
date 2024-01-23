@@ -6,7 +6,6 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/bank/bank_model.dart';
-import 'package:certenz/src/features/face_verify/view/start_verify_page.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/utils/logger.dart';
 import 'package:certenz/src/utils/month_year_picker.dart';

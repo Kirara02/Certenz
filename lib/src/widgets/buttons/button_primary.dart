@@ -2,7 +2,6 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class BtnPrimary extends StatelessWidget {
   const BtnPrimary({super.key, this.title, this.onTap});

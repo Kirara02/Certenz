@@ -77,6 +77,7 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
                     (route) => false);
               },
               error: (error) {
+                hideDialog(context);
                 error.maybeWhen(
                   orElse: () {},
                   unprocessableEntity: (reasons) {

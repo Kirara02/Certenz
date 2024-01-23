@@ -4,7 +4,6 @@ import 'package:certenz/src/app/app_root.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/features/history/view/history_page.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/common/custom_appbar.dart';
 import 'package:certenz/src/widgets/common/powered_widget.dart';

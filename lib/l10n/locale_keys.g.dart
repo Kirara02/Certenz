@@ -51,6 +51,8 @@ abstract class  LocaleKeys {
   static const form_hint_text_f_name = 'form_hint_text.f_name';
   static const form_hint_text_l_name = 'form_hint_text.l_name';
   static const form_hint_text_enter_password = 'form_hint_text.enter_password';
+  static const form_hint_text_new_password = 'form_hint_text.new_password';
+  static const form_hint_text_last_password = 'form_hint_text.last_password';
   static const form_hint_text_create_password = 'form_hint_text.create_password';
   static const form_hint_text_confirm_password = 'form_hint_text.confirm_password';
   static const form_hint_text_create_pin = 'form_hint_text.create_pin';
@@ -87,6 +89,12 @@ abstract class  LocaleKeys {
   static const form_hint_text_exp = 'form_hint_text.exp';
   static const form_hint_text_cvv = 'form_hint_text.cvv';
   static const form_hint_text = 'form_hint_text';
+  static const form_title_name = 'form_title.name';
+  static const form_title_birthday = 'form_title.birthday';
+  static const form_title_username = 'form_title.username';
+  static const form_title_gender = 'form_title.gender';
+  static const form_title_phone_number = 'form_title.phone_number';
+  static const form_title_location = 'form_title.location';
   static const form_title_title = 'form_title.title';
   static const form_title_title_project = 'form_title.title_project';
   static const form_title_title_activity = 'form_title.title_activity';
@@ -108,6 +116,11 @@ abstract class  LocaleKeys {
   static const form_title_paid_date = 'form_title.paid_date';
   static const form_title_select_payment = 'form_title.select_payment';
   static const form_title = 'form_title';
+  static const validation_invalid_email_address = 'validation.invalid_email_address';
+  static const validation_input_is_not_empty = 'validation.input_is_not_empty';
+  static const validation_invalid_password = 'validation.invalid_password';
+  static const validation_passwords_do_not_match = 'validation.passwords_do_not_match';
+  static const validation = 'validation';
   static const dropdown_text_static_marital_status_marry = 'dropdown_text_static.marital_status.marry';
   static const dropdown_text_static_marital_status_single = 'dropdown_text_static.marital_status.single';
   static const dropdown_text_static_marital_status = 'dropdown_text_static.marital_status';
@@ -203,7 +216,10 @@ abstract class  LocaleKeys {
   static const profile_profile_email = 'profile.profile.email';
   static const profile_profile_address = 'profile.profile.address';
   static const profile_profile = 'profile.profile';
-  static const profile_settings_title = 'profile.settings.title';
+  static const profile_settings_gen_title = 'profile.settings.gen_title';
+  static const profile_settings_acc_title = 'profile.settings.acc_title';
+  static const profile_settings_change_password = 'profile.settings.change_password';
+  static const profile_settings_edit_profile = 'profile.settings.edit_profile';
   static const profile_settings_change_language = 'profile.settings.change_language';
   static const profile_settings_faq = 'profile.settings.faq';
   static const profile_settings = 'profile.settings';
@@ -211,6 +227,10 @@ abstract class  LocaleKeys {
   static const profile_accounts_add_account = 'profile.accounts.add_account';
   static const profile_accounts = 'profile.accounts';
   static const profile = 'profile';
+  static const edit_profile_title = 'edit_profile.title';
+  static const edit_profile = 'edit_profile';
+  static const change_password_title = 'change_password.title';
+  static const change_password = 'change_password';
   static const faq_title = 'faq.title';
   static const faq_Subtitle = 'faq.Subtitle';
   static const faq_hint_search = 'faq.hint_search';

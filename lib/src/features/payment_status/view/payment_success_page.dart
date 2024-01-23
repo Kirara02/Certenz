@@ -5,14 +5,11 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
-import 'package:certenz/src/widgets/common/custom_appbar.dart';
-import 'package:certenz/src/widgets/common/custom_clip_path.dart';
 import 'package:certenz/src/widgets/common/powered_widget.dart';
 import 'package:certenz/src/widgets/common/share_bill_to.dart';
 import 'package:certenz/src/widgets/common/text_column.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentSuccessPage extends StatelessWidget {

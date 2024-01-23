@@ -54,6 +54,8 @@
     "f_name" : "First Name",
     "l_name" : "Last Name",
     "enter_password" : "Enter your password",
+    "new_password" : "New Password",
+    "last_password" : "Last Password",
     "create_password" : "Password",
     "confirm_password" : "Confirm Password",
     "create_pin" : "Create a PIN",
@@ -91,6 +93,12 @@
     "cvv" : "CVV"
   },
   "form_title" : {
+    "name" : "Name",
+    "birthday" : "Birthday",
+    "username" : "Username",
+    "gender" : "Gender",
+    "phone_number" : "Phone Number",
+    "location" : "Location",
     "title" : "Title",
     "title_project" : "Title Project",
     "title_activity" : "Judul Activity",
@@ -111,6 +119,12 @@
     "tenant_period" : "Tenant Period",
     "paid_date" : "Paid on date",
     "select_payment" : "Select Payment Method"
+  },
+  "validation": {
+    "invalid_email_address": "Invalid email address",
+    "input_is_not_empty": "{} is not filled",
+    "invalid_password" : "Password must be at least 8 characters long",
+    "passwords_do_not_match": "The passwords do not match."
   },
   "dropdown_text_static" : {
     "marital_status" : {
@@ -236,7 +250,10 @@
       "address" : "Address"
     },
     "settings" : {
-      "title" : "General Settings",
+      "gen_title" : "General Settings",
+      "acc_title" : "Account Settings",
+      "change_password" : "Change Password",
+      "edit_profile" : "Edit Profile",
       "change_language" : "Change Language",
       "faq" : "FAQ"
     },
@@ -244,6 +261,12 @@
       "title" : "My Saved Account",
       "add_account" : "Add Another Bank Account"
     }
+  },
+  "edit_profile" : {
+    "title" : "Edit Profile"
+  },
+  "change_password" : {
+    "title" : "Change Password"
   },
   "faq": {
     "title" : "FAQ",

@@ -3,10 +3,14 @@ import 'package:certenz/src/features/account_billing/view/account_billing_page.d
 import 'package:certenz/src/features/atm/view/atm_card_page.dart';
 import 'package:certenz/src/features/auth/login/view/login_page.dart';
 import 'package:certenz/src/features/auth/register/view/register_page.dart';
+import 'package:certenz/src/features/change_password/view/change_password_page.dart';
 import 'package:certenz/src/features/create_bill/view/create_bill_page.dart';
 import 'package:certenz/src/features/create_split_bill/view/create_split_bill_page.dart';
+import 'package:certenz/src/features/edit_profile/view/edit_profile_page.dart';
 import 'package:certenz/src/features/faq/view/faq_page.dart';
 import 'package:certenz/src/features/initial/view/initial_page.dart';
+import 'package:certenz/src/features/pin/view/pin_page.dart';
+import 'package:certenz/src/features/qr_bill/view/qr_bill_page.dart';
 import 'package:certenz/src/features/reimbursement/view/reimbursement_page.dart';
 import 'package:certenz/src/features/reimbursement_success/view/reimbursement_success_page.dart';
 import 'package:certenz/src/features/splash/view/splash_page.dart';
@@ -60,6 +64,7 @@ class _AppState extends State<App> {
           "/splash": (context) => const SplashPage(),
           "/home": (context) => const AppRoot(),
           "/welcome": (context) => const WelcomePage(),
+          "/pin": (context) => const PinPage(),
           "/login": (context) => const LoginPage(),
           "/register": (context) => const RegisterPage(),
           "/create-bill": (context) => const CreateBillPage(),
@@ -69,6 +74,8 @@ class _AppState extends State<App> {
           "/reimbursement-success": (context) =>
               const ReimbursementSuccessPage(),
           "/atm": (context) => const AtmCardPage(),
+          "/edit-profile": (context) => const EditProfilePage(),
+          "/change-password": (context) => const ChangePasswordPage(),
           "/faq": (context) => const FAQPage(),
         },
         onUnknownRoute: (settings) {

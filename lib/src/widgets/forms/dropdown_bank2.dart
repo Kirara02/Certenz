@@ -1,5 +1,4 @@
 import 'package:certenz/src/config/constant.dart';
-import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/bank/bank_model.dart';
 import 'package:certenz/src/widgets/images/cached_network.dart';

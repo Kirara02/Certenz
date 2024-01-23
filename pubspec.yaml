@@ -52,6 +52,7 @@ dependencies:
   shimmer: ^3.0.0
   sqflite: ^2.3.0
   syncfusion_flutter_datepicker: ^22.2.9
+  url_launcher: ^6.1.14
 
 dev_dependencies:
   build_runner: ^2.3.3
@@ -77,8 +78,10 @@ flutter_gen:
 
 flutter_native_splash:
   color: "#FFFFFF"
+  image: assets/images/background.png
   android_12:
     color: "#FFFFFF"
+    image: assets/images/background.png
 
 flutter:
   uses-material-design: true

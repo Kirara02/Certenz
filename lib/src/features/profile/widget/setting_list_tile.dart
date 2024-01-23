@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SettingListTile extends StatelessWidget {
-  final SvgPicture icon;
+  final Widget icon;
   final String title;
   final VoidCallback onTap;
   const SettingListTile(

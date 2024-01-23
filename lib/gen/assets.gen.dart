@@ -264,6 +264,10 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/background.png
+  AssetGenImage get background =>
+      const AssetGenImage('assets/images/background.png');
+
   /// File path: assets/images/bankbni.png
   AssetGenImage get bankbni => const AssetGenImage('assets/images/bankbni.png');
 
@@ -301,6 +305,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/header_wave_top.png
   AssetGenImage get headerWaveTop =>
       const AssetGenImage('assets/images/header_wave_top.png');
+
+  /// File path: assets/images/ic_upload.png
+  AssetGenImage get icUpload =>
+      const AssetGenImage('assets/images/ic_upload.png');
 
   /// File path: assets/images/linkaja.png
   AssetGenImage get linkaja => const AssetGenImage('assets/images/linkaja.png');
@@ -355,6 +363,7 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        background,
         bankbni,
         bca,
         bni,
@@ -366,6 +375,7 @@ class $AssetsImagesGen {
         gopay,
         handCard,
         headerWaveTop,
+        icUpload,
         linkaja,
         logo,
         mandiri,

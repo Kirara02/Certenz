@@ -1,11 +1,7 @@
 import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/config/constant.dart';
-import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/cubits/text_field_cubit.dart';
 import 'package:certenz/src/data/models/account_bank/account_bank_model.dart';
-import 'package:certenz/src/data/models/bank/bank_model.dart';
-import 'package:certenz/src/data/services/dummy_service.dart';
 import 'package:certenz/src/features/payment_status/view/payment_success_page.dart';
 import 'package:certenz/src/features/pin/view/pin_page.dart';
 import 'package:certenz/src/utils/date_picker.dart';
@@ -13,16 +9,11 @@ import 'package:certenz/src/utils/logger.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/common/custom_appbar.dart';
 import 'package:certenz/src/widgets/dialogs/modal_bottom_select_account_bank.dart';
-import 'package:certenz/src/widgets/forms/date_custom.dart';
-import 'package:certenz/src/widgets/forms/dropdown_account_bank.dart';
-import 'package:certenz/src/widgets/forms/dropdown_bank.dart';
 import 'package:certenz/src/widgets/forms/dropdown_bank2.dart';
 import 'package:certenz/src/widgets/forms/field_custom.dart';
 import 'package:certenz/src/widgets/forms/select_bank_button.dart';
-import 'package:certenz/src/widgets/forms/textfield_custom.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GrantedMoneyPage extends StatefulWidget {
   const GrantedMoneyPage({super.key});

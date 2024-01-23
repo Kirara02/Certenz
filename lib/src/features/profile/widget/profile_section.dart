@@ -1,5 +1,10 @@
 import 'package:certenz/src/blocs/auth/auth_bloc.dart';
-import 'package:certenz/src/utils/logger.dart';
+import 'package:certenz/src/blocs/user/user_bloc.dart';
+import 'package:certenz/src/data/models/user/user_detail_model.dart';
+import 'package:certenz/src/utils/formatters.dart';
+import 'package:certenz/src/widgets/dialogs/hide_dialog.dart';
+import 'package:certenz/src/widgets/dialogs/loading_dialog.dart';
+import 'package:certenz/src/widgets/images/cached_network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -23,57 +28,56 @@ class ProfileSection extends StatefulWidget {
 class _ProfileSectionState extends State<ProfileSection> {
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AuthBloc>(
-      create: (context) => AuthBloc(),
-      child: BlocListener<AuthBloc, AuthState>(
-        bloc: context.read<AuthBloc>(),
-        listener: (context, state) {
-          state.maybeWhen(
-            orElse: () {},
-            unAuthenticated: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                "/welcome",
-                (route) => false,
-              );
-            },
-            // Other state handlers if needed
-          );
-        },
-        child: BlocBuilder<AuthBloc, AuthState>(
-          bloc: context.read<AuthBloc>()..add(const AuthEvent.getUser()),
+    return BlocProvider(
+      create: (context) => UserBloc(),
+      child: Builder(builder: (context) {
+        return BlocBuilder<UserBloc, UserState>(
+          bloc: context.read<UserBloc>()..add(const UserEvent.getUser()),
           builder: (context, state) {
             return state.maybeWhen(
               orElse: () => const SpinKitCircle(
                 color: AppColors.neutralN140,
               ),
-              fetchUser: (user) => _buildProfileContent(user),
+              success: (user) => _buildProfileContent(user),
               loading: () => const Center(child: CircularProgressIndicator()),
             );
           },
-        ),
-      ),
+        );
+      }),
     );
   }
 
-  Widget _buildProfileContent(UserModel user) {
+  Widget _buildProfileContent(UserDetailModel user) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
       child: Column(
         children: [
-          _buildProfileImage(),
-          const SizedBox(height: 20),
+          _buildProfileImage(user.profilePicture ??
+              (user.name != null ? generateAvatarUrl(user.name!) : "Default")),
+          const SizedBox(height: 12),
           Text(
-            user.name,
+            user.name!,
             style: const TextStyle(
                 fontSize: AppConstants.kFontSizeXL,
                 fontWeight: FontWeight.w600),
           ),
-          const SizedBox(height: 35),
+          const SizedBox(height: 40),
           ProfileListTile(
             title: LocaleKeys.profile_profile_email.tr(),
-            text: user.email,
+            text: user.email!,
             icon: Assets.icons.mail.path,
+          ),
+          const SizedBox(height: 12),
+          ProfileListTile(
+            title: LocaleKeys.profile_profile_phone.tr(),
+            text: user.telp!,
+            icon: Assets.icons.phone.path,
+          ),
+          const SizedBox(height: 12),
+          ProfileListTile(
+            title: LocaleKeys.profile_profile_address.tr(),
+            text: user.location!,
+            icon: Assets.icons.address.path,
           ),
           const SizedBox(height: 24),
           _buildSignOutButton(context),
@@ -82,7 +86,7 @@ class _ProfileSectionState extends State<ProfileSection> {
     );
   }
 
-  Widget _buildProfileImage() {
+  Widget _buildProfileImage(String imgUrl) {
     return Container(
       height: 80,
       width: 80,
@@ -91,18 +95,12 @@ class _ProfileSectionState extends State<ProfileSection> {
         shape: BoxShape.circle,
         color: AppColors.grey2,
       ),
-      child: Stack(
-        children: [
-          CircleAvatar(
-            backgroundImage: AssetImage(Assets.images.user3.path),
-            radius: 40,
-          ),
-          Positioned(
-            bottom: 0,
-            right: 0,
-            child: _editIcon(),
-          ),
-        ],
+      child: ClipOval(
+        child: UICacheNetworkImage(
+          imageUrl: imgUrl,
+          fit: BoxFit.cover,
+          shimmerShape: BoxShape.circle,
+        ),
       ),
     );
   }
@@ -120,19 +118,34 @@ class _ProfileSectionState extends State<ProfileSection> {
   }
 
   Widget _buildSignOutButton(BuildContext context) {
-    return ListTile(
-      leading: const CircleAvatar(
-        backgroundColor: AppColors.orange,
-        radius: 12,
-        child: Icon(Icons.logout, color: AppColors.neutralN140, size: 17),
-      ),
-      title: const Text(
-        "Sign Out",
-        style: TextStyle(fontWeight: FontWeight.w500),
-      ),
-      onTap: () {
-        _showLogoutConfirmation(context);
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        state.maybeWhen(
+          orElse: () {},
+          loading: () {
+            showLoadingDialog(context);
+          },
+          unAuthenticated: () {
+            hideDialog(context);
+            Navigator.pushNamedAndRemoveUntil(
+                context, "/welcome", (route) => false);
+          },
+        );
       },
+      child: ListTile(
+        leading: const CircleAvatar(
+          backgroundColor: AppColors.orange,
+          radius: 12,
+          child: Icon(Icons.logout, color: AppColors.neutralN140, size: 17),
+        ),
+        title: const Text(
+          "Sign Out",
+          style: TextStyle(fontWeight: FontWeight.w500),
+        ),
+        onTap: () {
+          _showLogoutConfirmation(context);
+        },
+      ),
     );
   }
 

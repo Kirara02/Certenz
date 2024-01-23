@@ -6,8 +6,10 @@ import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/features/auth/register/view/register_page.dart';
 import 'package:certenz/src/utils/dismiss_keyboard.dart';
 import 'package:certenz/src/utils/logger.dart';
+import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/auth/section_auth.dart';
 import 'package:certenz/src/widgets/common/powered_widget.dart';
+import 'package:certenz/src/widgets/dialogs/hide_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/loading_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/ux_toast_wrapper.dart';
 import 'package:certenz/src/widgets/forms/textfield_custom.dart';
@@ -48,10 +50,11 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 },
                 error: (error) {
+                  hideDialog(context);
                   error.maybeWhen(
                     orElse: () {},
                     unauthorisedRequest: (reason) {
-                      dLog(reason);
+                      UXToast.show(message: reason);
                     },
                   );
                 },
@@ -80,6 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(height: 30),
                           TextfieldCustom(
                             controller: emailController,
+                            keyboardType: TextInputType.emailAddress,
                             hintText:
                                 LocaleKeys.form_hint_text_enter_email.tr(),
                           ),
@@ -117,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         } else if (passwordController.text.isEmpty) {
                           UXToast.show(
-                            message: 'PIN is required',
+                            message: 'Password is required',
                             backgroundColor: AppColors.red,
                             textColor: AppColors.neutralN140,
                           );
@@ -129,12 +133,7 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       },
                       txtTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const RegisterPage(),
-                          ),
-                        );
+                        Navigator.pushNamed(context, "/register");
                       },
                       btnText: LocaleKeys.button_sign_in.tr(),
                       txtText: LocaleKeys.text_no_have_account.tr(),

@@ -3,9 +3,12 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/account_bank/account_bank_model.dart';
 import 'package:certenz/src/data/models/bank/bank_model.dart';
+import 'package:certenz/src/data/models/bill/bill_model.dart';
 import 'package:certenz/src/data/services/dummy_service.dart';
 import 'package:certenz/src/features/account_bill_create/view/account_bill_create_page.dart';
+import 'package:certenz/src/features/qr_bill/view/qr_bill_page.dart';
 import 'package:certenz/src/utils/logger.dart';
+import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/common/custom_appbar.dart';
 import 'package:certenz/src/widgets/common/powered_widget.dart';
@@ -25,9 +28,12 @@ class AccountBillingPage extends StatefulWidget {
 }
 
 class _AccountBillingPageState extends State<AccountBillingPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController titleController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   TextEditingController noteController = TextEditingController();
+  TextEditingController toController = TextEditingController();
   TextEditingController datePaidController = TextEditingController();
 
   BankModel? selectedPaymentMethod;
@@ -67,175 +73,217 @@ class _AccountBillingPageState extends State<AccountBillingPage> {
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                LocaleKeys.form_title_title.tr(),
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  LocaleKeys.form_title_title.tr(),
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              FieldCustom(
-                controller: titleController,
-                hintText: LocaleKeys.form_hint_text_title.tr(),
-                maxLines: 1,
-                keyboardType: TextInputType.text,
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 8),
+                FieldCustom(
+                  controller: titleController,
+                  hintText: LocaleKeys.form_hint_text_title.tr(),
+                  maxLines: 1,
+                  keyboardType: TextInputType.text,
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 18),
-              Text(
-                LocaleKeys.form_title_amount.tr(),
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 18),
+                Text(
+                  LocaleKeys.form_title_amount.tr(),
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              FieldCustom(
-                controller: amountController,
-                format: "currency",
-                hintText: LocaleKeys.form_hint_text_amount.tr(),
-                maxLines: 1,
-                maxLength: 20,
-                keyboardType: TextInputType.number,
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeX,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 8),
+                FieldCustom(
+                  controller: amountController,
+                  format: "currency",
+                  hintText: LocaleKeys.form_hint_text_amount.tr(),
+                  maxLines: 1,
+                  maxLength: 20,
+                  keyboardType: TextInputType.number,
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeX,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 18),
-              Text(
-                LocaleKeys.form_title_tenant_period.tr(),
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 18),
+                Text(
+                  LocaleKeys.form_title_to.tr(),
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              DropdownTextfield(
-                items: DummyService.period,
-                hintText: "Period",
-              ),
-              const SizedBox(height: 18),
-              const Text(
-                "Paid on date ",
-                style: TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 8),
+                FieldCustom(
+                  controller: toController,
+                  hintText: LocaleKeys.form_hint_text_to_email.tr(),
+                  maxLines: 1,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (p0) {
+                    if (p0 == null || !p0.isValidEmail) {
+                      return 'Please enter a valid email';
+                    }
+                    return null;
+                  },
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    width: 60,
-                    child: FieldCustom(
-                      controller: datePaidController,
-                      hintText: "Enter Date",
-                      maxLines: 1,
-                      maxLength: 2,
-                      keyboardType: TextInputType.number,
-                      style: const TextStyle(
-                        fontSize: AppConstants.kFontSizeS,
-                        color: AppColors.neutralN40,
+                const SizedBox(height: 18),
+                Text(
+                  LocaleKeys.form_title_tenant_period.tr(),
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                DropdownTextfield(
+                  items: DummyService.period,
+                  hintText: "Period",
+                ),
+                const SizedBox(height: 18),
+                const Text(
+                  "Paid on date ",
+                  style: TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 60,
+                      child: FieldCustom(
+                        controller: datePaidController,
+                        hintText: "Enter Date",
+                        maxLines: 1,
+                        maxLength: 2,
+                        keyboardType: TextInputType.number,
+                        style: const TextStyle(
+                          fontSize: AppConstants.kFontSizeS,
+                          color: AppColors.neutralN40,
+                        ),
                       ),
                     ),
+                    const SizedBox(width: 25),
+                    Expanded(
+                      child: DropdownTextfield(
+                        items: DummyService.onPaid,
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 18),
+                Text(
+                  LocaleKeys.form_title_select_payment.tr(),
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
                   ),
-                  const SizedBox(width: 25),
-                  Expanded(
-                    child: DropdownTextfield(
-                      items: DummyService.onPaid,
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(height: 18),
-              Text(
-                LocaleKeys.form_title_select_payment.tr(),
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
                 ),
-              ),
-              const SizedBox(height: 18),
-              // DropdownBank2(
-              //   selectedItem: selectedPaymentMethod?.name,
-              //   hintText: "Pilih Bank",
-              //   prefixIcon: null,
-              //   listBank: DummyService.listBank, // Pass the list of banks
-              //   onBankSelected: (bank) {
-              //     setState(() {
-              //       selectedPaymentMethod = bank;
-              //     });
-              //     vLog(selectedPaymentMethod);
-              //   },
-              // ),
-              const SizedBox(height: 18),
-              Text(
-                LocaleKeys.form_title_select_dest.tr(),
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 18),
+                // DropdownBank2(
+                //   selectedItem: selectedPaymentMethod?.name,
+                //   hintText: "Pilih Bank",
+                //   prefixIcon: null,
+                //   listBank: DummyService.listBank, // Pass the list of banks
+                //   onBankSelected: (bank) {
+                //     setState(() {
+                //       selectedPaymentMethod = bank;
+                //     });
+                //     vLog(selectedPaymentMethod);
+                //   },
+                // ),
+                const SizedBox(height: 18),
+                Text(
+                  LocaleKeys.form_title_select_dest.tr(),
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 18),
-              // SelectBankButton(
-              //   hintText: LocaleKeys.form_hint_text_select_account.tr(),
-              //   selectedAccount: selectedAccDestination,
-              //   onTap: () => _selectAccount(context).then((value) {
-              //     if (value != null) {
-              //       setState(() {
-              //         selectedAccDestination = value;
-              //       });
-              //     }
-              //   }),
-              // ),
-              const SizedBox(height: 18),
-              const Text(
-                "Note :",
-                style: TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 18),
+                // SelectBankButton(
+                //   hintText: LocaleKeys.form_hint_text_select_account.tr(),
+                //   selectedAccount: selectedAccDestination,
+                //   onTap: () => _selectAccount(context).then((value) {
+                //     if (value != null) {
+                //       setState(() {
+                //         selectedAccDestination = value;
+                //       });
+                //     }
+                //   }),
+                // ),
+                const SizedBox(height: 18),
+                const Text(
+                  "Note :",
+                  style: TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              FieldCustom(
-                controller: noteController,
-                hintText: LocaleKeys.form_hint_text_note.tr(),
-                maxLines: 1,
-                maxLength: 20,
-                keyboardType: TextInputType.emailAddress,
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 8),
+                FieldCustom(
+                  controller: noteController,
+                  hintText: LocaleKeys.form_hint_text_note.tr(),
+                  maxLines: 1,
+                  maxLength: 20,
+                  keyboardType: TextInputType.emailAddress,
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 18),
-              const PoweredWidget(
-                isCenter: false,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              BtnPrimary(
-                onTap: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AccountBillCreatePage(),
-                    ),
-                  );
-                },
-                title: LocaleKeys.button_next.tr(),
-              ),
-            ],
+                const SizedBox(height: 18),
+                const PoweredWidget(
+                  isCenter: false,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                BtnPrimary(
+                  onTap: () async {
+                    if (_formKey.currentState!.validate()) {}
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => QRBillPage(
+                    //           data: BillModel(
+                    //               billNumber: "billNumber",
+                    //               userId: userId,
+                    //               title: title,
+                    //               totalAmountBill: totalAmountBill,
+                    //               toEmail: toEmail,
+                    //               transactionDatetime: transactionDatetime,
+                    //               toName: toName,
+                    //               fromAccount: fromAccount,
+                    //               paymentMethod: paymentMethod,
+                    //               fromName: fromName,
+                    //               toAccount: toAccount,
+                    //               billType: billType,
+                    //               createBillStatus: createBillStatus)),
+                    //     ));
+                  },
+                  title: LocaleKeys.button_next.tr(),
+                ),
+              ],
+            ),
           ),
         ),
       ),

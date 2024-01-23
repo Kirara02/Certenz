@@ -80,6 +80,7 @@ class _CreateBillPageState extends State<CreateBillPage> {
                     (route) => false);
               },
               error: (error) {
+                hideDialog(context);
                 error.maybeWhen(
                   orElse: () {},
                   unprocessableEntity: (reasons) {
