@@ -30,7 +30,7 @@ class DummyService {
   ];
 
   static List<String> onPaid = [
-    "Daily",
+    "Weekly",
     "Monthly",
     "Yearly",
   ];

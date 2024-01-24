@@ -11,6 +11,7 @@ import 'package:certenz/src/utils/date_picker.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/utils/image_compress.dart';
 import 'package:certenz/src/utils/logger.dart';
+import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/common/custom_appbar.dart';
 import 'package:certenz/src/widgets/dialogs/hide_dialog.dart';
@@ -33,6 +34,8 @@ class ReimbursementPage extends StatefulWidget {
 }
 
 class _ReimbursementPageState extends State<ReimbursementPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController emailController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   TextEditingController amountController = TextEditingController();
@@ -122,32 +125,7 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
   }
 
   Future<FormData?> _handleSubmit() async {
-    if (emailController.text.isEmpty) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_title_email.tr()},
-      ));
-      return null;
-    } else if (titleController.text.isEmpty) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_title_title_activity.tr()},
-      ));
-      return null;
-    } else if (amountController.text.isEmpty) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_title_amount.tr()},
-      ));
-      return null;
-    } else if (detailActivities.isEmpty) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_title_detail_activity.tr()},
-      ));
-      return null;
-    } else if (startDateController.text.isEmpty) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_title_start_date.tr()},
-      ));
-      return null;
-    } else if (selectedAccDestination == null) {
+    if (selectedAccDestination == null) {
       _toast(LocaleKeys.toast_text_required.tr(
         namedArgs: {"text": LocaleKeys.form_title_select_dest.tr()},
       ));
@@ -228,216 +206,272 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
               title: LocaleKeys.reimbursement_title.tr(),
             ),
             body: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    LocaleKeys.form_title_email.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      LocaleKeys.form_title_email.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: emailController,
-                    hintText: LocaleKeys.form_hint_text_email2.tr(),
-                    maxLines: 1,
-                    keyboardType: TextInputType.emailAddress,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: emailController,
+                      hintText: LocaleKeys.form_hint_text_email2.tr(),
+                      maxLines: 1,
+                      keyboardType: TextInputType.emailAddress,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return LocaleKeys.validation_input_is_not_empty
+                              .tr(args: [
+                            LocaleKeys.form_title_email.tr(),
+                          ]);
+                        }
+                        if (!p0.isValidEmail) {
+                          return LocaleKeys.validation_invalid_email_address
+                              .tr();
+                        }
+                        return null;
+                      },
                     ),
-                  ),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  Text(
-                    LocaleKeys.form_title_title_activity.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(
+                      height: 18,
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: titleController,
-                    hintText: LocaleKeys.form_hint_text_title.tr(),
-                    maxLines: 1,
-                    keyboardType: TextInputType.text,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    Text(
+                      LocaleKeys.form_title_title_activity.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_amount.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: titleController,
+                      hintText: LocaleKeys.form_hint_text_title.tr(),
+                      maxLines: 1,
+                      keyboardType: TextInputType.text,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return LocaleKeys.validation_input_is_not_empty
+                              .tr(args: [
+                            LocaleKeys.form_title_title.tr(),
+                          ]);
+                        }
+                        return null;
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: amountController,
-                    format: "currency",
-                    hintText: LocaleKeys.form_hint_text_amount.tr(),
-                    maxLines: 1,
-                    maxLength: 20,
-                    keyboardType: TextInputType.number,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeX,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_amount.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_start_date.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: amountController,
+                      format: "currency",
+                      hintText: LocaleKeys.form_hint_text_amount.tr(),
+                      maxLines: 1,
+                      maxLength: 20,
+                      keyboardType: TextInputType.number,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeX,
+                        color: AppColors.neutralN40,
+                      ),
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return LocaleKeys.validation_input_is_not_empty
+                              .tr(args: [
+                            LocaleKeys.form_title_amount.tr(),
+                          ]);
+                        }
+                        return null;
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: startDateController,
-                    hintText: LocaleKeys.form_hint_text_date.tr(),
-                    suffixIcon: const Icon(Icons.calendar_month),
-                    readOnly: true,
-                    onTap: () => _deliveryDate(passDate: true).then((value) {
-                      if (value != null) {
-                        startDateController.text = value;
-                      }
-                    }),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_detail_activity.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_start_date.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: detailActivityController,
-                    hintText: LocaleKeys.form_hint_text_title.tr(),
-                    maxLength: 10,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
-                      overflow: TextOverflow.ellipsis,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: startDateController,
+                      hintText: LocaleKeys.form_hint_text_date.tr(),
+                      suffixIcon: const Icon(Icons.calendar_month),
+                      readOnly: true,
+                      onTap: () => _deliveryDate(passDate: true).then((value) {
+                        if (value != null) {
+                          startDateController.text = value;
+                        }
+                      }),
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return LocaleKeys.validation_input_is_not_empty
+                              .tr(args: [
+                            LocaleKeys.form_title_start_date.tr(),
+                          ]);
+                        }
+                        return null;
+                      },
                     ),
-                    suffixIcon: detailActivities.length < 2
-                        ? const Icon(Icons.chevron_right_rounded)
-                        : Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            child: Container(
-                              height: 25,
-                              padding: const EdgeInsets.all(4),
-                              decoration: BoxDecoration(
-                                color: AppColors.orange,
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: const Text(
-                                "Check Detail",
-                                style: TextStyle(
-                                  fontSize: AppConstants.kFontSizeS,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColors.neutralN140,
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_detail_activity.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: detailActivityController,
+                      hintText: LocaleKeys.form_hint_text_title.tr(),
+                      maxLength: 10,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      suffixIcon: detailActivities.length < 2
+                          ? const Icon(Icons.chevron_right_rounded)
+                          : Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 12),
+                              child: Container(
+                                height: 25,
+                                padding: const EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                  color: AppColors.orange,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Text(
+                                  "Check Detail",
+                                  style: TextStyle(
+                                    fontSize: AppConstants.kFontSizeS,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.neutralN140,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                    readOnly: true,
-                    onTap: () =>
-                        _detailActivity(data: detailActivities).then((value) {
-                      if (value != null) {
-                        setState(() {
-                          detailActivities = value;
-                        });
-
-                        if (detailActivities.length == 1) {
-                          detailActivityController.text = detailActivities[0];
-                        } else if (detailActivities.length > 1) {
-                          detailActivityController.clear();
+                      readOnly: true,
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return LocaleKeys.validation_input_is_not_empty
+                              .tr(args: [
+                            LocaleKeys.form_title_detail_activity.tr(),
+                          ]);
                         }
-                      }
-                    }),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_select_dest.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                        return null;
+                      },
+                      onTap: () =>
+                          _detailActivity(data: detailActivities).then((value) {
+                        if (value != null) {
+                          setState(() {
+                            detailActivities = value;
+                          });
+
+                          if (detailActivities.length == 1) {
+                            detailActivityController.text = detailActivities[0];
+                          } else if (detailActivities.length > 1) {
+                            detailActivityController.clear();
+                          }
+                        }
+                      }),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  SelectBankButton(
-                    hintText: LocaleKeys.form_hint_text_select_account.tr(),
-                    bankAccountModel: selectedAccDestination,
-                    onTap: () => _selectAccount(context).then((value) {
-                      if (value != null) {
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_select_dest.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    SelectBankButton(
+                      hintText: LocaleKeys.form_hint_text_select_account.tr(),
+                      bankAccountModel: selectedAccDestination,
+                      onTap: () => _selectAccount(context).then((value) {
+                        if (value != null) {
+                          setState(() {
+                            selectedAccDestination = value;
+                          });
+                        }
+                      }),
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_documentation.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    ImageSelectionWidget(
+                      imagesDocs: imagesDocs,
+                      onImagesSelected: (selectedImages) {
                         setState(() {
-                          selectedAccDestination = value;
+                          imagesDocs = selectedImages;
                         });
-                      }
-                    }),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_documentation.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  ImageSelectionWidget(
-                    imagesDocs: imagesDocs,
-                    onImagesSelected: (selectedImages) {
-                      setState(() {
-                        imagesDocs = selectedImages;
-                      });
-                    },
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_note_optional.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_note_optional.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: noteController,
-                    hintText: LocaleKeys.form_hint_text_note.tr(),
-                    maxLines: 1,
-                    maxLength: 20,
-                    keyboardType: TextInputType.emailAddress,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: noteController,
+                      hintText: LocaleKeys.form_hint_text_note.tr(),
+                      maxLines: 1,
+                      maxLength: 20,
+                      keyboardType: TextInputType.emailAddress,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  BtnPrimary(
-                    onTap: () => _handleSubmit().then((value) {
-                      if (value != null) {
-                        context.read<ReimbursementBloc>().add(
-                            ReimbursementEvent.createReimbursement(
-                                formData: value));
-                      }
-                    }),
-                    title: LocaleKeys.button_send.tr(),
-                  ),
-                ],
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    BtnPrimary(
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          _handleSubmit().then((value) {
+                            if (value != null) {
+                              context.read<ReimbursementBloc>().add(
+                                  ReimbursementEvent.createReimbursement(
+                                      formData: value));
+                            }
+                          });
+                        }
+                      },
+                      title: LocaleKeys.button_send.tr(),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

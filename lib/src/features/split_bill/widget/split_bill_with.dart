@@ -2,6 +2,7 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/friend_entry/field_entry_model.dart';
+import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/forms/field_custom.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,17 @@ class SplitBillWith extends StatelessWidget {
                   fontSize: AppConstants.kFontSizeM,
                   color: AppColors.neutralN40,
                 ),
+                validator: (p0) {
+                  if (p0!.isEmpty) {
+                    return LocaleKeys.validation_input_is_not_empty.tr(args: [
+                      LocaleKeys.form_title_email.tr(),
+                    ]);
+                  }
+                  if (!p0.isValidEmail) {
+                    return LocaleKeys.validation_invalid_email_address.tr();
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 18),
               Text(
@@ -73,6 +85,15 @@ class SplitBillWith extends StatelessWidget {
                   fontSize: AppConstants.kFontSizeX,
                   color: AppColors.neutralN40,
                 ),
+                validator: (p0) {
+                  if (p0!.isEmpty) {
+                    return LocaleKeys.validation_input_is_not_empty.tr(args: [
+                      LocaleKeys.form_title_amount.tr(),
+                    ]);
+                  }
+
+                  return null;
+                },
               ),
               const SizedBox(height: 18),
               Text(
@@ -93,6 +114,15 @@ class SplitBillWith extends StatelessWidget {
                   fontSize: AppConstants.kFontSizeS,
                   color: AppColors.neutralN40,
                 ),
+                validator: (p0) {
+                  if (p0!.isEmpty) {
+                    return LocaleKeys.validation_input_is_not_empty.tr(args: [
+                      LocaleKeys.form_title_phone_number.tr(),
+                    ]);
+                  }
+
+                  return null;
+                },
               ),
               const SizedBox(height: 18),
               Text(

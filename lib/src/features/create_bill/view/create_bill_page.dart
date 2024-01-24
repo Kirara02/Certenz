@@ -5,6 +5,7 @@ import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/features/bill_status/view/bill_status_page.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/utils/logger.dart';
+import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/common/custom_appbar.dart';
 import 'package:certenz/src/widgets/dialogs/hide_dialog.dart';
@@ -25,6 +26,8 @@ class CreateBillPage extends StatefulWidget {
 }
 
 class _CreateBillPageState extends State<CreateBillPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController titleController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   TextEditingController toController = TextEditingController();
@@ -39,17 +42,6 @@ class _CreateBillPageState extends State<CreateBillPage> {
   }
 
   Future<FormData?> handleSubmit() async {
-    if (titleController.text.isEmpty) {
-      _toast("Title is required");
-      return null;
-    } else if (amountController.text.isEmpty) {
-      _toast("Amount is required");
-      return null;
-    } else if (toController.text.isEmpty) {
-      _toast("To Email is required");
-      return null;
-    }
-
     FormData formData = FormData.fromMap({
       "title": titleController.text,
       "total_amount_bill": removeCurrencyFormat(amountController.text),
@@ -108,100 +100,138 @@ class _CreateBillPageState extends State<CreateBillPage> {
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    LocaleKeys.form_title_title.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      LocaleKeys.form_title_title.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: titleController,
-                    hintText: LocaleKeys.form_hint_text_title.tr(),
-                    maxLines: 1,
-                    keyboardType: TextInputType.text,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeM,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: titleController,
+                      hintText: LocaleKeys.form_hint_text_title.tr(),
+                      maxLines: 1,
+                      keyboardType: TextInputType.text,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeM,
+                        color: AppColors.neutralN40,
+                      ),
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return LocaleKeys.validation_input_is_not_empty
+                              .tr(args: [
+                            LocaleKeys.form_title_title.tr(),
+                          ]);
+                        }
+                        return null;
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_total_amount.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeM,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_total_amount.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeM,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: amountController,
-                    hintText: LocaleKeys.form_hint_text_amount.tr(),
-                    maxLines: 1,
-                    format: "currency",
-                    maxLength: 20,
-                    keyboardType: TextInputType.number,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeX,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: amountController,
+                      hintText: LocaleKeys.form_hint_text_amount.tr(),
+                      maxLines: 1,
+                      format: "currency",
+                      maxLength: 20,
+                      keyboardType: TextInputType.number,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeX,
+                        color: AppColors.neutralN40,
+                      ),
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return LocaleKeys.validation_input_is_not_empty
+                              .tr(args: [
+                            LocaleKeys.form_title_amount.tr(),
+                          ]);
+                        }
+                        return null;
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_to.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_to.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: toController,
-                    hintText: LocaleKeys.form_hint_text_to_email.tr(),
-                    maxLines: 1,
-                    keyboardType: TextInputType.text,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: toController,
+                      hintText: LocaleKeys.form_hint_text_to_email.tr(),
+                      maxLines: 1,
+                      keyboardType: TextInputType.emailAddress,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return LocaleKeys.validation_input_is_not_empty
+                              .tr(args: [
+                            LocaleKeys.form_title_title.tr(),
+                          ]);
+                        }
+                        if (!p0.isValidEmail) {
+                          return LocaleKeys.validation_invalid_email_address
+                              .tr();
+                        }
+                        return null;
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_note_optional.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_note_optional.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: noteController,
-                    hintText: LocaleKeys.form_hint_text_note.tr(),
-                    maxLines: 1,
-                    keyboardType: TextInputType.text,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: noteController,
+                      hintText: LocaleKeys.form_hint_text_note.tr(),
+                      maxLines: 1,
+                      keyboardType: TextInputType.text,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               child: BtnPrimary(
                 title: LocaleKeys.button_create_bill.tr(),
-                onTap: () => handleSubmit().then((value) {
-                  if (value != null) {
-                    context
-                        .read<CreateBillBloc>()
-                        .add(CreateBillEvent.createBill(formData: value));
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    handleSubmit().then((value) {
+                      if (value != null) {
+                        context
+                            .read<CreateBillBloc>()
+                            .add(CreateBillEvent.createBill(formData: value));
+                      }
+                    });
                   }
-                }),
+                },
               ),
             ),
           ),

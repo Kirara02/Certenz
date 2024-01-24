@@ -11,7 +11,8 @@ class DropdownBank2 extends StatefulWidget {
   final dynamic selectedItem;
   final Widget? prefixIcon;
   final void Function(BankModel) onBankSelected; // Callback function
-  final List<BankModel> listBank; // Pass the list of banks
+  final List<BankModel> listBank;
+  final String? Function(BankModel?)? validator;
 
   const DropdownBank2({
     super.key,
@@ -19,7 +20,8 @@ class DropdownBank2 extends StatefulWidget {
     this.hintText,
     this.prefixIcon,
     required this.onBankSelected, // Pass the callback function
-    required this.listBank, // Pass the list of banks
+    required this.listBank,
+    this.validator,
   });
 
   @override
@@ -32,6 +34,7 @@ class _DropdownBank2State extends State<DropdownBank2> {
   @override
   Widget build(BuildContext context) {
     return DropdownSearch<BankModel>(
+      validator: widget.validator,
       popupProps: PopupProps.menu(
         showSearchBox: false,
         menuProps: const MenuProps(
@@ -48,8 +51,8 @@ class _DropdownBank2State extends State<DropdownBank2> {
             ),
           );
         },
-        constraints:
-            BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.3),
+        constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.25),
       ),
       items: widget.listBank,
       selectedItem: selectedBank,

@@ -2,6 +2,7 @@ import 'package:certenz/gen/assets.gen.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
+import 'package:certenz/src/data/models/account_billing/account_billing_model.dart';
 import 'package:certenz/src/data/models/bill/bill_model.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/widgets/common/custom_appbar.dart';
@@ -9,9 +10,9 @@ import 'package:certenz/src/widgets/common/share_bill_to.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class QRBillPage extends StatelessWidget {
-  final BillModel data;
-  const QRBillPage({super.key, required this.data});
+class QRAccountBillingPage extends StatelessWidget {
+  final AccountBillingModel data;
+  const QRAccountBillingPage({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +85,7 @@ class QRBillPage extends StatelessWidget {
                             height: 4,
                           ),
                           Text(
-                            data.fromName,
+                            data.fromName ?? "-",
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
                             ),
@@ -102,7 +103,7 @@ class QRBillPage extends StatelessWidget {
                             height: 4,
                           ),
                           Text(
-                            data.fromAccount,
+                            data.fromAccount ?? "-",
                             style: const TextStyle(
                               fontWeight: FontWeight.w600,
                             ),
@@ -111,7 +112,7 @@ class QRBillPage extends StatelessWidget {
                             height: 12,
                           ),
                           const Text(
-                            "Status",
+                            "Tenant",
                             style: TextStyle(
                               fontSize: AppConstants.kFontSizeS,
                             ),
@@ -130,7 +131,7 @@ class QRBillPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(14),
                               ),
                               child: Text(
-                                data.createBillStatus,
+                                data.tenantPeriod ?? "-",
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                   color: AppColors.neutralN140,
@@ -155,7 +156,8 @@ class QRBillPage extends StatelessWidget {
                             height: 4,
                           ),
                           Text(
-                            formatCurrencyNonDecimal(data.totalAmountBill),
+                            formatCurrencyNonDecimal(
+                                data.totalAmountBill!.toDouble() ?? 0),
                             style: const TextStyle(
                               fontSize: AppConstants.kFontSizeX,
                               fontWeight: FontWeight.w700,

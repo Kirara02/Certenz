@@ -90,7 +90,9 @@
     "card_number" : "Card Number",
     "account_number" : "Account Number",
     "exp" : "Expiration Date (BB/TT)",
-    "cvv" : "CVV"
+    "cvv" : "CVV",
+    "paid_date" : "Paid Date",
+    "paid_choose" : "Paid Choises"
   },
   "form_title" : {
     "name" : "Name",
@@ -99,6 +101,10 @@
     "gender" : "Gender",
     "phone_number" : "Phone Number",
     "location" : "Location",
+    "password" : "Password",
+    "confirm_password" : "Confirm Password",
+    "pin" : "PIN",
+    "confirm_pin" : "Confirm PIN",
     "title" : "Title",
     "title_project" : "Title Project",
     "title_activity" : "Judul Activity",
@@ -124,7 +130,9 @@
     "invalid_email_address": "Invalid email address",
     "input_is_not_empty": "{} is not filled",
     "invalid_password" : "Password must be at least 8 characters long",
-    "passwords_do_not_match": "The passwords do not match."
+    "passwords_do_not_match": "The passwords do not match.",
+    "invalid_pin" : "PIN must contain 6 characters",
+    "pin_do_not_match": "The PIN do not match."
   },
   "dropdown_text_static" : {
     "marital_status" : {

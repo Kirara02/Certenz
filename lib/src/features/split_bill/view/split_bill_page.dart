@@ -36,6 +36,8 @@ class SplitBillPage extends StatefulWidget {
 }
 
 class _SplitBillPageState extends State<SplitBillPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController amountController = TextEditingController();
   TextEditingController noteController = TextEditingController();
 
@@ -133,118 +135,123 @@ class _SplitBillPageState extends State<SplitBillPage> {
             },
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    LocaleKeys.form_title_set_amount.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 16,
-                    ),
-                    decoration: const BoxDecoration(
-                      color: AppColors.neutralN120,
-                    ),
-                    child: Text(
-                      formatCurrencyNonDecimal(amount),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      LocaleKeys.form_title_set_amount.tr(),
                       style: const TextStyle(
-                        fontSize: AppConstants.kFontSizeX,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.neutralN30,
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_note.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: noteController,
-                    hintText: LocaleKeys.form_hint_text_note.tr(),
-                    maxLines: 1,
-                    readOnly: true,
-                    enabled: false,
-                    keyboardType: TextInputType.text,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeM,
-                      color: AppColors.neutralN40,
-                    ),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.split_bill_split_with.tr(),
-                    style: GoogleFonts.inter(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  BlocBuilder<SplitbillCubit, SplitbillState>(
-                    builder: (context, state) {
-                      if (state is AddWidgetSplit) {
-                        return Column(
-                          children: [
-                            for (var i = 0; i < state.friendEntries.length; i++)
-                              Column(
-                                children: [
-                                  SplitBillWith(
-                                    friendEntry: state.friendEntries[i],
-                                    onDelete: () => context
-                                        .read<SplitbillCubit>()
-                                        .removeFriendEntry(i),
-                                  ),
-                                  const SizedBox(height: 18),
-                                ],
-                              ),
-                          ],
-                        );
-                      }
-                      return const SizedBox();
-                    },
-                  ),
-                  const SizedBox(height: 18),
-                  BlocBuilder<SplitbillCubit, SplitbillState>(
-                    builder: (context, state) {
-                      return TextButton(
-                        onPressed: () {
-                          context.read<SplitbillCubit>().addWidgetSplit();
-                        },
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Add Participant",
-                              style: TextStyle(
-                                fontSize: AppConstants.kFontSizeS,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.orange,
-                              ),
-                            ),
-                            SizedBox(width: 8),
-                            Icon(
-                              Icons.add_circle_outline,
-                              color: AppColors.orange,
-                              size: 24,
-                            )
-                          ],
+                    const SizedBox(height: 8),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 16,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: AppColors.neutralN120,
+                      ),
+                      child: Text(
+                        formatCurrencyNonDecimal(amount),
+                        style: const TextStyle(
+                          fontSize: AppConstants.kFontSizeX,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.neutralN30,
                         ),
-                      );
-                    },
-                  )
-                ],
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_note.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: noteController,
+                      hintText: LocaleKeys.form_hint_text_note.tr(),
+                      maxLines: 1,
+                      readOnly: true,
+                      enabled: false,
+                      keyboardType: TextInputType.text,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeM,
+                        color: AppColors.neutralN40,
+                      ),
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.split_bill_split_with.tr(),
+                      style: GoogleFonts.inter(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    BlocBuilder<SplitbillCubit, SplitbillState>(
+                      builder: (context, state) {
+                        if (state is AddWidgetSplit) {
+                          return Column(
+                            children: [
+                              for (var i = 0;
+                                  i < state.friendEntries.length;
+                                  i++)
+                                Column(
+                                  children: [
+                                    SplitBillWith(
+                                      friendEntry: state.friendEntries[i],
+                                      onDelete: () => context
+                                          .read<SplitbillCubit>()
+                                          .removeFriendEntry(i),
+                                    ),
+                                    const SizedBox(height: 18),
+                                  ],
+                                ),
+                            ],
+                          );
+                        }
+                        return const SizedBox();
+                      },
+                    ),
+                    const SizedBox(height: 18),
+                    BlocBuilder<SplitbillCubit, SplitbillState>(
+                      builder: (context, state) {
+                        return TextButton(
+                          onPressed: () {
+                            context.read<SplitbillCubit>().addWidgetSplit();
+                          },
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Add Participant",
+                                style: TextStyle(
+                                  fontSize: AppConstants.kFontSizeS,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.orange,
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Icon(
+                                Icons.add_circle_outline,
+                                color: AppColors.orange,
+                                size: 24,
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           ),
@@ -291,14 +298,18 @@ class _SplitBillPageState extends State<SplitBillPage> {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               child: BtnPrimary(
                 title: LocaleKeys.button_split_bill.tr(),
-                onTap: () => sendRequest(context).then((value) {
-                  if (value != null) {
-                    FormData data = value;
-                    context.read<SplitBillBloc>().add(
-                        SplitBillEvent.addSplitBill(
-                            splitId: widget.data.id, formData: value));
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    sendRequest(context).then((value) {
+                      if (value != null) {
+                        FormData data = value;
+                        context.read<SplitBillBloc>().add(
+                            SplitBillEvent.addSplitBill(
+                                splitId: widget.data.id, formData: value));
+                      }
+                    });
                   }
-                }),
+                },
               ),
             ),
           ),

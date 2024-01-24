@@ -2,6 +2,7 @@ import 'package:certenz/src/blocs/history/history_bloc.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/history/history_model.dart';
 import 'package:certenz/src/features/history/widget/history_list_tile.dart';
+import 'package:certenz/src/widgets/common/empty_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,6 +71,9 @@ class _BillSectionState extends State<BillSection> {
               return hasReachedMax
                   ? const SizedBox()
                   : SpinKitCircle(color: AppColors.primaryColors);
+            }
+            if (listData.isEmpty) {
+              return const EmptyList(message: "No items found");
             }
             return HistoryListTile(data: listData[index]);
           },

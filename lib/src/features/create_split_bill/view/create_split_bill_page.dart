@@ -25,6 +25,8 @@ class CreateSplitBillPage extends StatefulWidget {
 }
 
 class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController titleController = TextEditingController();
   TextEditingController amountController = TextEditingController();
 
@@ -36,22 +38,6 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
         backgroundColor: color,
         toastGravity: ToastGravity.BOTTOM,
         textColor: AppColors.neutralN140);
-  }
-
-  void handleSubmit(BuildContext context) {
-    if (titleController.text.isEmpty) {
-      _toast("Title is required");
-    } else if (amountController.text.isEmpty) {
-      _toast("Total Amount is required");
-    } else {
-      context.read<SplitBillBloc>().add(
-            SplitBillEvent.createSplitBill(
-              title: titleController.text,
-              amount: removeCurrencyFormat(amountController.text),
-            ),
-          );
-    }
-    hideKeyboard(context);
   }
 
   @override
@@ -106,87 +92,118 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
               title: LocaleKeys.create_split_bill_title.tr(),
             ),
             body: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    LocaleKeys.form_title_title.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      LocaleKeys.form_title_title.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: titleController,
-                    hintText: LocaleKeys.form_hint_text_title.tr(),
-                    maxLines: 1,
-                    keyboardType: TextInputType.text,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeM,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: titleController,
+                      hintText: LocaleKeys.form_hint_text_title.tr(),
+                      maxLines: 1,
+                      keyboardType: TextInputType.text,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeM,
+                        color: AppColors.neutralN40,
+                      ),
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return LocaleKeys.validation_input_is_not_empty
+                              .tr(args: [
+                            LocaleKeys.form_title_title.tr(),
+                          ]);
+                        }
+                        return null;
+                      },
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  Text(
-                    LocaleKeys.form_title_total_amount.tr(),
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeM,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_total_amount.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeM,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  FieldCustom(
-                    controller: amountController,
-                    hintText: LocaleKeys.form_hint_text_amount.tr(),
-                    maxLines: 1,
-                    format: "currency",
-                    maxLength: 20,
-                    keyboardType: TextInputType.number,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeX,
-                      color: AppColors.neutralN40,
+                    const SizedBox(height: 8),
+                    FieldCustom(
+                      controller: amountController,
+                      hintText: LocaleKeys.form_hint_text_amount.tr(),
+                      maxLines: 1,
+                      format: "currency",
+                      maxLength: 20,
+                      keyboardType: TextInputType.number,
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeX,
+                        color: AppColors.neutralN40,
+                      ),
+                      validator: (p0) {
+                        if (p0!.isEmpty) {
+                          return LocaleKeys.validation_input_is_not_empty
+                              .tr(args: [
+                            LocaleKeys.form_title_amount.tr(),
+                          ]);
+                        }
+                        return null;
+                      },
                     ),
-                  ),
-                  const Text(
-                    "Set Fairly",
-                    style: TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      color: AppColors.neutralN40,
+                    const Text(
+                      "Set Fairly",
+                      style: TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 18),
-                  Transform.scale(
-                    scale: 1.2,
-                    child: SizedBox(
-                      height: 24,
-                      width: 24,
-                      child: Checkbox(
-                        value: isFearly,
-                        onChanged: (value) {
-                          setState(() {
-                            isFearly = value!;
-                          });
-                        },
-                        activeColor: AppColors.orange,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
-                          side: const BorderSide(
-                            color: AppColors.neutralN80,
+                    const SizedBox(height: 18),
+                    Transform.scale(
+                      scale: 1.2,
+                      child: SizedBox(
+                        height: 24,
+                        width: 24,
+                        child: Checkbox(
+                          value: isFearly,
+                          onChanged: (value) {
+                            setState(() {
+                              isFearly = value!;
+                            });
+                          },
+                          activeColor: AppColors.orange,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                            side: const BorderSide(
+                              color: AppColors.neutralN80,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             bottomNavigationBar: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
               child: BtnPrimary(
                 title: LocaleKeys.button_create_bill.tr(),
-                onTap: () => handleSubmit(context),
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    context
+                        .read<SplitBillBloc>()
+                        .add(SplitBillEvent.createSplitBill(
+                          title: titleController.text,
+                          amount: removeCurrencyFormat(amountController.text),
+                        ));
+                  }
+                  hideKeyboard(context);
+                },
               ),
             ),
           ),

@@ -34,13 +34,11 @@ dependencies:
   fluttertoast: ^8.0.9
   freezed_annotation: ^2.0.3
   google_fonts: ^5.1.0
-  http: ^1.1.0
   image_picker: ^1.0.2
   intl: ^0.18.0
   json_annotation: ^4.8.1
   logger: ^2.0.2
   lottie: ^2.6.0
-  multi_image_picker_view: ^0.0.17
   package_info_plus: ^4.0.2
   page_transition: ^2.0.9
   path_provider: ^2.1.1

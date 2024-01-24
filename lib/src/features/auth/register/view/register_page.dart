@@ -8,6 +8,7 @@ import 'package:certenz/src/features/auth/login/view/login_page.dart';
 import 'package:certenz/src/features/auth/register/view/register_success_page.dart';
 import 'package:certenz/src/utils/date_picker.dart';
 import 'package:certenz/src/utils/logger.dart';
+import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/dialogs/hide_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/loading_dialog.dart';
@@ -29,6 +30,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController nameController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -175,139 +178,301 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Scaffold(
               body: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(vertical: 32),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(Icons.arrow_back),
-                        ),
-                        Text(
-                          LocaleKeys.register_page_title.tr(),
-                          style: const TextStyle(
-                            fontSize: AppConstants.kFontSizeXXL,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.neutralN20,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const HeaderRegister(),
-                    const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: Column(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Row(
                         children: [
-                          TextfieldCustom(
-                            controller: nameController,
-                            hintText: LocaleKeys.form_hint_text_name.tr(),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(Icons.arrow_back),
                           ),
-                          const SizedBox(height: 14),
-                          TextfieldCustom(
-                            controller: usernameController,
-                            hintText: LocaleKeys.form_hint_text_username.tr(),
-                          ),
-                          const SizedBox(height: 14),
-                          TextfieldCustom(
-                            controller: passwordController,
-                            hintText:
-                                LocaleKeys.form_hint_text_create_password.tr(),
-                            obscureText: true,
-                          ),
-                          const SizedBox(height: 14),
-                          TextfieldCustom(
-                            controller: passwordConfirmController,
-                            hintText:
-                                LocaleKeys.form_hint_text_confirm_password.tr(),
-                            obscureText: true,
-                          ),
-                          const SizedBox(height: 14),
-                          TextfieldCustom(
-                            controller: pinController,
-                            hintText: LocaleKeys.form_hint_text_create_pin.tr(),
-                            keyboardType: TextInputType.number,
-                            obscureText: true,
-                          ),
-                          const SizedBox(height: 14),
-                          TextfieldCustom(
-                            controller: pinConfirmController,
-                            hintText:
-                                LocaleKeys.form_hint_text_confirm_pin.tr(),
-                            keyboardType: TextInputType.number,
-                            obscureText: true,
-                          ),
-                          const SizedBox(height: 14),
-                          TextfieldCustom(
-                            controller: birthController,
-                            hintText: LocaleKeys.form_hint_text_birthday.tr(),
-                            suffixIcon: const Icon(
-                              Icons.calendar_month,
+                          Text(
+                            LocaleKeys.register_page_title.tr(),
+                            style: const TextStyle(
+                              fontSize: AppConstants.kFontSizeXXL,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.neutralN20,
                             ),
-                            readOnly: true,
-                            onTap: () =>
-                                _deliveryDate(passDate: true).then((value) {
-                              if (value != null) {
-                                birthController.text = value;
-                              }
-                            }),
                           ),
-                          const SizedBox(height: 14),
-                          DropdownTextfield(
-                            onChanged: (value) {
-                              setState(() {
-                                gender = value;
-                              });
-                              vLog(gender);
-                            },
-                            selectedItem: gender,
-                            isRegister: true,
-                            items: DummyService.gender,
-                            hintText: LocaleKeys.form_hint_text_gender.tr(),
-                          ),
-                          const SizedBox(height: 14),
-                          TextfieldCustom(
-                            controller: phoneController,
-                            hintText:
-                                LocaleKeys.form_hint_text_phone_number.tr(),
-                            keyboardType: TextInputType.phone,
-                          ),
-                          const SizedBox(height: 14),
-                          TextfieldCustom(
-                            controller: emailController,
-                            hintText: LocaleKeys.form_hint_text_email.tr(),
-                            keyboardType: TextInputType.emailAddress,
-                          ),
-                          const SizedBox(height: 14),
-                          DropdownTextfield(
-                            onChanged: (value) {
-                              setState(() {
-                                location = value;
-                              });
-                              vLog(location);
-                            },
-                            items: DummyService.location,
-                            hintText: LocaleKeys.form_hint_text_location.tr(),
-                            isRegister: true,
-                          ),
-                          const SizedBox(height: 32),
-                          BtnPrimary(
-                            onTap: () => _sendData().then((value) {
-                              if (value != null) {
-                                context
-                                    .read<AuthBloc>()
-                                    .add(AuthEvent.register(data: value));
-                              }
-                            }),
-                            title: LocaleKeys.button_next.tr(),
-                          ),
-                          const SizedBox(height: 32),
                         ],
                       ),
-                    )
-                  ],
+                      const HeaderRegister(),
+                      const SizedBox(height: 30),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                        child: Column(
+                          children: [
+                            TextfieldCustom(
+                              controller: nameController,
+                              label: LocaleKeys.form_title_name.tr(),
+                              hintText: LocaleKeys.form_hint_text_name.tr(),
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_hint_text_name.tr(),
+                                  ]);
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 14),
+                            TextfieldCustom(
+                              controller: usernameController,
+                              label: LocaleKeys.form_title_username.tr(),
+                              hintText: LocaleKeys.form_hint_text_username.tr(),
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_hint_text_username.tr(),
+                                  ]);
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 14),
+                            TextfieldCustom(
+                              controller: passwordController,
+                              label: LocaleKeys.form_title_password.tr(),
+                              hintText: LocaleKeys
+                                  .form_hint_text_create_password
+                                  .tr(),
+                              obscureText: true,
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_title_password.tr(),
+                                  ]);
+                                }
+                                if (p0.isPasswordLength) {
+                                  return LocaleKeys.validation_invalid_password
+                                      .tr();
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 14),
+                            TextfieldCustom(
+                              controller: passwordConfirmController,
+                              label:
+                                  LocaleKeys.form_title_confirm_password.tr(),
+                              hintText: LocaleKeys
+                                  .form_hint_text_confirm_password
+                                  .tr(),
+                              obscureText: true,
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_title_confirm_password.tr(),
+                                  ]);
+                                }
+                                if (p0.isPinLength) {
+                                  return LocaleKeys.validation_invalid_password
+                                      .tr();
+                                }
+                                if (p0 != passwordController.text) {
+                                  return LocaleKeys
+                                      .validation_passwords_do_not_match
+                                      .tr();
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 14),
+                            TextfieldCustom(
+                              controller: pinController,
+                              label: LocaleKeys.form_title_pin.tr(),
+                              hintText:
+                                  LocaleKeys.form_hint_text_create_pin.tr(),
+                              keyboardType: TextInputType.number,
+                              obscureText: true,
+                              maxLength: 6,
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_title_pin.tr(),
+                                  ]);
+                                }
+                                if (!p0.isPinLength) {
+                                  return LocaleKeys.validation_invalid_pin.tr();
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 14),
+                            TextfieldCustom(
+                              controller: pinConfirmController,
+                              label: LocaleKeys.form_title_confirm_pin.tr(),
+                              hintText:
+                                  LocaleKeys.form_hint_text_confirm_pin.tr(),
+                              keyboardType: TextInputType.number,
+                              obscureText: true,
+                              maxLength: 6,
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_title_confirm_pin.tr(),
+                                  ]);
+                                }
+                                if (!p0.isPinLength) {
+                                  return LocaleKeys.validation_invalid_pin.tr();
+                                }
+                                if (p0 != pinController.text) {
+                                  return LocaleKeys.validation_pin_do_not_match
+                                      .tr();
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 14),
+                            TextfieldCustom(
+                              controller: birthController,
+                              label: LocaleKeys.form_title_birthday.tr(),
+                              hintText: LocaleKeys.form_hint_text_birthday.tr(),
+                              suffixIcon: const Icon(
+                                Icons.calendar_month,
+                              ),
+                              readOnly: true,
+                              onTap: () =>
+                                  _deliveryDate(passDate: true).then((value) {
+                                if (value != null) {
+                                  birthController.text = value;
+                                }
+                              }),
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_title_birthday.tr(),
+                                  ]);
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 14),
+                            DropdownTextfield(
+                              onChanged: (value) {
+                                setState(() {
+                                  gender = value;
+                                });
+                                vLog(gender);
+                              },
+                              label: LocaleKeys.form_title_gender.tr(),
+                              selectedItem: gender,
+                              isRegister: true,
+                              items: DummyService.gender,
+                              hintText: LocaleKeys.form_hint_text_gender.tr(),
+                              validator: (p0) {
+                                if (p0 == null) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_title_gender.tr(),
+                                  ]);
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 14),
+                            TextfieldCustom(
+                              controller: phoneController,
+                              label: LocaleKeys.form_title_phone_number.tr(),
+                              hintText:
+                                  LocaleKeys.form_hint_text_phone_number.tr(),
+                              keyboardType: TextInputType.phone,
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_title_phone_number.tr(),
+                                  ]);
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 14),
+                            TextfieldCustom(
+                              controller: emailController,
+                              label: LocaleKeys.form_title_email.tr(),
+                              hintText: LocaleKeys.form_hint_text_email.tr(),
+                              keyboardType: TextInputType.emailAddress,
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_title_email.tr(),
+                                  ]);
+                                }
+                                if (!p0.isValidEmail) {
+                                  return LocaleKeys
+                                      .validation_invalid_email_address
+                                      .tr();
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 14),
+                            DropdownTextfield(
+                              onChanged: (value) {
+                                setState(() {
+                                  location = value;
+                                });
+                                vLog(location);
+                              },
+                              label: LocaleKeys.form_title_location.tr(),
+                              items: DummyService.location,
+                              hintText: LocaleKeys.form_hint_text_location.tr(),
+                              isRegister: true,
+                              validator: (p0) {
+                                if (p0 == null) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_title_location.tr(),
+                                  ]);
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 32),
+                            BtnPrimary(
+                              onTap: () {
+                                if (_formKey.currentState!.validate()) {
+                                  _sendData().then((value) {
+                                    if (value != null) {
+                                      context
+                                          .read<AuthBloc>()
+                                          .add(AuthEvent.register(data: value));
+                                    }
+                                  });
+                                }
+                              },
+                              title: LocaleKeys.button_next.tr(),
+                            ),
+                            const SizedBox(height: 32),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

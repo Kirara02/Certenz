@@ -88,6 +88,8 @@ abstract class  LocaleKeys {
   static const form_hint_text_account_number = 'form_hint_text.account_number';
   static const form_hint_text_exp = 'form_hint_text.exp';
   static const form_hint_text_cvv = 'form_hint_text.cvv';
+  static const form_hint_text_paid_date = 'form_hint_text.paid_date';
+  static const form_hint_text_paid_choose = 'form_hint_text.paid_choose';
   static const form_hint_text = 'form_hint_text';
   static const form_title_name = 'form_title.name';
   static const form_title_birthday = 'form_title.birthday';
@@ -95,6 +97,10 @@ abstract class  LocaleKeys {
   static const form_title_gender = 'form_title.gender';
   static const form_title_phone_number = 'form_title.phone_number';
   static const form_title_location = 'form_title.location';
+  static const form_title_password = 'form_title.password';
+  static const form_title_confirm_password = 'form_title.confirm_password';
+  static const form_title_pin = 'form_title.pin';
+  static const form_title_confirm_pin = 'form_title.confirm_pin';
   static const form_title_title = 'form_title.title';
   static const form_title_title_project = 'form_title.title_project';
   static const form_title_title_activity = 'form_title.title_activity';
@@ -120,6 +126,8 @@ abstract class  LocaleKeys {
   static const validation_input_is_not_empty = 'validation.input_is_not_empty';
   static const validation_invalid_password = 'validation.invalid_password';
   static const validation_passwords_do_not_match = 'validation.passwords_do_not_match';
+  static const validation_invalid_pin = 'validation.invalid_pin';
+  static const validation_pin_do_not_match = 'validation.pin_do_not_match';
   static const validation = 'validation';
   static const dropdown_text_static_marital_status_marry = 'dropdown_text_static.marital_status.marry';
   static const dropdown_text_static_marital_status_single = 'dropdown_text_static.marital_status.single';

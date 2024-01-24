@@ -35,11 +35,9 @@ class _ProfileSectionState extends State<ProfileSection> {
           bloc: context.read<UserBloc>()..add(const UserEvent.getUser()),
           builder: (context, state) {
             return state.maybeWhen(
-              orElse: () => const SpinKitCircle(
-                color: AppColors.neutralN140,
-              ),
+              orElse: () => SpinKitCircle(color: AppColors.primaryColors),
               success: (user) => _buildProfileContent(user),
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => SpinKitCircle(color: AppColors.primaryColors),
             );
           },
         );

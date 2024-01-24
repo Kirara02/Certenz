@@ -65,6 +65,14 @@ extension StringExtension on String {
     return false;
   }
 
+  bool get isPinLength {
+    if (length == 6) {
+      // Date should have exactly 8 characters
+      return true;
+    }
+    return false;
+  }
+
   bool get isValidNIK {
     if (length > 14) {
       // Date should have exactly 10 characters (e.g., '2023-08-06')

@@ -91,7 +91,9 @@
     "card_number" : "Nomor Kartu",
     "account_number" : "Nomor Rekening",
     "exp" : "Tanggal Kedaluwarsa (BB/TT)",
-    "cvv" : "CVV"
+    "cvv" : "CVV",
+    "paid_date" : "Tanggal Pembayaran",
+    "paid_choose" : "Pilihan Berbayar"
   },
   "form_title" : {
     "name" : "Nama",
@@ -100,6 +102,10 @@
     "gender" : "Jenis Kelamin",
     "phone_number" : "Nomor Telepon",
     "location" : "Lokasi",
+    "password" : "Password",
+    "confirm_password" : "Konfirmasi Password",
+    "pin" : "PIN",
+    "confirm_pin" : "Konfirmasi PIN",
     "title" : "Judul",
     "title_project" : "Judul Projek",
     "title_activity" : "Judul Aktivitas",
@@ -125,7 +131,9 @@
     "invalid_email_address": "Alamat email tidak valid",
     "input_is_not_empty": "{} belum diisi",
     "invalid_password" : "Password harus berisi 8 karakter atau lebih",
-    "passwords_do_not_match": "Kata sandi yang dimasukkan tidak cocok."
+    "passwords_do_not_match": "Kata sandi yang dimasukkan tidak cocok.",
+    "invalid_pin" : "PIN harus berisi 6 karakter",
+    "pin_do_not_match": "PIN yang dimasukkan tidak cocok."
   },
   "dropdown_text_static" : {
     "marital_status" : {
