@@ -7,8 +7,10 @@ import 'package:certenz/src/blocs/user/user_bloc.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/services/dummy_service.dart';
 import 'package:certenz/src/utils/date_picker.dart';
+import 'package:certenz/src/utils/gender_converter.dart';
 import 'package:certenz/src/utils/image_compress.dart';
 import 'package:certenz/src/utils/logger.dart';
+import 'package:certenz/src/utils/province_converter.dart';
 import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/common/custom_appbar.dart';
@@ -68,10 +70,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
       UXToast.show(message: "Profile Image id required");
       return null;
     }
-    if (gender == "Laki-laki") {
-      gender = "Male";
-    } else if (gender == "Perempuan") {
-      gender = "Female";
+    if (context.locale.languageCode == 'id') {
+      gender = convertGenderToEnglish(gender);
     }
 
     File? profileFile;
@@ -127,13 +127,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     imgProfileUrl = data.profilePicture;
                   }
 
-                  if (data.gender == "Male") {
+                  if (context.locale.languageCode == 'id') {
                     setState(() {
-                      gender = DummyService.gender[0];
+                      gender = convertGenderToIndonesian(data.gender!);
                     });
-                  } else if (data.gender == "Female") {
+                  } else {
                     setState(() {
-                      gender = DummyService.gender[1];
+                      gender = data.gender!;
                     });
                   }
                   dLog(gender);
@@ -261,7 +261,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           setState(() {
                             gender = value;
                           });
-                          vLog(gender);
                         },
                         selectedItem: gender,
                         isRegister: true,
@@ -300,9 +299,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           setState(() {
                             location = value;
                           });
-                          vLog(location);
+                          if (context.locale.languageCode == 'en') {
+                            vLog(convertProvinceToIndonesian(location));
+                          }
                         },
-                        items: DummyService.location,
+                        showSearchBox: true,
+                        items: DummyService.provinces,
                         hintText: LocaleKeys.form_hint_text_location.tr(),
                         label: LocaleKeys.form_title_location.tr(),
                         isRegister: true,

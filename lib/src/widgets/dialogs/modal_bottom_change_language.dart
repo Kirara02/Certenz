@@ -16,6 +16,7 @@ class ModalBottomChangeLanguage extends StatefulWidget {
 class _ModalBottomChangeLanguageState extends State<ModalBottomChangeLanguage> {
   Future<void> _changeLang(Locale lang) async {
     await context.setLocale(lang);
+    await WidgetsBinding.instance.performReassemble();
   }
 
   @override

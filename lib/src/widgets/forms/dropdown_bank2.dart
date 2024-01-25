@@ -13,6 +13,7 @@ class DropdownBank2 extends StatefulWidget {
   final void Function(BankModel) onBankSelected; // Callback function
   final List<BankModel> listBank;
   final String? Function(BankModel?)? validator;
+  final String? label;
 
   const DropdownBank2({
     super.key,
@@ -22,6 +23,7 @@ class DropdownBank2 extends StatefulWidget {
     required this.onBankSelected, // Pass the callback function
     required this.listBank,
     this.validator,
+    this.label,
   });
 
   @override
@@ -99,6 +101,10 @@ class _DropdownBank2State extends State<DropdownBank2> {
           hintStyle: GoogleFonts.poppins(
             fontSize: AppConstants.kFontSizeS,
             color: AppColors.neutralN80,
+          ),
+          labelText: widget.label,
+          labelStyle: const TextStyle(
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),

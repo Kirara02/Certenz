@@ -35,12 +35,40 @@ class DummyService {
     "Yearly",
   ];
 
-  static List<String> location = [
-    "Jakarta",
-    "Bandung",
-    "Surabaya",
-    "Semarang",
-    "Yogyakarta",
+  static List<String> provinces = [
+    LocaleKeys.provinces_aceh.tr(),
+    LocaleKeys.provinces_bali.tr(),
+    LocaleKeys.provinces_banten.tr(),
+    LocaleKeys.provinces_bengkulu.tr(),
+    LocaleKeys.provinces_yogyakarta.tr(),
+    LocaleKeys.provinces_jakarta.tr(),
+    LocaleKeys.provinces_jambi.tr(),
+    LocaleKeys.provinces_jabar.tr(), // West Java
+    LocaleKeys.provinces_jateng.tr(), // Central Java
+    LocaleKeys.provinces_jatim.tr(), // East Java
+    LocaleKeys.provinces_kalbar.tr(), // West Kalimantan
+    LocaleKeys.provinces_kaltim.tr(), // East Kalimantan
+    LocaleKeys.provinces_kalteng.tr(), // Central Kalimantan
+    LocaleKeys.provinces_kalut.tr(), // North Kalimantan
+    LocaleKeys.provinces_kalsel.tr(), // South Kalimantan
+    LocaleKeys.provinces_kepri.tr(), // Riau Islands
+    LocaleKeys.provinces_ntb.tr(), // West Nusa Tenggara
+    LocaleKeys.provinces_ntt.tr(), // East Nusa Tenggara
+    LocaleKeys.provinces_papua.tr(),
+    LocaleKeys.provinces_papuabarat.tr(), // West Papua
+    LocaleKeys.provinces_riau.tr(),
+    LocaleKeys.provinces_sulsel.tr(), // South Sulawesi
+    LocaleKeys.provinces_sulut.tr(), // North Sulawesi
+    LocaleKeys.provinces_sulteng.tr(), // Central Sulawesi
+    LocaleKeys.provinces_sultra.tr(), // Southeast Sulawesi
+    LocaleKeys.provinces_sulbar.tr(), // West Sulawesi
+    LocaleKeys.provinces_sumbar.tr(), // West Sumatra
+    LocaleKeys.provinces_sumsel.tr(), // South Sumatra
+    LocaleKeys.provinces_sumut.tr(), // North Sumatra
+    LocaleKeys.provinces_maluku.tr(),
+    LocaleKeys.provinces_malut.tr(), // North Maluku
+    LocaleKeys.provinces_lampung.tr(),
+    LocaleKeys.provinces_gorontalo.tr()
   ];
 
   static List<String> listReligions = [

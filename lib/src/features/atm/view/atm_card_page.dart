@@ -30,6 +30,8 @@ class AtmCardPage extends StatefulWidget {
 }
 
 class _AtmCardPageState extends State<AtmCardPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   TextEditingController nameController = TextEditingController();
   TextEditingController nomorController = TextEditingController();
   TextEditingController norekController = TextEditingController();
@@ -64,38 +66,6 @@ class _AtmCardPageState extends State<AtmCardPage> {
   }
 
   Future<FormData?> _handleSubmit() async {
-    if (selectedBank == null) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": "Bank"},
-      ));
-      return null;
-    } else if (nameController.text.isEmpty) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_hint_text_card_name.tr()},
-      ));
-      return null;
-    } else if (nomorController.text.isEmpty) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_hint_text_card_number.tr()},
-      ));
-      return null;
-    } else if (norekController.text.isEmpty) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_hint_text_account_number.tr()},
-      ));
-      return null;
-    } else if (expDateController.text.isEmpty) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_hint_text_exp.tr()},
-      ));
-      return null;
-    } else if (cvvController.text.isEmpty) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_hint_text_cvv.tr()},
-      ));
-      return null;
-    }
-
     FormData formData = FormData.fromMap({
       "bank_id": selectedBank!.id,
       "account_number": norekController.text,
@@ -162,160 +132,226 @@ class _AtmCardPageState extends State<AtmCardPage> {
                   Navigator.pop(context);
                   return false;
                 },
-                child: ListView(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 32,
-                  ),
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: Stack(
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(Icons.arrow_back),
+                child: Form(
+                  key: _formKey,
+                  child: ListView(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 24,
+                      vertical: 32,
+                    ),
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: Stack(
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(Icons.arrow_back),
+                            ),
+                            Center(
+                              child: Image.asset(
+                                Assets.images.logo.path,
+                                width: AppScreens.width * 0.25,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 80,
+                      ),
+                      Center(
+                        child: Text(
+                          LocaleKeys.atm_page_title.tr(),
+                          style: const TextStyle(
+                            fontSize: AppConstants.kFontSizeL,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.neutralN30,
                           ),
-                          Center(
-                            child: Image.asset(
-                              Assets.images.logo.path,
-                              width: AppScreens.width * 0.25,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      BlocProvider(
+                        create: (context) => context.read<BankBloc>(),
+                        child: BlocListener<BankBloc, BankState>(
+                          listener: (context, state) {
+                            state.maybeWhen(
+                              orElse: () {},
+                              success: (data) {
+                                setState(() {
+                                  listBanks.addAll(data);
+                                });
+                              },
+                            );
+                          },
+                          child: DropdownBank2(
+                            selectedItem: selectedBank?.bankName,
+                            label: LocaleKeys.form_hint_text_select_bank.tr(),
+                            hintText:
+                                LocaleKeys.form_hint_text_select_bank.tr(),
+                            prefixIcon: null,
+                            listBank: listBanks, // Pass the list of banks
+                            onBankSelected: (bank) {
+                              setState(() {
+                                selectedBank = bank;
+                              });
+                              vLog(selectedBank);
+                            },
+                            validator: (p0) {
+                              if (p0 == null) {
+                                return LocaleKeys.validation_input_is_not_empty
+                                    .tr(args: [
+                                  LocaleKeys.form_hint_text_select_bank.tr(),
+                                ]);
+                              }
+                            },
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            LocaleKeys.atm_page_card_detail.tr(),
+                            style: const TextStyle(
+                              fontSize: AppConstants.kFontSizeS,
+                              color: AppColors.neutralN50,
+                            ),
+                          ),
+                          Image.asset(
+                            Assets.images.detailsBank.path,
+                            height: 38,
+                            width: AppScreens.width * 0.30,
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 24),
+                      TextfieldCustom(
+                        controller: nameController,
+                        label: LocaleKeys.form_hint_text_card_name.tr(),
+                        maxLength: 19,
+                        hintText: LocaleKeys.form_hint_text_card_name.tr(),
+                        validator: (p0) {
+                          if (p0!.isEmpty) {
+                            return LocaleKeys.validation_input_is_not_empty
+                                .tr(args: [
+                              LocaleKeys.form_hint_text_card_name.tr(),
+                            ]);
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      TextfieldCustom(
+                        controller: nomorController,
+                        label: LocaleKeys.form_hint_text_card_number.tr(),
+                        maxLength: 19,
+                        keyboardType: TextInputType.number,
+                        hintText: LocaleKeys.form_hint_text_card_number.tr(),
+                        format: "cardNumber",
+                        validator: (p0) {
+                          if (p0!.isEmpty) {
+                            return LocaleKeys.validation_input_is_not_empty
+                                .tr(args: [
+                              LocaleKeys.form_hint_text_card_number.tr(),
+                            ]);
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(height: 10),
+                      TextfieldCustom(
+                        controller: norekController,
+                        label: LocaleKeys.form_hint_text_account_number.tr(),
+                        maxLength: 20,
+                        keyboardType: TextInputType.number,
+                        hintText: LocaleKeys.form_hint_text_account_number.tr(),
+                        validator: (p0) {
+                          if (p0!.isEmpty) {
+                            return LocaleKeys.validation_input_is_not_empty
+                                .tr(args: [
+                              LocaleKeys.form_hint_text_account_number.tr(),
+                            ]);
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: TextfieldCustom(
+                              controller: expDateController,
+                              label: LocaleKeys.form_hint_text_exp.tr(),
+                              hintText: LocaleKeys.form_hint_text_exp.tr(),
+                              readOnly: true,
+                              suffixIcon: const Icon(Icons.calendar_month),
+                              onTap: () => _deliveryDate().then((value) {
+                                if (value != null) {
+                                  expDateController.text = value;
+                                }
+                              }),
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_hint_text_exp.tr(),
+                                  ]);
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          SizedBox(
+                            width: AppScreens.width * 0.20,
+                            child: TextfieldCustom(
+                              controller: cvvController,
+                              label: LocaleKeys.form_hint_text_cvv.tr(),
+                              hintText: LocaleKeys.form_hint_text_cvv.tr(),
+                              keyboardType: TextInputType.number,
+                              maxLength: 3,
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return LocaleKeys
+                                      .validation_input_is_not_empty
+                                      .tr(args: [
+                                    LocaleKeys.form_hint_text_cvv.tr(),
+                                  ]);
+                                }
+                                return null;
+                              },
                             ),
                           ),
                         ],
                       ),
-                    ),
-                    const SizedBox(
-                      height: 80,
-                    ),
-                    Center(
-                      child: Text(
-                        LocaleKeys.atm_page_title.tr(),
-                        style: const TextStyle(
-                          fontSize: AppConstants.kFontSizeL,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.neutralN30,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    BlocProvider(
-                      create: (context) => context.read<BankBloc>(),
-                      child: BlocListener<BankBloc, BankState>(
-                        listener: (context, state) {
-                          state.maybeWhen(
-                            orElse: () {},
-                            success: (data) {
-                              setState(() {
-                                listBanks.addAll(data);
-                              });
-                            },
-                          );
-                        },
-                        child: DropdownBank2(
-                          selectedItem: selectedBank?.bankName,
-                          hintText: LocaleKeys.form_hint_text_select_bank.tr(),
-                          prefixIcon: null,
-                          listBank: listBanks, // Pass the list of banks
-                          onBankSelected: (bank) {
-                            setState(() {
-                              selectedBank = bank;
-                            });
-                            vLog(selectedBank);
-                          },
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          LocaleKeys.atm_page_card_detail.tr(),
-                          style: const TextStyle(
-                            fontSize: AppConstants.kFontSizeS,
-                            color: AppColors.neutralN50,
-                          ),
-                        ),
-                        Image.asset(
-                          Assets.images.detailsBank.path,
-                          height: 38,
-                          width: AppScreens.width * 0.30,
-                        )
-                      ],
-                    ),
-                    const SizedBox(height: 24),
-                    TextfieldCustom(
-                      controller: nameController,
-                      maxLength: 19,
-                      hintText: LocaleKeys.form_hint_text_card_name.tr(),
-                    ),
-                    const SizedBox(height: 10),
-                    TextfieldCustom(
-                      controller: nomorController,
-                      maxLength: 19,
-                      keyboardType: TextInputType.number,
-                      hintText: LocaleKeys.form_hint_text_card_number.tr(),
-                      format: "cardNumber",
-                    ),
-                    const SizedBox(height: 10),
-                    TextfieldCustom(
-                      controller: norekController,
-                      maxLength: 20,
-                      keyboardType: TextInputType.number,
-                      hintText: LocaleKeys.form_hint_text_account_number.tr(),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: TextfieldCustom(
-                            controller: expDateController,
-                            hintText: LocaleKeys.form_hint_text_exp.tr(),
-                            readOnly: true,
-                            suffixIcon: const Icon(Icons.calendar_month),
-                            onTap: () => _deliveryDate().then((value) {
+                      const SizedBox(height: 15),
+                      BtnPrimary(
+                        title: LocaleKeys.button_save.tr(),
+                        onTap: () {
+                          if (_formKey.currentState!.validate()) {
+                            _handleSubmit().then((value) {
                               if (value != null) {
-                                expDateController.text = value;
+                                context.read<CardAccountBloc>().add(
+                                    CardAccountEvent.addCard(formData: value));
                               }
-                            }),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        SizedBox(
-                          width: AppScreens.width * 0.20,
-                          child: TextfieldCustom(
-                            controller: cvvController,
-                            hintText: LocaleKeys.form_hint_text_cvv.tr(),
-                            keyboardType: TextInputType.number,
-                            maxLength: 3,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 15),
-                    BtnPrimary(
-                      title: LocaleKeys.button_save.tr(),
-                      onTap: () {
-                        _handleSubmit().then((value) {
-                          if (value != null) {
-                            context
-                                .read<CardAccountBloc>()
-                                .add(CardAccountEvent.addCard(formData: value));
+                            });
                           }
-                        });
-                      },
-                    ),
-                    const SizedBox(
-                      height: 60,
-                    ),
-                    const PoweredWidget(),
-                  ],
+                        },
+                      ),
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      const PoweredWidget(),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -306,6 +306,40 @@
       "title": "How to do split bill with friends",
       "description" : "descriptions"
     }
+  },
+  "provinces": {
+    "aceh": "Aceh",
+    "bali": "Bali",
+    "banten": "Banten",
+    "bengkulu": "Bengkulu",
+    "yogyakarta": "Yogyakarta",
+    "jakarta": "Jakarta",
+    "jambi": "Jambi",
+    "jabar": "West Java",
+    "jateng": "Central Java",
+    "jatim": "East Java",
+    "kalbar": "West Kalimantan",
+    "kaltim": "East Kalimantan",
+    "kalteng": "Central Kalimantan",
+    "kalut": "North Kalimantan",
+    "kalsel": "South Kalimantan",
+    "kepri": "Riau Islands",
+    "ntb": "West Nusa Tenggara",
+    "ntt": "East Nusa Tenggara",
+    "papua": "Papua",
+    "papuabarat": "West Papua",
+    "riau": "Riau",
+    "sulsel": "South Sulawesi",
+    "sulut": "North Sulawesi",
+    "sulteng": "Central Sulawesi",
+    "sultra": "Southeast Sulawesi",
+    "sulbar": "West Sulawesi",
+    "sumbar": "West Sumatra",
+    "sumsel": "South Sumatra",
+    "sumut": "North Sumatra",
+    "maluku": "Maluku",
+    "malut": "North Maluku",
+    "lampung": "Lampung",
+    "gorontalo": "Gorontalo"
   }
-
 }

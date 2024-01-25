@@ -7,6 +7,7 @@ import 'package:certenz/src/data/services/dummy_service.dart';
 import 'package:certenz/src/features/auth/login/view/login_page.dart';
 import 'package:certenz/src/features/auth/register/view/register_success_page.dart';
 import 'package:certenz/src/utils/date_picker.dart';
+import 'package:certenz/src/utils/gender_converter.dart';
 import 'package:certenz/src/utils/logger.dart';
 import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
@@ -77,45 +78,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Future<FormData?> _sendData() async {
-    if (nameController.text.isEmpty) {
-      _toast("Name is required");
-      return null;
-    } else if (usernameController.text.isEmpty) {
-      _toast("Username is required");
-      return null;
-    } else if (passwordController.text.isEmpty) {
-      _toast("Password is required");
-      return null;
-    } else if (passwordConfirmController.text.isEmpty) {
-      _toast("Password Confirmation is required");
-      return null;
-    } else if (pinController.text.isEmpty) {
-      _toast("PIN is required");
-      return null;
-    } else if (pinConfirmController.text.isEmpty) {
-      _toast("PIN Confirmation is required");
-      return null;
-    } else if (birthController.text.isEmpty) {
-      _toast("Birthday is required");
-      return null;
-    } else if (gender == null) {
-      _toast("Gender is required");
-      return null;
-    } else if (emailController.text.isEmpty) {
-      _toast("Email is required");
-      return null;
-    } else if (phoneController.text.isEmpty) {
-      _toast("Phone is required");
-      return null;
-    } else if (location == null) {
-      _toast("Location   is required");
-      return null;
-    }
-
-    if (gender == "Laki-laki") {
-      gender = "Male";
-    } else if (gender == "Perempuan") {
-      gender = "Female";
+    if (context.locale.languageCode == 'id') {
+      gender = convertGenderToEnglish(gender!);
     }
 
     FormData data = FormData.fromMap({
@@ -371,7 +335,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                 setState(() {
                                   gender = value;
                                 });
-                                vLog(gender);
                               },
                               label: LocaleKeys.form_title_gender.tr(),
                               selectedItem: gender,
@@ -437,8 +400,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 });
                                 vLog(location);
                               },
+                              showSearchBox: true,
                               label: LocaleKeys.form_title_location.tr(),
-                              items: DummyService.location,
+                              items: DummyService.provinces,
                               hintText: LocaleKeys.form_hint_text_location.tr(),
                               isRegister: true,
                               validator: (p0) {

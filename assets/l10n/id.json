@@ -306,5 +306,42 @@
       "title": "Bagaimana cara membagi tagihan dengan teman",
       "description" : "descriptions"
     }
+  },
+  "provinces": {
+    "aceh": "Aceh",
+    "bali": "Bali",
+    "banten": "Banten",
+    "bengkulu": "Bengkulu",
+    "yogyakarta": "Yogyakarta",
+    "jakarta": "Jakarta",
+    "jambi": "Jambi",
+    "jabar": "Jawa Barat",
+    "jateng": "Jawa Tengah",
+    "jatim": "Jawa Timur",
+    "kalbar": "Kalimantan Barat",
+    "kaltim": "Kalimantan Timur",
+    "kalteng": "Kalimantan Tengah",
+    "kalut": "Kalimantan Utara",
+    "kalsel": "Kalimantan Selatan",
+    "kepri": "Kepulauan Riau",
+    "ntb": "Nusa Tenggara Barat",
+    "ntt": "Nusa Tenggara Timur",
+    "papua": "Papua",
+    "papuabarat": "Papua Barat",
+    "riau": "Riau",
+    "sulsel": "Sulawesi Selatan",
+    "sulut": "Sulawesi Utara",
+    "sulteng": "Sulawesi Tengah",
+    "sultra": "Sulawesi Tenggara",
+    "sulbar": "Sulawesi Barat",
+    "sumbar": "Sumatera Barat",
+    "sumsel": "Sumatera Selatan",
+    "sumut": "Sumatera Utara",
+    "maluku": "Maluku",
+    "malut": "Maluku Utara",
+    "lampung": "Lampung",
+    "gorontalo": "Gorontalo"
   }
 }
+
+
