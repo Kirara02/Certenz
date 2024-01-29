@@ -2,7 +2,6 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DropdownTextfield extends StatelessWidget {
   const DropdownTextfield({
@@ -38,6 +37,7 @@ class DropdownTextfield extends StatelessWidget {
         ),
         showSearchBox: showSearchBox,
         disabledItemFn: (String s) => s.startsWith('I'),
+        menuProps: const MenuProps(),
       ),
       items: items!,
       selectedItem: selectedItem,

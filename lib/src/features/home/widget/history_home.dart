@@ -61,14 +61,14 @@ class HistoryHome extends StatelessWidget {
                     loading: () => SpinKitCircle(
                       color: AppColors.primaryColors,
                     ),
-                    success: (data, hasReachedMax) {
+                    successPagination: (data) {
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: data.length,
+                        itemCount: data.data.length,
                         itemBuilder: (context, index) {
-                          var item = data[index];
+                          var item = data.data[index];
                           return CardTransaction(data: item);
                         },
                       );

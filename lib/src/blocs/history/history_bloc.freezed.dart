@@ -594,8 +594,8 @@ mixin _$HistoryState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<HistoryModel> histories, bool hasReachedMax)
-        success,
+    required TResult Function(PaginationResponse<HistoryModel> response)
+        successPagination,
     required TResult Function(NetworkExceptions error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -603,8 +603,8 @@ mixin _$HistoryState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<HistoryModel> histories, bool hasReachedMax)?
-        success,
+    TResult? Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
     TResult? Function(NetworkExceptions error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -612,7 +612,8 @@ mixin _$HistoryState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<HistoryModel> histories, bool hasReachedMax)? success,
+    TResult Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) =>
@@ -621,7 +622,7 @@ mixin _$HistoryState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_SuccessPagination value) successPagination,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -629,7 +630,7 @@ mixin _$HistoryState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessPagination value)? successPagination,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -637,7 +638,7 @@ mixin _$HistoryState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_SuccessPagination value)? successPagination,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -702,8 +703,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<HistoryModel> histories, bool hasReachedMax)
-        success,
+    required TResult Function(PaginationResponse<HistoryModel> response)
+        successPagination,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return initial();
@@ -714,8 +715,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<HistoryModel> histories, bool hasReachedMax)?
-        success,
+    TResult? Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return initial?.call();
@@ -726,7 +727,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<HistoryModel> histories, bool hasReachedMax)? success,
+    TResult Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -741,7 +743,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_SuccessPagination value) successPagination,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -752,7 +754,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessPagination value)? successPagination,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -763,7 +765,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_SuccessPagination value)? successPagination,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -818,8 +820,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<HistoryModel> histories, bool hasReachedMax)
-        success,
+    required TResult Function(PaginationResponse<HistoryModel> response)
+        successPagination,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return loading();
@@ -830,8 +832,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<HistoryModel> histories, bool hasReachedMax)?
-        success,
+    TResult? Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return loading?.call();
@@ -842,7 +844,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<HistoryModel> histories, bool hasReachedMax)? success,
+    TResult Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -857,7 +860,7 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_SuccessPagination value) successPagination,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -868,7 +871,7 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessPagination value)? successPagination,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -879,7 +882,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_SuccessPagination value)? successPagination,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -895,94 +898,89 @@ abstract class _Loading implements HistoryState {
 }
 
 /// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
+abstract class _$$SuccessPaginationImplCopyWith<$Res> {
+  factory _$$SuccessPaginationImplCopyWith(_$SuccessPaginationImpl value,
+          $Res Function(_$SuccessPaginationImpl) then) =
+      __$$SuccessPaginationImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<HistoryModel> histories, bool hasReachedMax});
+  $Res call({PaginationResponse<HistoryModel> response});
+
+  $PaginationResponseCopyWith<HistoryModel, $Res> get response;
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$HistoryStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$SuccessPaginationImplCopyWithImpl<$Res>
+    extends _$HistoryStateCopyWithImpl<$Res, _$SuccessPaginationImpl>
+    implements _$$SuccessPaginationImplCopyWith<$Res> {
+  __$$SuccessPaginationImplCopyWithImpl(_$SuccessPaginationImpl _value,
+      $Res Function(_$SuccessPaginationImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? histories = null,
-    Object? hasReachedMax = null,
+    Object? response = null,
   }) {
-    return _then(_$SuccessImpl(
-      null == histories
-          ? _value._histories
-          : histories // ignore: cast_nullable_to_non_nullable
-              as List<HistoryModel>,
-      null == hasReachedMax
-          ? _value.hasReachedMax
-          : hasReachedMax // ignore: cast_nullable_to_non_nullable
-              as bool,
+    return _then(_$SuccessPaginationImpl(
+      null == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as PaginationResponse<HistoryModel>,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PaginationResponseCopyWith<HistoryModel, $Res> get response {
+    return $PaginationResponseCopyWith<HistoryModel, $Res>(_value.response,
+        (value) {
+      return _then(_value.copyWith(response: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<HistoryModel> histories, this.hasReachedMax)
-      : _histories = histories;
-
-  final List<HistoryModel> _histories;
-  @override
-  List<HistoryModel> get histories {
-    if (_histories is EqualUnmodifiableListView) return _histories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_histories);
-  }
+class _$SuccessPaginationImpl implements _SuccessPagination {
+  const _$SuccessPaginationImpl(this.response);
 
   @override
-  final bool hasReachedMax;
+  final PaginationResponse<HistoryModel> response;
 
   @override
   String toString() {
-    return 'HistoryState.success(histories: $histories, hasReachedMax: $hasReachedMax)';
+    return 'HistoryState.successPagination(response: $response)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
-            const DeepCollectionEquality()
-                .equals(other._histories, _histories) &&
-            (identical(other.hasReachedMax, hasReachedMax) ||
-                other.hasReachedMax == hasReachedMax));
+            other is _$SuccessPaginationImpl &&
+            (identical(other.response, response) ||
+                other.response == response));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_histories), hasReachedMax);
+  int get hashCode => Object.hash(runtimeType, response);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
+  _$$SuccessPaginationImplCopyWith<_$SuccessPaginationImpl> get copyWith =>
+      __$$SuccessPaginationImplCopyWithImpl<_$SuccessPaginationImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<HistoryModel> histories, bool hasReachedMax)
-        success,
+    required TResult Function(PaginationResponse<HistoryModel> response)
+        successPagination,
     required TResult Function(NetworkExceptions error) error,
   }) {
-    return success(histories, hasReachedMax);
+    return successPagination(response);
   }
 
   @override
@@ -990,11 +988,11 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<HistoryModel> histories, bool hasReachedMax)?
-        success,
+    TResult? Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
     TResult? Function(NetworkExceptions error)? error,
   }) {
-    return success?.call(histories, hasReachedMax);
+    return successPagination?.call(response);
   }
 
   @override
@@ -1002,12 +1000,13 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<HistoryModel> histories, bool hasReachedMax)? success,
+    TResult Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(histories, hasReachedMax);
+    if (successPagination != null) {
+      return successPagination(response);
     }
     return orElse();
   }
@@ -1017,10 +1016,10 @@ class _$SuccessImpl implements _Success {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_SuccessPagination value) successPagination,
     required TResult Function(_Error value) error,
   }) {
-    return success(this);
+    return successPagination(this);
   }
 
   @override
@@ -1028,10 +1027,10 @@ class _$SuccessImpl implements _Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessPagination value)? successPagination,
     TResult? Function(_Error value)? error,
   }) {
-    return success?.call(this);
+    return successPagination?.call(this);
   }
 
   @override
@@ -1039,26 +1038,25 @@ class _$SuccessImpl implements _Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_SuccessPagination value)? successPagination,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (successPagination != null) {
+      return successPagination(this);
     }
     return orElse();
   }
 }
 
-abstract class _Success implements HistoryState {
-  const factory _Success(
-          final List<HistoryModel> histories, final bool hasReachedMax) =
-      _$SuccessImpl;
+abstract class _SuccessPagination implements HistoryState {
+  const factory _SuccessPagination(
+          final PaginationResponse<HistoryModel> response) =
+      _$SuccessPaginationImpl;
 
-  List<HistoryModel> get histories;
-  bool get hasReachedMax;
+  PaginationResponse<HistoryModel> get response;
   @JsonKey(ignore: true)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$SuccessPaginationImplCopyWith<_$SuccessPaginationImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1138,8 +1136,8 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<HistoryModel> histories, bool hasReachedMax)
-        success,
+    required TResult Function(PaginationResponse<HistoryModel> response)
+        successPagination,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return error(this.error);
@@ -1150,8 +1148,8 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<HistoryModel> histories, bool hasReachedMax)?
-        success,
+    TResult? Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return error?.call(this.error);
@@ -1162,7 +1160,8 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<HistoryModel> histories, bool hasReachedMax)? success,
+    TResult Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -1177,7 +1176,7 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
+    required TResult Function(_SuccessPagination value) successPagination,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -1188,7 +1187,7 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
+    TResult? Function(_SuccessPagination value)? successPagination,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -1199,7 +1198,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
+    TResult Function(_SuccessPagination value)? successPagination,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

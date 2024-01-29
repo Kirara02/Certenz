@@ -341,6 +341,12 @@
     "malut": "Maluku Utara",
     "lampung": "Lampung",
     "gorontalo": "Gorontalo"
+  },
+  "exit_confirmation": {
+    "title": "Keluar Aplikasi",
+    "message": "Apakah Anda yakin ingin keluar dari aplikasi?",
+    "cancel": "Batal",
+    "exit": "Keluar"
   }
 }
 

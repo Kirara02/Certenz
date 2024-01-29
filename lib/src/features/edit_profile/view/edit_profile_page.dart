@@ -67,9 +67,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   Future<FormData?> _handleSubmit() async {
     if (imgProfileUrl == null) {
-      UXToast.show(message: "Profile Image id required");
+      UXToast.show(message: "Profile Image is required");
       return null;
     }
+
     if (context.locale.languageCode == 'id') {
       gender = convertGenderToEnglish(gender);
     }

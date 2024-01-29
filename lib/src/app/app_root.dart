@@ -1,8 +1,10 @@
 import 'package:certenz/gen/assets.gen.dart';
+import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/features/history/view/history_page.dart';
 import 'package:certenz/src/features/home/view/home_page.dart';
 import 'package:certenz/src/features/profile/view/profile_page.dart';
 import 'package:certenz/src/features/wallet/view/wallet_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,51 +24,25 @@ class _AppRootState extends State<AppRoot> {
   Future<bool> _onWillPop(BuildContext context) async {
     bool exitApp = await showDialog(
       context: context,
-      useSafeArea: true,
-      barrierColor: Colors.black.withOpacity(0.25),
       builder: (context) {
-        return Dialog(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 30),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  "Apakah anda yakin keluar aplikasi ?",
-                  style: TextStyle(
-                    fontSize: AppConstants.kFontSizeL,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(
-                  height: 32,
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context, true);
-                        },
-                        child: const Text("Ya"),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context, false);
-                        },
-                        child: const Text("Tidak"),
-                      ),
-                    ),
-                  ],
-                )
-              ],
+        return AlertDialog(
+          title: Text(LocaleKeys.exit_confirmation_title.tr()),
+          content: Text(LocaleKeys.exit_confirmation_message.tr()),
+          actions: [
+            TextButton(
+              child: Text(LocaleKeys.exit_confirmation_cancel.tr()),
+              onPressed: () {
+                Navigator.of(context)
+                    .pop(false); // Closes the dialog without exiting
+              },
             ),
-          ),
+            TextButton(
+              child: Text(LocaleKeys.exit_confirmation_exit.tr()),
+              onPressed: () {
+                Navigator.of(context).pop(true); // Exits the app
+              },
+            ),
+          ],
         );
       },
     );

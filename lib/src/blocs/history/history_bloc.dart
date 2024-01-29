@@ -22,12 +22,8 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
                   .getAllHistories(page: page, pagination: pagination ?? 5);
 
           result.when(
-            success: (PaginationResponse<HistoryModel> response) {
-              final bool hasReachedMax =
-                  response.data.length < (pagination ?? 5);
-
-              emit(HistoryState.success(response.data, hasReachedMax));
-            },
+            success: (response) =>
+                emit(HistoryState.successPagination(response)),
             failure: (error) => emit(HistoryState.error(error)),
           );
         },
@@ -38,12 +34,8 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
                   .getSuccessHistories(page: page, pagination: pagination ?? 5);
 
           result.when(
-            success: (PaginationResponse<HistoryModel> response) {
-              final bool hasReachedMax =
-                  response.data.length < (pagination ?? 5);
-
-              emit(HistoryState.success(response.data, hasReachedMax));
-            },
+            success: (response) =>
+                emit(HistoryState.successPagination(response)),
             failure: (error) => emit(HistoryState.error(error)),
           );
         },
@@ -54,12 +46,8 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
                   .getPendingHistories(page: page, pagination: pagination ?? 5);
 
           result.when(
-            success: (PaginationResponse<HistoryModel> response) {
-              final bool hasReachedMax =
-                  response.data.length < (pagination ?? 5);
-
-              emit(HistoryState.success(response.data, hasReachedMax));
-            },
+            success: (response) =>
+                emit(HistoryState.successPagination(response)),
             failure: (error) => emit(HistoryState.error(error)),
           );
         },

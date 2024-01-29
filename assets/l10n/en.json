@@ -341,5 +341,11 @@
     "malut": "North Maluku",
     "lampung": "Lampung",
     "gorontalo": "Gorontalo"
+  },
+  "exit_confirmation": {
+    "title": "Exit App",
+    "message": "Are you sure you want to exit the app?",
+    "cancel": "Cancel",
+    "exit": "Exit"
   }
 }
