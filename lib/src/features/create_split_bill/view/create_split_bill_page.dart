@@ -52,15 +52,13 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
               loading: () => showLoadingDialog(context),
               successCreateSplit: (data) {
                 hideDialog(context);
-                Navigator.pushAndRemoveUntil(
+                Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SplitBillPage(
-                        isFearly: isFearly,
-                        data: data,
-                      ),
-                    ),
-                    (route) => false);
+                        builder: (context) => SplitBillPage(
+                              isFearly: isFearly,
+                              data: data,
+                            )));
               },
               error: (error) {
                 hideDialog(context);

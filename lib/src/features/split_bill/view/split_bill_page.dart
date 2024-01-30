@@ -39,7 +39,7 @@ class _SplitBillPageState extends State<SplitBillPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   TextEditingController amountController = TextEditingController();
-  TextEditingController noteController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
 
   List<String> listEmails = [];
   List<String> listAmounts = [];
@@ -100,11 +100,25 @@ class _SplitBillPageState extends State<SplitBillPage> {
         textColor: AppColors.neutralN140);
   }
 
+  void _updateParticipantAmounts(BuildContext context) {
+    if (widget.isFearly &&
+        context.read<SplitbillCubit>().friendEntries.isNotEmpty) {
+      final splitAmount =
+          amount / context.read<SplitbillCubit>().friendEntries.length;
+      for (var entry in context.read<SplitbillCubit>().friendEntries) {
+        entry.splitAmountController.text =
+            formatCurrencyNonDecimal(splitAmount);
+      }
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     amount = widget.data.amountTotal;
-    noteController.text = widget.data.title;
+    titleController.text = widget.data.title;
+    _updateParticipantAmounts(
+        context); // Initial update when the widget is first built
   }
 
   @override
@@ -112,11 +126,11 @@ class _SplitBillPageState extends State<SplitBillPage> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => SplitbillCubit(),
-        ),
-        BlocProvider(
           create: (context) => SplitBillBloc(),
         ),
+        BlocProvider(
+          create: (context) => SplitbillCubit(),
+        )
       ],
       child: Builder(builder: (context) {
         return Scaffold(
@@ -176,8 +190,8 @@ class _SplitBillPageState extends State<SplitBillPage> {
                     ),
                     const SizedBox(height: 8),
                     FieldCustom(
-                      controller: noteController,
-                      hintText: LocaleKeys.form_hint_text_note.tr(),
+                      controller: titleController,
+                      hintText: LocaleKeys.form_title_title.tr(),
                       maxLines: 1,
                       readOnly: true,
                       enabled: false,
@@ -196,7 +210,11 @@ class _SplitBillPageState extends State<SplitBillPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    BlocBuilder<SplitbillCubit, SplitbillState>(
+                    BlocConsumer<SplitbillCubit, SplitbillState>(
+                      bloc: context.read<SplitbillCubit>(),
+                      listener: (context, state) {
+                        _updateParticipantAmounts(context);
+                      },
                       builder: (context, state) {
                         if (state is AddWidgetSplit) {
                           return Column(
@@ -208,9 +226,12 @@ class _SplitBillPageState extends State<SplitBillPage> {
                                   children: [
                                     SplitBillWith(
                                       friendEntry: state.friendEntries[i],
-                                      onDelete: () => context
-                                          .read<SplitbillCubit>()
-                                          .removeFriendEntry(i),
+                                      onDelete: () {
+                                        context
+                                            .read<SplitbillCubit>()
+                                            .removeFriendEntry(i);
+                                        _updateParticipantAmounts(context);
+                                      },
                                     ),
                                     const SizedBox(height: 18),
                                   ],
@@ -227,6 +248,7 @@ class _SplitBillPageState extends State<SplitBillPage> {
                         return TextButton(
                           onPressed: () {
                             context.read<SplitbillCubit>().addWidgetSplit();
+                            _updateParticipantAmounts(context);
                           },
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -290,6 +312,7 @@ class _SplitBillPageState extends State<SplitBillPage> {
                       _toast(fullErrorMessage);
                     },
                     badRequest: (reason) => eLog(reason),
+                    notFound: (reason) => UXToast.show(message: reason),
                   );
                 },
               );

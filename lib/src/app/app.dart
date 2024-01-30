@@ -1,4 +1,5 @@
 import 'package:certenz/src/blocs/auth/auth_bloc.dart';
+import 'package:certenz/src/cubits/split_bill/splitbill_cubit.dart';
 import 'package:certenz/src/features/account_billing/view/account_billing_page.dart';
 import 'package:certenz/src/features/atm/view/atm_card_page.dart';
 import 'package:certenz/src/features/auth/login/view/login_page.dart';
@@ -46,9 +47,9 @@ class _AppState extends State<App> {
         BlocProvider(
           create: (context) => AuthBloc(),
         ),
-        // BlocProvider(
-        //   create: (context) => FaqBloc(),
-        // )
+        BlocProvider(
+          create: (context) => SplitbillCubit(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

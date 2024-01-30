@@ -56,8 +56,6 @@ class _ActivePurchaseSectionState extends State<ActivePurchaseSection> {
         },
         builder: (context, state) {
           return PagedListView(
-            physics: const BouncingScrollPhysics(
-                decelerationRate: ScrollDecelerationRate.fast),
             padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 12),
             pagingController: _pagingController,
             builderDelegate: PagedChildBuilderDelegate<HistoryModel>(
