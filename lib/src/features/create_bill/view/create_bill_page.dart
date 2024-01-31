@@ -89,6 +89,7 @@ class _CreateBillPageState extends State<CreateBillPage> {
                     _toast(fullErrorMessage);
                   },
                   badRequest: (reason) => eLog(reason),
+                  notFound: (reason) => UXToast.show(message: reason),
                 );
               },
             );

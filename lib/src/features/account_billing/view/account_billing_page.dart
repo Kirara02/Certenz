@@ -153,6 +153,7 @@ class _AccountBillingPageState extends State<AccountBillingPage> {
                     UXToast.show(message: fullErrorMessage);
                   },
                   badRequest: (reason) => eLog(reason),
+                  notFound: (reason) => UXToast.show(message: reason),
                 );
               },
             );

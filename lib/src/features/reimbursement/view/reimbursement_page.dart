@@ -196,6 +196,7 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                     _toast(fullErrorMessage);
                   },
                   badRequest: (reason) => eLog(reason),
+                  notFound: (reason) => UXToast.show(message: reason),
                 );
               },
             );
