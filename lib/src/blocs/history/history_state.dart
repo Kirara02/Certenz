@@ -6,5 +6,9 @@ class HistoryState with _$HistoryState {
   const factory HistoryState.loading() = _Loading;
   const factory HistoryState.successPagination(
       PaginationResponse<HistoryModel> response) = _SuccessPagination;
+  const factory HistoryState.loadedSplitBillHistory(
+      HistorySplitBillModel data) = _LoadedSplitBillHistory;
+  const factory HistoryState.loadedBillHistory(HistoryItemModel data) =
+      _LoadedBillHistory;
   const factory HistoryState.error(NetworkExceptions error) = _Error;
 }

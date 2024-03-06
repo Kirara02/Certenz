@@ -25,31 +25,22 @@ mixin _$UserDetailModel {
   String? get username => throw _privateConstructorUsedError;
   String? get telp => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  @JsonKey(name: 'email_verified_at')
-  DateTime? get emailVerifiedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'profile_picture')
   String? get profilePicture => throw _privateConstructorUsedError;
-  @JsonKey(name: 'two_factor_secret')
-  String? get twoFactorSecret => throw _privateConstructorUsedError;
-  @JsonKey(name: 'two_factor_recovery_codes')
-  String? get twoFactorRecoveryCodes => throw _privateConstructorUsedError;
-  @JsonKey(name: 'two_factor_confirmed_at')
-  DateTime? get twoFactorConfirmedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'certenz_number')
   String? get certenzNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'role_id')
   String? get roleId => throw _privateConstructorUsedError;
-  @DateTimeConverter()
-  DateTime? get birthday => throw _privateConstructorUsedError;
+  String? get birthday => throw _privateConstructorUsedError;
   String? get gender => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   String? get sso => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  @DateTimeConverter()
-  DateTime? get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  @DateTimeConverter()
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'email_verification')
+  bool? get emailVerification => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ktp_verification')
+  bool? get ktpVerification => throw _privateConstructorUsedError;
+  @JsonKey(name: 'has_bank_account')
+  bool? get hasBankAccount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -69,20 +60,16 @@ abstract class $UserDetailModelCopyWith<$Res> {
       String? username,
       String? telp,
       String? email,
-      @JsonKey(name: 'email_verified_at') DateTime? emailVerifiedAt,
       @JsonKey(name: 'profile_picture') String? profilePicture,
-      @JsonKey(name: 'two_factor_secret') String? twoFactorSecret,
-      @JsonKey(name: 'two_factor_recovery_codes')
-      String? twoFactorRecoveryCodes,
-      @JsonKey(name: 'two_factor_confirmed_at') DateTime? twoFactorConfirmedAt,
       @JsonKey(name: 'certenz_number') String? certenzNumber,
       @JsonKey(name: 'role_id') String? roleId,
-      @DateTimeConverter() DateTime? birthday,
+      String? birthday,
       String? gender,
       String? location,
       String? sso,
-      @JsonKey(name: 'created_at') @DateTimeConverter() DateTime? createdAt,
-      @JsonKey(name: 'updated_at') @DateTimeConverter() DateTime? updatedAt});
+      @JsonKey(name: 'email_verification') bool? emailVerification,
+      @JsonKey(name: 'ktp_verification') bool? ktpVerification,
+      @JsonKey(name: 'has_bank_account') bool? hasBankAccount});
 }
 
 /// @nodoc
@@ -103,19 +90,16 @@ class _$UserDetailModelCopyWithImpl<$Res, $Val extends UserDetailModel>
     Object? username = freezed,
     Object? telp = freezed,
     Object? email = freezed,
-    Object? emailVerifiedAt = freezed,
     Object? profilePicture = freezed,
-    Object? twoFactorSecret = freezed,
-    Object? twoFactorRecoveryCodes = freezed,
-    Object? twoFactorConfirmedAt = freezed,
     Object? certenzNumber = freezed,
     Object? roleId = freezed,
     Object? birthday = freezed,
     Object? gender = freezed,
     Object? location = freezed,
     Object? sso = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? emailVerification = freezed,
+    Object? ktpVerification = freezed,
+    Object? hasBankAccount = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -138,26 +122,10 @@ class _$UserDetailModelCopyWithImpl<$Res, $Val extends UserDetailModel>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailVerifiedAt: freezed == emailVerifiedAt
-          ? _value.emailVerifiedAt
-          : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
-      twoFactorSecret: freezed == twoFactorSecret
-          ? _value.twoFactorSecret
-          : twoFactorSecret // ignore: cast_nullable_to_non_nullable
-              as String?,
-      twoFactorRecoveryCodes: freezed == twoFactorRecoveryCodes
-          ? _value.twoFactorRecoveryCodes
-          : twoFactorRecoveryCodes // ignore: cast_nullable_to_non_nullable
-              as String?,
-      twoFactorConfirmedAt: freezed == twoFactorConfirmedAt
-          ? _value.twoFactorConfirmedAt
-          : twoFactorConfirmedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       certenzNumber: freezed == certenzNumber
           ? _value.certenzNumber
           : certenzNumber // ignore: cast_nullable_to_non_nullable
@@ -169,7 +137,7 @@ class _$UserDetailModelCopyWithImpl<$Res, $Val extends UserDetailModel>
       birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -182,14 +150,18 @@ class _$UserDetailModelCopyWithImpl<$Res, $Val extends UserDetailModel>
           ? _value.sso
           : sso // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      emailVerification: freezed == emailVerification
+          ? _value.emailVerification
+          : emailVerification // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      ktpVerification: freezed == ktpVerification
+          ? _value.ktpVerification
+          : ktpVerification // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasBankAccount: freezed == hasBankAccount
+          ? _value.hasBankAccount
+          : hasBankAccount // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -208,20 +180,16 @@ abstract class _$$UserDetailModelImplCopyWith<$Res>
       String? username,
       String? telp,
       String? email,
-      @JsonKey(name: 'email_verified_at') DateTime? emailVerifiedAt,
       @JsonKey(name: 'profile_picture') String? profilePicture,
-      @JsonKey(name: 'two_factor_secret') String? twoFactorSecret,
-      @JsonKey(name: 'two_factor_recovery_codes')
-      String? twoFactorRecoveryCodes,
-      @JsonKey(name: 'two_factor_confirmed_at') DateTime? twoFactorConfirmedAt,
       @JsonKey(name: 'certenz_number') String? certenzNumber,
       @JsonKey(name: 'role_id') String? roleId,
-      @DateTimeConverter() DateTime? birthday,
+      String? birthday,
       String? gender,
       String? location,
       String? sso,
-      @JsonKey(name: 'created_at') @DateTimeConverter() DateTime? createdAt,
-      @JsonKey(name: 'updated_at') @DateTimeConverter() DateTime? updatedAt});
+      @JsonKey(name: 'email_verification') bool? emailVerification,
+      @JsonKey(name: 'ktp_verification') bool? ktpVerification,
+      @JsonKey(name: 'has_bank_account') bool? hasBankAccount});
 }
 
 /// @nodoc
@@ -240,19 +208,16 @@ class __$$UserDetailModelImplCopyWithImpl<$Res>
     Object? username = freezed,
     Object? telp = freezed,
     Object? email = freezed,
-    Object? emailVerifiedAt = freezed,
     Object? profilePicture = freezed,
-    Object? twoFactorSecret = freezed,
-    Object? twoFactorRecoveryCodes = freezed,
-    Object? twoFactorConfirmedAt = freezed,
     Object? certenzNumber = freezed,
     Object? roleId = freezed,
     Object? birthday = freezed,
     Object? gender = freezed,
     Object? location = freezed,
     Object? sso = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? emailVerification = freezed,
+    Object? ktpVerification = freezed,
+    Object? hasBankAccount = freezed,
   }) {
     return _then(_$UserDetailModelImpl(
       id: freezed == id
@@ -275,26 +240,10 @@ class __$$UserDetailModelImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailVerifiedAt: freezed == emailVerifiedAt
-          ? _value.emailVerifiedAt
-          : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       profilePicture: freezed == profilePicture
           ? _value.profilePicture
           : profilePicture // ignore: cast_nullable_to_non_nullable
               as String?,
-      twoFactorSecret: freezed == twoFactorSecret
-          ? _value.twoFactorSecret
-          : twoFactorSecret // ignore: cast_nullable_to_non_nullable
-              as String?,
-      twoFactorRecoveryCodes: freezed == twoFactorRecoveryCodes
-          ? _value.twoFactorRecoveryCodes
-          : twoFactorRecoveryCodes // ignore: cast_nullable_to_non_nullable
-              as String?,
-      twoFactorConfirmedAt: freezed == twoFactorConfirmedAt
-          ? _value.twoFactorConfirmedAt
-          : twoFactorConfirmedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
       certenzNumber: freezed == certenzNumber
           ? _value.certenzNumber
           : certenzNumber // ignore: cast_nullable_to_non_nullable
@@ -306,7 +255,7 @@ class __$$UserDetailModelImplCopyWithImpl<$Res>
       birthday: freezed == birthday
           ? _value.birthday
           : birthday // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -319,14 +268,18 @@ class __$$UserDetailModelImplCopyWithImpl<$Res>
           ? _value.sso
           : sso // ignore: cast_nullable_to_non_nullable
               as String?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+      emailVerification: freezed == emailVerification
+          ? _value.emailVerification
+          : emailVerification // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      ktpVerification: freezed == ktpVerification
+          ? _value.ktpVerification
+          : ktpVerification // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      hasBankAccount: freezed == hasBankAccount
+          ? _value.hasBankAccount
+          : hasBankAccount // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -340,19 +293,16 @@ class _$UserDetailModelImpl implements _UserDetailModel {
       this.username,
       this.telp,
       this.email,
-      @JsonKey(name: 'email_verified_at') this.emailVerifiedAt,
       @JsonKey(name: 'profile_picture') this.profilePicture,
-      @JsonKey(name: 'two_factor_secret') this.twoFactorSecret,
-      @JsonKey(name: 'two_factor_recovery_codes') this.twoFactorRecoveryCodes,
-      @JsonKey(name: 'two_factor_confirmed_at') this.twoFactorConfirmedAt,
       @JsonKey(name: 'certenz_number') this.certenzNumber,
       @JsonKey(name: 'role_id') this.roleId,
-      @DateTimeConverter() this.birthday,
+      this.birthday,
       this.gender,
       this.location,
       this.sso,
-      @JsonKey(name: 'created_at') @DateTimeConverter() this.createdAt,
-      @JsonKey(name: 'updated_at') @DateTimeConverter() this.updatedAt});
+      @JsonKey(name: 'email_verification') this.emailVerification,
+      @JsonKey(name: 'ktp_verification') this.ktpVerification,
+      @JsonKey(name: 'has_bank_account') this.hasBankAccount});
 
   factory _$UserDetailModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDetailModelImplFromJson(json);
@@ -368,20 +318,8 @@ class _$UserDetailModelImpl implements _UserDetailModel {
   @override
   final String? email;
   @override
-  @JsonKey(name: 'email_verified_at')
-  final DateTime? emailVerifiedAt;
-  @override
   @JsonKey(name: 'profile_picture')
   final String? profilePicture;
-  @override
-  @JsonKey(name: 'two_factor_secret')
-  final String? twoFactorSecret;
-  @override
-  @JsonKey(name: 'two_factor_recovery_codes')
-  final String? twoFactorRecoveryCodes;
-  @override
-  @JsonKey(name: 'two_factor_confirmed_at')
-  final DateTime? twoFactorConfirmedAt;
   @override
   @JsonKey(name: 'certenz_number')
   final String? certenzNumber;
@@ -389,8 +327,7 @@ class _$UserDetailModelImpl implements _UserDetailModel {
   @JsonKey(name: 'role_id')
   final String? roleId;
   @override
-  @DateTimeConverter()
-  final DateTime? birthday;
+  final String? birthday;
   @override
   final String? gender;
   @override
@@ -398,17 +335,18 @@ class _$UserDetailModelImpl implements _UserDetailModel {
   @override
   final String? sso;
   @override
-  @JsonKey(name: 'created_at')
-  @DateTimeConverter()
-  final DateTime? createdAt;
+  @JsonKey(name: 'email_verification')
+  final bool? emailVerification;
   @override
-  @JsonKey(name: 'updated_at')
-  @DateTimeConverter()
-  final DateTime? updatedAt;
+  @JsonKey(name: 'ktp_verification')
+  final bool? ktpVerification;
+  @override
+  @JsonKey(name: 'has_bank_account')
+  final bool? hasBankAccount;
 
   @override
   String toString() {
-    return 'UserDetailModel(id: $id, name: $name, username: $username, telp: $telp, email: $email, emailVerifiedAt: $emailVerifiedAt, profilePicture: $profilePicture, twoFactorSecret: $twoFactorSecret, twoFactorRecoveryCodes: $twoFactorRecoveryCodes, twoFactorConfirmedAt: $twoFactorConfirmedAt, certenzNumber: $certenzNumber, roleId: $roleId, birthday: $birthday, gender: $gender, location: $location, sso: $sso, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'UserDetailModel(id: $id, name: $name, username: $username, telp: $telp, email: $email, profilePicture: $profilePicture, certenzNumber: $certenzNumber, roleId: $roleId, birthday: $birthday, gender: $gender, location: $location, sso: $sso, emailVerification: $emailVerification, ktpVerification: $ktpVerification, hasBankAccount: $hasBankAccount)';
   }
 
   @override
@@ -422,16 +360,8 @@ class _$UserDetailModelImpl implements _UserDetailModel {
                 other.username == username) &&
             (identical(other.telp, telp) || other.telp == telp) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.emailVerifiedAt, emailVerifiedAt) ||
-                other.emailVerifiedAt == emailVerifiedAt) &&
             (identical(other.profilePicture, profilePicture) ||
                 other.profilePicture == profilePicture) &&
-            (identical(other.twoFactorSecret, twoFactorSecret) ||
-                other.twoFactorSecret == twoFactorSecret) &&
-            (identical(other.twoFactorRecoveryCodes, twoFactorRecoveryCodes) ||
-                other.twoFactorRecoveryCodes == twoFactorRecoveryCodes) &&
-            (identical(other.twoFactorConfirmedAt, twoFactorConfirmedAt) ||
-                other.twoFactorConfirmedAt == twoFactorConfirmedAt) &&
             (identical(other.certenzNumber, certenzNumber) ||
                 other.certenzNumber == certenzNumber) &&
             (identical(other.roleId, roleId) || other.roleId == roleId) &&
@@ -441,10 +371,12 @@ class _$UserDetailModelImpl implements _UserDetailModel {
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.sso, sso) || other.sso == sso) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
-            (identical(other.updatedAt, updatedAt) ||
-                other.updatedAt == updatedAt));
+            (identical(other.emailVerification, emailVerification) ||
+                other.emailVerification == emailVerification) &&
+            (identical(other.ktpVerification, ktpVerification) ||
+                other.ktpVerification == ktpVerification) &&
+            (identical(other.hasBankAccount, hasBankAccount) ||
+                other.hasBankAccount == hasBankAccount));
   }
 
   @JsonKey(ignore: true)
@@ -456,19 +388,16 @@ class _$UserDetailModelImpl implements _UserDetailModel {
       username,
       telp,
       email,
-      emailVerifiedAt,
       profilePicture,
-      twoFactorSecret,
-      twoFactorRecoveryCodes,
-      twoFactorConfirmedAt,
       certenzNumber,
       roleId,
       birthday,
       gender,
       location,
       sso,
-      createdAt,
-      updatedAt);
+      emailVerification,
+      ktpVerification,
+      hasBankAccount);
 
   @JsonKey(ignore: true)
   @override
@@ -487,30 +416,22 @@ class _$UserDetailModelImpl implements _UserDetailModel {
 
 abstract class _UserDetailModel implements UserDetailModel {
   const factory _UserDetailModel(
-      {final int? id,
-      final String? name,
-      final String? username,
-      final String? telp,
-      final String? email,
-      @JsonKey(name: 'email_verified_at') final DateTime? emailVerifiedAt,
-      @JsonKey(name: 'profile_picture') final String? profilePicture,
-      @JsonKey(name: 'two_factor_secret') final String? twoFactorSecret,
-      @JsonKey(name: 'two_factor_recovery_codes')
-      final String? twoFactorRecoveryCodes,
-      @JsonKey(name: 'two_factor_confirmed_at')
-      final DateTime? twoFactorConfirmedAt,
-      @JsonKey(name: 'certenz_number') final String? certenzNumber,
-      @JsonKey(name: 'role_id') final String? roleId,
-      @DateTimeConverter() final DateTime? birthday,
-      final String? gender,
-      final String? location,
-      final String? sso,
-      @JsonKey(name: 'created_at')
-      @DateTimeConverter()
-      final DateTime? createdAt,
-      @JsonKey(name: 'updated_at')
-      @DateTimeConverter()
-      final DateTime? updatedAt}) = _$UserDetailModelImpl;
+          {final int? id,
+          final String? name,
+          final String? username,
+          final String? telp,
+          final String? email,
+          @JsonKey(name: 'profile_picture') final String? profilePicture,
+          @JsonKey(name: 'certenz_number') final String? certenzNumber,
+          @JsonKey(name: 'role_id') final String? roleId,
+          final String? birthday,
+          final String? gender,
+          final String? location,
+          final String? sso,
+          @JsonKey(name: 'email_verification') final bool? emailVerification,
+          @JsonKey(name: 'ktp_verification') final bool? ktpVerification,
+          @JsonKey(name: 'has_bank_account') final bool? hasBankAccount}) =
+      _$UserDetailModelImpl;
 
   factory _UserDetailModel.fromJson(Map<String, dynamic> json) =
       _$UserDetailModelImpl.fromJson;
@@ -526,20 +447,8 @@ abstract class _UserDetailModel implements UserDetailModel {
   @override
   String? get email;
   @override
-  @JsonKey(name: 'email_verified_at')
-  DateTime? get emailVerifiedAt;
-  @override
   @JsonKey(name: 'profile_picture')
   String? get profilePicture;
-  @override
-  @JsonKey(name: 'two_factor_secret')
-  String? get twoFactorSecret;
-  @override
-  @JsonKey(name: 'two_factor_recovery_codes')
-  String? get twoFactorRecoveryCodes;
-  @override
-  @JsonKey(name: 'two_factor_confirmed_at')
-  DateTime? get twoFactorConfirmedAt;
   @override
   @JsonKey(name: 'certenz_number')
   String? get certenzNumber;
@@ -547,8 +456,7 @@ abstract class _UserDetailModel implements UserDetailModel {
   @JsonKey(name: 'role_id')
   String? get roleId;
   @override
-  @DateTimeConverter()
-  DateTime? get birthday;
+  String? get birthday;
   @override
   String? get gender;
   @override
@@ -556,13 +464,14 @@ abstract class _UserDetailModel implements UserDetailModel {
   @override
   String? get sso;
   @override
-  @JsonKey(name: 'created_at')
-  @DateTimeConverter()
-  DateTime? get createdAt;
+  @JsonKey(name: 'email_verification')
+  bool? get emailVerification;
   @override
-  @JsonKey(name: 'updated_at')
-  @DateTimeConverter()
-  DateTime? get updatedAt;
+  @JsonKey(name: 'ktp_verification')
+  bool? get ktpVerification;
+  @override
+  @JsonKey(name: 'has_bank_account')
+  bool? get hasBankAccount;
   @override
   @JsonKey(ignore: true)
   _$$UserDetailModelImplCopyWith<_$UserDetailModelImpl> get copyWith =>

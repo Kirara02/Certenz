@@ -6,20 +6,21 @@ class TextColum extends StatelessWidget {
   const TextColum({
     super.key,
     this.title,
-    this.subTitle,
+    this.value,
     this.image,
     this.subtitleTextDecoration = TextDecoration.none,
   });
   final String? title;
   final String? image;
-  final String? subTitle;
+  final String? value;
   final TextDecoration subtitleTextDecoration;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Column(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -37,7 +38,8 @@ class TextColum extends StatelessWidget {
             ),
           const SizedBox(height: 5),
           Text(
-            subTitle ?? "",
+            value ?? "",
+            textAlign: TextAlign.end,
             style: TextStyle(
               decoration: subtitleTextDecoration,
               fontSize: AppConstants.kFontSizeS,

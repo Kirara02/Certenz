@@ -25,4 +25,10 @@ class DateTimeHelper {
     log(resultToday.toString());
     return resultToday;
   }
+
+  static String convertDateString(String dateString) {
+    DateTime dateTime = DateTime.parse(dateString);
+    String formattedDate = DateFormat('MMM dd, yyyy').format(dateTime);
+    return formattedDate;
+  }
 }

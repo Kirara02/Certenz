@@ -8,6 +8,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:go_router/go_router.dart';
 
 class AccountsSection extends StatelessWidget {
   const AccountsSection({super.key});
@@ -58,6 +59,7 @@ class AccountsSection extends StatelessWidget {
                                 child: AccountBank(
                                   bankAccountModel: item,
                                   isForm: false,
+                                  showDelete: true,
                                 ),
                               ),
                             )
@@ -68,33 +70,31 @@ class AccountsSection extends StatelessWidget {
                 },
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               InkWell(
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AtmCardPage(),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.add,
-                      color: AppColors.orange,
-                      size: 10,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      LocaleKeys.profile_accounts_add_account.tr(),
-                      style: const TextStyle(
-                        fontSize: AppConstants.kFontSizeS,
+                onTap: () => context.pushNamed("atm"),
+                child: SizedBox(
+                  height: 30,
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.add,
                         color: AppColors.orange,
+                        size: 10,
                       ),
-                    )
-                  ],
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        LocaleKeys.profile_accounts_add_account.tr(),
+                        style: const TextStyle(
+                          fontSize: AppConstants.kFontSizeS,
+                          color: AppColors.orange,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

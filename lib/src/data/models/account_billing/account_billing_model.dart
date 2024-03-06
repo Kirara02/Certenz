@@ -21,7 +21,6 @@ class AccountBillingModel with _$AccountBillingModel {
     @JsonKey(name: 'paid_on_date') String? paidOnDate,
     @JsonKey(name: 'paid_on_time') String? paidOnTime,
     @JsonKey(name: 'payment_method') int? paymentMethod,
-    @JsonKey(name: 'account_destination') int? accountDestination,
     String? note,
     @JsonKey(name: 'bill_type') String? billType,
     @JsonKey(name: 'bill_status') String? billStatus,

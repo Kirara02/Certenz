@@ -7,7 +7,7 @@ part 'history_model.g.dart';
 @freezed
 class HistoryModel with _$HistoryModel {
   const factory HistoryModel({
-    @JsonKey(name: 'transaction_bill_id') int? transactionBillId,
+    @JsonKey(name: 'transaction_id') int? transactionId,
     @JsonKey(name: 'transaction_number') String? transactionNumber,
     @JsonKey(name: 'transaction_title') String? transactionTitle,
     @JsonKey(name: 'amount_total') int? amountTotal,
@@ -15,8 +15,7 @@ class HistoryModel with _$HistoryModel {
     @JsonKey(name: 'transaction_category') String? transactionCategory,
     @JsonKey(name: 'transaction_status') String? transactionStatus,
     String? criteria,
-    HistoryUserModel? from,
-    HistoryUserModel? to,
+    @JsonKey(name: 'from_name') String? fromName,
   }) = _HistoryModel;
 
   factory HistoryModel.fromJson(Map<String, dynamic> json) =>

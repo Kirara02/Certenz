@@ -16,13 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HistoryEvent {
-  int get page => throw _privateConstructorUsedError;
-  int? get pagination => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int page, int? pagination) getAllHistories,
     required TResult Function(int page, int? pagination) getAllSuccessHistories,
     required TResult Function(int page, int? pagination) getAllPendingHistories,
+    required TResult Function(int transactionId) getSplitBillByTransactionId,
+    required TResult Function(int transactionId) getByTransactionId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +30,8 @@ mixin _$HistoryEvent {
     TResult? Function(int page, int? pagination)? getAllHistories,
     TResult? Function(int page, int? pagination)? getAllSuccessHistories,
     TResult? Function(int page, int? pagination)? getAllPendingHistories,
+    TResult? Function(int transactionId)? getSplitBillByTransactionId,
+    TResult? Function(int transactionId)? getByTransactionId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,6 +39,8 @@ mixin _$HistoryEvent {
     TResult Function(int page, int? pagination)? getAllHistories,
     TResult Function(int page, int? pagination)? getAllSuccessHistories,
     TResult Function(int page, int? pagination)? getAllPendingHistories,
+    TResult Function(int transactionId)? getSplitBillByTransactionId,
+    TResult Function(int transactionId)? getByTransactionId,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +51,9 @@ mixin _$HistoryEvent {
         getAllSuccessHistories,
     required TResult Function(_GetAllPendingHistories value)
         getAllPendingHistories,
+    required TResult Function(_GetSplitBillByTransactionId value)
+        getSplitBillByTransactionId,
+    required TResult Function(_GetByTransactionId value) getByTransactionId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +61,9 @@ mixin _$HistoryEvent {
     TResult? Function(_GetAllHistories value)? getAllHistories,
     TResult? Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
     TResult? Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult? Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult? Function(_GetByTransactionId value)? getByTransactionId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,12 +71,11 @@ mixin _$HistoryEvent {
     TResult Function(_GetAllHistories value)? getAllHistories,
     TResult Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
     TResult Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult Function(_GetByTransactionId value)? getByTransactionId,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HistoryEventCopyWith<HistoryEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -75,8 +84,6 @@ abstract class $HistoryEventCopyWith<$Res> {
   factory $HistoryEventCopyWith(
           HistoryEvent value, $Res Function(HistoryEvent) then) =
       _$HistoryEventCopyWithImpl<$Res, HistoryEvent>;
-  @useResult
-  $Res call({int page, int? pagination});
 }
 
 /// @nodoc
@@ -88,33 +95,13 @@ class _$HistoryEventCopyWithImpl<$Res, $Val extends HistoryEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? page = null,
-    Object? pagination = freezed,
-  }) {
-    return _then(_value.copyWith(
-      page: null == page
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
-      pagination: freezed == pagination
-          ? _value.pagination
-          : pagination // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$GetAllHistoriesImplCopyWith<$Res>
-    implements $HistoryEventCopyWith<$Res> {
+abstract class _$$GetAllHistoriesImplCopyWith<$Res> {
   factory _$$GetAllHistoriesImplCopyWith(_$GetAllHistoriesImpl value,
           $Res Function(_$GetAllHistoriesImpl) then) =
       __$$GetAllHistoriesImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int page, int? pagination});
 }
@@ -187,6 +174,8 @@ class _$GetAllHistoriesImpl implements _GetAllHistories {
     required TResult Function(int page, int? pagination) getAllHistories,
     required TResult Function(int page, int? pagination) getAllSuccessHistories,
     required TResult Function(int page, int? pagination) getAllPendingHistories,
+    required TResult Function(int transactionId) getSplitBillByTransactionId,
+    required TResult Function(int transactionId) getByTransactionId,
   }) {
     return getAllHistories(page, pagination);
   }
@@ -197,6 +186,8 @@ class _$GetAllHistoriesImpl implements _GetAllHistories {
     TResult? Function(int page, int? pagination)? getAllHistories,
     TResult? Function(int page, int? pagination)? getAllSuccessHistories,
     TResult? Function(int page, int? pagination)? getAllPendingHistories,
+    TResult? Function(int transactionId)? getSplitBillByTransactionId,
+    TResult? Function(int transactionId)? getByTransactionId,
   }) {
     return getAllHistories?.call(page, pagination);
   }
@@ -207,6 +198,8 @@ class _$GetAllHistoriesImpl implements _GetAllHistories {
     TResult Function(int page, int? pagination)? getAllHistories,
     TResult Function(int page, int? pagination)? getAllSuccessHistories,
     TResult Function(int page, int? pagination)? getAllPendingHistories,
+    TResult Function(int transactionId)? getSplitBillByTransactionId,
+    TResult Function(int transactionId)? getByTransactionId,
     required TResult orElse(),
   }) {
     if (getAllHistories != null) {
@@ -223,6 +216,9 @@ class _$GetAllHistoriesImpl implements _GetAllHistories {
         getAllSuccessHistories,
     required TResult Function(_GetAllPendingHistories value)
         getAllPendingHistories,
+    required TResult Function(_GetSplitBillByTransactionId value)
+        getSplitBillByTransactionId,
+    required TResult Function(_GetByTransactionId value) getByTransactionId,
   }) {
     return getAllHistories(this);
   }
@@ -233,6 +229,9 @@ class _$GetAllHistoriesImpl implements _GetAllHistories {
     TResult? Function(_GetAllHistories value)? getAllHistories,
     TResult? Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
     TResult? Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult? Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult? Function(_GetByTransactionId value)? getByTransactionId,
   }) {
     return getAllHistories?.call(this);
   }
@@ -243,6 +242,9 @@ class _$GetAllHistoriesImpl implements _GetAllHistories {
     TResult Function(_GetAllHistories value)? getAllHistories,
     TResult Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
     TResult Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult Function(_GetByTransactionId value)? getByTransactionId,
     required TResult orElse(),
   }) {
     if (getAllHistories != null) {
@@ -256,24 +258,19 @@ abstract class _GetAllHistories implements HistoryEvent {
   const factory _GetAllHistories(
       {required final int page, final int? pagination}) = _$GetAllHistoriesImpl;
 
-  @override
   int get page;
-  @override
   int? get pagination;
-  @override
   @JsonKey(ignore: true)
   _$$GetAllHistoriesImplCopyWith<_$GetAllHistoriesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GetAllSuccessHistoriesImplCopyWith<$Res>
-    implements $HistoryEventCopyWith<$Res> {
+abstract class _$$GetAllSuccessHistoriesImplCopyWith<$Res> {
   factory _$$GetAllSuccessHistoriesImplCopyWith(
           _$GetAllSuccessHistoriesImpl value,
           $Res Function(_$GetAllSuccessHistoriesImpl) then) =
       __$$GetAllSuccessHistoriesImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int page, int? pagination});
 }
@@ -347,6 +344,8 @@ class _$GetAllSuccessHistoriesImpl implements _GetAllSuccessHistories {
     required TResult Function(int page, int? pagination) getAllHistories,
     required TResult Function(int page, int? pagination) getAllSuccessHistories,
     required TResult Function(int page, int? pagination) getAllPendingHistories,
+    required TResult Function(int transactionId) getSplitBillByTransactionId,
+    required TResult Function(int transactionId) getByTransactionId,
   }) {
     return getAllSuccessHistories(page, pagination);
   }
@@ -357,6 +356,8 @@ class _$GetAllSuccessHistoriesImpl implements _GetAllSuccessHistories {
     TResult? Function(int page, int? pagination)? getAllHistories,
     TResult? Function(int page, int? pagination)? getAllSuccessHistories,
     TResult? Function(int page, int? pagination)? getAllPendingHistories,
+    TResult? Function(int transactionId)? getSplitBillByTransactionId,
+    TResult? Function(int transactionId)? getByTransactionId,
   }) {
     return getAllSuccessHistories?.call(page, pagination);
   }
@@ -367,6 +368,8 @@ class _$GetAllSuccessHistoriesImpl implements _GetAllSuccessHistories {
     TResult Function(int page, int? pagination)? getAllHistories,
     TResult Function(int page, int? pagination)? getAllSuccessHistories,
     TResult Function(int page, int? pagination)? getAllPendingHistories,
+    TResult Function(int transactionId)? getSplitBillByTransactionId,
+    TResult Function(int transactionId)? getByTransactionId,
     required TResult orElse(),
   }) {
     if (getAllSuccessHistories != null) {
@@ -383,6 +386,9 @@ class _$GetAllSuccessHistoriesImpl implements _GetAllSuccessHistories {
         getAllSuccessHistories,
     required TResult Function(_GetAllPendingHistories value)
         getAllPendingHistories,
+    required TResult Function(_GetSplitBillByTransactionId value)
+        getSplitBillByTransactionId,
+    required TResult Function(_GetByTransactionId value) getByTransactionId,
   }) {
     return getAllSuccessHistories(this);
   }
@@ -393,6 +399,9 @@ class _$GetAllSuccessHistoriesImpl implements _GetAllSuccessHistories {
     TResult? Function(_GetAllHistories value)? getAllHistories,
     TResult? Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
     TResult? Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult? Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult? Function(_GetByTransactionId value)? getByTransactionId,
   }) {
     return getAllSuccessHistories?.call(this);
   }
@@ -403,6 +412,9 @@ class _$GetAllSuccessHistoriesImpl implements _GetAllSuccessHistories {
     TResult Function(_GetAllHistories value)? getAllHistories,
     TResult Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
     TResult Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult Function(_GetByTransactionId value)? getByTransactionId,
     required TResult orElse(),
   }) {
     if (getAllSuccessHistories != null) {
@@ -417,24 +429,19 @@ abstract class _GetAllSuccessHistories implements HistoryEvent {
       {required final int page,
       final int? pagination}) = _$GetAllSuccessHistoriesImpl;
 
-  @override
   int get page;
-  @override
   int? get pagination;
-  @override
   @JsonKey(ignore: true)
   _$$GetAllSuccessHistoriesImplCopyWith<_$GetAllSuccessHistoriesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$GetAllPendingHistoriesImplCopyWith<$Res>
-    implements $HistoryEventCopyWith<$Res> {
+abstract class _$$GetAllPendingHistoriesImplCopyWith<$Res> {
   factory _$$GetAllPendingHistoriesImplCopyWith(
           _$GetAllPendingHistoriesImpl value,
           $Res Function(_$GetAllPendingHistoriesImpl) then) =
       __$$GetAllPendingHistoriesImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int page, int? pagination});
 }
@@ -508,6 +515,8 @@ class _$GetAllPendingHistoriesImpl implements _GetAllPendingHistories {
     required TResult Function(int page, int? pagination) getAllHistories,
     required TResult Function(int page, int? pagination) getAllSuccessHistories,
     required TResult Function(int page, int? pagination) getAllPendingHistories,
+    required TResult Function(int transactionId) getSplitBillByTransactionId,
+    required TResult Function(int transactionId) getByTransactionId,
   }) {
     return getAllPendingHistories(page, pagination);
   }
@@ -518,6 +527,8 @@ class _$GetAllPendingHistoriesImpl implements _GetAllPendingHistories {
     TResult? Function(int page, int? pagination)? getAllHistories,
     TResult? Function(int page, int? pagination)? getAllSuccessHistories,
     TResult? Function(int page, int? pagination)? getAllPendingHistories,
+    TResult? Function(int transactionId)? getSplitBillByTransactionId,
+    TResult? Function(int transactionId)? getByTransactionId,
   }) {
     return getAllPendingHistories?.call(page, pagination);
   }
@@ -528,6 +539,8 @@ class _$GetAllPendingHistoriesImpl implements _GetAllPendingHistories {
     TResult Function(int page, int? pagination)? getAllHistories,
     TResult Function(int page, int? pagination)? getAllSuccessHistories,
     TResult Function(int page, int? pagination)? getAllPendingHistories,
+    TResult Function(int transactionId)? getSplitBillByTransactionId,
+    TResult Function(int transactionId)? getByTransactionId,
     required TResult orElse(),
   }) {
     if (getAllPendingHistories != null) {
@@ -544,6 +557,9 @@ class _$GetAllPendingHistoriesImpl implements _GetAllPendingHistories {
         getAllSuccessHistories,
     required TResult Function(_GetAllPendingHistories value)
         getAllPendingHistories,
+    required TResult Function(_GetSplitBillByTransactionId value)
+        getSplitBillByTransactionId,
+    required TResult Function(_GetByTransactionId value) getByTransactionId,
   }) {
     return getAllPendingHistories(this);
   }
@@ -554,6 +570,9 @@ class _$GetAllPendingHistoriesImpl implements _GetAllPendingHistories {
     TResult? Function(_GetAllHistories value)? getAllHistories,
     TResult? Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
     TResult? Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult? Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult? Function(_GetByTransactionId value)? getByTransactionId,
   }) {
     return getAllPendingHistories?.call(this);
   }
@@ -564,6 +583,9 @@ class _$GetAllPendingHistoriesImpl implements _GetAllPendingHistories {
     TResult Function(_GetAllHistories value)? getAllHistories,
     TResult Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
     TResult Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult Function(_GetByTransactionId value)? getByTransactionId,
     required TResult orElse(),
   }) {
     if (getAllPendingHistories != null) {
@@ -578,14 +600,332 @@ abstract class _GetAllPendingHistories implements HistoryEvent {
       {required final int page,
       final int? pagination}) = _$GetAllPendingHistoriesImpl;
 
-  @override
   int get page;
-  @override
   int? get pagination;
-  @override
   @JsonKey(ignore: true)
   _$$GetAllPendingHistoriesImplCopyWith<_$GetAllPendingHistoriesImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetSplitBillByTransactionIdImplCopyWith<$Res> {
+  factory _$$GetSplitBillByTransactionIdImplCopyWith(
+          _$GetSplitBillByTransactionIdImpl value,
+          $Res Function(_$GetSplitBillByTransactionIdImpl) then) =
+      __$$GetSplitBillByTransactionIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int transactionId});
+}
+
+/// @nodoc
+class __$$GetSplitBillByTransactionIdImplCopyWithImpl<$Res>
+    extends _$HistoryEventCopyWithImpl<$Res, _$GetSplitBillByTransactionIdImpl>
+    implements _$$GetSplitBillByTransactionIdImplCopyWith<$Res> {
+  __$$GetSplitBillByTransactionIdImplCopyWithImpl(
+      _$GetSplitBillByTransactionIdImpl _value,
+      $Res Function(_$GetSplitBillByTransactionIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transactionId = null,
+  }) {
+    return _then(_$GetSplitBillByTransactionIdImpl(
+      transactionId: null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetSplitBillByTransactionIdImpl
+    implements _GetSplitBillByTransactionId {
+  const _$GetSplitBillByTransactionIdImpl({required this.transactionId});
+
+  @override
+  final int transactionId;
+
+  @override
+  String toString() {
+    return 'HistoryEvent.getSplitBillByTransactionId(transactionId: $transactionId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetSplitBillByTransactionIdImpl &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, transactionId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetSplitBillByTransactionIdImplCopyWith<_$GetSplitBillByTransactionIdImpl>
+      get copyWith => __$$GetSplitBillByTransactionIdImplCopyWithImpl<
+          _$GetSplitBillByTransactionIdImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page, int? pagination) getAllHistories,
+    required TResult Function(int page, int? pagination) getAllSuccessHistories,
+    required TResult Function(int page, int? pagination) getAllPendingHistories,
+    required TResult Function(int transactionId) getSplitBillByTransactionId,
+    required TResult Function(int transactionId) getByTransactionId,
+  }) {
+    return getSplitBillByTransactionId(transactionId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int page, int? pagination)? getAllHistories,
+    TResult? Function(int page, int? pagination)? getAllSuccessHistories,
+    TResult? Function(int page, int? pagination)? getAllPendingHistories,
+    TResult? Function(int transactionId)? getSplitBillByTransactionId,
+    TResult? Function(int transactionId)? getByTransactionId,
+  }) {
+    return getSplitBillByTransactionId?.call(transactionId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page, int? pagination)? getAllHistories,
+    TResult Function(int page, int? pagination)? getAllSuccessHistories,
+    TResult Function(int page, int? pagination)? getAllPendingHistories,
+    TResult Function(int transactionId)? getSplitBillByTransactionId,
+    TResult Function(int transactionId)? getByTransactionId,
+    required TResult orElse(),
+  }) {
+    if (getSplitBillByTransactionId != null) {
+      return getSplitBillByTransactionId(transactionId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAllHistories value) getAllHistories,
+    required TResult Function(_GetAllSuccessHistories value)
+        getAllSuccessHistories,
+    required TResult Function(_GetAllPendingHistories value)
+        getAllPendingHistories,
+    required TResult Function(_GetSplitBillByTransactionId value)
+        getSplitBillByTransactionId,
+    required TResult Function(_GetByTransactionId value) getByTransactionId,
+  }) {
+    return getSplitBillByTransactionId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAllHistories value)? getAllHistories,
+    TResult? Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
+    TResult? Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult? Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult? Function(_GetByTransactionId value)? getByTransactionId,
+  }) {
+    return getSplitBillByTransactionId?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAllHistories value)? getAllHistories,
+    TResult Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
+    TResult Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult Function(_GetByTransactionId value)? getByTransactionId,
+    required TResult orElse(),
+  }) {
+    if (getSplitBillByTransactionId != null) {
+      return getSplitBillByTransactionId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSplitBillByTransactionId implements HistoryEvent {
+  const factory _GetSplitBillByTransactionId(
+      {required final int transactionId}) = _$GetSplitBillByTransactionIdImpl;
+
+  int get transactionId;
+  @JsonKey(ignore: true)
+  _$$GetSplitBillByTransactionIdImplCopyWith<_$GetSplitBillByTransactionIdImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetByTransactionIdImplCopyWith<$Res> {
+  factory _$$GetByTransactionIdImplCopyWith(_$GetByTransactionIdImpl value,
+          $Res Function(_$GetByTransactionIdImpl) then) =
+      __$$GetByTransactionIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int transactionId});
+}
+
+/// @nodoc
+class __$$GetByTransactionIdImplCopyWithImpl<$Res>
+    extends _$HistoryEventCopyWithImpl<$Res, _$GetByTransactionIdImpl>
+    implements _$$GetByTransactionIdImplCopyWith<$Res> {
+  __$$GetByTransactionIdImplCopyWithImpl(_$GetByTransactionIdImpl _value,
+      $Res Function(_$GetByTransactionIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? transactionId = null,
+  }) {
+    return _then(_$GetByTransactionIdImpl(
+      transactionId: null == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetByTransactionIdImpl implements _GetByTransactionId {
+  const _$GetByTransactionIdImpl({required this.transactionId});
+
+  @override
+  final int transactionId;
+
+  @override
+  String toString() {
+    return 'HistoryEvent.getByTransactionId(transactionId: $transactionId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetByTransactionIdImpl &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, transactionId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetByTransactionIdImplCopyWith<_$GetByTransactionIdImpl> get copyWith =>
+      __$$GetByTransactionIdImplCopyWithImpl<_$GetByTransactionIdImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page, int? pagination) getAllHistories,
+    required TResult Function(int page, int? pagination) getAllSuccessHistories,
+    required TResult Function(int page, int? pagination) getAllPendingHistories,
+    required TResult Function(int transactionId) getSplitBillByTransactionId,
+    required TResult Function(int transactionId) getByTransactionId,
+  }) {
+    return getByTransactionId(transactionId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int page, int? pagination)? getAllHistories,
+    TResult? Function(int page, int? pagination)? getAllSuccessHistories,
+    TResult? Function(int page, int? pagination)? getAllPendingHistories,
+    TResult? Function(int transactionId)? getSplitBillByTransactionId,
+    TResult? Function(int transactionId)? getByTransactionId,
+  }) {
+    return getByTransactionId?.call(transactionId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page, int? pagination)? getAllHistories,
+    TResult Function(int page, int? pagination)? getAllSuccessHistories,
+    TResult Function(int page, int? pagination)? getAllPendingHistories,
+    TResult Function(int transactionId)? getSplitBillByTransactionId,
+    TResult Function(int transactionId)? getByTransactionId,
+    required TResult orElse(),
+  }) {
+    if (getByTransactionId != null) {
+      return getByTransactionId(transactionId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetAllHistories value) getAllHistories,
+    required TResult Function(_GetAllSuccessHistories value)
+        getAllSuccessHistories,
+    required TResult Function(_GetAllPendingHistories value)
+        getAllPendingHistories,
+    required TResult Function(_GetSplitBillByTransactionId value)
+        getSplitBillByTransactionId,
+    required TResult Function(_GetByTransactionId value) getByTransactionId,
+  }) {
+    return getByTransactionId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_GetAllHistories value)? getAllHistories,
+    TResult? Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
+    TResult? Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult? Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult? Function(_GetByTransactionId value)? getByTransactionId,
+  }) {
+    return getByTransactionId?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetAllHistories value)? getAllHistories,
+    TResult Function(_GetAllSuccessHistories value)? getAllSuccessHistories,
+    TResult Function(_GetAllPendingHistories value)? getAllPendingHistories,
+    TResult Function(_GetSplitBillByTransactionId value)?
+        getSplitBillByTransactionId,
+    TResult Function(_GetByTransactionId value)? getByTransactionId,
+    required TResult orElse(),
+  }) {
+    if (getByTransactionId != null) {
+      return getByTransactionId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetByTransactionId implements HistoryEvent {
+  const factory _GetByTransactionId({required final int transactionId}) =
+      _$GetByTransactionIdImpl;
+
+  int get transactionId;
+  @JsonKey(ignore: true)
+  _$$GetByTransactionIdImplCopyWith<_$GetByTransactionIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -596,6 +936,9 @@ mixin _$HistoryState {
     required TResult Function() loading,
     required TResult Function(PaginationResponse<HistoryModel> response)
         successPagination,
+    required TResult Function(HistorySplitBillModel data)
+        loadedSplitBillHistory,
+    required TResult Function(HistoryItemModel data) loadedBillHistory,
     required TResult Function(NetworkExceptions error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -605,6 +948,8 @@ mixin _$HistoryState {
     TResult? Function()? loading,
     TResult? Function(PaginationResponse<HistoryModel> response)?
         successPagination,
+    TResult? Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult? Function(HistoryItemModel data)? loadedBillHistory,
     TResult? Function(NetworkExceptions error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -614,6 +959,8 @@ mixin _$HistoryState {
     TResult Function()? loading,
     TResult Function(PaginationResponse<HistoryModel> response)?
         successPagination,
+    TResult Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult Function(HistoryItemModel data)? loadedBillHistory,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) =>
@@ -623,6 +970,9 @@ mixin _$HistoryState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessPagination value) successPagination,
+    required TResult Function(_LoadedSplitBillHistory value)
+        loadedSplitBillHistory,
+    required TResult Function(_LoadedBillHistory value) loadedBillHistory,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -631,6 +981,8 @@ mixin _$HistoryState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessPagination value)? successPagination,
+    TResult? Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult? Function(_LoadedBillHistory value)? loadedBillHistory,
     TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -639,6 +991,8 @@ mixin _$HistoryState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessPagination value)? successPagination,
+    TResult Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult Function(_LoadedBillHistory value)? loadedBillHistory,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -705,6 +1059,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function(PaginationResponse<HistoryModel> response)
         successPagination,
+    required TResult Function(HistorySplitBillModel data)
+        loadedSplitBillHistory,
+    required TResult Function(HistoryItemModel data) loadedBillHistory,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return initial();
@@ -717,6 +1074,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(PaginationResponse<HistoryModel> response)?
         successPagination,
+    TResult? Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult? Function(HistoryItemModel data)? loadedBillHistory,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return initial?.call();
@@ -729,6 +1088,8 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(PaginationResponse<HistoryModel> response)?
         successPagination,
+    TResult Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult Function(HistoryItemModel data)? loadedBillHistory,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -744,6 +1105,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessPagination value) successPagination,
+    required TResult Function(_LoadedSplitBillHistory value)
+        loadedSplitBillHistory,
+    required TResult Function(_LoadedBillHistory value) loadedBillHistory,
     required TResult Function(_Error value) error,
   }) {
     return initial(this);
@@ -755,6 +1119,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessPagination value)? successPagination,
+    TResult? Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult? Function(_LoadedBillHistory value)? loadedBillHistory,
     TResult? Function(_Error value)? error,
   }) {
     return initial?.call(this);
@@ -766,6 +1132,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessPagination value)? successPagination,
+    TResult Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult Function(_LoadedBillHistory value)? loadedBillHistory,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -822,6 +1190,9 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(PaginationResponse<HistoryModel> response)
         successPagination,
+    required TResult Function(HistorySplitBillModel data)
+        loadedSplitBillHistory,
+    required TResult Function(HistoryItemModel data) loadedBillHistory,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return loading();
@@ -834,6 +1205,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(PaginationResponse<HistoryModel> response)?
         successPagination,
+    TResult? Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult? Function(HistoryItemModel data)? loadedBillHistory,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return loading?.call();
@@ -846,6 +1219,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(PaginationResponse<HistoryModel> response)?
         successPagination,
+    TResult Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult Function(HistoryItemModel data)? loadedBillHistory,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -861,6 +1236,9 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessPagination value) successPagination,
+    required TResult Function(_LoadedSplitBillHistory value)
+        loadedSplitBillHistory,
+    required TResult Function(_LoadedBillHistory value) loadedBillHistory,
     required TResult Function(_Error value) error,
   }) {
     return loading(this);
@@ -872,6 +1250,8 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessPagination value)? successPagination,
+    TResult? Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult? Function(_LoadedBillHistory value)? loadedBillHistory,
     TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
@@ -883,6 +1263,8 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessPagination value)? successPagination,
+    TResult Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult Function(_LoadedBillHistory value)? loadedBillHistory,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -978,6 +1360,9 @@ class _$SuccessPaginationImpl implements _SuccessPagination {
     required TResult Function() loading,
     required TResult Function(PaginationResponse<HistoryModel> response)
         successPagination,
+    required TResult Function(HistorySplitBillModel data)
+        loadedSplitBillHistory,
+    required TResult Function(HistoryItemModel data) loadedBillHistory,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return successPagination(response);
@@ -990,6 +1375,8 @@ class _$SuccessPaginationImpl implements _SuccessPagination {
     TResult? Function()? loading,
     TResult? Function(PaginationResponse<HistoryModel> response)?
         successPagination,
+    TResult? Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult? Function(HistoryItemModel data)? loadedBillHistory,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return successPagination?.call(response);
@@ -1002,6 +1389,8 @@ class _$SuccessPaginationImpl implements _SuccessPagination {
     TResult Function()? loading,
     TResult Function(PaginationResponse<HistoryModel> response)?
         successPagination,
+    TResult Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult Function(HistoryItemModel data)? loadedBillHistory,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -1017,6 +1406,9 @@ class _$SuccessPaginationImpl implements _SuccessPagination {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessPagination value) successPagination,
+    required TResult Function(_LoadedSplitBillHistory value)
+        loadedSplitBillHistory,
+    required TResult Function(_LoadedBillHistory value) loadedBillHistory,
     required TResult Function(_Error value) error,
   }) {
     return successPagination(this);
@@ -1028,6 +1420,8 @@ class _$SuccessPaginationImpl implements _SuccessPagination {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessPagination value)? successPagination,
+    TResult? Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult? Function(_LoadedBillHistory value)? loadedBillHistory,
     TResult? Function(_Error value)? error,
   }) {
     return successPagination?.call(this);
@@ -1039,6 +1433,8 @@ class _$SuccessPaginationImpl implements _SuccessPagination {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessPagination value)? successPagination,
+    TResult Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult Function(_LoadedBillHistory value)? loadedBillHistory,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -1057,6 +1453,356 @@ abstract class _SuccessPagination implements HistoryState {
   PaginationResponse<HistoryModel> get response;
   @JsonKey(ignore: true)
   _$$SuccessPaginationImplCopyWith<_$SuccessPaginationImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadedSplitBillHistoryImplCopyWith<$Res> {
+  factory _$$LoadedSplitBillHistoryImplCopyWith(
+          _$LoadedSplitBillHistoryImpl value,
+          $Res Function(_$LoadedSplitBillHistoryImpl) then) =
+      __$$LoadedSplitBillHistoryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({HistorySplitBillModel data});
+
+  $HistorySplitBillModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$LoadedSplitBillHistoryImplCopyWithImpl<$Res>
+    extends _$HistoryStateCopyWithImpl<$Res, _$LoadedSplitBillHistoryImpl>
+    implements _$$LoadedSplitBillHistoryImplCopyWith<$Res> {
+  __$$LoadedSplitBillHistoryImplCopyWithImpl(
+      _$LoadedSplitBillHistoryImpl _value,
+      $Res Function(_$LoadedSplitBillHistoryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$LoadedSplitBillHistoryImpl(
+      null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as HistorySplitBillModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $HistorySplitBillModelCopyWith<$Res> get data {
+    return $HistorySplitBillModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$LoadedSplitBillHistoryImpl implements _LoadedSplitBillHistory {
+  const _$LoadedSplitBillHistoryImpl(this.data);
+
+  @override
+  final HistorySplitBillModel data;
+
+  @override
+  String toString() {
+    return 'HistoryState.loadedSplitBillHistory(data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadedSplitBillHistoryImpl &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedSplitBillHistoryImplCopyWith<_$LoadedSplitBillHistoryImpl>
+      get copyWith => __$$LoadedSplitBillHistoryImplCopyWithImpl<
+          _$LoadedSplitBillHistoryImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(PaginationResponse<HistoryModel> response)
+        successPagination,
+    required TResult Function(HistorySplitBillModel data)
+        loadedSplitBillHistory,
+    required TResult Function(HistoryItemModel data) loadedBillHistory,
+    required TResult Function(NetworkExceptions error) error,
+  }) {
+    return loadedSplitBillHistory(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
+    TResult? Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult? Function(HistoryItemModel data)? loadedBillHistory,
+    TResult? Function(NetworkExceptions error)? error,
+  }) {
+    return loadedSplitBillHistory?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
+    TResult Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult Function(HistoryItemModel data)? loadedBillHistory,
+    TResult Function(NetworkExceptions error)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedSplitBillHistory != null) {
+      return loadedSplitBillHistory(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessPagination value) successPagination,
+    required TResult Function(_LoadedSplitBillHistory value)
+        loadedSplitBillHistory,
+    required TResult Function(_LoadedBillHistory value) loadedBillHistory,
+    required TResult Function(_Error value) error,
+  }) {
+    return loadedSplitBillHistory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessPagination value)? successPagination,
+    TResult? Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult? Function(_LoadedBillHistory value)? loadedBillHistory,
+    TResult? Function(_Error value)? error,
+  }) {
+    return loadedSplitBillHistory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessPagination value)? successPagination,
+    TResult Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult Function(_LoadedBillHistory value)? loadedBillHistory,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedSplitBillHistory != null) {
+      return loadedSplitBillHistory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadedSplitBillHistory implements HistoryState {
+  const factory _LoadedSplitBillHistory(final HistorySplitBillModel data) =
+      _$LoadedSplitBillHistoryImpl;
+
+  HistorySplitBillModel get data;
+  @JsonKey(ignore: true)
+  _$$LoadedSplitBillHistoryImplCopyWith<_$LoadedSplitBillHistoryImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadedBillHistoryImplCopyWith<$Res> {
+  factory _$$LoadedBillHistoryImplCopyWith(_$LoadedBillHistoryImpl value,
+          $Res Function(_$LoadedBillHistoryImpl) then) =
+      __$$LoadedBillHistoryImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({HistoryItemModel data});
+
+  $HistoryItemModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$LoadedBillHistoryImplCopyWithImpl<$Res>
+    extends _$HistoryStateCopyWithImpl<$Res, _$LoadedBillHistoryImpl>
+    implements _$$LoadedBillHistoryImplCopyWith<$Res> {
+  __$$LoadedBillHistoryImplCopyWithImpl(_$LoadedBillHistoryImpl _value,
+      $Res Function(_$LoadedBillHistoryImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$LoadedBillHistoryImpl(
+      null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as HistoryItemModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $HistoryItemModelCopyWith<$Res> get data {
+    return $HistoryItemModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$LoadedBillHistoryImpl implements _LoadedBillHistory {
+  const _$LoadedBillHistoryImpl(this.data);
+
+  @override
+  final HistoryItemModel data;
+
+  @override
+  String toString() {
+    return 'HistoryState.loadedBillHistory(data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadedBillHistoryImpl &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedBillHistoryImplCopyWith<_$LoadedBillHistoryImpl> get copyWith =>
+      __$$LoadedBillHistoryImplCopyWithImpl<_$LoadedBillHistoryImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(PaginationResponse<HistoryModel> response)
+        successPagination,
+    required TResult Function(HistorySplitBillModel data)
+        loadedSplitBillHistory,
+    required TResult Function(HistoryItemModel data) loadedBillHistory,
+    required TResult Function(NetworkExceptions error) error,
+  }) {
+    return loadedBillHistory(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
+    TResult? Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult? Function(HistoryItemModel data)? loadedBillHistory,
+    TResult? Function(NetworkExceptions error)? error,
+  }) {
+    return loadedBillHistory?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(PaginationResponse<HistoryModel> response)?
+        successPagination,
+    TResult Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult Function(HistoryItemModel data)? loadedBillHistory,
+    TResult Function(NetworkExceptions error)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedBillHistory != null) {
+      return loadedBillHistory(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessPagination value) successPagination,
+    required TResult Function(_LoadedSplitBillHistory value)
+        loadedSplitBillHistory,
+    required TResult Function(_LoadedBillHistory value) loadedBillHistory,
+    required TResult Function(_Error value) error,
+  }) {
+    return loadedBillHistory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessPagination value)? successPagination,
+    TResult? Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult? Function(_LoadedBillHistory value)? loadedBillHistory,
+    TResult? Function(_Error value)? error,
+  }) {
+    return loadedBillHistory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessPagination value)? successPagination,
+    TResult Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult Function(_LoadedBillHistory value)? loadedBillHistory,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedBillHistory != null) {
+      return loadedBillHistory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadedBillHistory implements HistoryState {
+  const factory _LoadedBillHistory(final HistoryItemModel data) =
+      _$LoadedBillHistoryImpl;
+
+  HistoryItemModel get data;
+  @JsonKey(ignore: true)
+  _$$LoadedBillHistoryImplCopyWith<_$LoadedBillHistoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1138,6 +1884,9 @@ class _$ErrorImpl implements _Error {
     required TResult Function() loading,
     required TResult Function(PaginationResponse<HistoryModel> response)
         successPagination,
+    required TResult Function(HistorySplitBillModel data)
+        loadedSplitBillHistory,
+    required TResult Function(HistoryItemModel data) loadedBillHistory,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return error(this.error);
@@ -1150,6 +1899,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? loading,
     TResult? Function(PaginationResponse<HistoryModel> response)?
         successPagination,
+    TResult? Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult? Function(HistoryItemModel data)? loadedBillHistory,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return error?.call(this.error);
@@ -1162,6 +1913,8 @@ class _$ErrorImpl implements _Error {
     TResult Function()? loading,
     TResult Function(PaginationResponse<HistoryModel> response)?
         successPagination,
+    TResult Function(HistorySplitBillModel data)? loadedSplitBillHistory,
+    TResult Function(HistoryItemModel data)? loadedBillHistory,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -1177,6 +1930,9 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_SuccessPagination value) successPagination,
+    required TResult Function(_LoadedSplitBillHistory value)
+        loadedSplitBillHistory,
+    required TResult Function(_LoadedBillHistory value) loadedBillHistory,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -1188,6 +1944,8 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_SuccessPagination value)? successPagination,
+    TResult? Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult? Function(_LoadedBillHistory value)? loadedBillHistory,
     TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
@@ -1199,6 +1957,8 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_SuccessPagination value)? successPagination,
+    TResult Function(_LoadedSplitBillHistory value)? loadedSplitBillHistory,
+    TResult Function(_LoadedBillHistory value)? loadedBillHistory,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

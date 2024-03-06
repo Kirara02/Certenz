@@ -2,8 +2,11 @@ import 'package:bloc/bloc.dart';
 import 'package:certenz/src/core/api_result.dart';
 import 'package:certenz/src/core/network_exceptions.dart';
 import 'package:certenz/src/data/models/common/pagination_response.dart';
+import 'package:certenz/src/data/models/history/history_item_model.dart';
 import 'package:certenz/src/data/models/history/history_model.dart';
-import 'package:certenz/src/data/services/history/history_service.dart';
+import 'package:certenz/src/data/models/history/history_split_bill_model.dart';
+import 'package:certenz/src/data/services/history_service.dart';
+import 'package:certenz/src/utils/logger.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
 
@@ -48,6 +51,28 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
           result.when(
             success: (response) =>
                 emit(HistoryState.successPagination(response)),
+            failure: (error) => emit(HistoryState.error(error)),
+          );
+        },
+        getByTransactionId: (transactionId) async {
+          emit(const HistoryState.loading());
+
+          ApiResult<HistoryItemModel> result = await HistoryService()
+              .getByTransactionId(transactionId: transactionId);
+
+          result.when(
+            success: (data) => emit(HistoryState.loadedBillHistory(data)),
+            failure: (error) => emit(HistoryState.error(error)),
+          );
+        },
+        getSplitBillByTransactionId: (transactionId) async {
+          emit(const HistoryState.loading());
+
+          ApiResult<HistorySplitBillModel> result = await HistoryService()
+              .getSplitBillByTransactionId(transactionId: transactionId);
+
+          result.when(
+            success: (data) => emit(HistoryState.loadedSplitBillHistory(data)),
             failure: (error) => emit(HistoryState.error(error)),
           );
         },

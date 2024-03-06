@@ -28,20 +28,20 @@ mixin _$BillModel {
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: "total_amount_bill")
   double get totalAmountBill => throw _privateConstructorUsedError;
-  @JsonKey(name: "to_email")
-  String get toEmail => throw _privateConstructorUsedError;
   @JsonKey(name: "transaction_datetime")
   String get transactionDatetime => throw _privateConstructorUsedError;
+  @JsonKey(name: "to_email")
+  String? get toEmail => throw _privateConstructorUsedError;
   @JsonKey(name: "to_name")
-  String get toName => throw _privateConstructorUsedError;
+  String? get toName => throw _privateConstructorUsedError;
+  @JsonKey(name: "to_account")
+  String? get toAccount => throw _privateConstructorUsedError;
   @JsonKey(name: "from_account")
   String get fromAccount => throw _privateConstructorUsedError;
-  @JsonKey(name: "payment_method")
-  String get paymentMethod => throw _privateConstructorUsedError;
   @JsonKey(name: "from_name")
   String get fromName => throw _privateConstructorUsedError;
-  @JsonKey(name: "to_account")
-  String get toAccount => throw _privateConstructorUsedError;
+  @JsonKey(name: "payment_method")
+  String? get paymentMethod => throw _privateConstructorUsedError;
   @JsonKey(name: "bill_type")
   String get billType => throw _privateConstructorUsedError;
   @JsonKey(name: "phone_number")
@@ -51,8 +51,14 @@ mixin _$BillModel {
   String? get qrCode => throw _privateConstructorUsedError;
   @JsonKey(name: "split_id")
   int? get splitId => throw _privateConstructorUsedError;
-  @JsonKey(name: "create_bill_status")
-  String get createBillStatus => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tenant_period')
+  String? get tenantPeriod => throw _privateConstructorUsedError;
+  @JsonKey(name: 'paid_on_date')
+  String? get paidOnDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'paid_on_time')
+  String? get paidOnTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  String? get status => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
   String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: "updated_at")
@@ -75,19 +81,22 @@ abstract class $BillModelCopyWith<$Res> {
       @JsonKey(name: "user_id") int userId,
       String title,
       @JsonKey(name: "total_amount_bill") double totalAmountBill,
-      @JsonKey(name: "to_email") String toEmail,
       @JsonKey(name: "transaction_datetime") String transactionDatetime,
-      @JsonKey(name: "to_name") String toName,
+      @JsonKey(name: "to_email") String? toEmail,
+      @JsonKey(name: "to_name") String? toName,
+      @JsonKey(name: "to_account") String? toAccount,
       @JsonKey(name: "from_account") String fromAccount,
-      @JsonKey(name: "payment_method") String paymentMethod,
       @JsonKey(name: "from_name") String fromName,
-      @JsonKey(name: "to_account") String toAccount,
+      @JsonKey(name: "payment_method") String? paymentMethod,
       @JsonKey(name: "bill_type") String billType,
       @JsonKey(name: "phone_number") String? phoneNumber,
       String? note,
       @JsonKey(name: "qr_code") String? qrCode,
       @JsonKey(name: "split_id") int? splitId,
-      @JsonKey(name: "create_bill_status") String createBillStatus,
+      @JsonKey(name: 'tenant_period') String? tenantPeriod,
+      @JsonKey(name: 'paid_on_date') String? paidOnDate,
+      @JsonKey(name: 'paid_on_time') String? paidOnTime,
+      @JsonKey(name: 'status') String? status,
       @JsonKey(name: "created_at") String? createdAt,
       @JsonKey(name: "updated_at") String? updatedAt});
 }
@@ -110,19 +119,22 @@ class _$BillModelCopyWithImpl<$Res, $Val extends BillModel>
     Object? userId = null,
     Object? title = null,
     Object? totalAmountBill = null,
-    Object? toEmail = null,
     Object? transactionDatetime = null,
-    Object? toName = null,
+    Object? toEmail = freezed,
+    Object? toName = freezed,
+    Object? toAccount = freezed,
     Object? fromAccount = null,
-    Object? paymentMethod = null,
     Object? fromName = null,
-    Object? toAccount = null,
+    Object? paymentMethod = freezed,
     Object? billType = null,
     Object? phoneNumber = freezed,
     Object? note = freezed,
     Object? qrCode = freezed,
     Object? splitId = freezed,
-    Object? createBillStatus = null,
+    Object? tenantPeriod = freezed,
+    Object? paidOnDate = freezed,
+    Object? paidOnTime = freezed,
+    Object? status = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -147,34 +159,34 @@ class _$BillModelCopyWithImpl<$Res, $Val extends BillModel>
           ? _value.totalAmountBill
           : totalAmountBill // ignore: cast_nullable_to_non_nullable
               as double,
-      toEmail: null == toEmail
-          ? _value.toEmail
-          : toEmail // ignore: cast_nullable_to_non_nullable
-              as String,
       transactionDatetime: null == transactionDatetime
           ? _value.transactionDatetime
           : transactionDatetime // ignore: cast_nullable_to_non_nullable
               as String,
-      toName: null == toName
+      toEmail: freezed == toEmail
+          ? _value.toEmail
+          : toEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      toName: freezed == toName
           ? _value.toName
           : toName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      toAccount: freezed == toAccount
+          ? _value.toAccount
+          : toAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
       fromAccount: null == fromAccount
           ? _value.fromAccount
           : fromAccount // ignore: cast_nullable_to_non_nullable
-              as String,
-      paymentMethod: null == paymentMethod
-          ? _value.paymentMethod
-          : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
       fromName: null == fromName
           ? _value.fromName
           : fromName // ignore: cast_nullable_to_non_nullable
               as String,
-      toAccount: null == toAccount
-          ? _value.toAccount
-          : toAccount // ignore: cast_nullable_to_non_nullable
-              as String,
+      paymentMethod: freezed == paymentMethod
+          ? _value.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String?,
       billType: null == billType
           ? _value.billType
           : billType // ignore: cast_nullable_to_non_nullable
@@ -195,10 +207,22 @@ class _$BillModelCopyWithImpl<$Res, $Val extends BillModel>
           ? _value.splitId
           : splitId // ignore: cast_nullable_to_non_nullable
               as int?,
-      createBillStatus: null == createBillStatus
-          ? _value.createBillStatus
-          : createBillStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+      tenantPeriod: freezed == tenantPeriod
+          ? _value.tenantPeriod
+          : tenantPeriod // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paidOnDate: freezed == paidOnDate
+          ? _value.paidOnDate
+          : paidOnDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paidOnTime: freezed == paidOnTime
+          ? _value.paidOnTime
+          : paidOnTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -225,19 +249,22 @@ abstract class _$$BillModelImplCopyWith<$Res>
       @JsonKey(name: "user_id") int userId,
       String title,
       @JsonKey(name: "total_amount_bill") double totalAmountBill,
-      @JsonKey(name: "to_email") String toEmail,
       @JsonKey(name: "transaction_datetime") String transactionDatetime,
-      @JsonKey(name: "to_name") String toName,
+      @JsonKey(name: "to_email") String? toEmail,
+      @JsonKey(name: "to_name") String? toName,
+      @JsonKey(name: "to_account") String? toAccount,
       @JsonKey(name: "from_account") String fromAccount,
-      @JsonKey(name: "payment_method") String paymentMethod,
       @JsonKey(name: "from_name") String fromName,
-      @JsonKey(name: "to_account") String toAccount,
+      @JsonKey(name: "payment_method") String? paymentMethod,
       @JsonKey(name: "bill_type") String billType,
       @JsonKey(name: "phone_number") String? phoneNumber,
       String? note,
       @JsonKey(name: "qr_code") String? qrCode,
       @JsonKey(name: "split_id") int? splitId,
-      @JsonKey(name: "create_bill_status") String createBillStatus,
+      @JsonKey(name: 'tenant_period') String? tenantPeriod,
+      @JsonKey(name: 'paid_on_date') String? paidOnDate,
+      @JsonKey(name: 'paid_on_time') String? paidOnTime,
+      @JsonKey(name: 'status') String? status,
       @JsonKey(name: "created_at") String? createdAt,
       @JsonKey(name: "updated_at") String? updatedAt});
 }
@@ -258,19 +285,22 @@ class __$$BillModelImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? title = null,
     Object? totalAmountBill = null,
-    Object? toEmail = null,
     Object? transactionDatetime = null,
-    Object? toName = null,
+    Object? toEmail = freezed,
+    Object? toName = freezed,
+    Object? toAccount = freezed,
     Object? fromAccount = null,
-    Object? paymentMethod = null,
     Object? fromName = null,
-    Object? toAccount = null,
+    Object? paymentMethod = freezed,
     Object? billType = null,
     Object? phoneNumber = freezed,
     Object? note = freezed,
     Object? qrCode = freezed,
     Object? splitId = freezed,
-    Object? createBillStatus = null,
+    Object? tenantPeriod = freezed,
+    Object? paidOnDate = freezed,
+    Object? paidOnTime = freezed,
+    Object? status = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -295,34 +325,34 @@ class __$$BillModelImplCopyWithImpl<$Res>
           ? _value.totalAmountBill
           : totalAmountBill // ignore: cast_nullable_to_non_nullable
               as double,
-      toEmail: null == toEmail
-          ? _value.toEmail
-          : toEmail // ignore: cast_nullable_to_non_nullable
-              as String,
       transactionDatetime: null == transactionDatetime
           ? _value.transactionDatetime
           : transactionDatetime // ignore: cast_nullable_to_non_nullable
               as String,
-      toName: null == toName
+      toEmail: freezed == toEmail
+          ? _value.toEmail
+          : toEmail // ignore: cast_nullable_to_non_nullable
+              as String?,
+      toName: freezed == toName
           ? _value.toName
           : toName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      toAccount: freezed == toAccount
+          ? _value.toAccount
+          : toAccount // ignore: cast_nullable_to_non_nullable
+              as String?,
       fromAccount: null == fromAccount
           ? _value.fromAccount
           : fromAccount // ignore: cast_nullable_to_non_nullable
-              as String,
-      paymentMethod: null == paymentMethod
-          ? _value.paymentMethod
-          : paymentMethod // ignore: cast_nullable_to_non_nullable
               as String,
       fromName: null == fromName
           ? _value.fromName
           : fromName // ignore: cast_nullable_to_non_nullable
               as String,
-      toAccount: null == toAccount
-          ? _value.toAccount
-          : toAccount // ignore: cast_nullable_to_non_nullable
-              as String,
+      paymentMethod: freezed == paymentMethod
+          ? _value.paymentMethod
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as String?,
       billType: null == billType
           ? _value.billType
           : billType // ignore: cast_nullable_to_non_nullable
@@ -343,10 +373,22 @@ class __$$BillModelImplCopyWithImpl<$Res>
           ? _value.splitId
           : splitId // ignore: cast_nullable_to_non_nullable
               as int?,
-      createBillStatus: null == createBillStatus
-          ? _value.createBillStatus
-          : createBillStatus // ignore: cast_nullable_to_non_nullable
-              as String,
+      tenantPeriod: freezed == tenantPeriod
+          ? _value.tenantPeriod
+          : tenantPeriod // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paidOnDate: freezed == paidOnDate
+          ? _value.paidOnDate
+          : paidOnDate // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paidOnTime: freezed == paidOnTime
+          ? _value.paidOnTime
+          : paidOnTime // ignore: cast_nullable_to_non_nullable
+              as String?,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -368,19 +410,22 @@ class _$BillModelImpl implements _BillModel {
       @JsonKey(name: "user_id") required this.userId,
       required this.title,
       @JsonKey(name: "total_amount_bill") required this.totalAmountBill,
-      @JsonKey(name: "to_email") required this.toEmail,
       @JsonKey(name: "transaction_datetime") required this.transactionDatetime,
-      @JsonKey(name: "to_name") required this.toName,
+      @JsonKey(name: "to_email") this.toEmail,
+      @JsonKey(name: "to_name") this.toName,
+      @JsonKey(name: "to_account") this.toAccount,
       @JsonKey(name: "from_account") required this.fromAccount,
-      @JsonKey(name: "payment_method") required this.paymentMethod,
       @JsonKey(name: "from_name") required this.fromName,
-      @JsonKey(name: "to_account") required this.toAccount,
+      @JsonKey(name: "payment_method") this.paymentMethod,
       @JsonKey(name: "bill_type") required this.billType,
       @JsonKey(name: "phone_number") this.phoneNumber,
       this.note,
       @JsonKey(name: "qr_code") this.qrCode,
       @JsonKey(name: "split_id") this.splitId,
-      @JsonKey(name: "create_bill_status") required this.createBillStatus,
+      @JsonKey(name: 'tenant_period') this.tenantPeriod,
+      @JsonKey(name: 'paid_on_date') this.paidOnDate,
+      @JsonKey(name: 'paid_on_time') this.paidOnTime,
+      @JsonKey(name: 'status') this.status,
       @JsonKey(name: "created_at") this.createdAt,
       @JsonKey(name: "updated_at") this.updatedAt});
 
@@ -401,26 +446,26 @@ class _$BillModelImpl implements _BillModel {
   @JsonKey(name: "total_amount_bill")
   final double totalAmountBill;
   @override
-  @JsonKey(name: "to_email")
-  final String toEmail;
-  @override
   @JsonKey(name: "transaction_datetime")
   final String transactionDatetime;
   @override
+  @JsonKey(name: "to_email")
+  final String? toEmail;
+  @override
   @JsonKey(name: "to_name")
-  final String toName;
+  final String? toName;
+  @override
+  @JsonKey(name: "to_account")
+  final String? toAccount;
   @override
   @JsonKey(name: "from_account")
   final String fromAccount;
   @override
-  @JsonKey(name: "payment_method")
-  final String paymentMethod;
-  @override
   @JsonKey(name: "from_name")
   final String fromName;
   @override
-  @JsonKey(name: "to_account")
-  final String toAccount;
+  @JsonKey(name: "payment_method")
+  final String? paymentMethod;
   @override
   @JsonKey(name: "bill_type")
   final String billType;
@@ -436,8 +481,17 @@ class _$BillModelImpl implements _BillModel {
   @JsonKey(name: "split_id")
   final int? splitId;
   @override
-  @JsonKey(name: "create_bill_status")
-  final String createBillStatus;
+  @JsonKey(name: 'tenant_period')
+  final String? tenantPeriod;
+  @override
+  @JsonKey(name: 'paid_on_date')
+  final String? paidOnDate;
+  @override
+  @JsonKey(name: 'paid_on_time')
+  final String? paidOnTime;
+  @override
+  @JsonKey(name: 'status')
+  final String? status;
   @override
   @JsonKey(name: "created_at")
   final String? createdAt;
@@ -447,7 +501,7 @@ class _$BillModelImpl implements _BillModel {
 
   @override
   String toString() {
-    return 'BillModel(id: $id, billNumber: $billNumber, userId: $userId, title: $title, totalAmountBill: $totalAmountBill, toEmail: $toEmail, transactionDatetime: $transactionDatetime, toName: $toName, fromAccount: $fromAccount, paymentMethod: $paymentMethod, fromName: $fromName, toAccount: $toAccount, billType: $billType, phoneNumber: $phoneNumber, note: $note, qrCode: $qrCode, splitId: $splitId, createBillStatus: $createBillStatus, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'BillModel(id: $id, billNumber: $billNumber, userId: $userId, title: $title, totalAmountBill: $totalAmountBill, transactionDatetime: $transactionDatetime, toEmail: $toEmail, toName: $toName, toAccount: $toAccount, fromAccount: $fromAccount, fromName: $fromName, paymentMethod: $paymentMethod, billType: $billType, phoneNumber: $phoneNumber, note: $note, qrCode: $qrCode, splitId: $splitId, tenantPeriod: $tenantPeriod, paidOnDate: $paidOnDate, paidOnTime: $paidOnTime, status: $status, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -462,18 +516,18 @@ class _$BillModelImpl implements _BillModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.totalAmountBill, totalAmountBill) ||
                 other.totalAmountBill == totalAmountBill) &&
-            (identical(other.toEmail, toEmail) || other.toEmail == toEmail) &&
             (identical(other.transactionDatetime, transactionDatetime) ||
                 other.transactionDatetime == transactionDatetime) &&
+            (identical(other.toEmail, toEmail) || other.toEmail == toEmail) &&
             (identical(other.toName, toName) || other.toName == toName) &&
-            (identical(other.fromAccount, fromAccount) ||
-                other.fromAccount == fromAccount) &&
-            (identical(other.paymentMethod, paymentMethod) ||
-                other.paymentMethod == paymentMethod) &&
-            (identical(other.fromName, fromName) ||
-                other.fromName == fromName) &&
             (identical(other.toAccount, toAccount) ||
                 other.toAccount == toAccount) &&
+            (identical(other.fromAccount, fromAccount) ||
+                other.fromAccount == fromAccount) &&
+            (identical(other.fromName, fromName) ||
+                other.fromName == fromName) &&
+            (identical(other.paymentMethod, paymentMethod) ||
+                other.paymentMethod == paymentMethod) &&
             (identical(other.billType, billType) ||
                 other.billType == billType) &&
             (identical(other.phoneNumber, phoneNumber) ||
@@ -481,8 +535,13 @@ class _$BillModelImpl implements _BillModel {
             (identical(other.note, note) || other.note == note) &&
             (identical(other.qrCode, qrCode) || other.qrCode == qrCode) &&
             (identical(other.splitId, splitId) || other.splitId == splitId) &&
-            (identical(other.createBillStatus, createBillStatus) ||
-                other.createBillStatus == createBillStatus) &&
+            (identical(other.tenantPeriod, tenantPeriod) ||
+                other.tenantPeriod == tenantPeriod) &&
+            (identical(other.paidOnDate, paidOnDate) ||
+                other.paidOnDate == paidOnDate) &&
+            (identical(other.paidOnTime, paidOnTime) ||
+                other.paidOnTime == paidOnTime) &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -498,19 +557,22 @@ class _$BillModelImpl implements _BillModel {
         userId,
         title,
         totalAmountBill,
-        toEmail,
         transactionDatetime,
+        toEmail,
         toName,
-        fromAccount,
-        paymentMethod,
-        fromName,
         toAccount,
+        fromAccount,
+        fromName,
+        paymentMethod,
         billType,
         phoneNumber,
         note,
         qrCode,
         splitId,
-        createBillStatus,
+        tenantPeriod,
+        paidOnDate,
+        paidOnTime,
+        status,
         createdAt,
         updatedAt
       ]);
@@ -536,21 +598,23 @@ abstract class _BillModel implements BillModel {
       @JsonKey(name: "user_id") required final int userId,
       required final String title,
       @JsonKey(name: "total_amount_bill") required final double totalAmountBill,
-      @JsonKey(name: "to_email") required final String toEmail,
       @JsonKey(name: "transaction_datetime")
       required final String transactionDatetime,
-      @JsonKey(name: "to_name") required final String toName,
+      @JsonKey(name: "to_email") final String? toEmail,
+      @JsonKey(name: "to_name") final String? toName,
+      @JsonKey(name: "to_account") final String? toAccount,
       @JsonKey(name: "from_account") required final String fromAccount,
-      @JsonKey(name: "payment_method") required final String paymentMethod,
       @JsonKey(name: "from_name") required final String fromName,
-      @JsonKey(name: "to_account") required final String toAccount,
+      @JsonKey(name: "payment_method") final String? paymentMethod,
       @JsonKey(name: "bill_type") required final String billType,
       @JsonKey(name: "phone_number") final String? phoneNumber,
       final String? note,
       @JsonKey(name: "qr_code") final String? qrCode,
       @JsonKey(name: "split_id") final int? splitId,
-      @JsonKey(name: "create_bill_status")
-      required final String createBillStatus,
+      @JsonKey(name: 'tenant_period') final String? tenantPeriod,
+      @JsonKey(name: 'paid_on_date') final String? paidOnDate,
+      @JsonKey(name: 'paid_on_time') final String? paidOnTime,
+      @JsonKey(name: 'status') final String? status,
       @JsonKey(name: "created_at") final String? createdAt,
       @JsonKey(name: "updated_at") final String? updatedAt}) = _$BillModelImpl;
 
@@ -571,26 +635,26 @@ abstract class _BillModel implements BillModel {
   @JsonKey(name: "total_amount_bill")
   double get totalAmountBill;
   @override
-  @JsonKey(name: "to_email")
-  String get toEmail;
-  @override
   @JsonKey(name: "transaction_datetime")
   String get transactionDatetime;
   @override
+  @JsonKey(name: "to_email")
+  String? get toEmail;
+  @override
   @JsonKey(name: "to_name")
-  String get toName;
+  String? get toName;
+  @override
+  @JsonKey(name: "to_account")
+  String? get toAccount;
   @override
   @JsonKey(name: "from_account")
   String get fromAccount;
   @override
-  @JsonKey(name: "payment_method")
-  String get paymentMethod;
-  @override
   @JsonKey(name: "from_name")
   String get fromName;
   @override
-  @JsonKey(name: "to_account")
-  String get toAccount;
+  @JsonKey(name: "payment_method")
+  String? get paymentMethod;
   @override
   @JsonKey(name: "bill_type")
   String get billType;
@@ -606,8 +670,17 @@ abstract class _BillModel implements BillModel {
   @JsonKey(name: "split_id")
   int? get splitId;
   @override
-  @JsonKey(name: "create_bill_status")
-  String get createBillStatus;
+  @JsonKey(name: 'tenant_period')
+  String? get tenantPeriod;
+  @override
+  @JsonKey(name: 'paid_on_date')
+  String? get paidOnDate;
+  @override
+  @JsonKey(name: 'paid_on_time')
+  String? get paidOnTime;
+  @override
+  @JsonKey(name: 'status')
+  String? get status;
   @override
   @JsonKey(name: "created_at")
   String? get createdAt;

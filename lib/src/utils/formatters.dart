@@ -78,3 +78,8 @@ String generateAvatarUrl(String name) {
   String imageSize = "150";
   return "https://ui-avatars.com/api/?name=$formattedName&color=7F9CF5&background=EBF4FF&size=$imageSize";
 }
+
+String formatCardNumber(String text) {
+  if (text.length != 16) return text; // Pastikan panjang teks adalah 16
+  return "**** **** **** ${text.substring(12)}";
+}

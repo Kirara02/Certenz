@@ -23,6 +23,7 @@
     "split_bill" : "Split Bill Sekarang",
     "agree" : "Saya Setuju",
     "cancel" : "Batal",
+    "yes_continue" : "Ya, Lanjutkan",
     "add_detail" : "Tambah Detail",
     "add_image" : "Tambah Gambar",
     "choose_image" : "Pilih Gambar",
@@ -44,16 +45,21 @@
     "image_galery" : "Pilih Gambar dari galeri",
     "image_camera" : "pilih gambar dari kamera ",
     "saved_account" : "Rekening Bank Tersimpan",
+    "bill_confirm" : "Apakah Anda yakin data yang Anda masukkan benar?",
     "genders" : {
       "m" : "Laki-laki",
       "f" : "Perempuan"
-    }
+    },
+    "choose_date" : "Pilih Tanggal",
+    "type" : "Tipe"
   },
   "form_hint_text" : {
     "username" : "Username",
     "name" : "Nama",
+    "full_name" : "Nama Lengkap",
     "f_name" : "Nama Depan",
     "l_name" : "Nama Belakang",
+    "id_card" : "Foto KTP",
     "enter_password" : "Masukan password",
     "new_password" : "Password Baru",
     "last_password" : "Password Terakhir",
@@ -115,6 +121,7 @@
     "total_amount" : "Jumlah Total",
     "set_amount" : "Atur Jumlah Bill",
     "to" : "Kepada",
+    "to_op" : "Kepada (Opsional)",
     "start_date" : "Tanggal Mulai",
     "select_dest" : "Pilih Akun Tujuan",
     "note" : "Catatan",
@@ -125,10 +132,13 @@
     "phone_email_friend" : "Telepon/Whatsapp Teman Anda",
     "tenant_period" : "Periode Penyewa",
     "paid_date" : "Dibayar pada tanggal",
-    "select_payment" : "Pilih metode pembayaran"
+    "select_payment" : "Pilih metode pembayaran",
+    "service_fee" : "Biaya layanan",
+    "service_fee_desk" : "Biaya ditangguhkan ke pembayar"
   },
   "validation": {
     "invalid_email_address": "Alamat email tidak valid",
+    "invalid_nik": "NIK tidak valid",
     "input_is_not_empty": "{} belum diisi",
     "invalid_password" : "Password harus berisi 8 karakter atau lebih",
     "passwords_do_not_match": "Kata sandi yang dimasukkan tidak cocok.",
@@ -163,7 +173,7 @@
   },
   "login_page" : {
     "title" : "Masuk ke akun anda",
-    "forgot_pin" : "Lupa PIN Anda?"
+    "forgot_password" : "Lupa password anda?"
   },
   "register_page" : {
     "title" : "Daftarkan Akun",
@@ -182,9 +192,10 @@
     "forgot_pin" : "Lupa PIN Anda?"
   },
   "home_page" : {
-    "linked_card" : "Kartu Tertaut Anda",
+    "greeting" : "Semoga harimu menyenangkan dan teruslah menabung",
     "see_all" : "Lihat Semua",
-    "history" : "Riwayat Transaksi"
+    "history" : "Transaksi",
+    "add_card" : "Tambahkan Akun Saya"
   },
   "atm_page" : {
     "title" : "Tambahkan Nomor Kartu Anda",
@@ -195,6 +206,14 @@
     "desc" : "Kami memerlukan verifikasi wajah Anda untuk keperluan persyaratan untuk melanjutkan aktivitas pembayaran",
     "validation" : "Proses Validasi",
     "success" : "Identitas Anda telah diverifikasi! Sekarang Anda dapat melanjutkan aktivitas pembayaran Anda"
+  },
+  "qr" : {
+    "from" : "Dari",
+    "tr_number" : "Nomor transaksi",
+    "status" : "Status",
+    "amount" : "Jumlah",
+    "fee" : "Biaya layanan",
+    "t_amount" : "Jumlah total"
   },
   "create_bill": {
     "title" : "Buat Bill"
@@ -242,8 +261,31 @@
   },
   "history" : {
     "history" : "History",
-    "active_purchase" : "Active Purchase",
-    "bill" : "Bill"
+    "success": "Sukses",
+    "fail" : "Gagal",
+    "done" : "Selesai",
+    "on_process" : "Proses"
+  },
+  "detail_transaction" : {
+    "title" :"Detail Transaksi",
+    "subtitle" : "Transaksi Sukses",
+    "details" : "Detail Transaksi",
+    "date" : "Tanggal Dibuat",
+    "pay_to" : "Pembayaran Kepada",
+    "from" : "Dari",
+    "payment_method" : "Metode Pembayaran",
+    "desc_account" : "Rekening Tujuan",
+    "admin_fee" : "Biaya Admin"
+  },
+  "select_payment" :{
+    "title" : "Pilih Pembayaran",
+    "subtitle" : "Bill Account"
+  },
+  "payment_bank" : {
+    "title" : "Pembayaran",
+    "subtitle" : "Detail Transaksi",
+    "payment_amount" : "Total Pembayaran",
+    "pay_in" : "Bayar dalam"
   },
   "profile" : {
     "title" : "Profil",
@@ -307,6 +349,11 @@
       "description" : "descriptions"
     }
   },
+  "notification" : {
+    "title" : "Notifikasi",
+    "transaction" : "Transaksi",
+    "information" : "Informasi"
+  },
   "provinces": {
     "aceh": "Aceh",
     "bali": "Bali",
@@ -347,6 +394,11 @@
     "message": "Apakah Anda yakin ingin keluar dari aplikasi?",
     "cancel": "Batal",
     "exit": "Keluar"
+  },
+  "verif_dialog" : {
+    "title" : "Verifikasi Akun",
+    "text" : "Silakan klik tombol di bawah ini untuk mengisi data diri lengkap dan melanjutkan proses verifikasi",
+    "button_text" : "Lanjutkan Verifikasi"
   }
 }
 

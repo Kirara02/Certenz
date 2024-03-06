@@ -1,11 +1,8 @@
 import 'package:certenz/l10n/locale_keys.g.dart';
-import 'package:certenz/src/app/app_root.dart';
 import 'package:certenz/src/blocs/auth/auth_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/features/auth/register/view/register_page.dart';
 import 'package:certenz/src/utils/dismiss_keyboard.dart';
-import 'package:certenz/src/utils/logger.dart';
 import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/auth/section_auth.dart';
 import 'package:certenz/src/widgets/common/powered_widget.dart';
@@ -16,6 +13,7 @@ import 'package:certenz/src/widgets/forms/textfield_custom.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -43,13 +41,7 @@ class _LoginPageState extends State<LoginPage> {
                 loading: () =>
                     showLoadingDialog(context, "Logging in, please wait..."),
                 isAuthenticated: (data) {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AppRoot(),
-                    ),
-                    (route) => false,
-                  );
+                  context.go("/home");
                 },
                 error: (error) {
                   hideDialog(context);
@@ -132,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                               child: TextButton(
                                 onPressed: () {},
                                 child: Text(
-                                  LocaleKeys.login_page_forgot_pin.tr(),
+                                  LocaleKeys.login_page_forgot_password.tr(),
                                   style: const TextStyle(
                                     fontSize: AppConstants.kFontSizeS,
                                     color: AppColors.orange,
@@ -157,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         btnText: LocaleKeys.button_sign_in.tr(),
                         txtText: LocaleKeys.text_no_have_account.tr(),
-                        txtText2: LocaleKeys.button_register.tr(),
+                        txtText2: LocaleKeys.button_sign_up.tr(),
                         txtText3: LocaleKeys.text_login_with.tr(),
                       ),
                       const Spacer(),

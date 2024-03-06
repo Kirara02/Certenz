@@ -30,8 +30,8 @@ class DialogCustom extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         content: SizedBox(
-          height: constraints.maxHeight * width!,
-          width: constraints.maxWidth * height!,
+          height: constraints.maxHeight * height!,
+          width: constraints.maxWidth * width!,
           child: child,
         ),
       );

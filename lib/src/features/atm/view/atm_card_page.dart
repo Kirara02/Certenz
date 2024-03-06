@@ -3,6 +3,7 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/blocs/bank/bank_bloc.dart';
 import 'package:certenz/src/blocs/card_account/card_account_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
+import 'package:certenz/src/config/navigation.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/bank/bank_model.dart';
@@ -21,6 +22,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
 class AtmCardPage extends StatefulWidget {
   const AtmCardPage({super.key});
@@ -117,6 +119,7 @@ class _AtmCardPageState extends State<AtmCardPage> {
               success: (data) {
                 hideDialog(context);
                 _refresh();
+                context.pop();
                 // Navigator.push(
                 //     context,
                 //     MaterialPageRoute(
@@ -129,7 +132,7 @@ class _AtmCardPageState extends State<AtmCardPage> {
             child: Scaffold(
               body: WillPopScope(
                 onWillPop: () async {
-                  Navigator.pop(context);
+                  GoRouter.of(context).pop();
                   return false;
                 },
                 child: Form(
@@ -146,7 +149,7 @@ class _AtmCardPageState extends State<AtmCardPage> {
                           children: [
                             IconButton(
                               onPressed: () {
-                                Navigator.pop(context);
+                                GoRouter.of(context).pop();
                               },
                               icon: const Icon(Icons.arrow_back),
                             ),

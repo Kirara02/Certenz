@@ -6,7 +6,7 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/blocs/user/user_bloc.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/services/dummy_service.dart';
-import 'package:certenz/src/utils/date_picker.dart';
+import 'package:certenz/src/utils/birthday_picker.dart';
 import 'package:certenz/src/utils/gender_converter.dart';
 import 'package:certenz/src/utils/image_compress.dart';
 import 'package:certenz/src/utils/logger.dart';
@@ -24,7 +24,7 @@ import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -49,21 +49,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   String? imgProfileUrl;
   String? profileImg;
   bool hasProfile = false;
-
-  Future _deliveryDate({bool passDate = false}) {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          insetPadding: const EdgeInsets.all(10),
-          child: DatePicker(
-            passDate: passDate,
-            tanggal_awal: date,
-          ),
-        );
-      },
-    );
-  }
 
   Future<FormData?> _handleSubmit() async {
     if (imgProfileUrl == null) {
@@ -99,7 +84,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void initState() {
     super.initState();
-    date = DateFormat("yyyy-MM-dd").format(DateTime.now());
   }
 
   @override
@@ -117,8 +101,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   hideDialog(context);
                   email.text = data.email ?? "-";
                   name.text = data.name ?? "-";
-                  birthDate.text =
-                      DateFormat("yyyy-MM-dd").format(data.birthday!) ?? "-";
+                  birthDate.text = data.birthday ?? "-";
                   phone.text = data.telp ?? "-";
                   username.text = data.username ?? "-";
                   location = data.location ?? '-';
@@ -132,16 +115,24 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     setState(() {
                       gender = convertGenderToIndonesian(data.gender!);
                     });
+                    setState(() {
+                      location = data.location!;
+                    });
                   } else {
                     setState(() {
                       gender = data.gender!;
                     });
+                    setState(() {
+                      location = convertProvinceToEnglish(data.location!);
+                    });
                   }
                   dLog(gender);
+                  dLog(location);
                 },
                 successUpdate: (data) {
                   hideDialog(context);
                   UXToast.show(message: "Success");
+                  if (context.mounted) context.pop();
                 },
                 error: (error) {
                   hideDialog(context);
@@ -240,10 +231,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           Icons.calendar_month,
                         ),
                         readOnly: true,
-                        onTap: () =>
-                            _deliveryDate(passDate: true).then((value) {
+                        onTap: () => selectBirthDateBottom(context,
+                                initialDate: birthDate.text)
+                            .then((value) {
                           if (value != null) {
-                            birthDate.text = value;
+                            dLog(value);
+                            birthDate.text =
+                                DateFormat("yyyy-MM-dd").format(value);
                           }
                         }),
                         validator: (p0) {
@@ -303,6 +297,16 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           if (context.locale.languageCode == 'en') {
                             vLog(convertProvinceToIndonesian(location));
                           }
+                        },
+                        selectedItem: location,
+                        validator: (p0) {
+                          if (p0 == null) {
+                            return LocaleKeys.validation_input_is_not_empty
+                                .tr(args: [
+                              LocaleKeys.form_title_location.tr(),
+                            ]);
+                          }
+                          return null;
                         },
                         showSearchBox: true,
                         items: DummyService.provinces,

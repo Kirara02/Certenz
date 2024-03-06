@@ -1,7 +1,7 @@
 import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/widgets/forms/field_custom.dart';
+import 'package:certenz/src/widgets/forms/textfield_custom.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +35,7 @@ class _DetailActivityFormState extends State<DetailActivityForm> {
           ),
         ),
         const SizedBox(height: 8),
-        FieldCustom(
+        TextfieldCustom(
           controller: widget.controller,
           hintText: LocaleKeys.form_hint_text_detail_title.tr(),
           maxLines: 1,

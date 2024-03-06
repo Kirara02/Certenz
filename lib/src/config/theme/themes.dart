@@ -6,14 +6,15 @@ import '../constant.dart';
 import 'colors.dart';
 
 class UXTheme {
-  static final String? fontFamily = GoogleFonts.lato().fontFamily;
+  static final String? fontFamily = GoogleFonts.poppins().fontFamily;
   static const barOverLayStyle = SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarBrightness: Brightness.dark,
   );
 
   static ThemeData light() => ThemeData(
-        textTheme: GoogleFonts.interTextTheme(),
+        fontFamily: fontFamily,
+        textTheme: GoogleFonts.poppinsTextTheme(),
         appBarTheme: const AppBarTheme(
           titleTextStyle: TextStyle(
             color: AppColors.black,

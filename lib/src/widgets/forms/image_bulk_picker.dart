@@ -74,8 +74,8 @@ class _ImageBulkPickerState extends State<ImageBulkPicker> {
       onTap: () => _chooseImageFrom(),
       child: Container(
         constraints: const BoxConstraints(
-          maxWidth: 120,
-          maxHeight: 100,
+          minWidth: 120,
+          minHeight: 100,
         ),
         margin: const EdgeInsets.only(top: 20),
         padding: const EdgeInsets.all(10),

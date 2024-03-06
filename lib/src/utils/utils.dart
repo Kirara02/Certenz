@@ -74,8 +74,7 @@ extension StringExtension on String {
   }
 
   bool get isValidNIK {
-    if (length > 14) {
-      // Date should have exactly 10 characters (e.g., '2023-08-06')
+    if (length == 16) {
       return true;
     }
     return false;

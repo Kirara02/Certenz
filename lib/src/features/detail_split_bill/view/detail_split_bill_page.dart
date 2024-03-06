@@ -4,23 +4,20 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/bill/bill_model.dart';
-import 'package:certenz/src/data/models/split_bill/split_bill_model.dart';
-import 'package:certenz/src/features/create_split_bill/view/create_split_bill_page.dart';
 import 'package:certenz/src/features/split_bill/widget/people_split_card.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/widgets/common/powered_widget.dart';
 import 'package:certenz/src/widgets/common/share_bill_to.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../widgets/common/custom_appbar.dart';
 
 class DetailSplitBillPage extends StatelessWidget {
-  final SplitBillModel splitBillData;
   final List<BillModel> billItems;
   const DetailSplitBillPage({
     super.key,
-    required this.splitBillData,
     required this.billItems,
   });
 
@@ -29,25 +26,22 @@ class DetailSplitBillPage extends StatelessWidget {
     return Scaffold(
       appBar: AppbarCustom(
         onPressed: () {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const CreateSplitBillPage(),
-              ),
-              (route) => false);
+          if (context.canPop()) {
+            context.pop();
+          } else {
+            context.goNamed("split-bill");
+          }
         },
         title: LocaleKeys.detail_split_bill_title.tr(),
-        backgroundColor: AppColors.orange,
-        type: "x",
+        shape: LinearBorder.none,
       ),
       body: WillPopScope(
         onWillPop: () async {
-          Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const CreateSplitBillPage(),
-              ),
-              (route) => false);
+          if (context.canPop()) {
+            context.pop();
+          } else {
+            context.goNamed("split-bill");
+          }
           return false;
         },
         child: SingleChildScrollView(
@@ -117,7 +111,8 @@ class DetailSplitBillPage extends StatelessWidget {
                       const SizedBox(height: 4),
                       Center(
                         child: Text(
-                          formatCurrencyNonDecimal(splitBillData.amountTotal),
+                          formatCurrencyNonDecimal(billItems.fold(
+                              0, (sum, item) => sum + (item.totalAmountBill))),
                           style: const TextStyle(
                             fontSize: AppConstants.kFontSizeXXL,
                             fontWeight: FontWeight.bold,
@@ -149,7 +144,15 @@ class DetailSplitBillPage extends StatelessWidget {
                               itemCount: billItems.length,
                               itemBuilder: (context, index) {
                                 var item = billItems[index];
-                                return PeopleSplitCard(billData: item);
+                                return PeopleSplitCard(
+                                  name: item.fromName,
+                                  email: item.toEmail ?? "-",
+                                  amount: item.totalAmountBill,
+                                  phoneNumber: item.phoneNumber ?? "-",
+                                  status: item.status!,
+                                  onTap: () =>
+                                      context.pushNamed("qr-code", extra: item),
+                                );
                               },
                             )
                           ],

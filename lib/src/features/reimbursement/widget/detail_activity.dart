@@ -8,6 +8,7 @@ import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/common/custom_appbar.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class DetailActivity extends StatefulWidget {
   final List<String> data;
@@ -29,7 +30,7 @@ class _DetailActivityState extends State<DetailActivity> {
 
     return Scaffold(
       appBar: AppbarCustom(
-        onPressed: () => Navigator.pop(context),
+        onPressed: () => context.pop(),
         title: LocaleKeys.reimbursement_title.tr(),
       ),
       body: SingleChildScrollView(

@@ -3,7 +3,7 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/friend_entry/field_entry_model.dart';
 import 'package:certenz/src/utils/utils.dart';
-import 'package:certenz/src/widgets/forms/field_custom.dart';
+import 'package:certenz/src/widgets/forms/textfield_custom.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +19,6 @@ class SplitBillWith extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       decoration: BoxDecoration(
         color: AppColors.neutralN140,
         borderRadius: BorderRadius.circular(4),
@@ -33,117 +32,120 @@ class SplitBillWith extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                LocaleKeys.form_title_email_friend.tr(),
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  LocaleKeys.form_title_email_friend.tr(),
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              FieldCustom(
-                controller: friendEntry.emailController,
-                hintText: LocaleKeys.form_hint_text_email.tr(),
-                maxLines: 1,
-                keyboardType: TextInputType.emailAddress,
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeM,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 8),
+                TextfieldCustom(
+                  controller: friendEntry.emailController,
+                  hintText: LocaleKeys.form_hint_text_email.tr(),
+                  maxLines: 1,
+                  keyboardType: TextInputType.emailAddress,
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeM,
+                    color: AppColors.neutralN40,
+                  ),
+                  validator: (p0) {
+                    if (p0!.isEmpty) {
+                      return LocaleKeys.validation_input_is_not_empty.tr(args: [
+                        LocaleKeys.form_title_email.tr(),
+                      ]);
+                    }
+                    if (!p0.isValidEmail) {
+                      return LocaleKeys.validation_invalid_email_address.tr();
+                    }
+                    return null;
+                  },
                 ),
-                validator: (p0) {
-                  if (p0!.isEmpty) {
-                    return LocaleKeys.validation_input_is_not_empty.tr(args: [
-                      LocaleKeys.form_title_email.tr(),
-                    ]);
-                  }
-                  if (!p0.isValidEmail) {
-                    return LocaleKeys.validation_invalid_email_address.tr();
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 18),
-              Text(
-                LocaleKeys.form_title_split_amount.tr(),
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 18),
+                Text(
+                  LocaleKeys.form_title_split_amount.tr(),
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              FieldCustom(
-                controller: friendEntry.splitAmountController,
-                hintText: LocaleKeys.form_hint_text_amount.tr(),
-                maxLines: 1,
-                maxLength: 20,
-                keyboardType: TextInputType.number,
-                format: "currency",
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeX,
-                  color: AppColors.neutralN40,
-                ),
-                validator: (p0) {
-                  if (p0!.isEmpty) {
-                    return LocaleKeys.validation_input_is_not_empty.tr(args: [
-                      LocaleKeys.form_title_amount.tr(),
-                    ]);
-                  }
+                const SizedBox(height: 8),
+                TextfieldCustom(
+                  controller: friendEntry.splitAmountController,
+                  hintText: LocaleKeys.form_hint_text_amount.tr(),
+                  maxLines: 1,
+                  maxLength: 20,
+                  keyboardType: TextInputType.number,
+                  format: "currency",
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeX,
+                    color: AppColors.neutralN40,
+                  ),
+                  validator: (p0) {
+                    if (p0!.isEmpty) {
+                      return LocaleKeys.validation_input_is_not_empty.tr(args: [
+                        LocaleKeys.form_title_amount.tr(),
+                      ]);
+                    }
 
-                  return null;
-                },
-              ),
-              const SizedBox(height: 18),
-              Text(
-                LocaleKeys.form_title_phone_email_friend.tr(),
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                    return null;
+                  },
                 ),
-              ),
-              const SizedBox(height: 8),
-              FieldCustom(
-                controller: friendEntry.phoneController,
-                hintText: "081...",
-                maxLines: 1,
-                maxLength: 20,
-                keyboardType: TextInputType.phone,
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 18),
+                Text(
+                  LocaleKeys.form_title_phone_email_friend.tr(),
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-                validator: (p0) {
-                  if (p0!.isEmpty) {
-                    return LocaleKeys.validation_input_is_not_empty.tr(args: [
-                      LocaleKeys.form_title_phone_number.tr(),
-                    ]);
-                  }
+                const SizedBox(height: 8),
+                TextfieldCustom(
+                  controller: friendEntry.phoneController,
+                  hintText: "081...",
+                  maxLines: 1,
+                  maxLength: 15,
+                  keyboardType: TextInputType.phone,
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
+                  validator: (p0) {
+                    if (p0!.isEmpty) {
+                      return LocaleKeys.validation_input_is_not_empty.tr(args: [
+                        LocaleKeys.form_title_phone_number.tr(),
+                      ]);
+                    }
 
-                  return null;
-                },
-              ),
-              const SizedBox(height: 18),
-              Text(
-                LocaleKeys.form_title_note_optional.tr(),
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                    return null;
+                  },
                 ),
-              ),
-              const SizedBox(height: 8),
-              FieldCustom(
-                controller: friendEntry.noteController,
-                hintText: LocaleKeys.form_hint_text_note.tr(),
-                maxLines: 1,
-                keyboardType: TextInputType.text,
-                style: const TextStyle(
-                  fontSize: AppConstants.kFontSizeS,
-                  color: AppColors.neutralN40,
+                const SizedBox(height: 18),
+                Text(
+                  LocaleKeys.form_title_note_optional.tr(),
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 8),
+                TextfieldCustom(
+                  controller: friendEntry.noteController,
+                  hintText: LocaleKeys.form_hint_text_note.tr(),
+                  maxLines: 1,
+                  keyboardType: TextInputType.text,
+                  style: const TextStyle(
+                    fontSize: AppConstants.kFontSizeS,
+                    color: AppColors.neutralN40,
+                  ),
+                ),
+              ],
+            ),
           ),
           Positioned(
             right: 0,

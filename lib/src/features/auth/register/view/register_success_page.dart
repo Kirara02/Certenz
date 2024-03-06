@@ -7,10 +7,16 @@ import 'package:certenz/src/features/auth/login/view/login_page.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class RegisterSuccessPage extends StatelessWidget {
+class RegisterSuccessPage extends StatefulWidget {
   const RegisterSuccessPage({super.key});
 
+  @override
+  State<RegisterSuccessPage> createState() => _RegisterSuccessPageState();
+}
+
+class _RegisterSuccessPageState extends State<RegisterSuccessPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -62,12 +68,7 @@ class RegisterSuccessPage extends StatelessWidget {
               BtnPrimary(
                 title: LocaleKeys.button_continue.tr(),
                 onTap: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ),
-                      (route) => false);
+                  context.goNamed("login");
                 },
               ),
               const Spacer(),

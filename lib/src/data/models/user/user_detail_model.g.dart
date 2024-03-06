@@ -14,26 +14,16 @@ _$UserDetailModelImpl _$$UserDetailModelImplFromJson(
       username: json['username'] as String?,
       telp: json['telp'] as String?,
       email: json['email'] as String?,
-      emailVerifiedAt: json['email_verified_at'] == null
-          ? null
-          : DateTime.parse(json['email_verified_at'] as String),
       profilePicture: json['profile_picture'] as String?,
-      twoFactorSecret: json['two_factor_secret'] as String?,
-      twoFactorRecoveryCodes: json['two_factor_recovery_codes'] as String?,
-      twoFactorConfirmedAt: json['two_factor_confirmed_at'] == null
-          ? null
-          : DateTime.parse(json['two_factor_confirmed_at'] as String),
       certenzNumber: json['certenz_number'] as String?,
       roleId: json['role_id'] as String?,
-      birthday: _$JsonConverterFromJson<String, DateTime>(
-          json['birthday'], const DateTimeConverter().fromJson),
+      birthday: json['birthday'] as String?,
       gender: json['gender'] as String?,
       location: json['location'] as String?,
       sso: json['sso'] as String?,
-      createdAt: _$JsonConverterFromJson<String, DateTime>(
-          json['created_at'], const DateTimeConverter().fromJson),
-      updatedAt: _$JsonConverterFromJson<String, DateTime>(
-          json['updated_at'], const DateTimeConverter().fromJson),
+      emailVerification: json['email_verification'] as bool?,
+      ktpVerification: json['ktp_verification'] as bool?,
+      hasBankAccount: json['has_bank_account'] as bool?,
     );
 
 Map<String, dynamic> _$$UserDetailModelImplToJson(
@@ -44,33 +34,14 @@ Map<String, dynamic> _$$UserDetailModelImplToJson(
       'username': instance.username,
       'telp': instance.telp,
       'email': instance.email,
-      'email_verified_at': instance.emailVerifiedAt?.toIso8601String(),
       'profile_picture': instance.profilePicture,
-      'two_factor_secret': instance.twoFactorSecret,
-      'two_factor_recovery_codes': instance.twoFactorRecoveryCodes,
-      'two_factor_confirmed_at':
-          instance.twoFactorConfirmedAt?.toIso8601String(),
       'certenz_number': instance.certenzNumber,
       'role_id': instance.roleId,
-      'birthday': _$JsonConverterToJson<String, DateTime>(
-          instance.birthday, const DateTimeConverter().toJson),
+      'birthday': instance.birthday,
       'gender': instance.gender,
       'location': instance.location,
       'sso': instance.sso,
-      'created_at': _$JsonConverterToJson<String, DateTime>(
-          instance.createdAt, const DateTimeConverter().toJson),
-      'updated_at': _$JsonConverterToJson<String, DateTime>(
-          instance.updatedAt, const DateTimeConverter().toJson),
+      'email_verification': instance.emailVerification,
+      'ktp_verification': instance.ktpVerification,
+      'has_bank_account': instance.hasBankAccount,
     };
-
-Value? _$JsonConverterFromJson<Json, Value>(
-  Object? json,
-  Value? Function(Json json) fromJson,
-) =>
-    json == null ? null : fromJson(json as Json);
-
-Json? _$JsonConverterToJson<Json, Value>(
-  Value? value,
-  Json? Function(Value value) toJson,
-) =>
-    value == null ? null : toJson(value);

@@ -20,8 +20,8 @@ HistoryModel _$HistoryModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$HistoryModel {
-  @JsonKey(name: 'transaction_bill_id')
-  int? get transactionBillId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'transaction_id')
+  int? get transactionId => throw _privateConstructorUsedError;
   @JsonKey(name: 'transaction_number')
   String? get transactionNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'transaction_title')
@@ -35,8 +35,8 @@ mixin _$HistoryModel {
   @JsonKey(name: 'transaction_status')
   String? get transactionStatus => throw _privateConstructorUsedError;
   String? get criteria => throw _privateConstructorUsedError;
-  HistoryUserModel? get from => throw _privateConstructorUsedError;
-  HistoryUserModel? get to => throw _privateConstructorUsedError;
+  @JsonKey(name: 'from_name')
+  String? get fromName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +51,7 @@ abstract class $HistoryModelCopyWith<$Res> {
       _$HistoryModelCopyWithImpl<$Res, HistoryModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'transaction_bill_id') int? transactionBillId,
+      {@JsonKey(name: 'transaction_id') int? transactionId,
       @JsonKey(name: 'transaction_number') String? transactionNumber,
       @JsonKey(name: 'transaction_title') String? transactionTitle,
       @JsonKey(name: 'amount_total') int? amountTotal,
@@ -59,11 +59,7 @@ abstract class $HistoryModelCopyWith<$Res> {
       @JsonKey(name: 'transaction_category') String? transactionCategory,
       @JsonKey(name: 'transaction_status') String? transactionStatus,
       String? criteria,
-      HistoryUserModel? from,
-      HistoryUserModel? to});
-
-  $HistoryUserModelCopyWith<$Res>? get from;
-  $HistoryUserModelCopyWith<$Res>? get to;
+      @JsonKey(name: 'from_name') String? fromName});
 }
 
 /// @nodoc
@@ -79,7 +75,7 @@ class _$HistoryModelCopyWithImpl<$Res, $Val extends HistoryModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? transactionBillId = freezed,
+    Object? transactionId = freezed,
     Object? transactionNumber = freezed,
     Object? transactionTitle = freezed,
     Object? amountTotal = freezed,
@@ -87,13 +83,12 @@ class _$HistoryModelCopyWithImpl<$Res, $Val extends HistoryModel>
     Object? transactionCategory = freezed,
     Object? transactionStatus = freezed,
     Object? criteria = freezed,
-    Object? from = freezed,
-    Object? to = freezed,
+    Object? fromName = freezed,
   }) {
     return _then(_value.copyWith(
-      transactionBillId: freezed == transactionBillId
-          ? _value.transactionBillId
-          : transactionBillId // ignore: cast_nullable_to_non_nullable
+      transactionId: freezed == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
               as int?,
       transactionNumber: freezed == transactionNumber
           ? _value.transactionNumber
@@ -123,39 +118,11 @@ class _$HistoryModelCopyWithImpl<$Res, $Val extends HistoryModel>
           ? _value.criteria
           : criteria // ignore: cast_nullable_to_non_nullable
               as String?,
-      from: freezed == from
-          ? _value.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as HistoryUserModel?,
-      to: freezed == to
-          ? _value.to
-          : to // ignore: cast_nullable_to_non_nullable
-              as HistoryUserModel?,
+      fromName: freezed == fromName
+          ? _value.fromName
+          : fromName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $HistoryUserModelCopyWith<$Res>? get from {
-    if (_value.from == null) {
-      return null;
-    }
-
-    return $HistoryUserModelCopyWith<$Res>(_value.from!, (value) {
-      return _then(_value.copyWith(from: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $HistoryUserModelCopyWith<$Res>? get to {
-    if (_value.to == null) {
-      return null;
-    }
-
-    return $HistoryUserModelCopyWith<$Res>(_value.to!, (value) {
-      return _then(_value.copyWith(to: value) as $Val);
-    });
   }
 }
 
@@ -168,7 +135,7 @@ abstract class _$$HistoryModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'transaction_bill_id') int? transactionBillId,
+      {@JsonKey(name: 'transaction_id') int? transactionId,
       @JsonKey(name: 'transaction_number') String? transactionNumber,
       @JsonKey(name: 'transaction_title') String? transactionTitle,
       @JsonKey(name: 'amount_total') int? amountTotal,
@@ -176,13 +143,7 @@ abstract class _$$HistoryModelImplCopyWith<$Res>
       @JsonKey(name: 'transaction_category') String? transactionCategory,
       @JsonKey(name: 'transaction_status') String? transactionStatus,
       String? criteria,
-      HistoryUserModel? from,
-      HistoryUserModel? to});
-
-  @override
-  $HistoryUserModelCopyWith<$Res>? get from;
-  @override
-  $HistoryUserModelCopyWith<$Res>? get to;
+      @JsonKey(name: 'from_name') String? fromName});
 }
 
 /// @nodoc
@@ -196,7 +157,7 @@ class __$$HistoryModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? transactionBillId = freezed,
+    Object? transactionId = freezed,
     Object? transactionNumber = freezed,
     Object? transactionTitle = freezed,
     Object? amountTotal = freezed,
@@ -204,13 +165,12 @@ class __$$HistoryModelImplCopyWithImpl<$Res>
     Object? transactionCategory = freezed,
     Object? transactionStatus = freezed,
     Object? criteria = freezed,
-    Object? from = freezed,
-    Object? to = freezed,
+    Object? fromName = freezed,
   }) {
     return _then(_$HistoryModelImpl(
-      transactionBillId: freezed == transactionBillId
-          ? _value.transactionBillId
-          : transactionBillId // ignore: cast_nullable_to_non_nullable
+      transactionId: freezed == transactionId
+          ? _value.transactionId
+          : transactionId // ignore: cast_nullable_to_non_nullable
               as int?,
       transactionNumber: freezed == transactionNumber
           ? _value.transactionNumber
@@ -240,14 +200,10 @@ class __$$HistoryModelImplCopyWithImpl<$Res>
           ? _value.criteria
           : criteria // ignore: cast_nullable_to_non_nullable
               as String?,
-      from: freezed == from
-          ? _value.from
-          : from // ignore: cast_nullable_to_non_nullable
-              as HistoryUserModel?,
-      to: freezed == to
-          ? _value.to
-          : to // ignore: cast_nullable_to_non_nullable
-              as HistoryUserModel?,
+      fromName: freezed == fromName
+          ? _value.fromName
+          : fromName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -256,7 +212,7 @@ class __$$HistoryModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$HistoryModelImpl implements _HistoryModel {
   const _$HistoryModelImpl(
-      {@JsonKey(name: 'transaction_bill_id') this.transactionBillId,
+      {@JsonKey(name: 'transaction_id') this.transactionId,
       @JsonKey(name: 'transaction_number') this.transactionNumber,
       @JsonKey(name: 'transaction_title') this.transactionTitle,
       @JsonKey(name: 'amount_total') this.amountTotal,
@@ -264,15 +220,14 @@ class _$HistoryModelImpl implements _HistoryModel {
       @JsonKey(name: 'transaction_category') this.transactionCategory,
       @JsonKey(name: 'transaction_status') this.transactionStatus,
       this.criteria,
-      this.from,
-      this.to});
+      @JsonKey(name: 'from_name') this.fromName});
 
   factory _$HistoryModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$HistoryModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'transaction_bill_id')
-  final int? transactionBillId;
+  @JsonKey(name: 'transaction_id')
+  final int? transactionId;
   @override
   @JsonKey(name: 'transaction_number')
   final String? transactionNumber;
@@ -294,13 +249,12 @@ class _$HistoryModelImpl implements _HistoryModel {
   @override
   final String? criteria;
   @override
-  final HistoryUserModel? from;
-  @override
-  final HistoryUserModel? to;
+  @JsonKey(name: 'from_name')
+  final String? fromName;
 
   @override
   String toString() {
-    return 'HistoryModel(transactionBillId: $transactionBillId, transactionNumber: $transactionNumber, transactionTitle: $transactionTitle, amountTotal: $amountTotal, transactionTime: $transactionTime, transactionCategory: $transactionCategory, transactionStatus: $transactionStatus, criteria: $criteria, from: $from, to: $to)';
+    return 'HistoryModel(transactionId: $transactionId, transactionNumber: $transactionNumber, transactionTitle: $transactionTitle, amountTotal: $amountTotal, transactionTime: $transactionTime, transactionCategory: $transactionCategory, transactionStatus: $transactionStatus, criteria: $criteria, fromName: $fromName)';
   }
 
   @override
@@ -308,8 +262,8 @@ class _$HistoryModelImpl implements _HistoryModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$HistoryModelImpl &&
-            (identical(other.transactionBillId, transactionBillId) ||
-                other.transactionBillId == transactionBillId) &&
+            (identical(other.transactionId, transactionId) ||
+                other.transactionId == transactionId) &&
             (identical(other.transactionNumber, transactionNumber) ||
                 other.transactionNumber == transactionNumber) &&
             (identical(other.transactionTitle, transactionTitle) ||
@@ -324,15 +278,15 @@ class _$HistoryModelImpl implements _HistoryModel {
                 other.transactionStatus == transactionStatus) &&
             (identical(other.criteria, criteria) ||
                 other.criteria == criteria) &&
-            (identical(other.from, from) || other.from == from) &&
-            (identical(other.to, to) || other.to == to));
+            (identical(other.fromName, fromName) ||
+                other.fromName == fromName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      transactionBillId,
+      transactionId,
       transactionNumber,
       transactionTitle,
       amountTotal,
@@ -340,8 +294,7 @@ class _$HistoryModelImpl implements _HistoryModel {
       transactionCategory,
       transactionStatus,
       criteria,
-      from,
-      to);
+      fromName);
 
   @JsonKey(ignore: true)
   @override
@@ -359,7 +312,7 @@ class _$HistoryModelImpl implements _HistoryModel {
 
 abstract class _HistoryModel implements HistoryModel {
   const factory _HistoryModel(
-      {@JsonKey(name: 'transaction_bill_id') final int? transactionBillId,
+      {@JsonKey(name: 'transaction_id') final int? transactionId,
       @JsonKey(name: 'transaction_number') final String? transactionNumber,
       @JsonKey(name: 'transaction_title') final String? transactionTitle,
       @JsonKey(name: 'amount_total') final int? amountTotal,
@@ -367,15 +320,14 @@ abstract class _HistoryModel implements HistoryModel {
       @JsonKey(name: 'transaction_category') final String? transactionCategory,
       @JsonKey(name: 'transaction_status') final String? transactionStatus,
       final String? criteria,
-      final HistoryUserModel? from,
-      final HistoryUserModel? to}) = _$HistoryModelImpl;
+      @JsonKey(name: 'from_name') final String? fromName}) = _$HistoryModelImpl;
 
   factory _HistoryModel.fromJson(Map<String, dynamic> json) =
       _$HistoryModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'transaction_bill_id')
-  int? get transactionBillId;
+  @JsonKey(name: 'transaction_id')
+  int? get transactionId;
   @override
   @JsonKey(name: 'transaction_number')
   String? get transactionNumber;
@@ -397,9 +349,8 @@ abstract class _HistoryModel implements HistoryModel {
   @override
   String? get criteria;
   @override
-  HistoryUserModel? get from;
-  @override
-  HistoryUserModel? get to;
+  @JsonKey(name: 'from_name')
+  String? get fromName;
   @override
   @JsonKey(ignore: true)
   _$$HistoryModelImplCopyWith<_$HistoryModelImpl> get copyWith =>

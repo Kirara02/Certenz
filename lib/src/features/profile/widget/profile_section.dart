@@ -1,4 +1,5 @@
 import 'package:certenz/src/blocs/auth/auth_bloc.dart';
+import 'package:certenz/src/blocs/history/history_bloc.dart';
 import 'package:certenz/src/blocs/user/user_bloc.dart';
 import 'package:certenz/src/data/models/user/user_detail_model.dart';
 import 'package:certenz/src/utils/formatters.dart';
@@ -17,6 +18,7 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/user/user_model.dart';
 import 'package:certenz/src/features/profile/widget/profile_list_tile.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileSection extends StatefulWidget {
   const ProfileSection({Key? key}) : super(key: key);
@@ -34,10 +36,14 @@ class _ProfileSectionState extends State<ProfileSection> {
         return BlocBuilder<UserBloc, UserState>(
           bloc: context.read<UserBloc>()..add(const UserEvent.getUser()),
           builder: (context, state) {
-            return state.maybeWhen(
-              orElse: () => SpinKitCircle(color: AppColors.primaryColors),
-              success: (user) => _buildProfileContent(user),
-              loading: () => SpinKitCircle(color: AppColors.primaryColors),
+            return RefreshIndicator(
+              onRefresh: () => Future.sync(() =>
+                  context.read<UserBloc>()..add(const UserEvent.getUser())),
+              child: state.maybeWhen(
+                orElse: () => SpinKitCircle(color: AppColors.primaryColors),
+                success: (user) => _buildProfileContent(user),
+                loading: () => SpinKitCircle(color: AppColors.primaryColors),
+              ),
             );
           },
         );
@@ -46,9 +52,11 @@ class _ProfileSectionState extends State<ProfileSection> {
   }
 
   Widget _buildProfileContent(UserDetailModel user) {
-    return Padding(
+    return SingleChildScrollView(
+      physics: const AlwaysScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
       child: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           _buildProfileImage(user.profilePicture ??
               (user.name != null ? generateAvatarUrl(user.name!) : "Default")),
@@ -124,9 +132,7 @@ class _ProfileSectionState extends State<ProfileSection> {
             showLoadingDialog(context);
           },
           unAuthenticated: () {
-            hideDialog(context);
-            Navigator.pushNamedAndRemoveUntil(
-                context, "/welcome", (route) => false);
+            context.goNamed("welcome");
           },
         );
       },

@@ -2,21 +2,23 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/blocs/create_bill/create_bill_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/features/bill_status/view/bill_status_page.dart';
+import 'package:certenz/src/utils/dismiss_keyboard.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/utils/logger.dart';
 import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/common/custom_appbar.dart';
+import 'package:certenz/src/widgets/dialogs/bill_alert_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/hide_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/loading_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/ux_toast_wrapper.dart';
-import 'package:certenz/src/widgets/forms/field_custom.dart';
+import 'package:certenz/src/widgets/forms/textfield_custom.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateBillPage extends StatefulWidget {
   const CreateBillPage({super.key});
@@ -32,6 +34,7 @@ class _CreateBillPageState extends State<CreateBillPage> {
   TextEditingController amountController = TextEditingController();
   TextEditingController toController = TextEditingController();
   TextEditingController noteController = TextEditingController();
+  bool withFee = false;
 
   Future _toast(String? message, [Color color = AppColors.red]) {
     return UXToast.show(
@@ -41,15 +44,42 @@ class _CreateBillPageState extends State<CreateBillPage> {
         textColor: AppColors.neutralN140);
   }
 
+  void _showAlertBill(
+    BuildContext context, {
+    VoidCallback? onSubmit,
+    VoidCallback? onCancel,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return BillAlertDialog(
+          onSubmit: onSubmit,
+          onCancel: onCancel,
+        );
+      },
+    );
+  }
+
   Future<FormData?> handleSubmit() async {
     FormData formData = FormData.fromMap({
       "title": titleController.text,
       "total_amount_bill": removeCurrencyFormat(amountController.text),
       "to_email": toController.text,
       "note": noteController.text,
+      "with_fee": withFee
     });
 
     return formData;
+  }
+
+  void _refresh() {
+    titleController.clear();
+    amountController.clear();
+    toController.clear();
+    noteController.clear();
+    setState(() {
+      withFee = false;
+    });
   }
 
   @override
@@ -63,13 +93,11 @@ class _CreateBillPageState extends State<CreateBillPage> {
               orElse: () {},
               loading: () => showLoadingDialog(context),
               success: (data) {
+                _refresh();
                 hideDialog(context);
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BillStatusPage(data: data),
-                    ),
-                    (route) => false);
+                if (context.mounted) {
+                  context.pushNamed("qr-code", extra: data);
+                }
               },
               error: (error) {
                 hideDialog(context);
@@ -96,11 +124,11 @@ class _CreateBillPageState extends State<CreateBillPage> {
           },
           child: Scaffold(
             appBar: AppbarCustom(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => context.pop(),
               title: LocaleKeys.create_bill_title.tr(),
             ),
             body: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -114,7 +142,7 @@ class _CreateBillPageState extends State<CreateBillPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: titleController,
                       hintText: LocaleKeys.form_hint_text_title.tr(),
                       maxLines: 1,
@@ -142,7 +170,7 @@ class _CreateBillPageState extends State<CreateBillPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: amountController,
                       hintText: LocaleKeys.form_hint_text_amount.tr(),
                       maxLines: 1,
@@ -165,14 +193,14 @@ class _CreateBillPageState extends State<CreateBillPage> {
                     ),
                     const SizedBox(height: 18),
                     Text(
-                      LocaleKeys.form_title_to.tr(),
+                      LocaleKeys.form_title_to_op.tr(),
                       style: const TextStyle(
                         fontSize: AppConstants.kFontSizeS,
                         color: AppColors.neutralN40,
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: toController,
                       hintText: LocaleKeys.form_hint_text_to_email.tr(),
                       maxLines: 1,
@@ -182,15 +210,11 @@ class _CreateBillPageState extends State<CreateBillPage> {
                         color: AppColors.neutralN40,
                       ),
                       validator: (p0) {
-                        if (p0!.isEmpty) {
-                          return LocaleKeys.validation_input_is_not_empty
-                              .tr(args: [
-                            LocaleKeys.form_title_title.tr(),
-                          ]);
-                        }
-                        if (!p0.isValidEmail) {
-                          return LocaleKeys.validation_invalid_email_address
-                              .tr();
+                        if (p0!.isNotEmpty) {
+                          if (!p0.isValidEmail) {
+                            return LocaleKeys.validation_invalid_email_address
+                                .tr();
+                          }
                         }
                         return null;
                       },
@@ -204,15 +228,60 @@ class _CreateBillPageState extends State<CreateBillPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: noteController,
                       hintText: LocaleKeys.form_hint_text_note.tr(),
-                      maxLines: 1,
-                      keyboardType: TextInputType.text,
+                      maxLines: 2,
+                      maxLength: 50,
+                      keyboardType: TextInputType.multiline,
                       style: const TextStyle(
                         fontSize: AppConstants.kFontSizeS,
                         color: AppColors.neutralN40,
                       ),
+                    ),
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_service_fee.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Transform.scale(
+                          scale: 1.2,
+                          child: SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: Checkbox(
+                              value: withFee,
+                              onChanged: (value) {
+                                setState(() {
+                                  withFee = value!;
+                                });
+                              },
+                              activeColor: AppColors.orange,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                side: const BorderSide(
+                                  color: AppColors.neutralN80,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          LocaleKeys.form_title_service_fee_desk.tr(),
+                          style: const TextStyle(
+                            fontSize: AppConstants.kFontSizeS,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -223,14 +292,23 @@ class _CreateBillPageState extends State<CreateBillPage> {
               child: BtnPrimary(
                 title: LocaleKeys.button_create_bill.tr(),
                 onTap: () {
+                  hideKeyboard(context);
                   if (_formKey.currentState!.validate()) {
-                    handleSubmit().then((value) {
-                      if (value != null) {
-                        context
-                            .read<CreateBillBloc>()
-                            .add(CreateBillEvent.createBill(formData: value));
-                      }
-                    });
+                    _showAlertBill(
+                      context,
+                      onCancel: () => context.pop(),
+                      onSubmit: () {
+                        handleSubmit().then((value) {
+                          if (value != null) {
+                            context.pop();
+                            if (context.mounted) {
+                              context.read<CreateBillBloc>().add(
+                                  CreateBillEvent.createBill(formData: value));
+                            }
+                          }
+                        });
+                      },
+                    );
                   }
                 },
               ),
@@ -247,5 +325,7 @@ class _CreateBillPageState extends State<CreateBillPage> {
     titleController.dispose();
     amountController.dispose();
     toController.dispose();
+    noteController.dispose();
+    withFee = false;
   }
 }

@@ -19,6 +19,10 @@ class TextfieldCustom extends StatefulWidget {
     this.readOnly = false,
     this.validator,
     this.label,
+    this.maxLines,
+    this.style,
+    this.counterText,
+    this.enabled = true,
   });
 
   final TextEditingController controller;
@@ -34,6 +38,10 @@ class TextfieldCustom extends StatefulWidget {
   final bool readOnly;
   final String? Function(String?)? validator;
   final String? label;
+  final int? maxLines;
+  final TextStyle? style;
+  final String? counterText;
+  final bool enabled;
 
   @override
   State<TextfieldCustom> createState() => _TextfieldCustomState();
@@ -57,14 +65,18 @@ class _TextfieldCustomState extends State<TextfieldCustom> {
       keyboardType: widget.keyboardType,
       obscureText: _isObscured,
       readOnly: widget.readOnly,
+      enabled: widget.enabled,
       validator: widget.validator,
-      style: const TextStyle(
-        fontSize: AppConstants.kFontSizeS,
-        color: AppColors.neutralN50,
-      ),
+      style: widget.style ??
+          const TextStyle(
+            fontSize: AppConstants.kFontSizeS,
+            color: AppColors.neutralN50,
+          ),
       inputFormatters: [
         if (widget.format == 'cardNumber') CardNumberInputFormatter(),
+        if (widget.format == 'currency') CurrencyInputFormatter(),
       ],
+      maxLines: widget.maxLines ?? 1,
       onTap: widget.onTap,
       decoration: InputDecoration(
         filled: widget.filled ?? false,
@@ -81,7 +93,10 @@ class _TextfieldCustomState extends State<TextfieldCustom> {
                 },
               )
             : widget.suffixIcon,
-        counter: const SizedBox.shrink(),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.neutralN120),
+          borderRadius: BorderRadius.circular(4),
+        ),
         enabledBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.neutralN120),
           borderRadius: BorderRadius.circular(4),
@@ -108,6 +123,7 @@ class _TextfieldCustomState extends State<TextfieldCustom> {
           fontSize: AppConstants.kFontSizeS,
           color: AppColors.neutralN80,
         ),
+        counterText: widget.counterText,
         labelText: widget.label,
         labelStyle: const TextStyle(
           fontWeight: FontWeight.w500,

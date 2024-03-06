@@ -226,7 +226,7 @@ mixin _$AccountBillingState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AccountBillingModel data) success,
+    required TResult Function(BillModel data) success,
     required TResult Function(NetworkExceptions error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -234,7 +234,7 @@ mixin _$AccountBillingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AccountBillingModel data)? success,
+    TResult? Function(BillModel data)? success,
     TResult? Function(NetworkExceptions error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -242,7 +242,7 @@ mixin _$AccountBillingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AccountBillingModel data)? success,
+    TResult Function(BillModel data)? success,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) =>
@@ -332,7 +332,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AccountBillingModel data) success,
+    required TResult Function(BillModel data) success,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return initial();
@@ -343,7 +343,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AccountBillingModel data)? success,
+    TResult? Function(BillModel data)? success,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return initial?.call();
@@ -354,7 +354,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AccountBillingModel data)? success,
+    TResult Function(BillModel data)? success,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -446,7 +446,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AccountBillingModel data) success,
+    required TResult Function(BillModel data) success,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return loading();
@@ -457,7 +457,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AccountBillingModel data)? success,
+    TResult? Function(BillModel data)? success,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return loading?.call();
@@ -468,7 +468,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AccountBillingModel data)? success,
+    TResult Function(BillModel data)? success,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -526,9 +526,9 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AccountBillingModel data});
+  $Res call({BillModel data});
 
-  $AccountBillingModelCopyWith<$Res> get data;
+  $BillModelCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -548,14 +548,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
       null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as AccountBillingModel,
+              as BillModel,
     ));
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AccountBillingModelCopyWith<$Res> get data {
-    return $AccountBillingModelCopyWith<$Res>(_value.data, (value) {
+  $BillModelCopyWith<$Res> get data {
+    return $BillModelCopyWith<$Res>(_value.data, (value) {
       return _then(_value.copyWith(data: value));
     });
   }
@@ -567,7 +567,7 @@ class _$SuccessImpl implements _Success {
   const _$SuccessImpl(this.data);
 
   @override
-  final AccountBillingModel data;
+  final BillModel data;
 
   @override
   String toString() {
@@ -596,7 +596,7 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AccountBillingModel data) success,
+    required TResult Function(BillModel data) success,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return success(data);
@@ -607,7 +607,7 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AccountBillingModel data)? success,
+    TResult? Function(BillModel data)? success,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return success?.call(data);
@@ -618,7 +618,7 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AccountBillingModel data)? success,
+    TResult Function(BillModel data)? success,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {
@@ -667,9 +667,9 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements AccountBillingState {
-  const factory _Success(final AccountBillingModel data) = _$SuccessImpl;
+  const factory _Success(final BillModel data) = _$SuccessImpl;
 
-  AccountBillingModel get data;
+  BillModel get data;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -751,7 +751,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(AccountBillingModel data) success,
+    required TResult Function(BillModel data) success,
     required TResult Function(NetworkExceptions error) error,
   }) {
     return error(this.error);
@@ -762,7 +762,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(AccountBillingModel data)? success,
+    TResult? Function(BillModel data)? success,
     TResult? Function(NetworkExceptions error)? error,
   }) {
     return error?.call(this.error);
@@ -773,7 +773,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(AccountBillingModel data)? success,
+    TResult Function(BillModel data)? success,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
   }) {

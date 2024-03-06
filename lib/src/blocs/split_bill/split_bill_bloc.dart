@@ -2,8 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:certenz/src/core/api_result.dart';
 import 'package:certenz/src/core/network_exceptions.dart';
 import 'package:certenz/src/data/models/bill/bill_model.dart';
+import 'package:certenz/src/data/models/history/history_split_bill_model.dart';
 import 'package:certenz/src/data/models/split_bill/split_bill_model.dart';
-import 'package:certenz/src/data/services/split_bill/split_bill_service.dart';
+import 'package:certenz/src/data/services/split_bill_service.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
@@ -16,10 +17,10 @@ class SplitBillBloc extends Bloc<SplitBillEvent, SplitBillState> {
   SplitBillBloc() : super(const SplitBillState.initial()) {
     on<SplitBillEvent>((event, emit) async {
       await event.when(
-        createSplitBill: (title, amount) async {
+        createSplitBill: (title, amount, withFee) async {
           emit(const SplitBillState.loading());
           ApiResult<SplitBillModel> result = await SplitBillService()
-              .createSplitBill(title: title, amount: amount);
+              .createSplitBill(title: title, amount: amount, withFee: withFee);
 
           result.when(
             success: (data) => emit(SplitBillState.successCreateSplit(data)),

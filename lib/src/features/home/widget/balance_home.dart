@@ -11,70 +11,41 @@ class BalanceHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18),
-      child: Container(
-        width: AppScreens.width,
-        padding: const EdgeInsets.all(9),
-        decoration: BoxDecoration(
-          color: AppColors.orange,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      color: AppColors.neutralN140,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Image.asset(
-                      Assets.icons.certenzPng.path,
-                      width: 16,
-                      height: 24,
-                    ),
-                  ),
-                  Text(
-                    "Balance",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.neutralN140,
-                    ),
-                  )
-                ],
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                "${formatCurrency(25000000)} -",
+                style: const TextStyle(
+                  fontSize: AppConstants.kFontSizeX,
+                  color: AppColors.black2,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
+              Text(
+                "Balance",
+                style: TextStyle(
+                  color: AppColors.primaryColors,
+                  fontWeight: FontWeight.w500,
+                  fontSize: AppConstants.kFontSizeXL,
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 12),
+          Text(
+            "37% This Month",
+            style: TextStyle(
+              color: AppColors.primaryColors,
+              fontWeight: FontWeight.w500,
             ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    formatCurrency(24500000.0),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.neutralN140,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Text(
-                    "+37% than last month",
-                    style: TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.neutralN140,
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

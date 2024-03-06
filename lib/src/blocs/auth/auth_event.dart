@@ -12,4 +12,7 @@ class AuthEvent with _$AuthEvent {
   const factory AuthEvent.userLogout() = _UserLogout;
   const factory AuthEvent.checkStatus() = _CheckStatus;
   const factory AuthEvent.getUser() = _GetUser;
+  const factory AuthEvent.verifUser({FormData? formData}) = _VerifUser;
+  const factory AuthEvent.getUploadKtp({required File imageFile}) =
+      _GetUploadKtp;
 }

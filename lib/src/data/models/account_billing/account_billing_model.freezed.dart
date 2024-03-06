@@ -49,8 +49,6 @@ mixin _$AccountBillingModel {
   String? get paidOnTime => throw _privateConstructorUsedError;
   @JsonKey(name: 'payment_method')
   int? get paymentMethod => throw _privateConstructorUsedError;
-  @JsonKey(name: 'account_destination')
-  int? get accountDestination => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
   @JsonKey(name: 'bill_type')
   String? get billType => throw _privateConstructorUsedError;
@@ -85,7 +83,6 @@ abstract class $AccountBillingModelCopyWith<$Res> {
       @JsonKey(name: 'paid_on_date') String? paidOnDate,
       @JsonKey(name: 'paid_on_time') String? paidOnTime,
       @JsonKey(name: 'payment_method') int? paymentMethod,
-      @JsonKey(name: 'account_destination') int? accountDestination,
       String? note,
       @JsonKey(name: 'bill_type') String? billType,
       @JsonKey(name: 'bill_status') String? billStatus});
@@ -119,7 +116,6 @@ class _$AccountBillingModelCopyWithImpl<$Res, $Val extends AccountBillingModel>
     Object? paidOnDate = freezed,
     Object? paidOnTime = freezed,
     Object? paymentMethod = freezed,
-    Object? accountDestination = freezed,
     Object? note = freezed,
     Object? billType = freezed,
     Object? billStatus = freezed,
@@ -185,10 +181,6 @@ class _$AccountBillingModelCopyWithImpl<$Res, $Val extends AccountBillingModel>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as int?,
-      accountDestination: freezed == accountDestination
-          ? _value.accountDestination
-          : accountDestination // ignore: cast_nullable_to_non_nullable
-              as int?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -229,7 +221,6 @@ abstract class _$$AccountBillingModelImplCopyWith<$Res>
       @JsonKey(name: 'paid_on_date') String? paidOnDate,
       @JsonKey(name: 'paid_on_time') String? paidOnTime,
       @JsonKey(name: 'payment_method') int? paymentMethod,
-      @JsonKey(name: 'account_destination') int? accountDestination,
       String? note,
       @JsonKey(name: 'bill_type') String? billType,
       @JsonKey(name: 'bill_status') String? billStatus});
@@ -261,7 +252,6 @@ class __$$AccountBillingModelImplCopyWithImpl<$Res>
     Object? paidOnDate = freezed,
     Object? paidOnTime = freezed,
     Object? paymentMethod = freezed,
-    Object? accountDestination = freezed,
     Object? note = freezed,
     Object? billType = freezed,
     Object? billStatus = freezed,
@@ -327,10 +317,6 @@ class __$$AccountBillingModelImplCopyWithImpl<$Res>
           ? _value.paymentMethod
           : paymentMethod // ignore: cast_nullable_to_non_nullable
               as int?,
-      accountDestination: freezed == accountDestination
-          ? _value.accountDestination
-          : accountDestination // ignore: cast_nullable_to_non_nullable
-              as int?,
       note: freezed == note
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
@@ -366,7 +352,6 @@ class _$AccountBillingModelImpl implements _AccountBillingModel {
       @JsonKey(name: 'paid_on_date') this.paidOnDate,
       @JsonKey(name: 'paid_on_time') this.paidOnTime,
       @JsonKey(name: 'payment_method') this.paymentMethod,
-      @JsonKey(name: 'account_destination') this.accountDestination,
       this.note,
       @JsonKey(name: 'bill_type') this.billType,
       @JsonKey(name: 'bill_status') this.billStatus});
@@ -419,9 +404,6 @@ class _$AccountBillingModelImpl implements _AccountBillingModel {
   @JsonKey(name: 'payment_method')
   final int? paymentMethod;
   @override
-  @JsonKey(name: 'account_destination')
-  final int? accountDestination;
-  @override
   final String? note;
   @override
   @JsonKey(name: 'bill_type')
@@ -432,7 +414,7 @@ class _$AccountBillingModelImpl implements _AccountBillingModel {
 
   @override
   String toString() {
-    return 'AccountBillingModel(userId: $userId, billNumber: $billNumber, title: $title, totalAmountBill: $totalAmountBill, qrCode: $qrCode, transactionDatetime: $transactionDatetime, toName: $toName, toAccount: $toAccount, toEmail: $toEmail, fromAccount: $fromAccount, fromName: $fromName, tenantPeriod: $tenantPeriod, paidOnDate: $paidOnDate, paidOnTime: $paidOnTime, paymentMethod: $paymentMethod, accountDestination: $accountDestination, note: $note, billType: $billType, billStatus: $billStatus)';
+    return 'AccountBillingModel(userId: $userId, billNumber: $billNumber, title: $title, totalAmountBill: $totalAmountBill, qrCode: $qrCode, transactionDatetime: $transactionDatetime, toName: $toName, toAccount: $toAccount, toEmail: $toEmail, fromAccount: $fromAccount, fromName: $fromName, tenantPeriod: $tenantPeriod, paidOnDate: $paidOnDate, paidOnTime: $paidOnTime, paymentMethod: $paymentMethod, note: $note, billType: $billType, billStatus: $billStatus)';
   }
 
   @override
@@ -465,8 +447,6 @@ class _$AccountBillingModelImpl implements _AccountBillingModel {
                 other.paidOnTime == paidOnTime) &&
             (identical(other.paymentMethod, paymentMethod) ||
                 other.paymentMethod == paymentMethod) &&
-            (identical(other.accountDestination, accountDestination) ||
-                other.accountDestination == accountDestination) &&
             (identical(other.note, note) || other.note == note) &&
             (identical(other.billType, billType) ||
                 other.billType == billType) &&
@@ -476,28 +456,26 @@ class _$AccountBillingModelImpl implements _AccountBillingModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        userId,
-        billNumber,
-        title,
-        totalAmountBill,
-        qrCode,
-        transactionDatetime,
-        toName,
-        toAccount,
-        toEmail,
-        fromAccount,
-        fromName,
-        tenantPeriod,
-        paidOnDate,
-        paidOnTime,
-        paymentMethod,
-        accountDestination,
-        note,
-        billType,
-        billStatus
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      userId,
+      billNumber,
+      title,
+      totalAmountBill,
+      qrCode,
+      transactionDatetime,
+      toName,
+      toAccount,
+      toEmail,
+      fromAccount,
+      fromName,
+      tenantPeriod,
+      paidOnDate,
+      paidOnTime,
+      paymentMethod,
+      note,
+      billType,
+      billStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -531,7 +509,6 @@ abstract class _AccountBillingModel implements AccountBillingModel {
       @JsonKey(name: 'paid_on_date') final String? paidOnDate,
       @JsonKey(name: 'paid_on_time') final String? paidOnTime,
       @JsonKey(name: 'payment_method') final int? paymentMethod,
-      @JsonKey(name: 'account_destination') final int? accountDestination,
       final String? note,
       @JsonKey(name: 'bill_type') final String? billType,
       @JsonKey(name: 'bill_status')
@@ -584,9 +561,6 @@ abstract class _AccountBillingModel implements AccountBillingModel {
   @override
   @JsonKey(name: 'payment_method')
   int? get paymentMethod;
-  @override
-  @JsonKey(name: 'account_destination')
-  int? get accountDestination;
   @override
   String? get note;
   @override

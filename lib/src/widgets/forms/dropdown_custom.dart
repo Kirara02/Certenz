@@ -35,9 +35,15 @@ class DropdownTextfield extends StatelessWidget {
         constraints: const BoxConstraints(
           maxHeight: 180,
         ),
+        scrollbarProps: const ScrollbarProps(
+          radius: Radius.circular(16),
+          // thumbVisibility: true,
+        ),
         showSearchBox: showSearchBox,
-        disabledItemFn: (String s) => s.startsWith('I'),
-        menuProps: const MenuProps(),
+        // disabledItemFn: (String s) => s.startsWith(''),
+        menuProps: MenuProps(
+          borderRadius: BorderRadius.circular(4),
+        ),
       ),
       items: items!,
       selectedItem: selectedItem,
@@ -53,41 +59,21 @@ class DropdownTextfield extends StatelessWidget {
             Icons.keyboard_arrow_down,
             color: AppColors.neutralN80,
           ),
-          enabledBorder: isRegister
-              ? const OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.neutralN120),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4),
-                  ),
-                )
-              : const OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.neutralN130),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4),
-                  ),
-                ),
-          border: isRegister
-              ? const OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.neutralN120),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4),
-                  ),
-                )
-              : const OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.neutralN120),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(4),
-                  ),
-                ),
-          focusedBorder: isRegister
-              ? OutlineInputBorder(
-                  borderSide: const BorderSide(color: AppColors.neutralN80),
-                  borderRadius: BorderRadius.circular(4),
-                )
-              : OutlineInputBorder(
-                  borderSide: const BorderSide(color: AppColors.neutralN80),
-                  borderRadius: BorderRadius.circular(4),
-                ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: AppColors.neutralN120),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(color: AppColors.neutralN120),
+            borderRadius: BorderRadius.all(
+              Radius.circular(4),
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide:
+                const BorderSide(color: AppColors.neutralN80, width: 1.5),
+            borderRadius: BorderRadius.circular(4),
+          ),
           counterStyle: const TextStyle(
             fontSize: AppConstants.kFontSizeS,
             color: AppColors.neutralN80,

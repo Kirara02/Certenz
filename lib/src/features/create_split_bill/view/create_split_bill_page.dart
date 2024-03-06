@@ -2,7 +2,6 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/blocs/split_bill/split_bill_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/features/split_bill/view/split_bill_page.dart';
 import 'package:certenz/src/utils/dismiss_keyboard.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/utils/logger.dart';
@@ -11,11 +10,12 @@ import 'package:certenz/src/widgets/common/custom_appbar.dart';
 import 'package:certenz/src/widgets/dialogs/hide_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/loading_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/ux_toast_wrapper.dart';
-import 'package:certenz/src/widgets/forms/field_custom.dart';
+import 'package:certenz/src/widgets/forms/textfield_custom.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 
 class CreateSplitBillPage extends StatefulWidget {
   const CreateSplitBillPage({super.key});
@@ -29,7 +29,7 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
 
   TextEditingController titleController = TextEditingController();
   TextEditingController amountController = TextEditingController();
-
+  bool withFee = false;
   bool isFearly = false;
 
   Future _toast(String? message, [Color color = AppColors.red]) {
@@ -38,6 +38,14 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
         backgroundColor: color,
         toastGravity: ToastGravity.BOTTOM,
         textColor: AppColors.neutralN140);
+  }
+
+  void _refresh() {
+    titleController.clear();
+    amountController.clear();
+    setState(() {
+      withFee = false;
+    });
   }
 
   @override
@@ -52,13 +60,14 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
               loading: () => showLoadingDialog(context),
               successCreateSplit: (data) {
                 hideDialog(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SplitBillPage(
-                              isFearly: isFearly,
-                              data: data,
-                            )));
+                _refresh();
+                if (context.mounted) {
+                  context.pushNamed("split",
+                      queryParameters: {"isFearly": isFearly.toString()},
+                      extra: data);
+                }
+
+                isFearly = false;
               },
               error: (error) {
                 hideDialog(context);
@@ -104,7 +113,7 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: titleController,
                       hintText: LocaleKeys.form_hint_text_title.tr(),
                       maxLines: 1,
@@ -132,7 +141,7 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: amountController,
                       hintText: LocaleKeys.form_hint_text_amount.tr(),
                       maxLines: 1,
@@ -153,6 +162,51 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
                         return null;
                       },
                     ),
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_service_fee.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Transform.scale(
+                          scale: 1.2,
+                          child: SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: Checkbox(
+                              value: withFee,
+                              onChanged: (value) {
+                                setState(() {
+                                  withFee = value!;
+                                });
+                              },
+                              activeColor: AppColors.orange,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                side: const BorderSide(
+                                  color: AppColors.neutralN80,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          LocaleKeys.form_title_service_fee_desk.tr(),
+                          style: const TextStyle(
+                            fontSize: AppConstants.kFontSizeS,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 18),
                     const Text(
                       "Set Fairly",
                       style: TextStyle(
@@ -160,7 +214,7 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
                         color: AppColors.neutralN40,
                       ),
                     ),
-                    const SizedBox(height: 18),
+                    const SizedBox(height: 8),
                     Transform.scale(
                       scale: 1.2,
                       child: SizedBox(
@@ -192,15 +246,14 @@ class _CreateSplitBillPageState extends State<CreateSplitBillPage> {
               child: BtnPrimary(
                 title: LocaleKeys.button_create_bill.tr(),
                 onTap: () {
-                  if (_formKey.currentState!.validate()) {
-                    context
-                        .read<SplitBillBloc>()
-                        .add(SplitBillEvent.createSplitBill(
-                          title: titleController.text,
-                          amount: removeCurrencyFormat(amountController.text),
-                        ));
-                  }
                   hideKeyboard(context);
+                  if (_formKey.currentState!.validate()) {
+                    context.read<SplitBillBloc>().add(
+                        SplitBillEvent.createSplitBill(
+                            title: titleController.text,
+                            amount: removeCurrencyFormat(amountController.text),
+                            withFee: withFee));
+                  }
                 },
               ),
             ),

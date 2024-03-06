@@ -2,7 +2,6 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/account_bank/account_bank_model.dart';
-import 'package:certenz/src/features/payment_status/view/payment_success_page.dart';
 import 'package:certenz/src/features/pin/view/pin_page.dart';
 import 'package:certenz/src/utils/date_picker.dart';
 import 'package:certenz/src/utils/logger.dart';
@@ -47,7 +46,7 @@ class _GrantedMoneyPageState extends State<GrantedMoneyPage> {
       builder: (context) {
         return Dialog(
           insetPadding: const EdgeInsets.all(10),
-          child: DatePicker(
+          child: SelectDatePicker(
             passDate: passDate,
             tanggal_awal: date,
           ),
@@ -194,22 +193,7 @@ class _GrantedMoneyPageState extends State<GrantedMoneyPage> {
               ),
               const SizedBox(height: 18),
               BtnPrimary(
-                onTap: () async {
-                  if (await Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PinPage(),
-                      )) ==
-                      true) {
-                    if (context.mounted) {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PaymentSuccessPage(),
-                        ),
-                        (route) => false,
-                      );
-                    }
-                  }
-                },
+                onTap: () async {},
                 title: LocaleKeys.button_next.tr(),
               )
             ],

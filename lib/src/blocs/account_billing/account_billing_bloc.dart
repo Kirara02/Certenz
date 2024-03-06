@@ -2,7 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:certenz/src/core/api_result.dart';
 import 'package:certenz/src/core/network_exceptions.dart';
 import 'package:certenz/src/data/models/account_billing/account_billing_model.dart';
-import 'package:certenz/src/data/services/account_billing/account_billing_service.dart';
+import 'package:certenz/src/data/models/bill/bill_model.dart';
+import 'package:certenz/src/data/services/account_billing_service.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
@@ -18,7 +19,7 @@ class AccountBillingBloc
       await event.when(
         create: (formData) async {
           emit(const AccountBillingState.loading());
-          ApiResult<AccountBillingModel> result =
+          ApiResult<BillModel> result =
               await AccountBillingService().createBilling(formData: formData);
 
           result.when(

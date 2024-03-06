@@ -1,6 +1,7 @@
 import 'package:certenz/src/utils/flutter_storage.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../../../core/api_result.dart';
 import '../../../core/network_exceptions.dart';
@@ -30,6 +31,14 @@ class UXHttp {
         responseType: ResponseType.json));
     // set request header
     _dio.options.headers['Accept'] = 'application/json';
+    _dio.interceptors.add(PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+        responseBody: false,
+        responseHeader: false,
+        error: true,
+        compact: true,
+        maxWidth: 150));
     if (interceptors?.isNotEmpty ?? false) {
       _dio.interceptors.addAll(interceptors!);
     }

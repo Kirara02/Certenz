@@ -1,11 +1,16 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
+import 'package:certenz/gen/assets.gen.dart';
 import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/features/profile/widget/accounts_section.dart';
 import 'package:certenz/src/features/profile/widget/profile_section.dart';
 import 'package:certenz/src/features/profile/widget/settings_section.dart';
+import 'package:certenz/src/utils/check_akun_validation.dart';
+import 'package:certenz/src/utils/flutter_storage.dart';
+import 'package:certenz/src/widgets/buttons/button_primary.dart';
+import 'package:certenz/src/widgets/dialogs/verification_dialog.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +28,12 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() {
       _selectedMenuIndex = index;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    checkAccountValidation(context);
   }
 
   Widget _buildContent() {

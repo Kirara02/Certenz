@@ -22,6 +22,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/address.svg
   SvgGenImage get address => const SvgGenImage('assets/icons/address.svg');
 
+  /// File path: assets/icons/alert.svg
+  SvgGenImage get alert => const SvgGenImage('assets/icons/alert.svg');
+
+  /// File path: assets/icons/app_icon.svg
+  SvgGenImage get appIcon => const SvgGenImage('assets/icons/app_icon.svg');
+
   /// File path: assets/icons/apple.png
   AssetGenImage get apple => const AssetGenImage('assets/icons/apple.png');
 
@@ -60,6 +66,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/fb.png
   AssetGenImage get fb => const AssetGenImage('assets/icons/fb.png');
+
+  /// File path: assets/icons/filter.svg
+  SvgGenImage get filter => const SvgGenImage('assets/icons/filter.svg');
 
   /// File path: assets/icons/google.png
   AssetGenImage get google => const AssetGenImage('assets/icons/google.png');
@@ -205,6 +214,8 @@ class $AssetsIconsGen {
   List<dynamic> get values => [
         accountBill,
         address,
+        alert,
+        appIcon,
         apple,
         cbill,
         ccard,
@@ -217,6 +228,7 @@ class $AssetsIconsGen {
         edit,
         faq,
         fb,
+        filter,
         google,
         highlight,
         historyActive,
@@ -337,6 +349,13 @@ class $AssetsImagesGen {
   AssetGenImage get qrexample =>
       const AssetGenImage('assets/images/qrexample.png');
 
+  /// File path: assets/images/qris.png
+  AssetGenImage get qris => const AssetGenImage('assets/images/qris.png');
+
+  /// File path: assets/images/qris_code.png
+  AssetGenImage get qrisCode =>
+      const AssetGenImage('assets/images/qris_code.png');
+
   /// File path: assets/images/shopeepay.png
   AssetGenImage get shopeepay =>
       const AssetGenImage('assets/images/shopeepay.png');
@@ -384,6 +403,8 @@ class $AssetsImagesGen {
         paymentBg,
         qr,
         qrexample,
+        qris,
+        qrisCode,
         shopeepay,
         splash,
         user1,

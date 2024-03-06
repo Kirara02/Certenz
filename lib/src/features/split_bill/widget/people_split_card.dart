@@ -1,108 +1,123 @@
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/data/models/bill/bill_model.dart';
-import 'package:certenz/src/features/bill_status/view/bill_status_page.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:flutter/material.dart';
 
 class PeopleSplitCard extends StatelessWidget {
-  final BillModel billData;
+  final String name;
+  final String email;
+  final String phoneNumber;
+  final double amount;
+  final String status;
+  final VoidCallback onTap;
+  final bool disabled;
+  final bool isPayment;
   const PeopleSplitCard({
     super.key,
-    required this.billData,
+    required this.name,
+    required this.email,
+    required this.phoneNumber,
+    required this.amount,
+    required this.status,
+    required this.onTap,
+    this.disabled = false,
+    this.isPayment = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      decoration: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(
-            color: AppColors.neutralN120,
-            width: 1.0,
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        decoration: BoxDecoration(
+          color: isPayment == true
+              ? (disabled == true
+                  ? const Color(0xffFF8A8A).withOpacity(0.15)
+                  : const Color(0xffBFBFBF).withOpacity(0.4))
+              : const Color(0xffFF8A8A).withOpacity(0.15),
+          border: const Border(
+            bottom: BorderSide(
+              color: AppColors.neutralN120,
+              width: 1.0,
+            ),
           ),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 32,
-                height: 32,
-                decoration: const BoxDecoration(
-                  color: AppColors.orange,
-                  shape: BoxShape.circle,
-                ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: 32,
+              height: 32,
+              decoration: const BoxDecoration(
+                color: AppColors.orange,
+                shape: BoxShape.circle,
               ),
-              const SizedBox(width: 8),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.4,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      billData.toEmail,
-                      style: const TextStyle(
-                        fontSize: AppConstants.kFontSizeS,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.neutralN40,
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            email,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.neutralN40,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            phoneNumber,
+                            style: const TextStyle(
+                              color: AppColors.neutralN40,
+                            ),
+                          ),
+                        ],
                       ),
-                      overflow: TextOverflow.ellipsis,
+                      const Spacer(),
+                      Text(
+                        formatCurrencyNonDecimal(amount),
+                        style: const TextStyle(
+                          fontSize: AppConstants.kFontSizeL,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.neutralN40,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: status == "Success"
+                          ? const Color(0xff3EF54B).withOpacity(0.28)
+                          : const Color(0xffFFAB0A).withOpacity(0.28),
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    const SizedBox(width: 4),
-                    Text(
-                      billData.phoneNumber ?? "-",
-                      style: const TextStyle(
-                        fontSize: AppConstants.kFontSizeS,
-                        color: AppColors.neutralN40,
+                    child: Text(
+                      status,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: status == "Pending"
+                            ? AppColors.yellow2
+                            : const Color(0xff018B0A),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-          InkWell(
-            onTap: () => Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => BillStatusPage(data: billData)),
-              (route) => false,
             ),
-            child: Column(
-              children: [
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
-                  decoration: BoxDecoration(
-                    color: AppColors.yellowy120,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    billData.createBillStatus,
-                    style: const TextStyle(
-                      fontSize: AppConstants.kFontSizeS,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.yellowy60,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  formatCurrencyNonDecimal(billData.totalAmountBill),
-                  style: const TextStyle(
-                    fontSize: AppConstants.kFontSizeS,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.neutralN40,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

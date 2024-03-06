@@ -23,6 +23,8 @@ mixin _$AuthEvent {
     required TResult Function() userLogout,
     required TResult Function() checkStatus,
     required TResult Function() getUser,
+    required TResult Function(FormData? formData) verifUser,
+    required TResult Function(File imageFile) getUploadKtp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +34,8 @@ mixin _$AuthEvent {
     TResult? Function()? userLogout,
     TResult? Function()? checkStatus,
     TResult? Function()? getUser,
+    TResult? Function(FormData? formData)? verifUser,
+    TResult? Function(File imageFile)? getUploadKtp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +45,8 @@ mixin _$AuthEvent {
     TResult Function()? userLogout,
     TResult Function()? checkStatus,
     TResult Function()? getUser,
+    TResult Function(FormData? formData)? verifUser,
+    TResult Function(File imageFile)? getUploadKtp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +57,8 @@ mixin _$AuthEvent {
     required TResult Function(_UserLogout value) userLogout,
     required TResult Function(_CheckStatus value) checkStatus,
     required TResult Function(_GetUser value) getUser,
+    required TResult Function(_VerifUser value) verifUser,
+    required TResult Function(_GetUploadKtp value) getUploadKtp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +68,8 @@ mixin _$AuthEvent {
     TResult? Function(_UserLogout value)? userLogout,
     TResult? Function(_CheckStatus value)? checkStatus,
     TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_VerifUser value)? verifUser,
+    TResult? Function(_GetUploadKtp value)? getUploadKtp,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +79,8 @@ mixin _$AuthEvent {
     TResult Function(_UserLogout value)? userLogout,
     TResult Function(_CheckStatus value)? checkStatus,
     TResult Function(_GetUser value)? getUser,
+    TResult Function(_VerifUser value)? verifUser,
+    TResult Function(_GetUploadKtp value)? getUploadKtp,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -170,6 +182,8 @@ class _$LoginImpl implements _Login {
     required TResult Function() userLogout,
     required TResult Function() checkStatus,
     required TResult Function() getUser,
+    required TResult Function(FormData? formData) verifUser,
+    required TResult Function(File imageFile) getUploadKtp,
   }) {
     return login(username, password);
   }
@@ -182,6 +196,8 @@ class _$LoginImpl implements _Login {
     TResult? Function()? userLogout,
     TResult? Function()? checkStatus,
     TResult? Function()? getUser,
+    TResult? Function(FormData? formData)? verifUser,
+    TResult? Function(File imageFile)? getUploadKtp,
   }) {
     return login?.call(username, password);
   }
@@ -194,6 +210,8 @@ class _$LoginImpl implements _Login {
     TResult Function()? userLogout,
     TResult Function()? checkStatus,
     TResult Function()? getUser,
+    TResult Function(FormData? formData)? verifUser,
+    TResult Function(File imageFile)? getUploadKtp,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -210,6 +228,8 @@ class _$LoginImpl implements _Login {
     required TResult Function(_UserLogout value) userLogout,
     required TResult Function(_CheckStatus value) checkStatus,
     required TResult Function(_GetUser value) getUser,
+    required TResult Function(_VerifUser value) verifUser,
+    required TResult Function(_GetUploadKtp value) getUploadKtp,
   }) {
     return login(this);
   }
@@ -222,6 +242,8 @@ class _$LoginImpl implements _Login {
     TResult? Function(_UserLogout value)? userLogout,
     TResult? Function(_CheckStatus value)? checkStatus,
     TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_VerifUser value)? verifUser,
+    TResult? Function(_GetUploadKtp value)? getUploadKtp,
   }) {
     return login?.call(this);
   }
@@ -234,6 +256,8 @@ class _$LoginImpl implements _Login {
     TResult Function(_UserLogout value)? userLogout,
     TResult Function(_CheckStatus value)? checkStatus,
     TResult Function(_GetUser value)? getUser,
+    TResult Function(_VerifUser value)? verifUser,
+    TResult Function(_GetUploadKtp value)? getUploadKtp,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -324,6 +348,8 @@ class _$RegisterImpl implements _Register {
     required TResult Function() userLogout,
     required TResult Function() checkStatus,
     required TResult Function() getUser,
+    required TResult Function(FormData? formData) verifUser,
+    required TResult Function(File imageFile) getUploadKtp,
   }) {
     return register(data);
   }
@@ -336,6 +362,8 @@ class _$RegisterImpl implements _Register {
     TResult? Function()? userLogout,
     TResult? Function()? checkStatus,
     TResult? Function()? getUser,
+    TResult? Function(FormData? formData)? verifUser,
+    TResult? Function(File imageFile)? getUploadKtp,
   }) {
     return register?.call(data);
   }
@@ -348,6 +376,8 @@ class _$RegisterImpl implements _Register {
     TResult Function()? userLogout,
     TResult Function()? checkStatus,
     TResult Function()? getUser,
+    TResult Function(FormData? formData)? verifUser,
+    TResult Function(File imageFile)? getUploadKtp,
     required TResult orElse(),
   }) {
     if (register != null) {
@@ -364,6 +394,8 @@ class _$RegisterImpl implements _Register {
     required TResult Function(_UserLogout value) userLogout,
     required TResult Function(_CheckStatus value) checkStatus,
     required TResult Function(_GetUser value) getUser,
+    required TResult Function(_VerifUser value) verifUser,
+    required TResult Function(_GetUploadKtp value) getUploadKtp,
   }) {
     return register(this);
   }
@@ -376,6 +408,8 @@ class _$RegisterImpl implements _Register {
     TResult? Function(_UserLogout value)? userLogout,
     TResult? Function(_CheckStatus value)? checkStatus,
     TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_VerifUser value)? verifUser,
+    TResult? Function(_GetUploadKtp value)? getUploadKtp,
   }) {
     return register?.call(this);
   }
@@ -388,6 +422,8 @@ class _$RegisterImpl implements _Register {
     TResult Function(_UserLogout value)? userLogout,
     TResult Function(_CheckStatus value)? checkStatus,
     TResult Function(_GetUser value)? getUser,
+    TResult Function(_VerifUser value)? verifUser,
+    TResult Function(_GetUploadKtp value)? getUploadKtp,
     required TResult orElse(),
   }) {
     if (register != null) {
@@ -449,6 +485,8 @@ class _$UserLogoutImpl implements _UserLogout {
     required TResult Function() userLogout,
     required TResult Function() checkStatus,
     required TResult Function() getUser,
+    required TResult Function(FormData? formData) verifUser,
+    required TResult Function(File imageFile) getUploadKtp,
   }) {
     return userLogout();
   }
@@ -461,6 +499,8 @@ class _$UserLogoutImpl implements _UserLogout {
     TResult? Function()? userLogout,
     TResult? Function()? checkStatus,
     TResult? Function()? getUser,
+    TResult? Function(FormData? formData)? verifUser,
+    TResult? Function(File imageFile)? getUploadKtp,
   }) {
     return userLogout?.call();
   }
@@ -473,6 +513,8 @@ class _$UserLogoutImpl implements _UserLogout {
     TResult Function()? userLogout,
     TResult Function()? checkStatus,
     TResult Function()? getUser,
+    TResult Function(FormData? formData)? verifUser,
+    TResult Function(File imageFile)? getUploadKtp,
     required TResult orElse(),
   }) {
     if (userLogout != null) {
@@ -489,6 +531,8 @@ class _$UserLogoutImpl implements _UserLogout {
     required TResult Function(_UserLogout value) userLogout,
     required TResult Function(_CheckStatus value) checkStatus,
     required TResult Function(_GetUser value) getUser,
+    required TResult Function(_VerifUser value) verifUser,
+    required TResult Function(_GetUploadKtp value) getUploadKtp,
   }) {
     return userLogout(this);
   }
@@ -501,6 +545,8 @@ class _$UserLogoutImpl implements _UserLogout {
     TResult? Function(_UserLogout value)? userLogout,
     TResult? Function(_CheckStatus value)? checkStatus,
     TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_VerifUser value)? verifUser,
+    TResult? Function(_GetUploadKtp value)? getUploadKtp,
   }) {
     return userLogout?.call(this);
   }
@@ -513,6 +559,8 @@ class _$UserLogoutImpl implements _UserLogout {
     TResult Function(_UserLogout value)? userLogout,
     TResult Function(_CheckStatus value)? checkStatus,
     TResult Function(_GetUser value)? getUser,
+    TResult Function(_VerifUser value)? verifUser,
+    TResult Function(_GetUploadKtp value)? getUploadKtp,
     required TResult orElse(),
   }) {
     if (userLogout != null) {
@@ -569,6 +617,8 @@ class _$CheckStatusImpl implements _CheckStatus {
     required TResult Function() userLogout,
     required TResult Function() checkStatus,
     required TResult Function() getUser,
+    required TResult Function(FormData? formData) verifUser,
+    required TResult Function(File imageFile) getUploadKtp,
   }) {
     return checkStatus();
   }
@@ -581,6 +631,8 @@ class _$CheckStatusImpl implements _CheckStatus {
     TResult? Function()? userLogout,
     TResult? Function()? checkStatus,
     TResult? Function()? getUser,
+    TResult? Function(FormData? formData)? verifUser,
+    TResult? Function(File imageFile)? getUploadKtp,
   }) {
     return checkStatus?.call();
   }
@@ -593,6 +645,8 @@ class _$CheckStatusImpl implements _CheckStatus {
     TResult Function()? userLogout,
     TResult Function()? checkStatus,
     TResult Function()? getUser,
+    TResult Function(FormData? formData)? verifUser,
+    TResult Function(File imageFile)? getUploadKtp,
     required TResult orElse(),
   }) {
     if (checkStatus != null) {
@@ -609,6 +663,8 @@ class _$CheckStatusImpl implements _CheckStatus {
     required TResult Function(_UserLogout value) userLogout,
     required TResult Function(_CheckStatus value) checkStatus,
     required TResult Function(_GetUser value) getUser,
+    required TResult Function(_VerifUser value) verifUser,
+    required TResult Function(_GetUploadKtp value) getUploadKtp,
   }) {
     return checkStatus(this);
   }
@@ -621,6 +677,8 @@ class _$CheckStatusImpl implements _CheckStatus {
     TResult? Function(_UserLogout value)? userLogout,
     TResult? Function(_CheckStatus value)? checkStatus,
     TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_VerifUser value)? verifUser,
+    TResult? Function(_GetUploadKtp value)? getUploadKtp,
   }) {
     return checkStatus?.call(this);
   }
@@ -633,6 +691,8 @@ class _$CheckStatusImpl implements _CheckStatus {
     TResult Function(_UserLogout value)? userLogout,
     TResult Function(_CheckStatus value)? checkStatus,
     TResult Function(_GetUser value)? getUser,
+    TResult Function(_VerifUser value)? verifUser,
+    TResult Function(_GetUploadKtp value)? getUploadKtp,
     required TResult orElse(),
   }) {
     if (checkStatus != null) {
@@ -689,6 +749,8 @@ class _$GetUserImpl implements _GetUser {
     required TResult Function() userLogout,
     required TResult Function() checkStatus,
     required TResult Function() getUser,
+    required TResult Function(FormData? formData) verifUser,
+    required TResult Function(File imageFile) getUploadKtp,
   }) {
     return getUser();
   }
@@ -701,6 +763,8 @@ class _$GetUserImpl implements _GetUser {
     TResult? Function()? userLogout,
     TResult? Function()? checkStatus,
     TResult? Function()? getUser,
+    TResult? Function(FormData? formData)? verifUser,
+    TResult? Function(File imageFile)? getUploadKtp,
   }) {
     return getUser?.call();
   }
@@ -713,6 +777,8 @@ class _$GetUserImpl implements _GetUser {
     TResult Function()? userLogout,
     TResult Function()? checkStatus,
     TResult Function()? getUser,
+    TResult Function(FormData? formData)? verifUser,
+    TResult Function(File imageFile)? getUploadKtp,
     required TResult orElse(),
   }) {
     if (getUser != null) {
@@ -729,6 +795,8 @@ class _$GetUserImpl implements _GetUser {
     required TResult Function(_UserLogout value) userLogout,
     required TResult Function(_CheckStatus value) checkStatus,
     required TResult Function(_GetUser value) getUser,
+    required TResult Function(_VerifUser value) verifUser,
+    required TResult Function(_GetUploadKtp value) getUploadKtp,
   }) {
     return getUser(this);
   }
@@ -741,6 +809,8 @@ class _$GetUserImpl implements _GetUser {
     TResult? Function(_UserLogout value)? userLogout,
     TResult? Function(_CheckStatus value)? checkStatus,
     TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_VerifUser value)? verifUser,
+    TResult? Function(_GetUploadKtp value)? getUploadKtp,
   }) {
     return getUser?.call(this);
   }
@@ -753,6 +823,8 @@ class _$GetUserImpl implements _GetUser {
     TResult Function(_UserLogout value)? userLogout,
     TResult Function(_CheckStatus value)? checkStatus,
     TResult Function(_GetUser value)? getUser,
+    TResult Function(_VerifUser value)? verifUser,
+    TResult Function(_GetUploadKtp value)? getUploadKtp,
     required TResult orElse(),
   }) {
     if (getUser != null) {
@@ -767,11 +839,343 @@ abstract class _GetUser implements AuthEvent {
 }
 
 /// @nodoc
+abstract class _$$VerifUserImplCopyWith<$Res> {
+  factory _$$VerifUserImplCopyWith(
+          _$VerifUserImpl value, $Res Function(_$VerifUserImpl) then) =
+      __$$VerifUserImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({FormData? formData});
+}
+
+/// @nodoc
+class __$$VerifUserImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$VerifUserImpl>
+    implements _$$VerifUserImplCopyWith<$Res> {
+  __$$VerifUserImplCopyWithImpl(
+      _$VerifUserImpl _value, $Res Function(_$VerifUserImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? formData = freezed,
+  }) {
+    return _then(_$VerifUserImpl(
+      formData: freezed == formData
+          ? _value.formData
+          : formData // ignore: cast_nullable_to_non_nullable
+              as FormData?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$VerifUserImpl implements _VerifUser {
+  const _$VerifUserImpl({this.formData});
+
+  @override
+  final FormData? formData;
+
+  @override
+  String toString() {
+    return 'AuthEvent.verifUser(formData: $formData)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VerifUserImpl &&
+            (identical(other.formData, formData) ||
+                other.formData == formData));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, formData);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$VerifUserImplCopyWith<_$VerifUserImpl> get copyWith =>
+      __$$VerifUserImplCopyWithImpl<_$VerifUserImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String username, String password) login,
+    required TResult Function(FormData data) register,
+    required TResult Function() userLogout,
+    required TResult Function() checkStatus,
+    required TResult Function() getUser,
+    required TResult Function(FormData? formData) verifUser,
+    required TResult Function(File imageFile) getUploadKtp,
+  }) {
+    return verifUser(formData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String username, String password)? login,
+    TResult? Function(FormData data)? register,
+    TResult? Function()? userLogout,
+    TResult? Function()? checkStatus,
+    TResult? Function()? getUser,
+    TResult? Function(FormData? formData)? verifUser,
+    TResult? Function(File imageFile)? getUploadKtp,
+  }) {
+    return verifUser?.call(formData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String username, String password)? login,
+    TResult Function(FormData data)? register,
+    TResult Function()? userLogout,
+    TResult Function()? checkStatus,
+    TResult Function()? getUser,
+    TResult Function(FormData? formData)? verifUser,
+    TResult Function(File imageFile)? getUploadKtp,
+    required TResult orElse(),
+  }) {
+    if (verifUser != null) {
+      return verifUser(formData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Login value) login,
+    required TResult Function(_Register value) register,
+    required TResult Function(_UserLogout value) userLogout,
+    required TResult Function(_CheckStatus value) checkStatus,
+    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_VerifUser value) verifUser,
+    required TResult Function(_GetUploadKtp value) getUploadKtp,
+  }) {
+    return verifUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Login value)? login,
+    TResult? Function(_Register value)? register,
+    TResult? Function(_UserLogout value)? userLogout,
+    TResult? Function(_CheckStatus value)? checkStatus,
+    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_VerifUser value)? verifUser,
+    TResult? Function(_GetUploadKtp value)? getUploadKtp,
+  }) {
+    return verifUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Login value)? login,
+    TResult Function(_Register value)? register,
+    TResult Function(_UserLogout value)? userLogout,
+    TResult Function(_CheckStatus value)? checkStatus,
+    TResult Function(_GetUser value)? getUser,
+    TResult Function(_VerifUser value)? verifUser,
+    TResult Function(_GetUploadKtp value)? getUploadKtp,
+    required TResult orElse(),
+  }) {
+    if (verifUser != null) {
+      return verifUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _VerifUser implements AuthEvent {
+  const factory _VerifUser({final FormData? formData}) = _$VerifUserImpl;
+
+  FormData? get formData;
+  @JsonKey(ignore: true)
+  _$$VerifUserImplCopyWith<_$VerifUserImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GetUploadKtpImplCopyWith<$Res> {
+  factory _$$GetUploadKtpImplCopyWith(
+          _$GetUploadKtpImpl value, $Res Function(_$GetUploadKtpImpl) then) =
+      __$$GetUploadKtpImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({File imageFile});
+}
+
+/// @nodoc
+class __$$GetUploadKtpImplCopyWithImpl<$Res>
+    extends _$AuthEventCopyWithImpl<$Res, _$GetUploadKtpImpl>
+    implements _$$GetUploadKtpImplCopyWith<$Res> {
+  __$$GetUploadKtpImplCopyWithImpl(
+      _$GetUploadKtpImpl _value, $Res Function(_$GetUploadKtpImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? imageFile = null,
+  }) {
+    return _then(_$GetUploadKtpImpl(
+      imageFile: null == imageFile
+          ? _value.imageFile
+          : imageFile // ignore: cast_nullable_to_non_nullable
+              as File,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetUploadKtpImpl implements _GetUploadKtp {
+  const _$GetUploadKtpImpl({required this.imageFile});
+
+  @override
+  final File imageFile;
+
+  @override
+  String toString() {
+    return 'AuthEvent.getUploadKtp(imageFile: $imageFile)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetUploadKtpImpl &&
+            (identical(other.imageFile, imageFile) ||
+                other.imageFile == imageFile));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, imageFile);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetUploadKtpImplCopyWith<_$GetUploadKtpImpl> get copyWith =>
+      __$$GetUploadKtpImplCopyWithImpl<_$GetUploadKtpImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String username, String password) login,
+    required TResult Function(FormData data) register,
+    required TResult Function() userLogout,
+    required TResult Function() checkStatus,
+    required TResult Function() getUser,
+    required TResult Function(FormData? formData) verifUser,
+    required TResult Function(File imageFile) getUploadKtp,
+  }) {
+    return getUploadKtp(imageFile);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String username, String password)? login,
+    TResult? Function(FormData data)? register,
+    TResult? Function()? userLogout,
+    TResult? Function()? checkStatus,
+    TResult? Function()? getUser,
+    TResult? Function(FormData? formData)? verifUser,
+    TResult? Function(File imageFile)? getUploadKtp,
+  }) {
+    return getUploadKtp?.call(imageFile);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String username, String password)? login,
+    TResult Function(FormData data)? register,
+    TResult Function()? userLogout,
+    TResult Function()? checkStatus,
+    TResult Function()? getUser,
+    TResult Function(FormData? formData)? verifUser,
+    TResult Function(File imageFile)? getUploadKtp,
+    required TResult orElse(),
+  }) {
+    if (getUploadKtp != null) {
+      return getUploadKtp(imageFile);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Login value) login,
+    required TResult Function(_Register value) register,
+    required TResult Function(_UserLogout value) userLogout,
+    required TResult Function(_CheckStatus value) checkStatus,
+    required TResult Function(_GetUser value) getUser,
+    required TResult Function(_VerifUser value) verifUser,
+    required TResult Function(_GetUploadKtp value) getUploadKtp,
+  }) {
+    return getUploadKtp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Login value)? login,
+    TResult? Function(_Register value)? register,
+    TResult? Function(_UserLogout value)? userLogout,
+    TResult? Function(_CheckStatus value)? checkStatus,
+    TResult? Function(_GetUser value)? getUser,
+    TResult? Function(_VerifUser value)? verifUser,
+    TResult? Function(_GetUploadKtp value)? getUploadKtp,
+  }) {
+    return getUploadKtp?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Login value)? login,
+    TResult Function(_Register value)? register,
+    TResult Function(_UserLogout value)? userLogout,
+    TResult Function(_CheckStatus value)? checkStatus,
+    TResult Function(_GetUser value)? getUser,
+    TResult Function(_VerifUser value)? verifUser,
+    TResult Function(_GetUploadKtp value)? getUploadKtp,
+    required TResult orElse(),
+  }) {
+    if (getUploadKtp != null) {
+      return getUploadKtp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetUploadKtp implements AuthEvent {
+  const factory _GetUploadKtp({required final File imageFile}) =
+      _$GetUploadKtpImpl;
+
+  File get imageFile;
+  @JsonKey(ignore: true)
+  _$$GetUploadKtpImplCopyWith<_$GetUploadKtpImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(RegisterModel response) successRegister,
+    required TResult Function(DefaultResponse response) successVerif,
+    required TResult Function(UserCard response) loadedKtpData,
     required TResult Function(AuthModel data) isAuthenticated,
     required TResult Function() unAuthenticated,
     required TResult Function(UserModel user) fetchUser,
@@ -782,6 +1186,9 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(RegisterModel response)? successRegister,
+    TResult? Function(DefaultResponse response)? successVerif,
+    TResult? Function(UserCard response)? loadedKtpData,
     TResult? Function(AuthModel data)? isAuthenticated,
     TResult? Function()? unAuthenticated,
     TResult? Function(UserModel user)? fetchUser,
@@ -792,6 +1199,9 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(RegisterModel response)? successRegister,
+    TResult Function(DefaultResponse response)? successVerif,
+    TResult Function(UserCard response)? loadedKtpData,
     TResult Function(AuthModel data)? isAuthenticated,
     TResult Function()? unAuthenticated,
     TResult Function(UserModel user)? fetchUser,
@@ -803,6 +1213,9 @@ mixin _$AuthState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessRegister value) successRegister,
+    required TResult Function(_SuccessVerif value) successVerif,
+    required TResult Function(_LoadedKtpData value) loadedKtpData,
     required TResult Function(_IsAuthenticated value) isAuthenticated,
     required TResult Function(_UnAuthenticated value) unAuthenticated,
     required TResult Function(_FetchUser value) fetchUser,
@@ -813,6 +1226,9 @@ mixin _$AuthState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessRegister value)? successRegister,
+    TResult? Function(_SuccessVerif value)? successVerif,
+    TResult? Function(_LoadedKtpData value)? loadedKtpData,
     TResult? Function(_IsAuthenticated value)? isAuthenticated,
     TResult? Function(_UnAuthenticated value)? unAuthenticated,
     TResult? Function(_FetchUser value)? fetchUser,
@@ -823,6 +1239,9 @@ mixin _$AuthState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessRegister value)? successRegister,
+    TResult Function(_SuccessVerif value)? successVerif,
+    TResult Function(_LoadedKtpData value)? loadedKtpData,
     TResult Function(_IsAuthenticated value)? isAuthenticated,
     TResult Function(_UnAuthenticated value)? unAuthenticated,
     TResult Function(_FetchUser value)? fetchUser,
@@ -889,6 +1308,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(RegisterModel response) successRegister,
+    required TResult Function(DefaultResponse response) successVerif,
+    required TResult Function(UserCard response) loadedKtpData,
     required TResult Function(AuthModel data) isAuthenticated,
     required TResult Function() unAuthenticated,
     required TResult Function(UserModel user) fetchUser,
@@ -902,6 +1324,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(RegisterModel response)? successRegister,
+    TResult? Function(DefaultResponse response)? successVerif,
+    TResult? Function(UserCard response)? loadedKtpData,
     TResult? Function(AuthModel data)? isAuthenticated,
     TResult? Function()? unAuthenticated,
     TResult? Function(UserModel user)? fetchUser,
@@ -915,6 +1340,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(RegisterModel response)? successRegister,
+    TResult Function(DefaultResponse response)? successVerif,
+    TResult Function(UserCard response)? loadedKtpData,
     TResult Function(AuthModel data)? isAuthenticated,
     TResult Function()? unAuthenticated,
     TResult Function(UserModel user)? fetchUser,
@@ -932,6 +1360,9 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessRegister value) successRegister,
+    required TResult Function(_SuccessVerif value) successVerif,
+    required TResult Function(_LoadedKtpData value) loadedKtpData,
     required TResult Function(_IsAuthenticated value) isAuthenticated,
     required TResult Function(_UnAuthenticated value) unAuthenticated,
     required TResult Function(_FetchUser value) fetchUser,
@@ -945,6 +1376,9 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessRegister value)? successRegister,
+    TResult? Function(_SuccessVerif value)? successVerif,
+    TResult? Function(_LoadedKtpData value)? loadedKtpData,
     TResult? Function(_IsAuthenticated value)? isAuthenticated,
     TResult? Function(_UnAuthenticated value)? unAuthenticated,
     TResult? Function(_FetchUser value)? fetchUser,
@@ -958,6 +1392,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessRegister value)? successRegister,
+    TResult Function(_SuccessVerif value)? successVerif,
+    TResult Function(_LoadedKtpData value)? loadedKtpData,
     TResult Function(_IsAuthenticated value)? isAuthenticated,
     TResult Function(_UnAuthenticated value)? unAuthenticated,
     TResult Function(_FetchUser value)? fetchUser,
@@ -1015,6 +1452,9 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(RegisterModel response) successRegister,
+    required TResult Function(DefaultResponse response) successVerif,
+    required TResult Function(UserCard response) loadedKtpData,
     required TResult Function(AuthModel data) isAuthenticated,
     required TResult Function() unAuthenticated,
     required TResult Function(UserModel user) fetchUser,
@@ -1028,6 +1468,9 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(RegisterModel response)? successRegister,
+    TResult? Function(DefaultResponse response)? successVerif,
+    TResult? Function(UserCard response)? loadedKtpData,
     TResult? Function(AuthModel data)? isAuthenticated,
     TResult? Function()? unAuthenticated,
     TResult? Function(UserModel user)? fetchUser,
@@ -1041,6 +1484,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(RegisterModel response)? successRegister,
+    TResult Function(DefaultResponse response)? successVerif,
+    TResult Function(UserCard response)? loadedKtpData,
     TResult Function(AuthModel data)? isAuthenticated,
     TResult Function()? unAuthenticated,
     TResult Function(UserModel user)? fetchUser,
@@ -1058,6 +1504,9 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessRegister value) successRegister,
+    required TResult Function(_SuccessVerif value) successVerif,
+    required TResult Function(_LoadedKtpData value) loadedKtpData,
     required TResult Function(_IsAuthenticated value) isAuthenticated,
     required TResult Function(_UnAuthenticated value) unAuthenticated,
     required TResult Function(_FetchUser value) fetchUser,
@@ -1071,6 +1520,9 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessRegister value)? successRegister,
+    TResult? Function(_SuccessVerif value)? successVerif,
+    TResult? Function(_LoadedKtpData value)? loadedKtpData,
     TResult? Function(_IsAuthenticated value)? isAuthenticated,
     TResult? Function(_UnAuthenticated value)? unAuthenticated,
     TResult? Function(_FetchUser value)? fetchUser,
@@ -1084,6 +1536,9 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessRegister value)? successRegister,
+    TResult Function(_SuccessVerif value)? successVerif,
+    TResult Function(_LoadedKtpData value)? loadedKtpData,
     TResult Function(_IsAuthenticated value)? isAuthenticated,
     TResult Function(_UnAuthenticated value)? unAuthenticated,
     TResult Function(_FetchUser value)? fetchUser,
@@ -1099,6 +1554,567 @@ class _$LoadingImpl implements _Loading {
 
 abstract class _Loading implements AuthState {
   const factory _Loading() = _$LoadingImpl;
+}
+
+/// @nodoc
+abstract class _$$SuccessRegisterImplCopyWith<$Res> {
+  factory _$$SuccessRegisterImplCopyWith(_$SuccessRegisterImpl value,
+          $Res Function(_$SuccessRegisterImpl) then) =
+      __$$SuccessRegisterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RegisterModel response});
+
+  $RegisterModelCopyWith<$Res> get response;
+}
+
+/// @nodoc
+class __$$SuccessRegisterImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$SuccessRegisterImpl>
+    implements _$$SuccessRegisterImplCopyWith<$Res> {
+  __$$SuccessRegisterImplCopyWithImpl(
+      _$SuccessRegisterImpl _value, $Res Function(_$SuccessRegisterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? response = null,
+  }) {
+    return _then(_$SuccessRegisterImpl(
+      null == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as RegisterModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RegisterModelCopyWith<$Res> get response {
+    return $RegisterModelCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SuccessRegisterImpl implements _SuccessRegister {
+  const _$SuccessRegisterImpl(this.response);
+
+  @override
+  final RegisterModel response;
+
+  @override
+  String toString() {
+    return 'AuthState.successRegister(response: $response)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessRegisterImpl &&
+            (identical(other.response, response) ||
+                other.response == response));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, response);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessRegisterImplCopyWith<_$SuccessRegisterImpl> get copyWith =>
+      __$$SuccessRegisterImplCopyWithImpl<_$SuccessRegisterImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(RegisterModel response) successRegister,
+    required TResult Function(DefaultResponse response) successVerif,
+    required TResult Function(UserCard response) loadedKtpData,
+    required TResult Function(AuthModel data) isAuthenticated,
+    required TResult Function() unAuthenticated,
+    required TResult Function(UserModel user) fetchUser,
+    required TResult Function(NetworkExceptions error) error,
+  }) {
+    return successRegister(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(RegisterModel response)? successRegister,
+    TResult? Function(DefaultResponse response)? successVerif,
+    TResult? Function(UserCard response)? loadedKtpData,
+    TResult? Function(AuthModel data)? isAuthenticated,
+    TResult? Function()? unAuthenticated,
+    TResult? Function(UserModel user)? fetchUser,
+    TResult? Function(NetworkExceptions error)? error,
+  }) {
+    return successRegister?.call(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(RegisterModel response)? successRegister,
+    TResult Function(DefaultResponse response)? successVerif,
+    TResult Function(UserCard response)? loadedKtpData,
+    TResult Function(AuthModel data)? isAuthenticated,
+    TResult Function()? unAuthenticated,
+    TResult Function(UserModel user)? fetchUser,
+    TResult Function(NetworkExceptions error)? error,
+    required TResult orElse(),
+  }) {
+    if (successRegister != null) {
+      return successRegister(response);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessRegister value) successRegister,
+    required TResult Function(_SuccessVerif value) successVerif,
+    required TResult Function(_LoadedKtpData value) loadedKtpData,
+    required TResult Function(_IsAuthenticated value) isAuthenticated,
+    required TResult Function(_UnAuthenticated value) unAuthenticated,
+    required TResult Function(_FetchUser value) fetchUser,
+    required TResult Function(_Error value) error,
+  }) {
+    return successRegister(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessRegister value)? successRegister,
+    TResult? Function(_SuccessVerif value)? successVerif,
+    TResult? Function(_LoadedKtpData value)? loadedKtpData,
+    TResult? Function(_IsAuthenticated value)? isAuthenticated,
+    TResult? Function(_UnAuthenticated value)? unAuthenticated,
+    TResult? Function(_FetchUser value)? fetchUser,
+    TResult? Function(_Error value)? error,
+  }) {
+    return successRegister?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessRegister value)? successRegister,
+    TResult Function(_SuccessVerif value)? successVerif,
+    TResult Function(_LoadedKtpData value)? loadedKtpData,
+    TResult Function(_IsAuthenticated value)? isAuthenticated,
+    TResult Function(_UnAuthenticated value)? unAuthenticated,
+    TResult Function(_FetchUser value)? fetchUser,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (successRegister != null) {
+      return successRegister(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessRegister implements AuthState {
+  const factory _SuccessRegister(final RegisterModel response) =
+      _$SuccessRegisterImpl;
+
+  RegisterModel get response;
+  @JsonKey(ignore: true)
+  _$$SuccessRegisterImplCopyWith<_$SuccessRegisterImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SuccessVerifImplCopyWith<$Res> {
+  factory _$$SuccessVerifImplCopyWith(
+          _$SuccessVerifImpl value, $Res Function(_$SuccessVerifImpl) then) =
+      __$$SuccessVerifImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DefaultResponse response});
+
+  $DefaultResponseCopyWith<$Res> get response;
+}
+
+/// @nodoc
+class __$$SuccessVerifImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$SuccessVerifImpl>
+    implements _$$SuccessVerifImplCopyWith<$Res> {
+  __$$SuccessVerifImplCopyWithImpl(
+      _$SuccessVerifImpl _value, $Res Function(_$SuccessVerifImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? response = null,
+  }) {
+    return _then(_$SuccessVerifImpl(
+      null == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as DefaultResponse,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DefaultResponseCopyWith<$Res> get response {
+    return $DefaultResponseCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SuccessVerifImpl implements _SuccessVerif {
+  const _$SuccessVerifImpl(this.response);
+
+  @override
+  final DefaultResponse response;
+
+  @override
+  String toString() {
+    return 'AuthState.successVerif(response: $response)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessVerifImpl &&
+            (identical(other.response, response) ||
+                other.response == response));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, response);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessVerifImplCopyWith<_$SuccessVerifImpl> get copyWith =>
+      __$$SuccessVerifImplCopyWithImpl<_$SuccessVerifImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(RegisterModel response) successRegister,
+    required TResult Function(DefaultResponse response) successVerif,
+    required TResult Function(UserCard response) loadedKtpData,
+    required TResult Function(AuthModel data) isAuthenticated,
+    required TResult Function() unAuthenticated,
+    required TResult Function(UserModel user) fetchUser,
+    required TResult Function(NetworkExceptions error) error,
+  }) {
+    return successVerif(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(RegisterModel response)? successRegister,
+    TResult? Function(DefaultResponse response)? successVerif,
+    TResult? Function(UserCard response)? loadedKtpData,
+    TResult? Function(AuthModel data)? isAuthenticated,
+    TResult? Function()? unAuthenticated,
+    TResult? Function(UserModel user)? fetchUser,
+    TResult? Function(NetworkExceptions error)? error,
+  }) {
+    return successVerif?.call(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(RegisterModel response)? successRegister,
+    TResult Function(DefaultResponse response)? successVerif,
+    TResult Function(UserCard response)? loadedKtpData,
+    TResult Function(AuthModel data)? isAuthenticated,
+    TResult Function()? unAuthenticated,
+    TResult Function(UserModel user)? fetchUser,
+    TResult Function(NetworkExceptions error)? error,
+    required TResult orElse(),
+  }) {
+    if (successVerif != null) {
+      return successVerif(response);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessRegister value) successRegister,
+    required TResult Function(_SuccessVerif value) successVerif,
+    required TResult Function(_LoadedKtpData value) loadedKtpData,
+    required TResult Function(_IsAuthenticated value) isAuthenticated,
+    required TResult Function(_UnAuthenticated value) unAuthenticated,
+    required TResult Function(_FetchUser value) fetchUser,
+    required TResult Function(_Error value) error,
+  }) {
+    return successVerif(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessRegister value)? successRegister,
+    TResult? Function(_SuccessVerif value)? successVerif,
+    TResult? Function(_LoadedKtpData value)? loadedKtpData,
+    TResult? Function(_IsAuthenticated value)? isAuthenticated,
+    TResult? Function(_UnAuthenticated value)? unAuthenticated,
+    TResult? Function(_FetchUser value)? fetchUser,
+    TResult? Function(_Error value)? error,
+  }) {
+    return successVerif?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessRegister value)? successRegister,
+    TResult Function(_SuccessVerif value)? successVerif,
+    TResult Function(_LoadedKtpData value)? loadedKtpData,
+    TResult Function(_IsAuthenticated value)? isAuthenticated,
+    TResult Function(_UnAuthenticated value)? unAuthenticated,
+    TResult Function(_FetchUser value)? fetchUser,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (successVerif != null) {
+      return successVerif(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SuccessVerif implements AuthState {
+  const factory _SuccessVerif(final DefaultResponse response) =
+      _$SuccessVerifImpl;
+
+  DefaultResponse get response;
+  @JsonKey(ignore: true)
+  _$$SuccessVerifImplCopyWith<_$SuccessVerifImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadedKtpDataImplCopyWith<$Res> {
+  factory _$$LoadedKtpDataImplCopyWith(
+          _$LoadedKtpDataImpl value, $Res Function(_$LoadedKtpDataImpl) then) =
+      __$$LoadedKtpDataImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserCard response});
+
+  $UserCardCopyWith<$Res> get response;
+}
+
+/// @nodoc
+class __$$LoadedKtpDataImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LoadedKtpDataImpl>
+    implements _$$LoadedKtpDataImplCopyWith<$Res> {
+  __$$LoadedKtpDataImplCopyWithImpl(
+      _$LoadedKtpDataImpl _value, $Res Function(_$LoadedKtpDataImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? response = null,
+  }) {
+    return _then(_$LoadedKtpDataImpl(
+      null == response
+          ? _value.response
+          : response // ignore: cast_nullable_to_non_nullable
+              as UserCard,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCardCopyWith<$Res> get response {
+    return $UserCardCopyWith<$Res>(_value.response, (value) {
+      return _then(_value.copyWith(response: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$LoadedKtpDataImpl implements _LoadedKtpData {
+  const _$LoadedKtpDataImpl(this.response);
+
+  @override
+  final UserCard response;
+
+  @override
+  String toString() {
+    return 'AuthState.loadedKtpData(response: $response)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadedKtpDataImpl &&
+            (identical(other.response, response) ||
+                other.response == response));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, response);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedKtpDataImplCopyWith<_$LoadedKtpDataImpl> get copyWith =>
+      __$$LoadedKtpDataImplCopyWithImpl<_$LoadedKtpDataImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(RegisterModel response) successRegister,
+    required TResult Function(DefaultResponse response) successVerif,
+    required TResult Function(UserCard response) loadedKtpData,
+    required TResult Function(AuthModel data) isAuthenticated,
+    required TResult Function() unAuthenticated,
+    required TResult Function(UserModel user) fetchUser,
+    required TResult Function(NetworkExceptions error) error,
+  }) {
+    return loadedKtpData(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(RegisterModel response)? successRegister,
+    TResult? Function(DefaultResponse response)? successVerif,
+    TResult? Function(UserCard response)? loadedKtpData,
+    TResult? Function(AuthModel data)? isAuthenticated,
+    TResult? Function()? unAuthenticated,
+    TResult? Function(UserModel user)? fetchUser,
+    TResult? Function(NetworkExceptions error)? error,
+  }) {
+    return loadedKtpData?.call(response);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(RegisterModel response)? successRegister,
+    TResult Function(DefaultResponse response)? successVerif,
+    TResult Function(UserCard response)? loadedKtpData,
+    TResult Function(AuthModel data)? isAuthenticated,
+    TResult Function()? unAuthenticated,
+    TResult Function(UserModel user)? fetchUser,
+    TResult Function(NetworkExceptions error)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedKtpData != null) {
+      return loadedKtpData(response);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessRegister value) successRegister,
+    required TResult Function(_SuccessVerif value) successVerif,
+    required TResult Function(_LoadedKtpData value) loadedKtpData,
+    required TResult Function(_IsAuthenticated value) isAuthenticated,
+    required TResult Function(_UnAuthenticated value) unAuthenticated,
+    required TResult Function(_FetchUser value) fetchUser,
+    required TResult Function(_Error value) error,
+  }) {
+    return loadedKtpData(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessRegister value)? successRegister,
+    TResult? Function(_SuccessVerif value)? successVerif,
+    TResult? Function(_LoadedKtpData value)? loadedKtpData,
+    TResult? Function(_IsAuthenticated value)? isAuthenticated,
+    TResult? Function(_UnAuthenticated value)? unAuthenticated,
+    TResult? Function(_FetchUser value)? fetchUser,
+    TResult? Function(_Error value)? error,
+  }) {
+    return loadedKtpData?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessRegister value)? successRegister,
+    TResult Function(_SuccessVerif value)? successVerif,
+    TResult Function(_LoadedKtpData value)? loadedKtpData,
+    TResult Function(_IsAuthenticated value)? isAuthenticated,
+    TResult Function(_UnAuthenticated value)? unAuthenticated,
+    TResult Function(_FetchUser value)? fetchUser,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedKtpData != null) {
+      return loadedKtpData(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadedKtpData implements AuthState {
+  const factory _LoadedKtpData(final UserCard response) = _$LoadedKtpDataImpl;
+
+  UserCard get response;
+  @JsonKey(ignore: true)
+  _$$LoadedKtpDataImplCopyWith<_$LoadedKtpDataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1178,6 +2194,9 @@ class _$IsAuthenticatedImpl implements _IsAuthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(RegisterModel response) successRegister,
+    required TResult Function(DefaultResponse response) successVerif,
+    required TResult Function(UserCard response) loadedKtpData,
     required TResult Function(AuthModel data) isAuthenticated,
     required TResult Function() unAuthenticated,
     required TResult Function(UserModel user) fetchUser,
@@ -1191,6 +2210,9 @@ class _$IsAuthenticatedImpl implements _IsAuthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(RegisterModel response)? successRegister,
+    TResult? Function(DefaultResponse response)? successVerif,
+    TResult? Function(UserCard response)? loadedKtpData,
     TResult? Function(AuthModel data)? isAuthenticated,
     TResult? Function()? unAuthenticated,
     TResult? Function(UserModel user)? fetchUser,
@@ -1204,6 +2226,9 @@ class _$IsAuthenticatedImpl implements _IsAuthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(RegisterModel response)? successRegister,
+    TResult Function(DefaultResponse response)? successVerif,
+    TResult Function(UserCard response)? loadedKtpData,
     TResult Function(AuthModel data)? isAuthenticated,
     TResult Function()? unAuthenticated,
     TResult Function(UserModel user)? fetchUser,
@@ -1221,6 +2246,9 @@ class _$IsAuthenticatedImpl implements _IsAuthenticated {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessRegister value) successRegister,
+    required TResult Function(_SuccessVerif value) successVerif,
+    required TResult Function(_LoadedKtpData value) loadedKtpData,
     required TResult Function(_IsAuthenticated value) isAuthenticated,
     required TResult Function(_UnAuthenticated value) unAuthenticated,
     required TResult Function(_FetchUser value) fetchUser,
@@ -1234,6 +2262,9 @@ class _$IsAuthenticatedImpl implements _IsAuthenticated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessRegister value)? successRegister,
+    TResult? Function(_SuccessVerif value)? successVerif,
+    TResult? Function(_LoadedKtpData value)? loadedKtpData,
     TResult? Function(_IsAuthenticated value)? isAuthenticated,
     TResult? Function(_UnAuthenticated value)? unAuthenticated,
     TResult? Function(_FetchUser value)? fetchUser,
@@ -1247,6 +2278,9 @@ class _$IsAuthenticatedImpl implements _IsAuthenticated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessRegister value)? successRegister,
+    TResult Function(_SuccessVerif value)? successVerif,
+    TResult Function(_LoadedKtpData value)? loadedKtpData,
     TResult Function(_IsAuthenticated value)? isAuthenticated,
     TResult Function(_UnAuthenticated value)? unAuthenticated,
     TResult Function(_FetchUser value)? fetchUser,
@@ -1309,6 +2343,9 @@ class _$UnAuthenticatedImpl implements _UnAuthenticated {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(RegisterModel response) successRegister,
+    required TResult Function(DefaultResponse response) successVerif,
+    required TResult Function(UserCard response) loadedKtpData,
     required TResult Function(AuthModel data) isAuthenticated,
     required TResult Function() unAuthenticated,
     required TResult Function(UserModel user) fetchUser,
@@ -1322,6 +2359,9 @@ class _$UnAuthenticatedImpl implements _UnAuthenticated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(RegisterModel response)? successRegister,
+    TResult? Function(DefaultResponse response)? successVerif,
+    TResult? Function(UserCard response)? loadedKtpData,
     TResult? Function(AuthModel data)? isAuthenticated,
     TResult? Function()? unAuthenticated,
     TResult? Function(UserModel user)? fetchUser,
@@ -1335,6 +2375,9 @@ class _$UnAuthenticatedImpl implements _UnAuthenticated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(RegisterModel response)? successRegister,
+    TResult Function(DefaultResponse response)? successVerif,
+    TResult Function(UserCard response)? loadedKtpData,
     TResult Function(AuthModel data)? isAuthenticated,
     TResult Function()? unAuthenticated,
     TResult Function(UserModel user)? fetchUser,
@@ -1352,6 +2395,9 @@ class _$UnAuthenticatedImpl implements _UnAuthenticated {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessRegister value) successRegister,
+    required TResult Function(_SuccessVerif value) successVerif,
+    required TResult Function(_LoadedKtpData value) loadedKtpData,
     required TResult Function(_IsAuthenticated value) isAuthenticated,
     required TResult Function(_UnAuthenticated value) unAuthenticated,
     required TResult Function(_FetchUser value) fetchUser,
@@ -1365,6 +2411,9 @@ class _$UnAuthenticatedImpl implements _UnAuthenticated {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessRegister value)? successRegister,
+    TResult? Function(_SuccessVerif value)? successVerif,
+    TResult? Function(_LoadedKtpData value)? loadedKtpData,
     TResult? Function(_IsAuthenticated value)? isAuthenticated,
     TResult? Function(_UnAuthenticated value)? unAuthenticated,
     TResult? Function(_FetchUser value)? fetchUser,
@@ -1378,6 +2427,9 @@ class _$UnAuthenticatedImpl implements _UnAuthenticated {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessRegister value)? successRegister,
+    TResult Function(_SuccessVerif value)? successVerif,
+    TResult Function(_LoadedKtpData value)? loadedKtpData,
     TResult Function(_IsAuthenticated value)? isAuthenticated,
     TResult Function(_UnAuthenticated value)? unAuthenticated,
     TResult Function(_FetchUser value)? fetchUser,
@@ -1471,6 +2523,9 @@ class _$FetchUserImpl implements _FetchUser {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(RegisterModel response) successRegister,
+    required TResult Function(DefaultResponse response) successVerif,
+    required TResult Function(UserCard response) loadedKtpData,
     required TResult Function(AuthModel data) isAuthenticated,
     required TResult Function() unAuthenticated,
     required TResult Function(UserModel user) fetchUser,
@@ -1484,6 +2539,9 @@ class _$FetchUserImpl implements _FetchUser {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(RegisterModel response)? successRegister,
+    TResult? Function(DefaultResponse response)? successVerif,
+    TResult? Function(UserCard response)? loadedKtpData,
     TResult? Function(AuthModel data)? isAuthenticated,
     TResult? Function()? unAuthenticated,
     TResult? Function(UserModel user)? fetchUser,
@@ -1497,6 +2555,9 @@ class _$FetchUserImpl implements _FetchUser {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(RegisterModel response)? successRegister,
+    TResult Function(DefaultResponse response)? successVerif,
+    TResult Function(UserCard response)? loadedKtpData,
     TResult Function(AuthModel data)? isAuthenticated,
     TResult Function()? unAuthenticated,
     TResult Function(UserModel user)? fetchUser,
@@ -1514,6 +2575,9 @@ class _$FetchUserImpl implements _FetchUser {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessRegister value) successRegister,
+    required TResult Function(_SuccessVerif value) successVerif,
+    required TResult Function(_LoadedKtpData value) loadedKtpData,
     required TResult Function(_IsAuthenticated value) isAuthenticated,
     required TResult Function(_UnAuthenticated value) unAuthenticated,
     required TResult Function(_FetchUser value) fetchUser,
@@ -1527,6 +2591,9 @@ class _$FetchUserImpl implements _FetchUser {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessRegister value)? successRegister,
+    TResult? Function(_SuccessVerif value)? successVerif,
+    TResult? Function(_LoadedKtpData value)? loadedKtpData,
     TResult? Function(_IsAuthenticated value)? isAuthenticated,
     TResult? Function(_UnAuthenticated value)? unAuthenticated,
     TResult? Function(_FetchUser value)? fetchUser,
@@ -1540,6 +2607,9 @@ class _$FetchUserImpl implements _FetchUser {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessRegister value)? successRegister,
+    TResult Function(_SuccessVerif value)? successVerif,
+    TResult Function(_LoadedKtpData value)? loadedKtpData,
     TResult Function(_IsAuthenticated value)? isAuthenticated,
     TResult Function(_UnAuthenticated value)? unAuthenticated,
     TResult Function(_FetchUser value)? fetchUser,
@@ -1638,6 +2708,9 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
+    required TResult Function(RegisterModel response) successRegister,
+    required TResult Function(DefaultResponse response) successVerif,
+    required TResult Function(UserCard response) loadedKtpData,
     required TResult Function(AuthModel data) isAuthenticated,
     required TResult Function() unAuthenticated,
     required TResult Function(UserModel user) fetchUser,
@@ -1651,6 +2724,9 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
+    TResult? Function(RegisterModel response)? successRegister,
+    TResult? Function(DefaultResponse response)? successVerif,
+    TResult? Function(UserCard response)? loadedKtpData,
     TResult? Function(AuthModel data)? isAuthenticated,
     TResult? Function()? unAuthenticated,
     TResult? Function(UserModel user)? fetchUser,
@@ -1664,6 +2740,9 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
+    TResult Function(RegisterModel response)? successRegister,
+    TResult Function(DefaultResponse response)? successVerif,
+    TResult Function(UserCard response)? loadedKtpData,
     TResult Function(AuthModel data)? isAuthenticated,
     TResult Function()? unAuthenticated,
     TResult Function(UserModel user)? fetchUser,
@@ -1681,6 +2760,9 @@ class _$ErrorImpl implements _Error {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
+    required TResult Function(_SuccessRegister value) successRegister,
+    required TResult Function(_SuccessVerif value) successVerif,
+    required TResult Function(_LoadedKtpData value) loadedKtpData,
     required TResult Function(_IsAuthenticated value) isAuthenticated,
     required TResult Function(_UnAuthenticated value) unAuthenticated,
     required TResult Function(_FetchUser value) fetchUser,
@@ -1694,6 +2776,9 @@ class _$ErrorImpl implements _Error {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
+    TResult? Function(_SuccessRegister value)? successRegister,
+    TResult? Function(_SuccessVerif value)? successVerif,
+    TResult? Function(_LoadedKtpData value)? loadedKtpData,
     TResult? Function(_IsAuthenticated value)? isAuthenticated,
     TResult? Function(_UnAuthenticated value)? unAuthenticated,
     TResult? Function(_FetchUser value)? fetchUser,
@@ -1707,6 +2792,9 @@ class _$ErrorImpl implements _Error {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
+    TResult Function(_SuccessRegister value)? successRegister,
+    TResult Function(_SuccessVerif value)? successVerif,
+    TResult Function(_LoadedKtpData value)? loadedKtpData,
     TResult Function(_IsAuthenticated value)? isAuthenticated,
     TResult Function(_UnAuthenticated value)? unAuthenticated,
     TResult Function(_FetchUser value)? fetchUser,

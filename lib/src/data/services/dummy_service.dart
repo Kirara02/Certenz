@@ -22,11 +22,10 @@ class DummyService {
   ];
 
   static List<String> period = [
-    "1 Month",
-    "2 Month",
     "3 Month",
-    "4 Month",
-    "5 Month",
+    "6 Month",
+    "9 Month",
+    "12 Month",
   ];
 
   static List<String> onPaid = [
@@ -73,21 +72,21 @@ class DummyService {
 
   static List<String> listReligions = [
     "Islam",
-    "Kristen Katolik",
-    "Kristen Protestan",
+    "Katolik",
+    "Protestan",
     "Hindu",
     "Buddha",
     "Khonghucu"
   ];
 
   static List<String> listMaritalStatus = [
-    LocaleKeys.dropdown_text_static_marital_status_marry.tr(),
-    LocaleKeys.dropdown_text_static_marital_status_single.tr(),
+    "Single",
+    "Married",
   ];
 
   static List<String> listNationality = [
-    LocaleKeys.dropdown_text_static_nationality_wni.tr(),
-    LocaleKeys.dropdown_text_static_nationality_wna.tr(),
+    "WNA",
+    "WNI",
   ];
 
   static List<String> privacy = [

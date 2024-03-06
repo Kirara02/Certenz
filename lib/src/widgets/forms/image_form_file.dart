@@ -45,10 +45,9 @@ class _ImageSelectionWidgetState extends State<ImageSelectionWidget> {
         horizontal: 20,
         vertical: 16,
       ),
-      decoration: const BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: AppColors.neutralN120),
-        ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        border: Border.all(color: AppColors.neutralN120),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

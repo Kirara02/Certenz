@@ -18,19 +18,20 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SplitBillEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String title, int amount) createSplitBill,
+    required TResult Function(String title, int amount, bool withFee)
+        createSplitBill,
     required TResult Function(int splitId, FormData formData) addSplitBill,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String title, int amount)? createSplitBill,
+    TResult? Function(String title, int amount, bool withFee)? createSplitBill,
     TResult? Function(int splitId, FormData formData)? addSplitBill,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String title, int amount)? createSplitBill,
+    TResult Function(String title, int amount, bool withFee)? createSplitBill,
     TResult Function(int splitId, FormData formData)? addSplitBill,
     required TResult orElse(),
   }) =>
@@ -80,7 +81,7 @@ abstract class _$$CreateSplitBillImplCopyWith<$Res> {
           $Res Function(_$CreateSplitBillImpl) then) =
       __$$CreateSplitBillImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String title, int amount});
+  $Res call({String title, int amount, bool withFee});
 }
 
 /// @nodoc
@@ -96,6 +97,7 @@ class __$$CreateSplitBillImplCopyWithImpl<$Res>
   $Res call({
     Object? title = null,
     Object? amount = null,
+    Object? withFee = null,
   }) {
     return _then(_$CreateSplitBillImpl(
       title: null == title
@@ -106,6 +108,10 @@ class __$$CreateSplitBillImplCopyWithImpl<$Res>
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
               as int,
+      withFee: null == withFee
+          ? _value.withFee
+          : withFee // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -113,16 +119,19 @@ class __$$CreateSplitBillImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CreateSplitBillImpl implements _CreateSplitBill {
-  const _$CreateSplitBillImpl({required this.title, required this.amount});
+  const _$CreateSplitBillImpl(
+      {required this.title, required this.amount, required this.withFee});
 
   @override
   final String title;
   @override
   final int amount;
+  @override
+  final bool withFee;
 
   @override
   String toString() {
-    return 'SplitBillEvent.createSplitBill(title: $title, amount: $amount)';
+    return 'SplitBillEvent.createSplitBill(title: $title, amount: $amount, withFee: $withFee)';
   }
 
   @override
@@ -131,11 +140,12 @@ class _$CreateSplitBillImpl implements _CreateSplitBill {
         (other.runtimeType == runtimeType &&
             other is _$CreateSplitBillImpl &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.amount, amount) || other.amount == amount));
+            (identical(other.amount, amount) || other.amount == amount) &&
+            (identical(other.withFee, withFee) || other.withFee == withFee));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, title, amount);
+  int get hashCode => Object.hash(runtimeType, title, amount, withFee);
 
   @JsonKey(ignore: true)
   @override
@@ -147,30 +157,31 @@ class _$CreateSplitBillImpl implements _CreateSplitBill {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String title, int amount) createSplitBill,
+    required TResult Function(String title, int amount, bool withFee)
+        createSplitBill,
     required TResult Function(int splitId, FormData formData) addSplitBill,
   }) {
-    return createSplitBill(title, amount);
+    return createSplitBill(title, amount, withFee);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String title, int amount)? createSplitBill,
+    TResult? Function(String title, int amount, bool withFee)? createSplitBill,
     TResult? Function(int splitId, FormData formData)? addSplitBill,
   }) {
-    return createSplitBill?.call(title, amount);
+    return createSplitBill?.call(title, amount, withFee);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String title, int amount)? createSplitBill,
+    TResult Function(String title, int amount, bool withFee)? createSplitBill,
     TResult Function(int splitId, FormData formData)? addSplitBill,
     required TResult orElse(),
   }) {
     if (createSplitBill != null) {
-      return createSplitBill(title, amount);
+      return createSplitBill(title, amount, withFee);
     }
     return orElse();
   }
@@ -210,10 +221,12 @@ class _$CreateSplitBillImpl implements _CreateSplitBill {
 abstract class _CreateSplitBill implements SplitBillEvent {
   const factory _CreateSplitBill(
       {required final String title,
-      required final int amount}) = _$CreateSplitBillImpl;
+      required final int amount,
+      required final bool withFee}) = _$CreateSplitBillImpl;
 
   String get title;
   int get amount;
+  bool get withFee;
   @JsonKey(ignore: true)
   _$$CreateSplitBillImplCopyWith<_$CreateSplitBillImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -292,7 +305,8 @@ class _$AddSplitBillImpl implements _AddSplitBill {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String title, int amount) createSplitBill,
+    required TResult Function(String title, int amount, bool withFee)
+        createSplitBill,
     required TResult Function(int splitId, FormData formData) addSplitBill,
   }) {
     return addSplitBill(splitId, formData);
@@ -301,7 +315,7 @@ class _$AddSplitBillImpl implements _AddSplitBill {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String title, int amount)? createSplitBill,
+    TResult? Function(String title, int amount, bool withFee)? createSplitBill,
     TResult? Function(int splitId, FormData formData)? addSplitBill,
   }) {
     return addSplitBill?.call(splitId, formData);
@@ -310,7 +324,7 @@ class _$AddSplitBillImpl implements _AddSplitBill {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String title, int amount)? createSplitBill,
+    TResult Function(String title, int amount, bool withFee)? createSplitBill,
     TResult Function(int splitId, FormData formData)? addSplitBill,
     required TResult orElse(),
   }) {
@@ -371,6 +385,7 @@ mixin _$SplitBillState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<BillModel> data) success,
+    required TResult Function(HistorySplitBillModel data) loadedByTransactionId,
     required TResult Function(SplitBillModel data) successCreateSplit,
     required TResult Function(NetworkExceptions error) error,
   }) =>
@@ -380,6 +395,7 @@ mixin _$SplitBillState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<BillModel> data)? success,
+    TResult? Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult? Function(SplitBillModel data)? successCreateSplit,
     TResult? Function(NetworkExceptions error)? error,
   }) =>
@@ -389,6 +405,7 @@ mixin _$SplitBillState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<BillModel> data)? success,
+    TResult Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult Function(SplitBillModel data)? successCreateSplit,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
@@ -399,6 +416,8 @@ mixin _$SplitBillState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_LoadedByTransactionId value)
+        loadedByTransactionId,
     required TResult Function(_SuccessCreateSplit value) successCreateSplit,
     required TResult Function(_Error value) error,
   }) =>
@@ -408,6 +427,7 @@ mixin _$SplitBillState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult? Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult? Function(_Error value)? error,
   }) =>
@@ -417,6 +437,7 @@ mixin _$SplitBillState {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -483,6 +504,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<BillModel> data) success,
+    required TResult Function(HistorySplitBillModel data) loadedByTransactionId,
     required TResult Function(SplitBillModel data) successCreateSplit,
     required TResult Function(NetworkExceptions error) error,
   }) {
@@ -495,6 +517,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<BillModel> data)? success,
+    TResult? Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult? Function(SplitBillModel data)? successCreateSplit,
     TResult? Function(NetworkExceptions error)? error,
   }) {
@@ -507,6 +530,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<BillModel> data)? success,
+    TResult Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult Function(SplitBillModel data)? successCreateSplit,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
@@ -523,6 +547,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_LoadedByTransactionId value)
+        loadedByTransactionId,
     required TResult Function(_SuccessCreateSplit value) successCreateSplit,
     required TResult Function(_Error value) error,
   }) {
@@ -535,6 +561,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult? Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult? Function(_Error value)? error,
   }) {
@@ -547,6 +574,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -603,6 +631,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<BillModel> data) success,
+    required TResult Function(HistorySplitBillModel data) loadedByTransactionId,
     required TResult Function(SplitBillModel data) successCreateSplit,
     required TResult Function(NetworkExceptions error) error,
   }) {
@@ -615,6 +644,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<BillModel> data)? success,
+    TResult? Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult? Function(SplitBillModel data)? successCreateSplit,
     TResult? Function(NetworkExceptions error)? error,
   }) {
@@ -627,6 +657,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<BillModel> data)? success,
+    TResult Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult Function(SplitBillModel data)? successCreateSplit,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
@@ -643,6 +674,8 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_LoadedByTransactionId value)
+        loadedByTransactionId,
     required TResult Function(_SuccessCreateSplit value) successCreateSplit,
     required TResult Function(_Error value) error,
   }) {
@@ -655,6 +688,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult? Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult? Function(_Error value)? error,
   }) {
@@ -667,6 +701,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -755,6 +790,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<BillModel> data) success,
+    required TResult Function(HistorySplitBillModel data) loadedByTransactionId,
     required TResult Function(SplitBillModel data) successCreateSplit,
     required TResult Function(NetworkExceptions error) error,
   }) {
@@ -767,6 +803,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<BillModel> data)? success,
+    TResult? Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult? Function(SplitBillModel data)? successCreateSplit,
     TResult? Function(NetworkExceptions error)? error,
   }) {
@@ -779,6 +816,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<BillModel> data)? success,
+    TResult Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult Function(SplitBillModel data)? successCreateSplit,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
@@ -795,6 +833,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_LoadedByTransactionId value)
+        loadedByTransactionId,
     required TResult Function(_SuccessCreateSplit value) successCreateSplit,
     required TResult Function(_Error value) error,
   }) {
@@ -807,6 +847,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult? Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult? Function(_Error value)? error,
   }) {
@@ -819,6 +860,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -837,6 +879,177 @@ abstract class _Success implements SplitBillState {
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadedByTransactionIdImplCopyWith<$Res> {
+  factory _$$LoadedByTransactionIdImplCopyWith(
+          _$LoadedByTransactionIdImpl value,
+          $Res Function(_$LoadedByTransactionIdImpl) then) =
+      __$$LoadedByTransactionIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({HistorySplitBillModel data});
+
+  $HistorySplitBillModelCopyWith<$Res> get data;
+}
+
+/// @nodoc
+class __$$LoadedByTransactionIdImplCopyWithImpl<$Res>
+    extends _$SplitBillStateCopyWithImpl<$Res, _$LoadedByTransactionIdImpl>
+    implements _$$LoadedByTransactionIdImplCopyWith<$Res> {
+  __$$LoadedByTransactionIdImplCopyWithImpl(_$LoadedByTransactionIdImpl _value,
+      $Res Function(_$LoadedByTransactionIdImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$LoadedByTransactionIdImpl(
+      null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as HistorySplitBillModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $HistorySplitBillModelCopyWith<$Res> get data {
+    return $HistorySplitBillModelCopyWith<$Res>(_value.data, (value) {
+      return _then(_value.copyWith(data: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$LoadedByTransactionIdImpl implements _LoadedByTransactionId {
+  const _$LoadedByTransactionIdImpl(this.data);
+
+  @override
+  final HistorySplitBillModel data;
+
+  @override
+  String toString() {
+    return 'SplitBillState.loadedByTransactionId(data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadedByTransactionIdImpl &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, data);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedByTransactionIdImplCopyWith<_$LoadedByTransactionIdImpl>
+      get copyWith => __$$LoadedByTransactionIdImplCopyWithImpl<
+          _$LoadedByTransactionIdImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<BillModel> data) success,
+    required TResult Function(HistorySplitBillModel data) loadedByTransactionId,
+    required TResult Function(SplitBillModel data) successCreateSplit,
+    required TResult Function(NetworkExceptions error) error,
+  }) {
+    return loadedByTransactionId(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<BillModel> data)? success,
+    TResult? Function(HistorySplitBillModel data)? loadedByTransactionId,
+    TResult? Function(SplitBillModel data)? successCreateSplit,
+    TResult? Function(NetworkExceptions error)? error,
+  }) {
+    return loadedByTransactionId?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<BillModel> data)? success,
+    TResult Function(HistorySplitBillModel data)? loadedByTransactionId,
+    TResult Function(SplitBillModel data)? successCreateSplit,
+    TResult Function(NetworkExceptions error)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedByTransactionId != null) {
+      return loadedByTransactionId(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_LoadedByTransactionId value)
+        loadedByTransactionId,
+    required TResult Function(_SuccessCreateSplit value) successCreateSplit,
+    required TResult Function(_Error value) error,
+  }) {
+    return loadedByTransactionId(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_LoadedByTransactionId value)? loadedByTransactionId,
+    TResult? Function(_SuccessCreateSplit value)? successCreateSplit,
+    TResult? Function(_Error value)? error,
+  }) {
+    return loadedByTransactionId?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_LoadedByTransactionId value)? loadedByTransactionId,
+    TResult Function(_SuccessCreateSplit value)? successCreateSplit,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (loadedByTransactionId != null) {
+      return loadedByTransactionId(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadedByTransactionId implements SplitBillState {
+  const factory _LoadedByTransactionId(final HistorySplitBillModel data) =
+      _$LoadedByTransactionIdImpl;
+
+  HistorySplitBillModel get data;
+  @JsonKey(ignore: true)
+  _$$LoadedByTransactionIdImplCopyWith<_$LoadedByTransactionIdImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -917,6 +1130,7 @@ class _$SuccessCreateSplitImpl implements _SuccessCreateSplit {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<BillModel> data) success,
+    required TResult Function(HistorySplitBillModel data) loadedByTransactionId,
     required TResult Function(SplitBillModel data) successCreateSplit,
     required TResult Function(NetworkExceptions error) error,
   }) {
@@ -929,6 +1143,7 @@ class _$SuccessCreateSplitImpl implements _SuccessCreateSplit {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<BillModel> data)? success,
+    TResult? Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult? Function(SplitBillModel data)? successCreateSplit,
     TResult? Function(NetworkExceptions error)? error,
   }) {
@@ -941,6 +1156,7 @@ class _$SuccessCreateSplitImpl implements _SuccessCreateSplit {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<BillModel> data)? success,
+    TResult Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult Function(SplitBillModel data)? successCreateSplit,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
@@ -957,6 +1173,8 @@ class _$SuccessCreateSplitImpl implements _SuccessCreateSplit {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_LoadedByTransactionId value)
+        loadedByTransactionId,
     required TResult Function(_SuccessCreateSplit value) successCreateSplit,
     required TResult Function(_Error value) error,
   }) {
@@ -969,6 +1187,7 @@ class _$SuccessCreateSplitImpl implements _SuccessCreateSplit {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult? Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult? Function(_Error value)? error,
   }) {
@@ -981,6 +1200,7 @@ class _$SuccessCreateSplitImpl implements _SuccessCreateSplit {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult Function(_Error value)? error,
     required TResult orElse(),
@@ -1079,6 +1299,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<BillModel> data) success,
+    required TResult Function(HistorySplitBillModel data) loadedByTransactionId,
     required TResult Function(SplitBillModel data) successCreateSplit,
     required TResult Function(NetworkExceptions error) error,
   }) {
@@ -1091,6 +1312,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<BillModel> data)? success,
+    TResult? Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult? Function(SplitBillModel data)? successCreateSplit,
     TResult? Function(NetworkExceptions error)? error,
   }) {
@@ -1103,6 +1325,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<BillModel> data)? success,
+    TResult Function(HistorySplitBillModel data)? loadedByTransactionId,
     TResult Function(SplitBillModel data)? successCreateSplit,
     TResult Function(NetworkExceptions error)? error,
     required TResult orElse(),
@@ -1119,6 +1342,8 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_LoadedByTransactionId value)
+        loadedByTransactionId,
     required TResult Function(_SuccessCreateSplit value) successCreateSplit,
     required TResult Function(_Error value) error,
   }) {
@@ -1131,6 +1356,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult? Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult? Function(_Error value)? error,
   }) {
@@ -1143,6 +1369,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_LoadedByTransactionId value)? loadedByTransactionId,
     TResult Function(_SuccessCreateSplit value)? successCreateSplit,
     TResult Function(_Error value)? error,
     required TResult orElse(),

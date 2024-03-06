@@ -3,11 +3,10 @@ import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/features/auth/login/view/login_page.dart';
-import 'package:certenz/src/features/auth/register/view/register_page.dart';
 import 'package:certenz/src/widgets/auth/section_auth.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -44,10 +43,10 @@ class WelcomePage extends StatelessWidget {
             const SizedBox(height: 22),
             SectionAuth(
               btnTap: () {
-                Navigator.pushNamed(context, "/register");
+                context.pushNamed("register");
               },
               txtTap: () {
-                Navigator.pushNamed(context, "/login");
+                context.pushNamed("login");
               },
               btnText: LocaleKeys.button_sign_up.tr(),
               txtText: LocaleKeys.text_ready_account.tr(),

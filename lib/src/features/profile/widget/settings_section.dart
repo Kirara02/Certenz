@@ -4,6 +4,7 @@ import 'package:certenz/src/features/profile/widget/setting_list_tile.dart';
 import 'package:certenz/src/widgets/dialogs/modal_bottom_change_language.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsSection extends StatefulWidget {
   const SettingsSection({super.key});
@@ -42,13 +43,13 @@ class _SettingsSectionState extends State<SettingsSection> {
           SettingListTile(
             icon: const Icon(Icons.person_outline_rounded),
             title: LocaleKeys.profile_settings_edit_profile.tr(),
-            onTap: () => Navigator.of(context).pushNamed("/edit-profile"),
+            onTap: () => context.pushNamed("edit-profile"),
           ),
           const SizedBox(height: 16),
           SettingListTile(
             icon: const Icon(Icons.lock_outline_rounded),
             title: LocaleKeys.profile_settings_change_password.tr(),
-            onTap: () => Navigator.of(context).pushNamed("/change-password"),
+            onTap: () => context.pushNamed("change-password"),
           ),
           const SizedBox(height: 28),
           Text(
@@ -69,7 +70,7 @@ class _SettingsSectionState extends State<SettingsSection> {
           SettingListTile(
             icon: Assets.icons.faq.svg(),
             title: LocaleKeys.profile_settings_faq.tr(),
-            onTap: () => Navigator.of(context).pushNamed("/faq"),
+            onTap: () => context.pushNamed("faq"),
           ),
           const SizedBox(
             height: 20,

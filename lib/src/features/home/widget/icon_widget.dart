@@ -22,10 +22,10 @@ class IconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        height: 50,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -46,9 +46,7 @@ class IconWidget extends StatelessWidget {
                       BlendMode.srcIn,
                     ),
                   ),
-            const SizedBox(
-              height: 3,
-            ),
+            const SizedBox(height: 4),
             Text(
               title,
               style: const TextStyle(

@@ -24,6 +24,8 @@ mixin _$SplitBillModel {
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: "user_id")
   int get userId => throw _privateConstructorUsedError;
+  @JsonKey(name: "bill_number")
+  String get billNumber => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'amount_total')
   double get amountTotal => throw _privateConstructorUsedError;
@@ -45,6 +47,7 @@ abstract class $SplitBillModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: "split_id") int id,
       @JsonKey(name: "user_id") int userId,
+      @JsonKey(name: "bill_number") String billNumber,
       String title,
       @JsonKey(name: 'amount_total') double amountTotal,
       @JsonKey(name: 'set_fairy') bool setFairy});
@@ -65,6 +68,7 @@ class _$SplitBillModelCopyWithImpl<$Res, $Val extends SplitBillModel>
   $Res call({
     Object? id = null,
     Object? userId = null,
+    Object? billNumber = null,
     Object? title = null,
     Object? amountTotal = null,
     Object? setFairy = null,
@@ -78,6 +82,10 @@ class _$SplitBillModelCopyWithImpl<$Res, $Val extends SplitBillModel>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
+      billNumber: null == billNumber
+          ? _value.billNumber
+          : billNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -105,6 +113,7 @@ abstract class _$$SplitBillModelImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: "split_id") int id,
       @JsonKey(name: "user_id") int userId,
+      @JsonKey(name: "bill_number") String billNumber,
       String title,
       @JsonKey(name: 'amount_total') double amountTotal,
       @JsonKey(name: 'set_fairy') bool setFairy});
@@ -123,6 +132,7 @@ class __$$SplitBillModelImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? userId = null,
+    Object? billNumber = null,
     Object? title = null,
     Object? amountTotal = null,
     Object? setFairy = null,
@@ -136,6 +146,10 @@ class __$$SplitBillModelImplCopyWithImpl<$Res>
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as int,
+      billNumber: null == billNumber
+          ? _value.billNumber
+          : billNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -158,6 +172,7 @@ class _$SplitBillModelImpl implements _SplitBillModel {
   _$SplitBillModelImpl(
       {@JsonKey(name: "split_id") required this.id,
       @JsonKey(name: "user_id") required this.userId,
+      @JsonKey(name: "bill_number") required this.billNumber,
       required this.title,
       @JsonKey(name: 'amount_total') required this.amountTotal,
       @JsonKey(name: 'set_fairy') required this.setFairy});
@@ -172,6 +187,9 @@ class _$SplitBillModelImpl implements _SplitBillModel {
   @JsonKey(name: "user_id")
   final int userId;
   @override
+  @JsonKey(name: "bill_number")
+  final String billNumber;
+  @override
   final String title;
   @override
   @JsonKey(name: 'amount_total')
@@ -182,7 +200,7 @@ class _$SplitBillModelImpl implements _SplitBillModel {
 
   @override
   String toString() {
-    return 'SplitBillModel(id: $id, userId: $userId, title: $title, amountTotal: $amountTotal, setFairy: $setFairy)';
+    return 'SplitBillModel(id: $id, userId: $userId, billNumber: $billNumber, title: $title, amountTotal: $amountTotal, setFairy: $setFairy)';
   }
 
   @override
@@ -192,6 +210,8 @@ class _$SplitBillModelImpl implements _SplitBillModel {
             other is _$SplitBillModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
+            (identical(other.billNumber, billNumber) ||
+                other.billNumber == billNumber) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.amountTotal, amountTotal) ||
                 other.amountTotal == amountTotal) &&
@@ -201,8 +221,8 @@ class _$SplitBillModelImpl implements _SplitBillModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, userId, title, amountTotal, setFairy);
+  int get hashCode => Object.hash(
+      runtimeType, id, userId, billNumber, title, amountTotal, setFairy);
 
   @JsonKey(ignore: true)
   @override
@@ -223,6 +243,7 @@ abstract class _SplitBillModel implements SplitBillModel {
   factory _SplitBillModel(
           {@JsonKey(name: "split_id") required final int id,
           @JsonKey(name: "user_id") required final int userId,
+          @JsonKey(name: "bill_number") required final String billNumber,
           required final String title,
           @JsonKey(name: 'amount_total') required final double amountTotal,
           @JsonKey(name: 'set_fairy') required final bool setFairy}) =
@@ -237,6 +258,9 @@ abstract class _SplitBillModel implements SplitBillModel {
   @override
   @JsonKey(name: "user_id")
   int get userId;
+  @override
+  @JsonKey(name: "bill_number")
+  String get billNumber;
   @override
   String get title;
   @override

@@ -61,6 +61,32 @@ class SecureStorageHelper {
   static Future<void> removeUser() async {
     await _storage.delete(key: PrefKeys.user);
   }
+
+  static Future<void> saveUserVerified(bool verified) async {
+    await _storage.write(
+        key: PrefKeys.userVerified, value: verified.toString());
+  }
+
+  static Future<String?> get getUserVerified async {
+    return await _storage.read(key: PrefKeys.userVerified);
+  }
+
+  static Future<void> removeUserVerified() async {
+    await _storage.delete(key: PrefKeys.userVerified);
+  }
+
+  static Future<void> saveHasBankAcc(bool hasBank) async {
+    await _storage.write(
+        key: PrefKeys.hasBankAccount, value: hasBank.toString());
+  }
+
+  static Future<String?> get getHasBankAcc async {
+    return await _storage.read(key: PrefKeys.hasBankAccount);
+  }
+
+  static Future<void> removeHasBankAcc() async {
+    await _storage.delete(key: PrefKeys.hasBankAccount);
+  }
 }
 
 mixin PrefKeys {
@@ -68,4 +94,6 @@ mixin PrefKeys {
   static const String token = "token";
   static const String pin = "pin";
   static const String user = "user";
+  static const String userVerified = "user_verified";
+  static const String hasBankAccount = "has_bank_account";
 }

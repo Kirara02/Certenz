@@ -4,8 +4,8 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/cubits/split_bill/splitbill_cubit.dart';
 import 'package:certenz/src/data/models/split_bill/split_bill_model.dart';
-import 'package:certenz/src/features/detail_split_bill/view/detail_split_bill_page.dart';
 import 'package:certenz/src/features/split_bill/widget/split_bill_with.dart';
+import 'package:certenz/src/utils/dismiss_keyboard.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/utils/logger.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
@@ -13,12 +13,13 @@ import 'package:certenz/src/widgets/common/custom_appbar.dart';
 import 'package:certenz/src/widgets/dialogs/hide_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/loading_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/ux_toast_wrapper.dart';
-import 'package:certenz/src/widgets/forms/field_custom.dart';
+import 'package:certenz/src/widgets/forms/textfield_custom.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SplitBillPage extends StatefulWidget {
@@ -103,12 +104,15 @@ class _SplitBillPageState extends State<SplitBillPage> {
   void _updateParticipantAmounts(BuildContext context) {
     if (widget.isFearly &&
         context.read<SplitbillCubit>().friendEntries.isNotEmpty) {
+      dLog(true);
       final splitAmount =
           amount / context.read<SplitbillCubit>().friendEntries.length;
       for (var entry in context.read<SplitbillCubit>().friendEntries) {
         entry.splitAmountController.text =
             formatCurrencyNonDecimal(splitAmount);
       }
+    } else {
+      dLog(false);
     }
   }
 
@@ -117,8 +121,7 @@ class _SplitBillPageState extends State<SplitBillPage> {
     super.initState();
     amount = widget.data.amountTotal;
     titleController.text = widget.data.title;
-    _updateParticipantAmounts(
-        context); // Initial update when the widget is first built
+    _updateParticipantAmounts(context);
   }
 
   @override
@@ -138,13 +141,13 @@ class _SplitBillPageState extends State<SplitBillPage> {
             title: LocaleKeys.split_bill_title.tr(),
             onPressed: () {
               context.read<SplitbillCubit>().clearFriendEntries();
-              Navigator.pop(context);
+              context.pop();
             },
           ),
           body: WillPopScope(
             onWillPop: () async {
               context.read<SplitbillCubit>().clearFriendEntries();
-              Navigator.pop(context);
+              context.pop();
               return true;
             },
             child: SingleChildScrollView(
@@ -182,20 +185,19 @@ class _SplitBillPageState extends State<SplitBillPage> {
                     ),
                     const SizedBox(height: 18),
                     Text(
-                      LocaleKeys.form_title_note.tr(),
+                      LocaleKeys.form_title_title.tr(),
                       style: const TextStyle(
                         fontSize: AppConstants.kFontSizeS,
                         color: AppColors.neutralN40,
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: titleController,
                       hintText: LocaleKeys.form_title_title.tr(),
                       maxLines: 1,
                       readOnly: true,
                       enabled: false,
-                      keyboardType: TextInputType.text,
                       style: const TextStyle(
                         fontSize: AppConstants.kFontSizeM,
                         color: AppColors.neutralN40,
@@ -286,13 +288,14 @@ class _SplitBillPageState extends State<SplitBillPage> {
                   hideDialog(context);
                   clearParticipantsForm();
                   context.read<SplitbillCubit>().clearFriendEntries();
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailSplitBillPage(
-                            splitBillData: widget.data, billItems: data),
-                      ),
-                      (route) => false);
+                  context.goNamed("split-success", extra: data);
+                  // Navigator.pushAndRemoveUntil(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) =>
+                  //           DetailSplitBillPage(billItems: data),
+                  //     ),
+                  //     (route) => false);
                 },
                 error: (error) {
                   hideDialog(context);
@@ -322,6 +325,7 @@ class _SplitBillPageState extends State<SplitBillPage> {
               child: BtnPrimary(
                 title: LocaleKeys.button_split_bill.tr(),
                 onTap: () {
+                  hideKeyboard(context);
                   if (_formKey.currentState!.validate()) {
                     sendRequest(context).then((value) {
                       if (value != null) {

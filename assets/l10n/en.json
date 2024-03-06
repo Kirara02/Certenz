@@ -1,7 +1,7 @@
 {
   "app_name" : "Certenz",
   "author": "Kirara Bernstein",
-  "locale": "en",
+  "locale": "en_US",
   "button" : {
     "stared" : "Get Started",
     "sign_in" : "Sign In",
@@ -23,6 +23,7 @@
     "split_bill" : "Split Bill Now",
     "agree" : "I Agree",
     "cancel" : "Cancel",
+    "yes_continue" : "Yes, Continue",
     "add_detail" : "Add Detail",
     "add_image" : "Add Image",
     "choose_image" : "Choose Image",
@@ -43,16 +44,21 @@
     "image_galery" : "Pick image from gallery",
     "image_camera" : "Pick image from camera",
     "saved_account" : "Saved Bank Accounts",
+    "bill_confirm" : "Are you sure the data you entered is correct?",
     "genders" : {
       "m" : "Male",
       "f" : "Female"
-    }
+    },
+    "choose_date" : "Choose Date",
+    "type" : "Type"
   },
   "form_hint_text" : {
     "username" : "Username",
     "name" : "Name",
+    "full_name" : "Full Name",
     "f_name" : "First Name",
     "l_name" : "Last Name",
+    "id_card" : "ID Card Image",
     "enter_password" : "Enter your password",
     "new_password" : "New Password",
     "last_password" : "Last Password",
@@ -114,6 +120,7 @@
     "total_amount" : "Total amount bill",
     "set_amount" : "Set Bill Amount",
     "to" : "To",
+    "to_op" : "To (Optional)",
     "start_date" : "Start Date",
     "select_dest" : "Select Account Destination",
     "note" : "Note",
@@ -124,10 +131,13 @@
     "phone_email_friend" : "Phone/Whatsapp Your Friend",
     "tenant_period" : "Tenant Period",
     "paid_date" : "Paid on date",
-    "select_payment" : "Select Payment Method"
+    "select_payment" : "Select Payment Method",
+    "service_fee" : "Service fee",
+    "service_fee_desk" : "Fees are deferred to the payer"
   },
   "validation": {
     "invalid_email_address": "Invalid email address",
+    "invalid_nik": "Invalid NIK",
     "input_is_not_empty": "{} is not filled",
     "invalid_password" : "Password must be at least 8 characters long",
     "passwords_do_not_match": "The passwords do not match.",
@@ -136,7 +146,7 @@
   },
   "dropdown_text_static" : {
     "marital_status" : {
-      "marry" : "Marry",
+      "marry" : "MARRIED",
       "single" : "Single"
     },
     "nationality" : {
@@ -163,7 +173,7 @@
   },
   "login_page" : {
     "title" : "Login to your account",
-    "forgot_pin" : "Forgot your PIN?"
+    "forgot_password" : "Forgot your password?"
   },
   "register_page" : {
     "title" : "Register Account",
@@ -182,9 +192,10 @@
     "forgot_pin" : "Forgot your PIN?"
   },
   "home_page" : {
-    "linked_card" : "Your Linked Card",
+    "greeting" : "Have a great day and keep saving money",
     "see_all" : "See All",
-    "history" : "History Transactions"
+    "history" : "Transactions",
+    "add_card" : "Add My Account"
   },
   "atm_page" : {
     "title" : "Add Your Card Number",
@@ -195,6 +206,14 @@
     "desc" : "We require verification of your face for the purposes of the requirements to proceed with payment activities",
     "validation" : "Validation Process",
     "success" : "Your identify has been verified! Now you can continue your payment activities"
+  },
+  "qr" : {
+    "from" : "From",
+    "tr_number" : "Transaction Number",
+    "status" : "Status",
+    "amount" : "Amount",
+    "fee" : "Service fee",
+    "t_amount" : "Total amount"
   },
   "create_bill": {
     "title" : "Create Bill"
@@ -242,8 +261,31 @@
   },
   "history" : {
     "history" : "History",
-    "active_purchase" : "Active Purchase",
-    "bill" : "Bill"
+    "success" : "Success",
+    "fail" : "Fail",
+    "done" : "Done",
+    "on_process" : "On Process"
+  },
+  "detail_transaction" : {
+    "title" :"Detail Transaction",
+    "subtitle" : "Transaction Success",
+    "details" : "Transaction Details",
+    "date" : "Date Created",
+    "pay_to" : "Payment To",
+    "from" : "From",
+    "payment_method" : "Payment Method",
+    "desc_account" : "Destination Account",
+    "admin_fee" : "Admin Fee"
+  },
+  "select_payment" : {
+    "title" : "Select Payment",
+    "subtitle" : "Bill Account"
+  },
+  "payment_bank" : {
+    "title" : "Payment",
+    "subtitle" : "Transaction Details",
+    "payment_amount" : "Payment Amount",
+    "pay_in" : "Pay In"
   },
   "profile" : {
     "title" : "My Profile",
@@ -307,6 +349,11 @@
       "description" : "descriptions"
     }
   },
+  "notification" : {
+    "title" : "Notification",
+    "transaction" : "Transaction",
+    "information" : "Information"
+  },
   "provinces": {
     "aceh": "Aceh",
     "bali": "Bali",
@@ -347,5 +394,10 @@
     "message": "Are you sure you want to exit the app?",
     "cancel": "Cancel",
     "exit": "Exit"
+  },
+  "verif_dialog" : {
+    "title" : "Account verification",
+    "text" : "You haven't verified your account. Please click the button below to fill in your complete personal data and continue the verification process",
+    "button_text" : "Continue   Verification"
   }
 }

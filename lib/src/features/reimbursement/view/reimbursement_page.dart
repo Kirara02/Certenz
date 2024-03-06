@@ -1,30 +1,30 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/blocs/reimbursement/reimbursement_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
-import 'package:certenz/src/data/models/bank/bank_account_model.dart';
 import 'package:certenz/src/features/reimbursement/widget/detail_activity.dart';
 import 'package:certenz/src/utils/date_picker.dart';
+import 'package:certenz/src/utils/dismiss_keyboard.dart';
 import 'package:certenz/src/utils/formatters.dart';
 import 'package:certenz/src/utils/image_compress.dart';
 import 'package:certenz/src/utils/logger.dart';
 import 'package:certenz/src/utils/utils.dart';
 import 'package:certenz/src/widgets/buttons/button_primary.dart';
 import 'package:certenz/src/widgets/common/custom_appbar.dart';
+import 'package:certenz/src/widgets/dialogs/bill_alert_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/hide_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/loading_dialog.dart';
-import 'package:certenz/src/widgets/dialogs/modal_bottom_select_account_bank.dart';
+// import 'package:certenz/src/widgets/dialogs/modal_bottom_select_account_bank.dart';
 import 'package:certenz/src/widgets/dialogs/ux_toast_wrapper.dart';
-import 'package:certenz/src/widgets/forms/field_custom.dart';
 import 'package:certenz/src/widgets/forms/image_form_file.dart';
-import 'package:certenz/src/widgets/forms/select_bank_button.dart';
+import 'package:certenz/src/widgets/forms/textfield_custom.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class ReimbursementPage extends StatefulWidget {
   const ReimbursementPage({super.key});
@@ -42,8 +42,9 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
   TextEditingController noteController = TextEditingController();
   TextEditingController detailActivityController = TextEditingController();
   TextEditingController startDateController = TextEditingController();
+  bool withFee = false;
 
-  BankAccountModel? selectedAccDestination;
+  // BankAccountModel? selectedAccDestination;
   List<String> imagesDocs = [];
   List<String> detailActivities = [];
 
@@ -55,7 +56,7 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
       builder: (context) {
         return Dialog(
           insetPadding: const EdgeInsets.all(10),
-          child: DatePicker(
+          child: SelectDatePicker(
             passDate: passDate,
             tanggal_awal: date,
           ),
@@ -64,20 +65,20 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
     );
   }
 
-  Future _selectAccount(BuildContext context) {
-    return showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24),
-          topRight: Radius.circular(24),
-        ),
-      ),
-      builder: (context) {
-        return const ModalBottomSelectAccountBank();
-      },
-    );
-  }
+  // Future _selectAccount(BuildContext context) {
+  //   return showModalBottomSheet(
+  //     context: context,
+  //     shape: const RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.only(
+  //         topLeft: Radius.circular(24),
+  //         topRight: Radius.circular(24),
+  //       ),
+  //     ),
+  //     builder: (context) {
+  //       return const ModalBottomSelectAccountBank();
+  //     },
+  //   );
+  // }
 
   Future _detailActivity({required List<String> data}) {
     return showGeneralDialog(
@@ -118,19 +119,19 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
     noteController.clear();
     startDateController.clear();
     detailActivityController.clear();
-    selectedAccDestination = null;
+    // selectedAccDestination = null;
     imagesDocs.clear();
     detailActivities.clear();
-    super.dispose();
   }
 
   Future<FormData?> _handleSubmit() async {
-    if (selectedAccDestination == null) {
-      _toast(LocaleKeys.toast_text_required.tr(
-        namedArgs: {"text": LocaleKeys.form_title_select_dest.tr()},
-      ));
-      return null;
-    } else if (imagesDocs.isEmpty) {
+    // if (selectedAccDestination == null) {
+    //   _toast(LocaleKeys.toast_text_required.tr(
+    //     namedArgs: {"text": LocaleKeys.form_title_select_dest.tr()},
+    //   ));
+    //   return null;
+    // }
+    if (imagesDocs.isEmpty) {
       _toast(LocaleKeys.toast_text_required.tr(
         namedArgs: {"text": LocaleKeys.form_title_documentation.tr()},
       ));
@@ -139,7 +140,7 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
 
     List<File> docsImagesFile = [];
     for (String item in imagesDocs) {
-      File file = await compressAndGetFile(item, rotate: 90);
+      File file = await compressAndGetFile(item, rotate: 360);
       docsImagesFile.add(file);
     }
 
@@ -148,18 +149,44 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
             filename: image.path.split('/').last))
         .toList();
 
-    FormData formData = FormData.fromMap({
+    Map<String, dynamic> json = {
       "email": emailController.text,
       "title": titleController.text,
       "amount": removeCurrencyFormat(amountController.text),
       "activity_details[]": detailActivities.toList(),
       "start_date": startDateController.text,
-      "bank_destination": selectedAccDestination!.bankId.toString(),
-      "documentation[]": multipartImageDocsList,
-      "notes": noteController.text,
-    });
+      "documentation[]": multipartImageDocsList.toList(),
+    };
+
+    // Map<String, dynamic> json = {
+    //   "email": "fathul.sirnaraja92@gmail.com",
+    //   "title": "hsjsb",
+    //   "amount": 1000000,
+    //   "activity_details[]": ["gahshbd"],
+    //   "start_date": "2024-02-19"
+    // };
+
+    FormData formData = FormData.fromMap(json);
+
+    dLog(json);
 
     return formData;
+  }
+
+  void _showAlertBill(
+    BuildContext context, {
+    VoidCallback? onSubmit,
+    VoidCallback? onCancel,
+  }) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return BillAlertDialog(
+          onSubmit: onSubmit,
+          onCancel: onCancel,
+        );
+      },
+    );
   }
 
   @override
@@ -173,10 +200,9 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
               orElse: () {},
               loading: () => showLoadingDialog(context),
               success: (data) {
-                _refresh();
                 hideDialog(context);
-                log("success");
-                Navigator.pushNamed(context, "/reimbursement-success");
+                _refresh();
+                context.goNamed("r-success");
               },
               error: (error) {
                 hideDialog(context);
@@ -203,7 +229,7 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
           },
           child: Scaffold(
             appBar: AppbarCustom(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () => context.pop(),
               title: LocaleKeys.reimbursement_title.tr(),
             ),
             body: SingleChildScrollView(
@@ -221,7 +247,7 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: emailController,
                       hintText: LocaleKeys.form_hint_text_email2.tr(),
                       maxLines: 1,
@@ -255,7 +281,7 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: titleController,
                       hintText: LocaleKeys.form_hint_text_title.tr(),
                       maxLines: 1,
@@ -283,7 +309,7 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: amountController,
                       format: "currency",
                       hintText: LocaleKeys.form_hint_text_amount.tr(),
@@ -313,14 +339,14 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: startDateController,
                       hintText: LocaleKeys.form_hint_text_date.tr(),
                       suffixIcon: const Icon(Icons.calendar_month),
                       readOnly: true,
                       onTap: () => _deliveryDate(passDate: true).then((value) {
                         if (value != null) {
-                          startDateController.text = value;
+                          startDateController.text = value['start_date'];
                         }
                       }),
                       validator: (p0) {
@@ -342,10 +368,9 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: detailActivityController,
                       hintText: LocaleKeys.form_hint_text_title.tr(),
-                      maxLength: 10,
                       style: const TextStyle(
                         fontSize: AppConstants.kFontSizeS,
                         color: AppColors.neutralN40,
@@ -357,6 +382,7 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                               padding: const EdgeInsets.symmetric(vertical: 12),
                               child: Container(
                                 height: 25,
+                                margin: const EdgeInsets.only(right: 8),
                                 padding: const EdgeInsets.all(4),
                                 decoration: BoxDecoration(
                                   color: AppColors.orange,
@@ -388,35 +414,35 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                           setState(() {
                             detailActivities = value;
                           });
-
+                          detailActivityController.text = "Some activities";
                           if (detailActivities.length == 1) {
                             detailActivityController.text = detailActivities[0];
-                          } else if (detailActivities.length > 1) {
+                          } else if (detailActivities.isEmpty) {
                             detailActivityController.clear();
                           }
                         }
                       }),
                     ),
-                    const SizedBox(height: 18),
-                    Text(
-                      LocaleKeys.form_title_select_dest.tr(),
-                      style: const TextStyle(
-                        fontSize: AppConstants.kFontSizeS,
-                        color: AppColors.neutralN40,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    SelectBankButton(
-                      hintText: LocaleKeys.form_hint_text_select_account.tr(),
-                      bankAccountModel: selectedAccDestination,
-                      onTap: () => _selectAccount(context).then((value) {
-                        if (value != null) {
-                          setState(() {
-                            selectedAccDestination = value;
-                          });
-                        }
-                      }),
-                    ),
+                    // const SizedBox(height: 18),
+                    // Text(
+                    //   LocaleKeys.form_title_select_dest.tr(),
+                    //   style: const TextStyle(
+                    //     fontSize: AppConstants.kFontSizeS,
+                    //     color: AppColors.neutralN40,
+                    //   ),
+                    // ),
+                    // const SizedBox(height: 8),
+                    // SelectBankButton(
+                    //   hintText: LocaleKeys.form_hint_text_select_account.tr(),
+                    //   bankAccountModel: selectedAccDestination,
+                    //   onTap: () => _selectAccount(context).then((value) {
+                    //     if (value != null) {
+                    //       setState(() {
+                    //         selectedAccDestination = value;
+                    //       });
+                    //     }
+                    //   }),
+                    // ),
                     const SizedBox(height: 18),
                     Text(
                       LocaleKeys.form_title_documentation.tr(),
@@ -430,8 +456,9 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                       imagesDocs: imagesDocs,
                       onImagesSelected: (selectedImages) {
                         setState(() {
-                          imagesDocs = selectedImages;
+                          imagesDocs.addAll(selectedImages);
                         });
+                        dLog(imagesDocs);
                       },
                     ),
                     const SizedBox(height: 18),
@@ -443,30 +470,84 @@ class _ReimbursementPageState extends State<ReimbursementPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    FieldCustom(
+                    TextfieldCustom(
                       controller: noteController,
                       hintText: LocaleKeys.form_hint_text_note.tr(),
-                      maxLines: 1,
-                      maxLength: 20,
+                      maxLines: 2,
+                      maxLength: 50,
                       keyboardType: TextInputType.emailAddress,
                       style: const TextStyle(
                         fontSize: AppConstants.kFontSizeS,
                         color: AppColors.neutralN40,
                       ),
                     ),
+                    const SizedBox(height: 18),
+                    Text(
+                      LocaleKeys.form_title_service_fee.tr(),
+                      style: const TextStyle(
+                        fontSize: AppConstants.kFontSizeS,
+                        color: AppColors.neutralN40,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Transform.scale(
+                          scale: 1.2,
+                          child: SizedBox(
+                            height: 24,
+                            width: 24,
+                            child: Checkbox(
+                              value: withFee,
+                              onChanged: (value) {
+                                setState(() {
+                                  withFee = value!;
+                                });
+                              },
+                              activeColor: AppColors.orange,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4),
+                                side: const BorderSide(
+                                  color: AppColors.neutralN80,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          LocaleKeys.form_title_service_fee_desk.tr(),
+                          style: const TextStyle(
+                            fontSize: AppConstants.kFontSizeS,
+                          ),
+                        ),
+                      ],
+                    ),
                     const SizedBox(
                       height: 20,
                     ),
                     BtnPrimary(
                       onTap: () {
+                        hideKeyboard(context);
                         if (_formKey.currentState!.validate()) {
-                          _handleSubmit().then((value) {
-                            if (value != null) {
-                              context.read<ReimbursementBloc>().add(
-                                  ReimbursementEvent.createReimbursement(
-                                      formData: value));
-                            }
-                          });
+                          _showAlertBill(
+                            context,
+                            onCancel: () => context.pop(),
+                            onSubmit: () {
+                              _handleSubmit().then((value) {
+                                if (value != null) {
+                                  context.pop();
+                                  if (context.mounted) {
+                                    context.read<ReimbursementBloc>().add(
+                                        ReimbursementEvent.createReimbursement(
+                                            formData: value));
+                                  }
+                                }
+                              });
+                            },
+                          );
                         }
                       },
                       title: LocaleKeys.button_send.tr(),

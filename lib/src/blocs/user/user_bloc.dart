@@ -3,7 +3,7 @@ import 'package:certenz/src/core/api_result.dart';
 import 'package:certenz/src/core/default_response.dart';
 import 'package:certenz/src/core/network_exceptions.dart';
 import 'package:certenz/src/data/models/user/user_detail_model.dart';
-import 'package:certenz/src/data/services/user/user_service.dart';
+import 'package:certenz/src/data/services/user_service.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';

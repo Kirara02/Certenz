@@ -7,6 +7,7 @@ import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ReimbursementSuccessPage extends StatefulWidget {
   const ReimbursementSuccessPage({super.key});
@@ -20,16 +21,9 @@ class _ReimbursementSuccessPageState extends State<ReimbursementSuccessPage> {
   @override
   void initState() {
     super.initState();
-
-    Timer(
-      const Duration(seconds: 5),
-      () => Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const AppRoot(),
-          ),
-          (route) => false),
-    );
+    if (context.mounted) {
+      Timer(const Duration(seconds: 5), () => context.goNamed("home"));
+    }
   }
 
   @override

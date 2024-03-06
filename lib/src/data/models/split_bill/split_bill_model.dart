@@ -8,6 +8,7 @@ class SplitBillModel with _$SplitBillModel {
   factory SplitBillModel({
     @JsonKey(name: "split_id") required int id,
     @JsonKey(name: "user_id") required int userId,
+    @JsonKey(name: "bill_number") required String billNumber,
     required String title,
     @JsonKey(name: 'amount_total') required double amountTotal,
     @JsonKey(name: 'set_fairy') required bool setFairy,
