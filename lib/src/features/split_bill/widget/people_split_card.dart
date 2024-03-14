@@ -1,6 +1,7 @@
 import 'package:certenz/src/config/constant.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/utils/formatters.dart';
+import 'package:certenz/src/widgets/images/cached_network.dart';
 import 'package:flutter/material.dart';
 
 class PeopleSplitCard extends StatelessWidget {
@@ -49,10 +50,14 @@ class PeopleSplitCard extends StatelessWidget {
             Container(
               width: 32,
               height: 32,
+              padding: EdgeInsets.all(4),
               decoration: const BoxDecoration(
                 color: AppColors.orange,
                 shape: BoxShape.circle,
               ),
+              child: ClipOval(
+                  child:
+                      UICacheNetworkImage(imageUrl: generateAvatarUrl(name))),
             ),
             const SizedBox(width: 8),
             Expanded(

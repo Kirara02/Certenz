@@ -74,8 +74,14 @@ class HistoryHome extends StatelessWidget {
                         },
                       );
                     }
-                    return const EmptyList(
-                        message: "Haven't made a transaction yet");
+                    return const Center(
+                      child: Text(
+                        "Haven't made a transaction yet",
+                        style: TextStyle(
+                          color: AppColors.neutralN80,
+                        ),
+                      ),
+                    );
                   },
                 );
               },

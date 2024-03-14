@@ -350,5 +350,8 @@ abstract class  LocaleKeys {
   static const verif_dialog_text = 'verif_dialog.text';
   static const verif_dialog_button_text = 'verif_dialog.button_text';
   static const verif_dialog = 'verif_dialog';
+  static const card_acc_dialog_title = 'card_acc_dialog.title';
+  static const card_acc_dialog_text = 'card_acc_dialog.text';
+  static const card_acc_dialog = 'card_acc_dialog';
 
 }

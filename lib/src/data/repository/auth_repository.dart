@@ -15,10 +15,6 @@ abstract class AuthRepository {
 
   Future<ApiResult<RegisterModel>> register({required FormData data});
   Future<ApiResult<DefaultResponse>> logout();
-  Future<ApiResult<Response>> pusherAuth({
-    String? channelName,
-    String? socketId,
-  });
   Future<ApiResult<DefaultResponse>> userKtpVerip({FormData? formData});
   Future<ApiResult<UserCard>> scanKtp({required File imageFile});
 }

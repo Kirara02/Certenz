@@ -25,6 +25,7 @@ import 'package:certenz/src/features/history_split_bill/view/history_split_bill_
 import 'package:certenz/src/features/home/view/home_page.dart';
 import 'package:certenz/src/features/initial/view/initial_page.dart';
 import 'package:certenz/src/features/ktp_verification/view/ktp_verification_page.dart';
+import 'package:certenz/src/features/notif_test/notif_test.dart';
 import 'package:certenz/src/features/notification/view/notification_page.dart';
 import 'package:certenz/src/features/pay/view/pay_page.dart';
 import 'package:certenz/src/features/payment_bank/view/payment_bank_page.dart';
@@ -39,6 +40,8 @@ import 'package:certenz/src/features/splash/view/splash_page.dart';
 import 'package:certenz/src/features/split_bill/view/split_bill_page.dart';
 import 'package:certenz/src/features/wallet/view/wallet_page.dart';
 import 'package:certenz/src/features/welcome/view/welcome_page.dart';
+import 'package:certenz/src/utils/logger.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -58,6 +61,13 @@ class MyRouter {
         path: "/",
         name: "initial",
         builder: (context, state) => const InitialPage(),
+      ),
+      GoRoute(
+        path: "/notif-test",
+        name: "notif-test",
+        builder: (context, state) {
+          return const NotifTest();
+        },
       ),
       GoRoute(
         path: "/splash",

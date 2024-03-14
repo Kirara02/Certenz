@@ -62,7 +62,8 @@ class BillSuccessPage extends StatelessWidget {
                   color: AppColors.primaryColors,
                 ),
                 loadedBillHistory: (data) {
-                  DateTime dateTime = DateTime.parse(data.transactionDatetime!);
+                  DateTime dateTime =
+                      DateTime.parse(data.transactionDatetime ?? "");
                   String formattedDate =
                       DateFormat('dd MMMM yyyy').format(dateTime);
                   String formattedTime =

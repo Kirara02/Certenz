@@ -2,8 +2,8 @@ import 'package:certenz/gen/assets.gen.dart';
 import 'package:certenz/l10n/locale_keys.g.dart';
 import 'package:certenz/src/blocs/bank/bank_bloc.dart';
 import 'package:certenz/src/blocs/card_account/card_account_bloc.dart';
+import 'package:certenz/src/blocs/user/user_bloc.dart';
 import 'package:certenz/src/config/constant.dart';
-import 'package:certenz/src/config/navigation.dart';
 import 'package:certenz/src/config/screen.dart';
 import 'package:certenz/src/config/theme/colors.dart';
 import 'package:certenz/src/data/models/bank/bank_model.dart';
@@ -21,7 +21,6 @@ import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 
 class AtmCardPage extends StatefulWidget {
@@ -59,14 +58,6 @@ class _AtmCardPageState extends State<AtmCardPage> {
     );
   }
 
-  Future _toast(String? message, [Color color = AppColors.red]) {
-    return UXToast.show(
-        message: message ?? '',
-        backgroundColor: color,
-        toastGravity: ToastGravity.BOTTOM,
-        textColor: AppColors.neutralN140);
-  }
-
   Future<FormData?> _handleSubmit() async {
     FormData formData = FormData.fromMap({
       "bank_id": selectedBank!.id,
@@ -96,7 +87,9 @@ class _AtmCardPageState extends State<AtmCardPage> {
     norekController.clear();
     expDateController.clear();
     cvvController.clear();
-    selectedBank = null;
+    setState(() {
+      selectedBank = null;
+    });
   }
 
   @override
@@ -119,7 +112,13 @@ class _AtmCardPageState extends State<AtmCardPage> {
               success: (data) {
                 hideDialog(context);
                 _refresh();
-                context.pop();
+                UXToast.show(
+                    message:
+                        "successful in adding card account, Please refresh your home page!");
+                if (context.mounted) {
+                  context.goNamed("home");
+                }
+
                 // Navigator.push(
                 //     context,
                 //     MaterialPageRoute(
@@ -149,7 +148,7 @@ class _AtmCardPageState extends State<AtmCardPage> {
                           children: [
                             IconButton(
                               onPressed: () {
-                                GoRouter.of(context).pop();
+                                context.pop();
                               },
                               icon: const Icon(Icons.arrow_back),
                             ),
@@ -210,6 +209,7 @@ class _AtmCardPageState extends State<AtmCardPage> {
                                   LocaleKeys.form_hint_text_select_bank.tr(),
                                 ]);
                               }
+                              return null;
                             },
                           ),
                         ),
@@ -294,6 +294,7 @@ class _AtmCardPageState extends State<AtmCardPage> {
                               label: LocaleKeys.form_hint_text_exp.tr(),
                               hintText: LocaleKeys.form_hint_text_exp.tr(),
                               readOnly: true,
+                              maxLength: 5,
                               suffixIcon: const Icon(Icons.calendar_month),
                               onTap: () => _deliveryDate().then((value) {
                                 if (value != null) {

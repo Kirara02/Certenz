@@ -9,6 +9,7 @@ import 'package:certenz/src/data/models/auth/register_model.dart';
 import 'package:certenz/src/data/models/user/user_card.dart';
 import 'package:certenz/src/data/repository/auth_repository.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class AuthService implements AuthRepository {
   late UXHttp http;
@@ -22,11 +23,13 @@ class AuthService implements AuthRepository {
     required String email,
     required String password,
   }) async {
+    String? deviceToken = await FirebaseMessaging.instance.getToken();
     return await http.post(
       "login",
       data: {
         "email": email,
         "password": password,
+        "device_token": deviceToken,
       },
       onSuccess: (res) => AuthModel.fromJson(res.data),
     );
@@ -46,24 +49,6 @@ class AuthService implements AuthRepository {
     return await http.get("logout",
         authorization: true,
         onSuccess: (response) => DefaultResponse.fromJson(response.data));
-  }
-
-  @override
-  Future<ApiResult<Response>> pusherAuth({
-    String? channelName,
-    String? socketId,
-  }) async {
-    var data = FormData.fromMap({
-      "socket_id": socketId,
-      "channel_name": channelName,
-    });
-    return await http.post(
-      "broadcasting/auth",
-      data: data,
-      onSuccess: (response) {
-        return response;
-      },
-    );
   }
 
   @override

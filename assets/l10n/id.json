@@ -399,6 +399,10 @@
     "title" : "Verifikasi Akun",
     "text" : "Silakan klik tombol di bawah ini untuk mengisi data diri lengkap dan melanjutkan proses verifikasi",
     "button_text" : "Lanjutkan Verifikasi"
+  },
+  "card_acc_dialog" : {
+    "title" : "Infomasi",
+    "text" : "Silakan klik tombol di bawah ini untuk mengisi akun kartu dan melanjutkan proses"
   }
 }
 

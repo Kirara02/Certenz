@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "712028884929",
+    "project_id": "test-firebase-55ab2",
+    "storage_bucket": "test-firebase-55ab2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:712028884929:android:180f757db5d39ff6f36940",
+        "android_client_info": {
+          "package_name": "com.apps.certenz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRUU195ns3lrdAc3_og9TILbdAMso4plE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

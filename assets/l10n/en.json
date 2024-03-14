@@ -399,5 +399,9 @@
     "title" : "Account verification",
     "text" : "You haven't verified your account. Please click the button below to fill in your complete personal data and continue the verification process",
     "button_text" : "Continue   Verification"
+  },
+  "card_acc_dialog" : {
+    "title" : "Infomation",
+    "text" : "Please click the button below to top up your card account and continue the process."
   }
 }

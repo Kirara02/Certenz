@@ -266,9 +266,10 @@ class _KtpVerificationPageState extends State<KtpVerificationPage> {
           },
           successVerif: (response) {
             hideDialog(context);
+            UXToast.show(
+                message:
+                    "Successful account verification, Please refresh your home page!");
             if (context.mounted) {
-              dLog(response);
-              UXToast.show(message: "Verifikasi Berhasil");
               context.goNamed("home");
             }
           },

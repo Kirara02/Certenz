@@ -1,6 +1,7 @@
 import 'package:certenz/gen/assets.gen.dart';
 import 'package:certenz/src/features/home/widget/icon_widget.dart';
 import 'package:certenz/src/utils/flutter_storage.dart';
+import 'package:certenz/src/widgets/dialogs/card_account_dialog.dart';
 import 'package:certenz/src/widgets/dialogs/verification_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +24,13 @@ class CardHome extends StatelessWidget {
         );
       }
     } else if (bool.tryParse(hasBank!) == false) {
+      if (context.mounted) {
+        showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (context) => const CardAccountDialog(),
+        );
+      }
     } else {
       if (context.mounted) {
         context.pushNamed(route);

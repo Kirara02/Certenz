@@ -1,16 +1,11 @@
 import 'dart:async';
-import 'dart:io';
 
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:certenz/firebase_options.dart';
+import 'package:certenz/src/data/firebase/firebase_api.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:certenz/src/utils/background_service.dart';
-import 'package:certenz/src/utils/notification_helper.dart';
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
 
 Future<void> bootstrap(
   FutureOr<Widget> Function() builder,
@@ -19,16 +14,10 @@ Future<void> bootstrap(
   await dotenv.load(fileName: ".env");
   await EasyLocalization.ensureInitialized();
 
-  final NotificationHelper notificationHelper = NotificationHelper();
-  final BackgroundService service = BackgroundService();
-
-  service.initializeIsolate();
-
-  if (Platform.isAndroid) {
-    await AndroidAlarmManager.initialize();
-  }
-
-  await notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseApi().initNotifications();
 
   runApp(await builder());
 }

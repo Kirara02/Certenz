@@ -47,7 +47,7 @@ class SplitBillWith extends StatelessWidget {
                 const SizedBox(height: 8),
                 TextfieldCustom(
                   controller: friendEntry.emailController,
-                  hintText: LocaleKeys.form_hint_text_email.tr(),
+                  hintText: LocaleKeys.form_hint_text_email2.tr(),
                   maxLines: 1,
                   keyboardType: TextInputType.emailAddress,
                   style: const TextStyle(

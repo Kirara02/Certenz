@@ -46,24 +46,37 @@ class AccountsSection extends StatelessWidget {
                       color: AppColors.primaryColors,
                     ),
                     successList: (data) {
-                      return Column(
-                        children: data
-                            .map(
-                              (item) => Container(
-                                margin: const EdgeInsets.only(bottom: 12),
-                                padding: const EdgeInsets.all(12),
-                                decoration: BoxDecoration(
-                                  color: AppColors.neutralN130,
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: AccountBank(
-                                  bankAccountModel: item,
-                                  isForm: false,
-                                  showDelete: true,
-                                ),
+                      if (data.isNotEmpty) {
+                        return ListView.builder(
+                          itemCount: data.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            var item = data[index];
+
+                            return Container(
+                              margin: const EdgeInsets.only(bottom: 12),
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: AppColors.neutralN130,
+                                borderRadius: BorderRadius.circular(6),
                               ),
-                            )
-                            .toList(),
+                              child: AccountBank(
+                                bankAccountModel: item,
+                                isForm: false,
+                                showDelete: true,
+                              ),
+                            );
+                          },
+                        );
+                      }
+                      return const Center(
+                        child: Text(
+                          "You haven't added a card yet.",
+                          style: TextStyle(
+                            fontSize: AppConstants.kFontSizeS,
+                            color: AppColors.neutralN80,
+                          ),
+                        ),
                       );
                     },
                   );

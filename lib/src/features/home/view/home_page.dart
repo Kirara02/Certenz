@@ -45,41 +45,43 @@ class _HomePageState extends State<HomePage> {
                   .read<CardAccountBloc>()
                   .add(const CardAccountEvent.getCards());
             }),
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Container(
-                height: AppScreens.height * 0.92,
-                constraints: BoxConstraints(
-                  minHeight: AppScreens.height * 0.9,
-                ),
-                child: Column(
-                  children: [
-                    const HeaderHome(),
-                    const SizedBox(height: 24),
-                    const CardAccountHome(),
-                    const SizedBox(height: 32),
-                    Expanded(
-                      child: Stack(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(top: 32),
-                            padding: const EdgeInsets.only(top: 48),
-                            decoration: const BoxDecoration(
-                              color: UIColors.white,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(32),
-                                topRight: Radius.circular(32),
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                Container(
+                  height: AppScreens.height * 0.91,
+                  constraints: BoxConstraints(
+                    minHeight: AppScreens.height * 0.91,
+                  ),
+                  child: Column(
+                    children: [
+                      const HeaderHome(),
+                      const SizedBox(height: 24),
+                      const CardAccountHome(),
+                      const SizedBox(height: 32),
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(top: 32),
+                              padding: const EdgeInsets.only(top: 48),
+                              decoration: const BoxDecoration(
+                                color: UIColors.white,
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(32),
+                                  topRight: Radius.circular(32),
+                                ),
                               ),
+                              child: const HistoryHome(),
                             ),
-                            child: const HistoryHome(),
-                          ),
-                          const CardHome(),
-                        ],
+                            const CardHome(),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ),
           );
         }),
